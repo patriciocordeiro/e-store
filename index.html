@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>E-Commerce Web Page</title>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+
+    <link href="assets/css/bootstrap.css"  rel="stylesheet"/>
+    <link href="assets/scss/style.scss"/>
+
+
+</head> <!--head-->
+
+<body ng-app=myApp>
+    <div ng-controller="mainController">
+
+        <div class="container content-area">
+            <h3>Categoria</h3>
+            <select class="form-control" ng-model="selCategoria.name" ng-click="getCategoria(selCategoria.name)">
+                <option value="selecionar categoria">Selecionar categoria</option>
+                <option value="tv">TV</option>
+                <option value="celular">CELULAR</option>
+                <option value="tablet">TABLET</option>
+            </select>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <h2>Filtrar</h2>
+                    <h4>Marca</h4>
+                    <form name="myform">
+                        <div class="checkbox" ng-repeat="filters in myfiltersMarca">
+                            <label>
+                                <input type="checkbox" ng-model="filtro_value.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="filtroComum(filtro_value.marca)" />{{filters.marca}}
+
+                            </label>
+                        </div>
+
+                    </form>
+                    <h4 class="info">Tamanho da Tela</h4>
+                    <div class="checkbox" ng-repeat="filters in myfiltersTela">
+                        <label>
+                            <input type="checkbox" ng-model="filtro_value.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="filtroComum(filtro_value.tamanho_tela)" />{{filters.tamanho_tela}}"
+                        </label>
+                    </div>
+
+                    <h4>Faixa de Preco</h4>
+                    <div class="radio" ng-repeat="faixapreco in faixaPreco">
+                        <label>
+                            <input type="radio" ng-model="filtro_value.name" value="num,preco,{{faixapreco}}" ng-click="filtro_faixa(filtro_value.name)">{{faixapreco}}
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-9 show-area">
+
+                    <div class="row">
+                        <div class="col-md-4" ng-repeat="produto in produtos">
+                            <h3>{{produto.caracteristicas}} {{produto.categoria}} {{produto.tamanho_tela}}" {{produto.frequencia}}  {{produto.marca}}                                     </h3>
+                            <h1 style="color:red">R$ {{produto.preco}}</h1>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!--Modulos do angular-->
+    <script src="assets/lib/ionic/js/angular/angular.js"></script>
+    <script src="assets/lib/ionic/js/angular/angular-resource.js"></script>
+
+    <!--Meus modulos-->
+    <script src="app.js"></script>
+    <script src="mainController.js"></script>
+    <script src="services/httpService.js"></script>
+
+</body>
+
+</html>
