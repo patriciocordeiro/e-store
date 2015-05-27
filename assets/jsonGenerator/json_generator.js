@@ -1,15 +1,3 @@
-/*var caracteristicas = 
-	{
-	'TV':[
-		{'marcas': ['Samsung', 'Philips', 'LG', 'AOC', 'CCE', 'Toshiba']},
-		{'tamanho_tela':[14, 19, 23, 28, 32, 50, 60]},
-		{'wifi':['sim','nao']},
-		{'caracteristicas':['3d','Convencional','Smart Tv', 'Smart Tv 3d', 'Smart Tv 3d Weboos']},
-		{'frequencia':['1200 hz', '120 hz', '1440 hz', '240 hz', '480 hz']},
-		{'preco':[2000, 3000, 7000, 5000, 4000, 8000, 3500, 2500]}
-	]
-	};*/
-
 /**
  * Returns a random integer between min (inclusive) and max (inclusive)
  * Using Math.round() will give you a non-uniform distribution!
@@ -24,6 +12,12 @@ function shuffle(o){
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
 }
+
+// Gerar data aleatória a partir de uma data inicial até uma data final
+function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
 
 var tipos = ['tv', 'tablet', 'celular'];
 var parametros = ['marca', 'tamanho_tela', 'caracteristica', 'frequencia', 'camera', 'memoria_interna', 'sistema_operacional', 'cor'];
@@ -98,16 +92,19 @@ for(var loops = 0; loops < 2; loops++){ // Determina quantos embaralhamentos sob
 						produto['preco'] = getRandomInt(4000,10000); // faixa de preço
 						produto['nome'] = 'produto '.concat((nome).toString());
 						produto['categoria'] = 'tv';
+                        produto['lancamento'] = randomDate(new Date(2012, 0, 1), new Date());
 					break;
 				case 'tablet':
 						produto['preco'] = getRandomInt(1000,4000);
 						produto['nome'] = 'produto '.concat((nome+200).toString());
 						produto['categoria'] = 'tablet';
+                        produto['lancamento'] = randomDate(new Date(2012, 0, 1), new Date());
 					break;
 				case 'celular':
 						produto['preco'] = getRandomInt(500,3500);
 						produto['nome'] = 'produto '.concat((nome+400).toString());
 						produto['categoria'] = 'celular';
+                        produto['lancamento'] = randomDate(new Date(2012, 0, 1), new Date());
 					break;
 			}
 
@@ -129,7 +126,7 @@ console.log(produtos);
 db: ecommerce
 collection: produtos
 */
-fs.writeFile("output/db_produtos.js", JSON.stringify(produtos), function(err){
+fs.writeFile("db_produtos.js", JSON.stringify(produtos), function(err){
 	if(err){
 		return console.log(err);
 	}
