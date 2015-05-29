@@ -65,7 +65,10 @@ myApp.controller('mainController', ['$scope', 'httpService',
             return (v);
         }
 
+        
+       
         $scope.getCategoria = function(selectedCategoria) {
+            console.log('executado')
             console.log(selectedCategoria)
             $scope.selectedCategoria = selectedCategoria;
             console.log($scope.selectedCategoria)
@@ -81,7 +84,9 @@ myApp.controller('mainController', ['$scope', 'httpService',
                 $scope.myfiltersTela = returnUniqueTela($scope.produtos);
                 console.log('filtros', $scope.myfilters)
             });
-        }
+        } 
+        
+          $scope.listaGategoria = 
         //filtro comum
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         $scope.filtro_value = {

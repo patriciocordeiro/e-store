@@ -25,7 +25,7 @@ mongoose.connect('mongodb://localhost/ecommerce');
 //check if connected
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
+db.once('open', function(callback) {
     console.log('connected to database')
 });
 //---------------------------------------------------------------------
@@ -45,29 +45,32 @@ var produtosSchema = mongoose.Schema({
 var produtos = mongoose.model('produtos', produtosSchema);
 
 //connec to url produtos
-//app.get('/produtos', function(req, res) {
-//    console.log('connected')
-//    //FIND ALL PRODUCTS
-//    produtos.find(function(err, doc) {
-//        if (err) return console.error(err);
-////        console.log("Retrieved Data", doc);
-//        res.send(doc); //send the data to client
-//    });
-//});
+app.post('/produtos', function(req, res) {
+    console.log('connected')
+    //FIND ALL PRODUCTS
+    produtos.find()
+        .sort('preco')
+        .limit(20)
+        .exec(function(err, doc) {
+            if (err) return console.error(err);
+            //        console.log("Retrieved Data", doc);
+            res.send(doc); //send the data to client
+        });
+});
 
-app.get('/produtos/:categoria', function (req, res) {
+app.get('/produtos/:categoria', function(req, res) {
     //    console.log('connected')
     //FIND ALL PRODUCTS
     //console.log(req.params);
     var query = req.params;
-    produtos.find(query, function (err, cat) {
+    produtos.find(query, function(err, cat) {
         if (err) return console.error(err);
         console.log("Retrieved Data", cat);
         res.send(cat); //send the data to client
     });
 });
 
-app.post('/produtos/:categoria/:tipo_filtro', function (req, res) {
+app.post('/produtos/:categoria/:tipo_filtro', function(req, res) {
     //    console.log('connected')
     //FIND ALL PRODUCTS
     console.log(req.body);
@@ -81,11 +84,14 @@ app.post('/produtos/:categoria/:tipo_filtro', function (req, res) {
         //    var a = JSON.parse(query);
         //    console.log(typeof(query.val));
         console.log(query);
-        produtos.find(query, function (err, dd) {
-            if (err) return console.error(err);
-            //console.log("Retrieved Data", dd);
-            res.send(dd); //send the data to client
-        });
+        produtos.find(query)
+            .sort('-preco')
+            .limit(2)
+            .exec(function(err, dd) {
+                if (err) return console.error(err);
+                console.log("filter Data", dd);
+                res.send(dd); //send the data to client
+            });
     }
     // No serve não é necessário criar vários post para cada tipo de filtro
     // Cria-se if e else para que seja analisado o tipo de filtro 
@@ -103,11 +109,11 @@ app.post('/produtos/:categoria/:tipo_filtro', function (req, res) {
             .where('preco')
             .gt(req.body.menorPreco)
             .lt(req.body.maiorPreco)
-            .exec(function (err, dd) {
-            if (err) return console.error(err);
-            console.log("data retrieved: ", dd);
-            res.send(dd); //send the data to client
-        });
+            .exec(function(err, dd) {
+                if (err) return console.error(err);
+                console.log("data retrieved: ", dd);
+                res.send(dd); //send the data to client
+            });
 
         //console.log(faixaQuery);
     }

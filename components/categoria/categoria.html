@@ -1,0 +1,56 @@
+<div style="margin-top:200px" class="container">
+    <h4>Itens por página</h4>
+    <select ng-model="numProductsItens.limit">
+        <option value="20">20</option>
+        <option value="40">40
+        </option>
+        <option value="60">60
+        </option>
+    </select>
+    {{numProductsItens.limit}}
+    <div class="row">
+
+        <div class="col-md-3">
+            <h2>Filtrar</h2>
+            <h4>Marca</h4>
+            <form name="myform">
+                <div class="checkbox" ng-repeat="products in productsByCategory">
+                    <label>
+                        <input type="checkbox" ng-model="filtro_value.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="filtroComum(filtro_value.marca)" />{{products.marca}}
+
+                    </label>
+                </div>
+
+            </form>
+            <input type="text" ng-model="productCategory.category" />{{productCategory.category}}
+
+            <h4 class="info">Tamanho da Tela</h4>
+            <div class="checkbox" ng-repeat="filters in myfiltersTela">
+                <label>
+                    <input type="checkbox" ng-model="filtro_value.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="filtroComum(filtro_value.tamanho_tela)" />{{products.tamanho_tela}}"
+                </label>
+            </div>
+
+            <h4>Faixa de Preco</h4>
+            <div class="radio" ng-repeat="faixapreco in faixaPreco">
+                <label>
+                    <input type="radio" ng-model="filtro_value.name" value="num,preco,{{faixapreco}}" ng-click="filtro_faixa(filtro_value.name)">{{faixapreco}}
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-9 show-area">
+
+            <div class="row">
+                <div class="col-md-4" ng-repeat="products in productsByCategory">
+                    <h3>{{products.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{produto.marca}}                                     </h3>
+                    <h1 style="color:red">R$ {{products.preco}}</h1>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
