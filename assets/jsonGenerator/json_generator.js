@@ -69,7 +69,7 @@ var nome = 0;
 
 //console.log(categorias[tipos[0]].length);
 //console.log(categorias[tipos[2]][5][parametros[5]].length);
-for(var loops = 0; loops < 2; loops++){ // Determina quantos embaralhamentos sobre suas categorias deseja-se
+for(var loops = 0; loops < 10; loops++){ // Determina quantos embaralhamentos sobre suas categorias deseja-se
 	// Cada categoria é em embaralhada ao ser definida
 	// Caso queira um maior número de produtos com características diferentes, basta aumentar o valor desse loop
 	for(var i = 0; i < tipos.length; i++){

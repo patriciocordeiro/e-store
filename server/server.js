@@ -77,16 +77,17 @@ app.post('/produtos/:categoria/:tipo_filtro', function(req, res) {
     console.log(req.params.tipo_filtro);
     if (req.params.tipo_filtro == "filtro_comum") {
         var query = {};
-        query = req.body;
+        query.categoria = req.body.categoria;
+        
         //    console.log(query[0]
         //    query.val=(req.body.query);
         //    var jss = JSON.parse(query.val)
         //    var a = JSON.parse(query);
         //    console.log(typeof(query.val));
-        console.log(query);
+        console.log(req.body);
         produtos.find(query)
-            .sort('-preco')
-            .limit(2)
+            .sort(req.body.order)
+            .limit(req.body.limit)
             .exec(function(err, dd) {
                 if (err) return console.error(err);
                 console.log("filter Data", dd);

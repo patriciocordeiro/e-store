@@ -7,7 +7,13 @@
         <option value="60">60
         </option>
     </select>
-    {{numProductsItens.limit}}
+    <select ng-model="orderingProductsBy.order">
+        <option value="lancamento">Lançamento</option>
+        <option value="-preco">Maior preço
+        <option value="preco">Menor preço
+        </option>
+    </select>
+    {{orderingProductsBy.order}}
     <div class="row">
 
         <div class="col-md-3">
