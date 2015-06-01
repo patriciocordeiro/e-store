@@ -1,46 +1,43 @@
 <div style="margin-top:200px" class="container">
     <h4>Itens por página</h4>
-    <select ng-model="numProductsItens.limit">
+    <select ng-model="products.maxShowItem" ng-change="getMaxShowItems(products.maxShowItem)">
         <option value="20">20</option>
-        <option value="40">40
-        </option>
-        <option value="60">60
-        </option>
+        <option value="40">40</option>
+        <option value="60">60</option>
     </select>
-    <select ng-model="orderingProductsBy.order">
+    {{products.maxShowItem}}
+
+    <select ng-model="products.orderBy" ng-change="getOrdering(products.orderBy)">
         <option value="lancamento">Lançamento</option>
-        <option value="-preco">Maior preço
-        <option value="preco">Menor preço
-        </option>
+        <option value="-preco">Maior preço</option>
+        <option value="preco">Menor preço</option>
     </select>
-    {{orderingProductsBy.order}}
+    {{products.orderBy}}
     <div class="row">
 
         <div class="col-md-3">
             <h2>Filtrar</h2>
             <h4>Marca</h4>
-            <form name="myform">
-                <div class="checkbox" ng-repeat="products in productsByCategory">
+            <form>
+                <div class="checkbox" ng-repeat="filters in myfiltersMarca">
                     <label>
-                        <input type="checkbox" ng-model="filtro_value.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="filtroComum(filtro_value.marca)" />{{products.marca}}
-
+                        <input type="checkbox" ng-model="filterBy.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="filtroComum(filterBy.marca)" />{{filters.marca}}
                     </label>
                 </div>
-
             </form>
             <input type="text" ng-model="productCategory.category" />{{productCategory.category}}
 
             <h4 class="info">Tamanho da Tela</h4>
             <div class="checkbox" ng-repeat="filters in myfiltersTela">
                 <label>
-                    <input type="checkbox" ng-model="filtro_value.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="filtroComum(filtro_value.tamanho_tela)" />{{products.tamanho_tela}}"
+                    <input type="checkbox" ng-model="filterBy.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="filtroComum(filterBy.tamanho_tela)" />{{filters.tamanho_tela}}"
                 </label>
             </div>
 
             <h4>Faixa de Preco</h4>
             <div class="radio" ng-repeat="faixapreco in faixaPreco">
                 <label>
-                    <input type="radio" ng-model="filtro_value.name" value="num,preco,{{faixapreco}}" ng-click="filtro_faixa(filtro_value.name)">{{faixapreco}}
+                    <input type="radio" ng-model="filterBy.name" value="num,preco,{{faixapreco}}" ng-click="filtro_faixa(filterBy.name)">{{faixapreco}}
                 </label>
             </div>
         </div>
@@ -49,7 +46,7 @@
 
             <div class="row">
                 <div class="col-md-4" ng-repeat="products in productsByCategory">
-                    <h3>{{products.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{produto.marca}}                                     </h3>
+                    <h3>{{products.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{products.marca}}                                     </h3>
                     <h1 style="color:red">R$ {{products.preco}}</h1>
 
                 </div>

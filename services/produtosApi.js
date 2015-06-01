@@ -8,27 +8,30 @@ myApp.service('produtosApi', ['httpService',
         //            $scope.selectedCategoria = selectedCategoria;
         //            console.log($scope.selectedCategoria)
 
-//        var produtos = {};
+        //        var produtos = {};
 
         this.getSelectedCategory = function(selectedCategoria) {
             console.log(selectedCategoria);
 
             return selectedCategoria;
-            
-//            {
-//                console.log('executado');
-//                console.log(selectedCategoria);
-//            }
+
+            //            {
+            //                console.log('executado');
+            //                console.log(selectedCategoria);
+            //            }
         }
 
-        this.getDatabYCatgory = function(query) {
+        this.getDatabYCatgory = function(query, category, callback) {
 
-            return httpService.save({
-                categoria: 'tv',
+            httpService.save({
+                categoria: category,
                 tipo_filtro: 'filtro_comum'
-            }, query, function() {
-                console.log("O filtro eh: ", query);
+            }, query, function(data) {
+                data.abc = true;
+                console.log(data);
+                return callback(data);
             });
+
             //            return categoryData;
 
         };
@@ -38,10 +41,10 @@ myApp.service('produtosApi', ['httpService',
             return 10;
         };
 
-        
+
         this.greeting = 'Hello Default'
 
-//        return produtos;
+        //        return produtos;
 
         //        
         //            function getProductsShowLimit() {
