@@ -8,9 +8,9 @@
     {{products.maxShowItem}}
 
     <select ng-model="products.orderBy" ng-change="getOrdering(products.orderBy)">
-        <option value="lancamento">Lançamento</option>
         <option value="-preco">Maior preço</option>
         <option value="preco">Menor preço</option>
+        <option value="lancamento">Lançamento</option>
     </select>
     {{products.orderBy}}
     <div class="row">
@@ -46,9 +46,17 @@
 
             <div class="row">
                 <div class="col-md-4" ng-repeat="products in productsByCategory">
+                    <h1><strong>{{products.nome}}</strong></h1>
                     <h3>{{products.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{products.marca}}                                     </h3>
-                    <h1 style="color:red">R$ {{products.preco}}</h1>
-
+                    <h3 style="color:red">R$ {{products.preco}}</h3>
+                    
+                    <div class="input-group">
+                        <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalA" ng-click="getIdProduto(products._id, products.categoria)">Avaliar</button>
+                        <modal-avaliacao></modal-avaliacao>
+                        <modal-visualizacao></modal-visualizacao>
+                    </div>
                 </div>
             </div>
 

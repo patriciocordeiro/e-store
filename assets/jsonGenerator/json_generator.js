@@ -15,7 +15,9 @@ function shuffle(o){
 
 // Gerar data aleatória a partir de uma data inicial até uma data final
 function randomDate(start, end) {
-    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    //return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    // agora retorna um valor float ao invés de Date
+    return start.getTime() + Math.random() * (end.getTime() - start.getTime());
 }
 
 
@@ -66,18 +68,24 @@ var produtos = [];
 var produto = {}
 var num_produtos = 6; // quantos tipos de produto há em cada categoria
 var nome = 0;
+var numAleatorio = 0;
+var dataAleatoria = 0;
 
 //console.log(categorias[tipos[0]].length);
 //console.log(categorias[tipos[2]][5][parametros[5]].length);
 for(var loops = 0; loops < 10; loops++){ // Determina quantos embaralhamentos sobre suas categorias deseja-se
 	// Cada categoria é em embaralhada ao ser definida
 	// Caso queira um maior número de produtos com características diferentes, basta aumentar o valor desse loop
-	for(var i = 0; i < tipos.length; i++){
-		for(var count = 0; count < num_produtos; count++){
-			for(var j = 0; j < categorias[tipos[i]].length; j++){
-				if(categorias[tipos[i]][j][parametros[j]].length != 0){
+	for(var i = 0; i < tipos.length; i++){ // loop dos tipos de produtos
+		for(var count = 0; count < num_produtos; count++){ // loop para o número de produtos que têm disponível, todos tem a mesma quantidade
+			for(var j = 0; j < categorias[tipos[i]].length; j++){ // loop para quantas categorias cada tipo de produto possui
+				if(j == 0){ // é necessário dizer que o campo tags é vetor previamente para utilizar o método push
+					produto['tags'] = [];
+				}
+				if(categorias[tipos[i]][j][parametros[j]].length != 0){ // só executa se aquele vetor não for vazio
 					//console.log(categorias[tipos[i]][j][parametros[j]].length);
 					produto[parametros[j]] = categorias[tipos[i]][j][parametros[j]][count];
+					produto['tags'].push(categorias[tipos[i]][j][parametros[j]][count]); // acrescenta aquela característica às tags do produto
 					//categorias[tipos[i]][j][parametros[j]][count] = shuffle(categorias[tipos[i]][j][parametros[j]][count]);
 
 					// Começa a embaralhar quando já terminou de passar todos os valores das categorias
@@ -89,22 +97,48 @@ for(var loops = 0; loops < 10; loops++){ // Determina quantos embaralhamentos so
 
 			switch(tipos[i]){
 				case 'tv':
-						produto['preco'] = getRandomInt(4000,10000); // faixa de preço
+						numAleatorio = getRandomInt(4000,10000);
+						dataAleatoria = randomDate(new Date(2012, 0, 1), new Date());
+
+						produto['preco'] = numAleatorio; // faixa de preço
 						produto['nome'] = 'produto '.concat((nome).toString());
 						produto['categoria'] = 'tv';
-                        produto['lancamento'] = randomDate(new Date(2012, 0, 1), new Date());
+                        produto['lancamento'] = dataAleatoria;
+
+                        // Acrescentando as tags
+                        produto['tags'].push(numAleatorio);
+                        produto['tags'].push('produto '.concat((nome).toString()));
+                        produto['tags'].push('tv');
+                        produto['tags'].push(dataAleatoria);
 					break;
 				case 'tablet':
-						produto['preco'] = getRandomInt(1000,4000);
-						produto['nome'] = 'produto '.concat((nome+200).toString());
+						numAleatorio = getRandomInt(4000,10000);
+						dataAleatoria = randomDate(new Date(2012, 0, 1), new Date());
+
+						produto['preco'] = numAleatorio;
+						produto['nome'] = 'produto '.concat((nome+400).toString());
 						produto['categoria'] = 'tablet';
-                        produto['lancamento'] = randomDate(new Date(2012, 0, 1), new Date());
+                        produto['lancamento'] = dataAleatoria;
+
+                        // Acrescentando as tags
+                        produto['tags'].push(numAleatorio);
+                        produto['tags'].push('produto '.concat((nome+400).toString()));
+                        produto['tags'].push('tablet');
+                        produto['tags'].push(dataAleatoria);
 					break;
 				case 'celular':
-						produto['preco'] = getRandomInt(500,3500);
-						produto['nome'] = 'produto '.concat((nome+400).toString());
+						numAleatorio = getRandomInt(4000,10000);
+						dataAleatoria = randomDate(new Date(2012, 0, 1), new Date());
+
+						produto['preco'] = numAleatorio;
+						produto['nome'] = 'produto '.concat((nome+800).toString());
 						produto['categoria'] = 'celular';
-                        produto['lancamento'] = randomDate(new Date(2012, 0, 1), new Date());
+                        produto['lancamento'] = dataAleatoria;
+                        // Acrescentando as tags
+                        produto['tags'].push(numAleatorio);
+                        produto['tags'].push('produto '.concat((nome+800).toString()));
+                        produto['tags'].push('tablet');
+                        produto['tags'].push(dataAleatoria);
 					break;
 			}
 
