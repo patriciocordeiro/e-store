@@ -26,6 +26,16 @@ var myApp = angular.module('myApp', ['ngResource', 'ui.router'])
         //            template : '<h1>Funciona</h1>',
 
     })
+    
+        .state('app.login', {
+        url: "/login",
+        templateUrl: 'components/registerLogin/registerLogin.html',
+        controller: 'registerLoginCtrl'
+        //            template : '<h1>Funciona</h1>',
+
+    })
+    
+    
     console.log('router')
     $urlRouterProvider.otherwise('home/home');
 });
