@@ -1,5 +1,5 @@
-myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'productCategory',
-    function($scope, httpService, produtosApi, productCategory) {
+myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'productCategory','httpServiceAvaliacao','modalService',
+    function($scope, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
 
         //initialization------------------------------------------------------------------------------------------ 
 
@@ -201,8 +201,46 @@ myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'prod
         });
         //        console.log($scope.productsByCategory);
         //        console.log('categoria controller greeting', query)
+        
+        // Aqui são as funções relacionadas a avaliação de produtos
+        $scope.getIdProduto = function(produtoId, categoria){
+            modalService.id = produtoId;
+            modalService.categoria = categoria;
+            console.log("Produto a ser avaliado", modalService.id);
+            console.log("Categoria do produto", modalService.categoria);
+        };
+        $scope.getAvaliacao = function(avaliacao){
+            modalService.avaliacao = avaliacao;
+            console.log("Minha avaliacao: ", avaliacao);
+        };
+        $scope.enviarAvaliacaoProduto = function(){
+            console.log("Id: ", modalService.id);
+            console.log("Avaliacao ", modalService.avaliacao);
+            console.log("Categoria ", modalService.categoria);
+            var queryAvaliacao = {
+                'id':modalService.id,
+                'avaliacao':modalService.avaliacao,
+                'categoria':modalService.categoria
+            };
+            
+            httpServiceAvaliacao.save({
+                categoria: modalService.categoria,
+                avaliacao: modalService.avaliacao
+            }, queryAvaliacao, function() {
+                console.log("Os dados da avaliacao sao: ", queryAvaliacao);
+            });
+        };
+        
+        $scope.getProdutoVisualizacao = function(produtoVis){
+            $scope.produtosParaVisualizar = produtoVis;
+            if(typeof produtoVis.avaliacao !== "undefined"){
+                $scope.maxAvaliacoes = parseInt(produtoVis.avaliacao.um || 0)+parseInt(produtoVis.avaliacao.dois || 0)+
+                parseInt(produtoVis.avaliacao.tres || 0)+parseInt(produtoVis.avaliacao.quatro || 0)+parseInt(produtoVis.avaliacao.cinco || 0);
+            } else{
+                $scope.maxAvaliacoes = 0;
+            }
+        };
 
     }
 
-
-])
+]);
