@@ -46,8 +46,9 @@
 
             <div class="row">
                 <div class="col-md-4" ng-repeat="products in productsByCategory">
+                    <h1><strong>{{products.nome}}</strong></h1>
                     <h3>{{products.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{products.marca}}                                     </h3>
-                    <h1 style="color:red">R$ {{products.preco}}</h1>
+                    <h3 style="color:red">R$ {{products.preco}}</h3>
                     
                     <div class="input-group">
                         <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
