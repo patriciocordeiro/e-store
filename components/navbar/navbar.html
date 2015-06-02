@@ -11,12 +11,34 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul id="menu" class="nav navbar-nav">
-                <li ><a  ng-model="productCategory.category" ui-sref="app.home">Home</a></li>
-                    <li ng-repeat="category in categories">
-                        <a  ng-model="productCategory.category" ng-click="getSelectedCategory(category)"  ui-sref="app.categoria">{{category}}</a>
-                    </li>
-                <li><a ui-sref="app.login"> faça seu login ou cadastre-se</a></li>
+                <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>
+                </li>
+                <li ng-repeat="category in categories">
+                    <a ng-model="productCategory.category" ng-click="getSelectedCategory(category)" ui-sref="app.categoria">{{category}}</a>
+                </li>
+                <li><a ui-sref="app.login"> faça seu login ou cadastre-se</a>
+                </li>
             </ul>
         </div>
+        <div class="row">
+            <!-- /.col-lg-6 -->
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input ng-model="searchProducts.value" ng-model-options="{ updateOn: 'mousedown blur' }" type="text" class="form-control" placeholder="Buscar por...">
+
+                    <span class="input-group-btn">
+                        <a ui-sref="app.search" ng-click="getSearchValue(searchProducts.value)">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </a>
+                    </span>
+
+                </div>
+                <!-- /input-group -->
+            </div>
+            <!-- /.col-lg-6 -->
+        </div>
+        <!-- /.row -->
     </div>
 </nav>

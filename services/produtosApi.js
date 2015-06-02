@@ -28,7 +28,7 @@ myApp.service('produtosApi', ['httpService',
                 tipo_filtro: 'filtro_comum'
             }, query, function(data) {
                 data.abc = true;
-                console.log(data);
+//                console.log(data);
                 return callback(data);
             });
 
@@ -37,12 +37,25 @@ myApp.service('produtosApi', ['httpService',
         };
 
 
+        this.getDatabySearch = function(query, callback) {
+
+            httpService.save({
+               acao: 'search'
+            }, query, function(data) {
+                data.abc = true;
+                console.log(data);
+                return callback(data);
+            });
+
+            //            return categoryData;
+
+        };
         this.getLimit = function() {
             return 10;
         };
 
 
-        this.greeting = 'Hello Default'
+      
 
         //        return produtos;
 

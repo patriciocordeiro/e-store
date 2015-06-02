@@ -40,7 +40,7 @@ var produtosSchema = mongoose.Schema({
     memoria_interna: String,
     sistema_operacional: String,
     preco: Number,
-    avaliacao:{
+    avaliacao: {
         media: Number,
         cinco: Number,
         quatro: Number,
@@ -86,8 +86,8 @@ app.post('/produtos/:categoria/:tipo_filtro', function(req, res) {
     if (req.params.tipo_filtro == "filtro_comum") {
         var query = req.body[0];
         var display = req.body[1];
-//        query.categoria = req.body.categoria;
-        
+        //        query.categoria = req.body.categoria;
+
         //    console.log(query[0]
         //    query.val=(req.body.query);
         //    var jss = JSON.parse(query.val)
@@ -138,87 +138,110 @@ app.post('/produtos/avaliar/:categoria/:avaliacao', function(req, res) {
     console.log(req.body);
     var avaliacao = {};
     var minhaMedia = {};
-    
+
     // Criar a query antes de fazer o update no banco de dados
     // Primeiro recurar a media do banco de dados
     // Segundo verificar as estrelas para calcular a nova media
     var media = 0;
-    produtos.find({'_id':req.body.id}, function(err, dd) {
+    produtos.find({
+        '_id': req.body.id
+    }, function(err, dd) {
         if (err) return console.error(err);
         console.log("data retrieved: ", dd);
-        if(typeof dd[0]['avaliacao'].media !== "undefined"){
+        if (typeof dd[0]['avaliacao'].media !== "undefined") {
             media = dd[0]['avaliacao'].media;
             console.log("Minha media: ", media);
-        }else{
+        } else {
             console.log("Media vazia!");
             media = 0;
         }
         //res.send(dd); //send the data to client
-        switch(req.body.avaliacao){
+        switch (req.body.avaliacao) {
             case 'cinco':
-                if(media == 0){
+                if (media == 0) {
                     media = 5
-                }else{
-                    media = (media + 5)/2;
+                } else {
+                    media = (media + 5) / 2;
                 }
                 avaliacao['avaliacao.cinco'] = 1;
                 minhaMedia['avaliacao.media'] = media;
                 break;
             case 'quatro':
-                if(media == 0){
+                if (media == 0) {
                     media = 4;
-                }else{
-                    media = (media + 4)/2;
+                } else {
+                    media = (media + 4) / 2;
                 }
                 avaliacao['avaliacao.quatro'] = 1;
                 minhaMedia['avaliacao.media'] = media;
                 break;
             case 'tres':
-                if(media == 0){
+                if (media == 0) {
                     media = 3;
-                }else{
-                    media = (media + 3)/2;
+                } else {
+                    media = (media + 3) / 2;
                 }
                 avaliacao['avaliacao.tres'] = 1;
                 minhaMedia['avaliacao.media'] = media;
                 break;
             case 'dois':
-                if(media == 0){
+                if (media == 0) {
                     media = 2;
-                }else{
-                    media = (media + 2)/2;
+                } else {
+                    media = (media + 2) / 2;
                 }
                 avaliacao['avaliacao.dois'] = 1;
                 minhaMedia['avaliacao.media'] = media;
                 break;
             case 'um':
-                if(media == 0){
+                if (media == 0) {
                     media = 1;
-                }else{
-                    media = (media + 1)/2;
+                } else {
+                    media = (media + 1) / 2;
                 }
                 avaliacao['avaliacao.um'] = 1;
                 minhaMedia['avaliacao.media'] = media;
                 break;
         }
-        
+
         //var av = "avaliacao.cinco";
         //console.log("minha variavel que nao chega", avaliacao);
-        produtos.update({'_id':req.body.id}, {$set:minhaMedia}, {$inc:avaliacao}, function(err, raw){
+        produtos.update({
+            '_id': req.body.id
+        }, {
+            $set: minhaMedia
+        }, {
+            $inc: avaliacao
+        }, function(err, raw) {
             if (err) return handleError(err);
             console.log('The raw response from Mongo was ', raw);
         });
-        produtos.update({'_id':req.body.id}, {$inc:avaliacao}, function(err, raw){
+        produtos.update({
+            '_id': req.body.id
+        }, {
+            $inc: avaliacao
+        }, function(err, raw) {
             if (err) return handleError(err);
             console.log('The raw response from Mongo was ', raw);
         });
         //produtos.where({_id:req.body.id}).update({$inc:{'preco':1}});
         res.send('');
     });
-    
+
 });
 
-////url /produtos/:categoria
+//Search url
+app.post('/produtos/search', function(req, res) {
+    var searcQuery = req.body;
+    console.log(searcQuery);
+
+    produtos.find(searcQuery, function(err, searchData) {
+        if (err) return handlleError(err);
+        console.log('Search result data', searchData)
+        res.send(searchData)
+    });
+});
+////url /produtos/:getcategoria
 ////COMMOM FILTER
 //var marca = "camera";
 //var value = 10;
