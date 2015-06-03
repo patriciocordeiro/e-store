@@ -294,14 +294,12 @@ app.post('/users/login', function(req, res) {
                 name: data.firstName+' '+data.lastName,
               }
             console.log(user)
-            res.send([user])
-            console.log('usuario encontrado!');
             res.send(user)
+            console.log('Usuario encontrado!');
+           
 
         } else {
-            res.send([{
-                data: 'email ou senha incorretos'
-            }])
+            res.send({data: 'email ou senha incorretos'})
         }
     
     })
