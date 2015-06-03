@@ -296,7 +296,7 @@ app.post('/users/login', function(req, res) {
             console.log(user)
             res.send(user)
             console.log('Usuario encontrado!');
-           
+   
 
         } else {
             res.send({data: 'email ou senha incorretos'})
