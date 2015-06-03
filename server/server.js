@@ -288,14 +288,13 @@ app.post('/users/login', function(req, res) {
 //        .set('password', false)
         .exec(function(err, data) {
         if (err) return handleeError(err)
-        console.log('user data', data)
+        console.log('user data', data);
         if (data) {
             var user={
                 name: data.firstName+' '+data.lastName,
               }
             console.log(user)
             res.send([user])
-            console.log('usuario encontrado');
         } else {
             res.send([{
                 data: 'email ou senha incorretos'
