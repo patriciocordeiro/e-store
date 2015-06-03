@@ -35,14 +35,23 @@ var myApp = angular.module('myApp', ['ngResource', 'ui.router'])
 
     })
 
-    .state('app.login', {
-        url: "/login",
-        templateUrl: 'components/registerLogin/registerLogin.html',
-        controller: 'registerLoginCtrl'
+    .state('app.signup', {
+        url: "/signup",
+        templateUrl: 'components/signup/signup.html',
+        controller: 'signupCtrl'
         //            template : '<h1>Funciona</h1>',
 
     })
 
+    .state('app.login', {
+        url: "/login",
+        templateUrl: 'components/login/login.html',
+        controller: 'loginCtrl',
+        //            template : '<h1>Funciona</h1>',
+        authenticate:true
+        
+
+    })
     console.log('router')
     $urlRouterProvider.otherwise('home/home');
 });

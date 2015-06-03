@@ -49,8 +49,22 @@ var produtosSchema = mongoose.Schema({
         um: Number
     }
 });
-// CREATE A DATA MODEL
+
+var usersSchema = mongoose.Schema({
+    //    _id: Schema.Types.ObjectId,
+    firstName: String,
+    lastName: String,
+    email: {
+        type: String,
+        unique: true
+    },
+    password: String,
+})
+// CREATE A DATA MODEL FOR PRODUCTS
 var produtos = mongoose.model('produtos', produtosSchema);
+
+// CREATE A DATA MODEL FOR USERS
+var User = mongoose.model('users', usersSchema);
 
 //connec to url produtos
 app.post('/produtos', function(req, res) {
@@ -241,6 +255,58 @@ app.post('/produtos/search', function(req, res) {
         res.send(searchData)
     });
 });
+
+app.post('/users/signup', function(req, res) {
+    console.log(req.body.user)
+    var user = new User({
+        firstName: req.body.user.firstName,
+        lastName: req.body.user.lastName,
+        email: req.body.user.email,
+        password: req.body.user.password
+    })
+
+    user.save(function(err, data) {
+        if (err) {
+            //            return handlleError(err);
+            if (err.code == 1100) {
+                err = 'Este e-mail já existe, tente outro e-mail.'
+            }
+        }
+        console.log(data)
+
+    })
+
+    res.send([{
+        data: 'user created successfully'
+    }])
+
+});
+
+app.post('/users/login', function(req, res) {
+    console.log(req.body)
+    User.findOne({email: req.body.user.email, password: req.body.user.password})
+//        .set('password', false)
+        .exec(function(err, data) {
+        if (err) return handleeError(err)
+        console.log('user data', data)
+        if (data) {
+            var user={
+                name: data.firstName+' '+data.lastName,
+              }
+            console.log(user)
+            res.send(user)
+        } else {
+            res.send([{
+                data: 'email ou senha incorretos'
+            }])
+        }
+    
+    })
+        
+
+
+});
+
 ////url /produtos/:getcategoria
 ////COMMOM FILTER
 //var marca = "camera";
