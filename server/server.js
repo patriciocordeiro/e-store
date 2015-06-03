@@ -295,7 +295,7 @@ app.post('/users/login', function(req, res) {
               }
             console.log(user)
             res.send([user])
-            console.log('usuario encontrado!');
+            console.log('Usuario encontrado!');
             res.send(user)
 
         } else {
