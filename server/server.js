@@ -294,8 +294,12 @@ app.post('/users/login', function(req, res) {
                 name: data.firstName+' '+data.lastName,
               }
             console.log(user)
+<<<<<<< HEAD
             res.send([user])
             console.log('usuario encontrado');
+=======
+            res.send(user)
+>>>>>>> 087017057eb1d73466b2c18065e8dfaea1401dbc
         } else {
             res.send([{
                 data: 'email ou senha incorretos'
