@@ -88,13 +88,14 @@ myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'prod
             if (newValue != oldValue) {
                 query.categoria = newValue
 
-
+console.log('hello')
                 produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                     $scope.productsByCategory = data;
+                      console.log('poapapa', data)
                     console.log('categoria controller greeting', $scope.productsByCategory);
                     $scope.myfiltersMarca = returnUniqueMarca($scope.productsByCategory);
                     $scope.myfiltersTela = returnUniqueTela($scope.productsByCategory);
-                    console.log($scope.myfiltersMarca)
+                  
 
                 })
 
