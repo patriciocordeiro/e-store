@@ -30,9 +30,9 @@ Os produtos serão chamados de produtos mais alguma coisa
 var categorias = {
 						'tv':
 						[
-							{'marca': ['Samsung', 'Philips', 'LG', 'AOC', 'CCE', 'Toshiba']},
+							{'marca': ['samsung', 'philips', 'lg', 'aoc', 'cce', 'toshiba']},
 							{'tamanho_tela':[14, 19, 23, 28, 32, 50]},
-							{'caracteristica':['2d', '3d','Convencional','Smart Tv', 'Smart Tv 3d', 'Smart Tv 3d Weboos']},
+							{'caracteristica':['2d', '3d','convencional','smart tv', 'smart tv 3d', 'smart tv 3d weboos']},
 							{'frequencia':['1200 hz', '120 hz', '1440 hz', '240 hz', '480 hz', '360 hz']},
 							{'camera':[]},
 							{'memoria_interna':[]},
@@ -41,25 +41,25 @@ var categorias = {
 						],
 						'tablet':
 						[
-							{'marca': ['Samsung', 'Apple', 'Nokia', 'LG', 'ASUS', 'Sony']},
+							{'marca': ['samsung', 'apple', 'nokia', 'lg', 'asus', 'sony']},
 							{'tamanho_tela':[10, 7, 11, 12, 13, 10.5]},
-							{'caracteristica':['Usb 2.0', 'Wifi', 'Wifi 3G', 'Wifi 4G', 'bluetooth', '5G']},
+							{'caracteristica':['usb 2.0', 'wifi', 'wifi 3g', 'wifi 4g', 'bluetooth', '5g']},
 							{'frequencia':[]},
 							{'camera':[10, 12, 16, 3, 8, 22]},
 							{'memoria_interna':['10 gb', '8 gb', '2 gb', '16 gb', '4 gb', '32 gb']},
-							{'sistema_operacional': ['Android', 'Black Berry', 'Windows phone', 'Iphone OS', 'Symbiam', 'Firefox OS']},
-							{'cor':['Azul', 'Preto','Vermelho', 'Branco', 'Verde', 'Lilas']}
+							{'sistema_operacional': ['android', 'black berry', 'windows phone', 'iphone', 'symbiam', 'firefox']},
+							{'cor':['azul', 'preto','vermelho', 'branco', 'verde', 'lilas']}
 						],
 						'celular':
 						[
-							{'marca': ['Samsung', 'Apple', 'Nokia', 'LG', 'ASUS', 'Sony']},
+							{'marca': ['samsung', 'apple', 'nokia', 'lg', 'asus', 'sony']},
 							{'tamanho_tela':[3, 3.5, 4, 5, 4.5, 5.5]},
-							{'caracteristica':['Usb 2.0', 'Wifi', 'Wifi 3G', 'Wifi 4G', 'bluetooth', '5G']},
+							{'caracteristica':['usb 2.0', 'wifi', 'wifi 3g', 'wifi 4g', 'bluetooth', '5g']},
 							{'frequencia':[]},
 							{'camera':[10, 12, 16, 3, 8, 22]},
 							{'memoria_interna':['10 gb', '8 gb', '2 gb', '16 gb', '4 gb', '32 gb']},
-							{'sistema_operacional': ['Android', 'Black Berry', 'Windows phone', 'Iphone OS', 'Symbiam', 'Firefox OS']},
-							{'cor':['Azul', 'Preto','Vermelho', 'Branco', 'Verde', 'Lilas']}
+							{'sistema_operacional': ['android', 'black berry', 'windows phone', 'iphone', 'symbiam', 'firefox']},
+							{'cor':['azul', 'preto','vermelho', 'branco', 'verde', 'lilas']}
 						]
 					};
 //console.log(categorias[tipos[0]][0][parametros[0]]);
@@ -137,7 +137,7 @@ for(var loops = 0; loops < 10; loops++){ // Determina quantos embaralhamentos so
                         // Acrescentando as tags
                         produto['tags'].push(numAleatorio);
                         produto['tags'].push('produto '.concat((nome+800).toString()));
-                        produto['tags'].push('tablet');
+                        produto['tags'].push('celular');
                         produto['tags'].push(dataAleatoria);
 					break;
 			}
@@ -148,7 +148,7 @@ for(var loops = 0; loops < 10; loops++){ // Determina quantos embaralhamentos so
 		}
 	}
 }
-console.log(produtos);
+console.log(produtos.length);
 
 
 // Função para escrita em arquivo

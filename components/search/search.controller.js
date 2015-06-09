@@ -27,7 +27,9 @@
             //                var Cap = newValue[0].toUpperCase();
             //                newValue = newValue.replace(newValue[0], Cap)
             //                console.log(Cap)
-            query.tags = newValue;
+            query.tags = newValue.toLowerCase();
+            
+            console.log("A query procurada", query);
 
             console.log('search Query', vm.SearchProducts.value);
             produtosApi.getDatabySearch(query, function(data) {
