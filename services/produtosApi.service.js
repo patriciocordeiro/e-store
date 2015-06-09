@@ -1,4 +1,4 @@
-myApp.service('produtosApi', ['httpService',
+angular.module('myApp').service('produtosApi', ['httpService',
     function(httpService) {
         //    get products (all categories) from database
 

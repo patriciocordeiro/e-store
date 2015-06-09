@@ -1,0 +1,17 @@
+//angular.module('.httpService', [])
+angular.module('myApp').factory('httpService', function($resource) {
+       return $resource('http://localhost:3000/produtos/:acao/:categoria/:id/:tipo_filtro',
+       {categoria:'@categoria', tipo_filtro: '@filtro', id:'@id', acao:'@acao'},{'get':{method:'GET', isArray:true},'save':{method:'POST', isArray:true}})
+});
+
+angular.module('myApp').factory('httpServiceAvaliacao', function($resource) {
+       return $resource('http://localhost:3000/produtos/avaliar/:categoria/:avaliacao',
+       {categoria:'@categoria', avaliacao: '@avaliacao'},{'get':{method:'GET', isArray:true},'save':{method:'POST', isArray:true}})
+}); 
+
+
+//htt sevice for signup and login
+angular.module('myApp').factory('httpLoginService', function($resource) {
+       return $resource('http://localhost:3000/users/:acao',
+       {acao:'@acao'},{'get':{method:'GET', isArray:true},'save':{method:'POST', isArray:false}})
+}); 

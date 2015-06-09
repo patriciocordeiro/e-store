@@ -1,4 +1,4 @@
-myApp.controller('mainController', ['$scope', 'httpService',
+angular.module('myApp').controller('mainController', ['$scope', 'httpService',
     function($scope, httpService) {
         $scope.selCategoria = {
             name: 'selecionar categoria' //initialize the category

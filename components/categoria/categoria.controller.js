@@ -1,25 +1,30 @@
-myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'productCategory','httpServiceAvaliacao','modalService',
-    function($scope, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
+(function() {
+
+    'use strict';
+
+    angular.module('myApp').controller('CategoriaCtrl', ['$scope','httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', CategoriaCtrl]);
+
+    function CategoriaCtrl($scope, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
 
         //initialization------------------------------------------------------------------------------------------ 
-
-        $scope.products = {
+        var vm = this;
+        vm.products = {
             maxShowItem: 20, //itens by page
             orderBy: 'lancamento' //products ordering
 
         }
 
         //Get the selected category
-        $scope.productsCategory = productCategory;
+        vm.productsCategory = productCategory;
 
         //build the query
-        console.log($scope.productsCategory.category)
+        console.log('categoria', vm.productsCategory.category)
         var query = {
-            categoria: $scope.productsCategory.category,
-           
+            categoria: vm.productsCategory.category,
+
         }
         var display = {
-             maxShowItem: $scope.products.maxShowItem
+            maxShowItem: vm.products.maxShowItem
         }
 
         // Essa função foi feita para que os valores da Marca não se repitam nos filtros disponíveis
@@ -82,19 +87,19 @@ myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'prod
             return (v);
         }
 
-        $scope.$watch("productCategory.category", function(newValue, oldValue) {
+        $scope.$watch("vm.productCategory.category", function(newValue, oldValue) {
             console.log('hold:', oldValue);
             console.log('new:', newValue);
             if (newValue != oldValue) {
                 query.categoria = newValue
 
-
+                console.log('hello')
                 produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-                    $scope.productsByCategory = data;
-                    console.log('categoria controller greeting', $scope.productsByCategory);
-                    $scope.myfiltersMarca = returnUniqueMarca($scope.productsByCategory);
-                    $scope.myfiltersTela = returnUniqueTela($scope.productsByCategory);
-                    console.log($scope.myfiltersMarca)
+                    vm.productsByCategory = data;
+                    console.log('categoria controller greeting', vm.productsByCategory);
+                    vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+                    vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+
 
                 })
 
@@ -103,46 +108,46 @@ myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'prod
         });
 
         //get maxShow item per page
-        $scope.getMaxShowItems = function(maxShowItem) {
+        vm.getMaxShowItems = function(maxShowItem) {
             display.maxShowItem = maxShowItem;
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-                $scope.productsByCategory = data;
-                $scope.myfiltersMarca = returnUniqueMarca($scope.productsByCategory);
-                $scope.myfiltersTela = returnUniqueTela($scope.productsByCategory);
-                console.log('returned', $scope.productsByCategory)
+                vm.productsByCategory = data;
+                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                console.log('returned', vm.productsByCategory)
             });
         };
 
         //get the ordering of products on the page
-        $scope.getOrdering = function(orderBy) {
+        vm.getOrdering = function(orderBy) {
             display.orderBy = orderBy;
-            produtosApi.getDatabYCatgory([query, display],  query.categoria, function(data) {
-                $scope.productsByCategory = data;
-                $scope.myfiltersMarca = returnUniqueMarca($scope.productsByCategory);
-                $scope.myfiltersTela = returnUniqueTela($scope.productsByCategory);
-                console.log('returned', $scope.productsByCategory)
+            produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+                vm.productsByCategory = data;
+                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                console.log('returned', vm.productsByCategory)
             })
         }
 
-        //        $scope.$watch('numProductsItens.maxShowItem', function(newValue, oldValue) {
+        //        vm.$watch('numProductsItens.maxShowItem', function(newValue, oldValue) {
         //
         //            console.log('hold:', oldValue);
         //            console.log('new:', newValue);
         //            if (newValue != oldValue) {
         //                query.maxShowItem = newValue
-        //                $scope.productsByCategory = produtosApi.getDatabYCatgory(query);
+        //                vm.productsByCategory = produtosApi.getDatabYCatgory(query);
         //                console.log('categoria controller greeting', query)
         //            }
         //
         //        });
         //
-        //        $scope.$watch('orderByingProductsBy.orderBy', function(newValue, oldValue) {
+        //        vm.$watch('orderByingProductsBy.orderBy', function(newValue, oldValue) {
         //
         //            console.log('hold:', oldValue);
         //            console.log('new:', newValue);
         //            if (newValue != oldValue) {
         //                query.orderBy = newValue
-        //                $scope.productsByCategory = produtosApi.getDatabYCatgory(query);
+        //                vm.productsByCategory = produtosApi.getDatabYCatgory(query);
         //                console.log('categoria controller greeting', query)
         //            }
         //
@@ -151,14 +156,14 @@ myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'prod
         //Filters      var acumFilters = [];
         var acumFilters = [];
         var filtroComumQuery;
-        $scope.filterBy = {
+        vm.filterBy = {
             marca: '', //initialize the filter
             preco: '', //initialize the filter
             tamanho_tela: '' //initialize the filter
         };
 
 
-        $scope.filtroComum = function(filterBy) {
+        vm.filtroComum = function(filterBy) {
             var filterBy = filterBy.split(",");
             console.log('filtro', filterBy);
 
@@ -182,10 +187,10 @@ myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'prod
             }
 
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-                $scope.productsByCategory = data;
-                $scope.myfiltersMarca = returnUniqueMarca($scope.productsByCategory);
-                $scope.myfiltersTela = returnUniqueTela($scope.productsByCategory);
-                console.log('returned', $scope.productsByCategory)
+                vm.productsByCategory = data;
+                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                console.log('returned', vm.productsByCategory)
             })
 
             console.log('my', query)
@@ -195,34 +200,34 @@ myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'prod
         //        console.log(query)
         produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
             console.log('hello')
-            $scope.productsByCategory = data;
-            $scope.myfiltersMarca = returnUniqueMarca($scope.productsByCategory);
-            $scope.myfiltersTela = returnUniqueTela($scope.productsByCategory);
+            vm.productsByCategory = data;
+            vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+            vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
         });
-        //        console.log($scope.productsByCategory);
+        //        console.log(vm.productsByCategory);
         //        console.log('categoria controller greeting', query)
-        
+
         // Aqui são as funções relacionadas a avaliação de produtos
-        $scope.getIdProduto = function(produtoId, categoria){
+        vm.getIdProduto = function(produtoId, categoria) {
             modalService.id = produtoId;
             modalService.categoria = categoria;
             console.log("Produto a ser avaliado", modalService.id);
             console.log("Categoria do produto", modalService.categoria);
         };
-        $scope.getAvaliacao = function(avaliacao){
+        vm.getAvaliacao = function(avaliacao) {
             modalService.avaliacao = avaliacao;
             console.log("Minha avaliacao: ", avaliacao);
         };
-        $scope.enviarAvaliacaoProduto = function(){
+        vm.enviarAvaliacaoProduto = function() {
             console.log("Id: ", modalService.id);
             console.log("Avaliacao ", modalService.avaliacao);
             console.log("Categoria ", modalService.categoria);
             var queryAvaliacao = {
-                'id':modalService.id,
-                'avaliacao':modalService.avaliacao,
-                'categoria':modalService.categoria
+                'id': modalService.id,
+                'avaliacao': modalService.avaliacao,
+                'categoria': modalService.categoria
             };
-            
+
             httpServiceAvaliacao.save({
                 categoria: modalService.categoria,
                 avaliacao: modalService.avaliacao
@@ -230,17 +235,17 @@ myApp.controller('categoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'prod
                 console.log("Os dados da avaliacao sao: ", queryAvaliacao);
             });
         };
-        
-        $scope.getProdutoVisualizacao = function(produtoVis){
-            $scope.produtosParaVisualizar = produtoVis;
-            if(typeof produtoVis.avaliacao !== "undefined"){
-                $scope.maxAvaliacoes = parseInt(produtoVis.avaliacao.um || 0)+parseInt(produtoVis.avaliacao.dois || 0)+
-                parseInt(produtoVis.avaliacao.tres || 0)+parseInt(produtoVis.avaliacao.quatro || 0)+parseInt(produtoVis.avaliacao.cinco || 0);
-            } else{
-                $scope.maxAvaliacoes = 0;
+
+        vm.getProdutoVisualizacao = function(produtoVis) {
+            vm.produtosParaVisualizar = produtoVis;
+            if (typeof produtoVis.avaliacao !== "undefined") {
+                vm.maxAvaliacoes = parseInt(produtoVis.avaliacao.um || 0) + parseInt(produtoVis.avaliacao.dois || 0) +
+                    parseInt(produtoVis.avaliacao.tres || 0) + parseInt(produtoVis.avaliacao.quatro || 0) + parseInt(produtoVis.avaliacao.cinco || 0);
+            } else {
+                vm.maxAvaliacoes = 0;
             }
         };
 
     }
 
-]);
+})();

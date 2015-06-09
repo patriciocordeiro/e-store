@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navbarCtrl">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl as vm">
     <div class="container">
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -11,23 +11,27 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul id="menu" class="nav navbar-nav">
-                <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>
+                <li><a ng-model="vm.productCategory.category" ui-sref="app.home">Home</a>
                 </li>
-                <li ng-repeat="category in categories">
-                    <a ng-model="productCategory.category" ng-click="getSelectedCategory(category)" ui-sref="app.categoria">{{category}}</a>
+                <li ng-repeat="category in vm.categories">
+                    <a ng-model="vm.productCategory.category" ng-click="vm.getSelectedCategory(category)" ui-sref="app.categoria">{{category}}</a>
                 </li>
-                <li><a ui-sref="app.login"> faça seu login ou cadastre-se</a>
+               
+                <li><a ui-sref="app.login">login</a>
+                    <li><a ui-sref="app.signup"> cadastre-se</a>
+                        
                 </li>
+                <li><a>{{vm.user}}</a></li>
             </ul>
         </div>
         <div class="row">
             <!-- /.col-lg-6 -->
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input ng-model="searchProducts.value" ng-model-options="{ updateOn: 'mousedown blur' }" type="text" class="form-control" placeholder="Buscar por...">
+                    <input ng-model="vm.searchProducts.value" ng-model-options="{ updateOn: 'mousedown blur' }" type="text" class="form-control" placeholder="Buscar por...">
 
                     <span class="input-group-btn">
-                        <a ui-sref="app.search" ng-click="getSearchValue(searchProducts.value)">
+                        <a ui-sref="app.search" ng-click="vm.getSearchValue(vm.searchProducts.value)">
                             <button class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>

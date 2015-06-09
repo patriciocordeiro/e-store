@@ -1,19 +1,24 @@
-myApp.controller('homeCtrl', ['$scope', 'produtosApi', 'httpService','productCategory',
-    function ($scope, produtosApi, httpService, productCategory) {
+(function() {
+    'use strict'
 
-//        $scope.categories = ['Tv', 'Celular', 'Tablet'];
+    angular.module('myApp').controller('HomeCtrl', ['$scope', 'produtosApi', 'httpService', 'productCategory', HomeCtrl]);
+
+    function HomeCtrl($scope, produtosApi, httpService, productCategory) {
+        var vm = this;
+
+        //        $scope.categories = ['Tv', 'Celular', 'Tablet'];
 
         //        $scope.category = produtosApi.getCategory();
         //        console.log($scope.category)
         //Get products (all categories) from database
         //Sort by ('Lançmento')
 
-//        $scope.getCategory = produtosApi.greeting;
-//        console.log($scope.getCategory)
+        //        $scope.getCategory = produtosApi.greeting;
+        //        console.log($scope.getCategory)
 
-        
-//        $scope.greeting = greeting;
-//        console.log($scope.greeting)
+
+        //        $scope.greeting = greeting;
+        //        console.log($scope.greeting)
 
 
         //
@@ -35,4 +40,4 @@ myApp.controller('homeCtrl', ['$scope', 'produtosApi', 'httpService','productCat
         //            $scope.produtos = produtos;
         //        });
     }
-]);
+})();
