@@ -168,9 +168,9 @@
             console.log('filtro', filterBy);
 
             //Check if the attribute value of the object to filter should be a number (not string)     
-            if (filterBy[0] == 'num') { //if the first array field is num then (check this in index.html )
-                filterBy[2] = Number(filterBy[2]); // convert the string to number
-            }
+//            if (filterBy[0] == 'num') { //if the first array field is num then (check this in index.html )
+//                filterBy[2] = Number(filterBy[2]); // convert the string to number
+//            }
             console.log('filterby', filterBy)
             /*if the filter already exist*/
             if (filterBy[0] == 'null') {

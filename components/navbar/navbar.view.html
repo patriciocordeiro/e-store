@@ -28,8 +28,10 @@
             <!-- /.col-lg-6 -->
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input ng-model="vm.searchProducts.value" ng-model-options="{ updateOn: 'mousedown blur' }" type="text" class="form-control" placeholder="Buscar por...">
+<!--                    <input ng-model="vm.searchProducts.value" ng-model-options="{ updateOn: 'mousedown blur' }" type="text" class="form-control" placeholder="Entre com a sua busca ... ">-->
 
+             <input type="text" placeholder="Entre com a sua busca ... " ng-model="vm.selected" typeahead="state for state in vm.states.marca[0].samsung | filter:$viewValue | limitTo:8" class="form-control">        
+                    
                     <span class="input-group-btn">
                         <a ui-sref="app.search" ng-click="vm.getSearchValue(vm.searchProducts.value)">
                             <button class="btn btn-default" type="button">

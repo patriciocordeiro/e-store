@@ -1,4 +1,4 @@
-angular.module("myApp", ['ngResource', 'ui.router'])
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap'])
 
 .run(function($rootScope, $state) {
     $rootScope.$on('$stateChangeStart', function(event, toState, fromState, toParams) {

@@ -35,7 +35,7 @@ var produtosSchema = mongoose.Schema({
     categoria: String,
     marca: String,
     tamanho_tela: Number,
-    camera: Number,
+    camera: String,
     caracteristicas: String,
     memoria_interna: String,
     sistema_operacional: String,
