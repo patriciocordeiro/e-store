@@ -82,7 +82,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap'])
             templateUrl: 'components/dashboard/dashboard.view.html',
             controller: 'Dashboard as vm',
             //            template : '<h1>Funciona</h1>',
-//            authenticate: true
+            authenticate: true
 
 
         })

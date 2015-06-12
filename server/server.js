@@ -3,9 +3,12 @@ var server = require('http').Server(app);
 var mongoose = require("mongoose");
 var cors = require("cors");
 var bodyParser = require('body-parser');
+var sessions = require('client-sessions');
 
 //use body parser
 //var jsonParser = bodyParser.json();
+
+//MIDLEWARE---------------------------------------------------
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({
     extended: true
@@ -13,7 +16,16 @@ app.use(bodyParser.urlencoded({
 
 //enable cross domain access
 app.use(cors());
-
+/*for user sessions*/
+app.use(sessions({
+    cookieName: 'session',
+    /*The session name*/
+    secret: ' @#$!%^TWFT@G!YUadkjnshgfsv^%&*89u8980dkjsdguwsd65t6sgcbnmpow087653',
+    //duration of the cookie (time to expire)
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000
+}));
+//---------------------------------------------------
 //initialize the server
 console.log("Iniciando servidor ...");
 server.listen(3000);
@@ -250,19 +262,21 @@ app.post('/produtos/search', function(req, res) {
     console.log(searcQuery);
     //console.log("Separando por espaco, resulta: ", );
     var pesquisa = searcQuery.tags.split(" ");
-    
+
     var query_vetor = [];
     var query_objeto = {};
-    
-    for(var i = 0; i < pesquisa.length; i++){
-        query_objeto.tags= pesquisa[i];
+
+    for (var i = 0; i < pesquisa.length; i++) {
+        query_objeto.tags = pesquisa[i];
         query_vetor.push(query_objeto);
         query_objeto = {};
     }
     console.log("Meu objeto eh: ", query_vetor);
-    
+
     //produtos.find(searcQuery, function(err, searchData) {
-    produtos.find({$and:query_vetor}, function(err, searchData) {
+    produtos.find({
+        $and: query_vetor
+    }, function(err, searchData) {
         if (err) return handlleError(err);
         console.log('Search result data', searchData)
         res.send(searchData)
@@ -282,41 +296,65 @@ app.post('/users/signup', function(req, res) {
         if (err) {
             //            return handlleError(err);
             if (err.code == 1100) {
+                res.send({
+                    error: err.code
+                });
                 err = 'Este e-mail já existe, tente outro e-mail.'
+            } else {
+                res.send({
+                    error: 'someerr'
+                });
             }
+        } else {
+            res.send({
+                data: 'user created successfully'
+            })
+            console.log(data)
         }
-        console.log(data)
+
 
     })
 
-    res.send({
-        data: 'user created successfully'
-    })
+
 
 });
 
 app.post('/users/login', function(req, res) {
     console.log(req.body)
-    User.findOne({email: req.body.user.email, password: req.body.user.password})
-//        .set('password', false)
-        .exec(function(err, data) {
+    User.findOne({
+        email: req.body.user.email,
+        password: req.body.user.password
+    })
+    //        .set('password', false)
+    .exec(function(err, user) {
         if (err) return handleeError(err)
-        console.log('user data', data);
-        if (data) {
-            var user={
-                name: data.email
-              }
-            console.log(user)
-            res.send(user)
-            console.log('Usuario encontrado!');
-   
+        console.log('user data', user);
+        if (!user) {
+            res.sendStatus(401)
 
         } else {
-            res.send({data: 'email ou senha incorretos'})
+            req.session.user = user;
+            console.log(req.session.user)
+            res.send({name:user.email})
         }
-    
+
+
+        //            var user = {
+        //                name: data.email
+        //            }
+        //            console.log(user)
+        //            res.send(user)
+        //            console.log('Usuario encontrado!');
+        //
+        //
+        //        } else {
+        //            res.send({
+        //                data: 'email ou senha incorretos'
+        //            })
+        //        }
+
     })
-        
+
 
 
 });
