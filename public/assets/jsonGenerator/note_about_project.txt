@@ -1,0 +1,80 @@
+﻿> FILTROS
+	1 - Marca
+	2 - Preço
+	3 - Tipo de tela
+	4 - Tamanho da tela
+	5 - Atributos (wireless, usb...)
+
+> ORDENAÇÃO
+	1 - Popularidade
+	2 - Menor preço
+	3 - Maior preço
+
+> Vamos vender (Aparelhos)
+	1 - Celular
+	2 - TV
+	3 - Tablet
+
+> MARCAS
+	1 - Samsung (TV, Tablet, Celular)
+	2 - Apple (Celular, Tablet)
+	3 - Motorola (Celular)
+	4 - Nokia (Celular, Tablet)
+	5 - Philips (TV)
+	6 - LG (TV)
+	7 - Sony (TV)
+	8 - ASUS (Tablet)
+
+>> FILTROS PARA CELULAR
+	1 - Marca
+	2 - Preço (faixa de preço)
+	3 - Memória
+	4 - Sistema operacional
+	5 - Resolução da câmera
+	6 - Processador
+	7 - Tecnologia (3G, 4G)
+	8 - Número de chips
+	9 - Atributos (wifi, bluetooth)
+
+>> FILTROS PARA TABLET
+	1 - Marca
+	2 - Preço (faixa de preço)
+	3 - Memória
+	4 - Sistema operacional
+	5 - Resolução da câmera
+	6 - Processador
+	7 - Tecnologia (3G, 4G)
+	8 - Tamanho da tela
+	9 - Atributos (wifi, bluetooth)
+
+>> FILTROS PARA TV
+	1 - Marca
+	2 - Preço (faixa de preço)
+	3 - Tipo de tela (LCD, LED)
+	4 - Entrada HDMI
+	5 - Tecnologia (3G, 4G)
+	6 - Tamanho da tela
+	7 - Atributos (wifi, smart)
+
+>>> MENU
+	Categorias: TV, Celular, Tablet
+
+>>> QUERIES
+	1 - Categoria
+	2 - Popularidade
+	3 - menor preço e maior preço (ou no angular)
+	4 - Marca/preço/outros
+	5 - Filtrar todos
+
+________________________________________________________________________
+|		FILTROS			|					CATEGORIAS 						|
+|					|___________________________________________________|
+|					|					|	QUANTIDADE	|	ORDENAÇÃO	|
+|					|___________________|_______________|_______________|
+|					|													|
+|					|													|
+|					|													|
+|					|					SHOW AREA						|
+|					|													|
+|					|													|
+|					|													|

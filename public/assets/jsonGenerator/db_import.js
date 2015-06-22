@@ -1,0 +1,1 @@
+mongoimport --db ecommerce --collection produtos --jsonArray db_produtos.js

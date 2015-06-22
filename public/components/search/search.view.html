@@ -1,0 +1,67 @@
+<div style="margin-top:200px" class="container">
+    <h4>Itens por página</h4>
+    <select ng-model="vm.products.maxShowItem" ng-change="vm.getMaxShowItems(vm.products.maxShowItem)">
+        <option value="20">20</option>
+        <option value="40">40</option>
+        <option value="60">60</option>
+    </select>
+    {{products.maxShowItem}}
+
+    <select ng-model="vm.products.orderBy" ng-change="vm.getOrdering(vm.products.orderBy)">
+        <option value="-preco">Maior preço</option>
+        <option value="preco">Menor preço</option>
+        <option value="lancamento">Lançamento</option>
+    </select>
+    {{products.orderBy}}
+    <div class="row">
+
+        <div class="col-md-3">
+            <h2>Filtrar</h2>
+            <h4>Marca</h4>
+            <form>
+                <div class="checkbox" ng-repeat="filters in vm.myfiltersMarca">
+                    <label>
+                        <input type="checkbox" ng-model="vm.filterBy.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.marca)" />{{filters.marca}}
+                    </label>
+                </div>
+            </form>
+<!--            <input type="text" ng-model="searchProducts.value" />{{searchProducts.value}}-->
+
+            <h4 class="info">Tamanho da Tela</h4>
+            <div class="checkbox" ng-repeat="filters in vm.myfiltersTela">
+                <label>
+                    <input type="checkbox" ng-model="vm.filterBy.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="vm.filtroComum(vm.filterBy.tamanho_tela)" />{{filters.tamanho_tela}}"
+                </label>
+            </div>
+
+            <h4>Faixa de Preco</h4>
+            <div class="radio" ng-repeat="faixapreco in vm.faixaPreco">
+                <label>
+                    <input type="radio" ng-model="vm.filterBy.name" value="num,preco,{{faixapreco}}" ng-click="vm.filtro_faixa(vm.filterBy.name)">{{faixapreco}}
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-9 show-area">
+
+            <div class="row">
+                <div class="col-md-4" ng-repeat="products in vm.productsBySearch">
+                    <h1><strong>{{products.nome}}</strong></h1>
+                    <h3>{{searchresults.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{products.marca}}                                     </h3>
+                    <h3 style="color:red">R$ {{products.preco}}</h3>
+                    
+                    <div class="input-group">
+                        <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalA" ng-click="getIdProduto(products._id, products.categoria)">Avaliar</button>
+                        <modal-avaliacao></modal-avaliacao>
+                        <modal-visualizacao></modal-visualizacao>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

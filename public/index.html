@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>E-Commerce Web Page</title>
+    <!--Modulos do angular-->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    
+
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!--        <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>-->
+
+    <!--Meus modulos-->
+    <script src="app.js"></script>
+<!--    <script src="assets/lib/ionic/js/angular-ui/angular-ui-router.js"></script>-->
+<!--    <script src="mainController.js"></script>-->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+
+    <!--services-->
+    <script src="services/resource.service.js"></script>
+    <script src="services/getCategory.service.js"></script>
+    <script src="services/produtosApi.service.js"></script>
+    <script src="services/modal.service.js"></script>
+    <script src="services/search.service.js"></script>
+    <script src="services/authentication.service.js"></script>
+    <script src="services/user.service.js"></script>
+    <!--controllers-->
+    <script src="components/home/home.controller.js"></script>
+    <script src="components/categoria/categoria.controller.js"></script>
+    <script src="components/search/search.controller.js"></script>
+    <script src="components/login/login.controller.js"></script>
+    <script src="components/signup/signup.controller.js"></script>
+    <script src="components/dashboard/dashboard.controller.js"></script>
+    <script src="components/navbar/navbar.controller.js"></script>
+
+    <!--custom directives-->
+    <script src="components/navbar/navbar.directive.js"></script>
+    <script src="directives/modal/modal.directive.js"></script>
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/scss/style.css" rel="stylesheet" />
+    <link href="lib/font-awesome-4.3.0/css/font-awesome.css" rel="stylesheet"/>
+
+
+</head>
+<!--head-->
+
+<body ng-app=myApp>
+    <my-bootstrap-nav-bar></my-bootstrap-nav-bar>
+    <ui-view></ui-view>
+</body>
+
+</html>

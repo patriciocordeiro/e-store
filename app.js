@@ -1,91 +1,78 @@
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap'])
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
-.run(function($rootScope, $state) {
-    $rootScope.$on('$stateChangeStart', function(event, toState, fromState, toParams) {
+var mongoose = require('mongoose');
 
-        var loggedIn = false;
-        console.log('Hello root', $rootScope.logedUser)
-
-        console.log('mudei de estado', toState)
-
-        console.log($rootScope.logedUser)
-        //        var restrictedPage = null;
-        //        restrictedPage = (toState, 'app.dashboard');
-        //        if (fromState.url === '^') {
-        if (toState.authenticate && !$rootScope.logedIn) {
-            event.preventDefault();
-            $state.go("app.login");
-        }
-        //        else {
-        //             event.preventDefault();
-        //            $state.go("app.dashboard")
-        //        };
-        //        }
-    })
-    console.log('Hello')
-})
-    .config(function($stateProvider, $urlRouterProvider) {
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var products = require('./routes/products')
 
 
-        $stateProvider
-            .state('app', {
-                abstract: true,
-                url: "/home",
-                template: '<ui-view/>',
+//Database
+var database = require('./config/database.js')
+//connect to mongo database
+//connect to databas
+mongoose.connect('mongodb://localhost/ecommerce');
+//check if connected
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(callback) {
+    console.log('connected to database')
+});
+//mongoose.connect(database.url)
 
-            })
+var app = express();
 
-        .state('app.home', {
-            url: "/home",
-            templateUrl: 'components/home/home.view.html',
-            controller: 'HomeCtrl'
-        })
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
+// uncomment after placing your favicon in /public
+//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-        .state('app.categoria', {
-            url: "/categoria",
-            templateUrl: 'components/categoria/categoria.view.html',
-            controller: 'CategoriaCtrl as vm',
-            authenticate: true
-            //            template : '<h1>Funciona</h1>',
+app.use('/', routes);
+app.use('/users', users);
+app.use('/products',products);
 
-        })
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
-        .state('app.search', {
-            url: "/search",
-            templateUrl: 'components/search/search.view.html',
-            controller: 'SearchResultsCtrl as vm'
-            //            template : '<h1>Funciona</h1>',
+// error handlers
 
-        })
-
-        .state('app.signup', {
-            url: "/signup",
-            templateUrl: 'components/signup/signup.view.html',
-            controller: 'SignupCtrl as vm'
-            //            template : '<h1>Funciona</h1>',
-
-        })
-
-        .state('app.login', {
-            url: "/login",
-            templateUrl: 'components/login/login.view.html',
-            controller: 'LoginCtrl as vm',
-            //            template : '<h1>Funciona</h1>',
-
-
-
-        })
-
-        .state('app.dashboard', {
-            url: "/dashboard",
-            templateUrl: 'components/dashboard/dashboard.view.html',
-            controller: 'Dashboard as vm',
-            //            template : '<h1>Funciona</h1>',
-            authenticate: true
-
-
-        })
-        console.log('router')
-        $urlRouterProvider.otherwise('home/home');
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
     });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
+
+
+module.exports = app;
