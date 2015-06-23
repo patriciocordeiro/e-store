@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('myApp').controller('CategoriaCtrl', ['$scope','httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', CategoriaCtrl]);
+    angular.module('myApp').controller('CategoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', CategoriaCtrl]);
 
     function CategoriaCtrl($scope, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
 
@@ -92,7 +92,7 @@
             console.log('new:', newValue);
             if (newValue != oldValue) {
                 query.categoria = newValue
-console.log('My Categoria query', query)
+                console.log('My Categoria query', query)
                 produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                     vm.productsByCategory = data;
                     console.log('categoria controller greeting', $scope.productsByCategory);
@@ -167,9 +167,9 @@ console.log('My Categoria query', query)
             console.log('filtro', filterBy);
 
             //Check if the attribute value of the object to filter should be a number (not string)     
-//            if (filterBy[0] == 'num') { //if the first array field is num then (check this in index.html )
-//                filterBy[2] = Number(filterBy[2]); // convert the string to number
-//            }
+            //            if (filterBy[0] == 'num') { //if the first array field is num then (check this in index.html )
+            //                filterBy[2] = Number(filterBy[2]); // convert the string to number
+            //            }
             console.log('filterby', filterBy)
             /*if the filter already exist*/
             if (filterBy[0] == 'null') {
@@ -185,7 +185,7 @@ console.log('My Categoria query', query)
 
             }
 
-            produtosApi.getDataByFiltroComum([query, display], query.categoria, function(data) {
+            produtosApi.getDataByFilter([query, display], 'filtro_comum', query.categoria, function(data) {
                 vm.productsByCategory = data;
                 vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
                 vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
@@ -243,6 +243,44 @@ console.log('My Categoria query', query)
             } else {
                 vm.maxAvaliacoes = 0;
             }
+        };
+
+
+
+        //create a srting array with list of price ranges for filtroFaixa
+        // Foram criados mais alguns intervalos para cobrir a maior parte dos produtos
+        // Isso pode ser otimizado pegando o maior valor e subtraindo pelo menor e dividindo pelo numero de faixas
+        // Assim pode ter faixas mais precisas
+        vm.faixaPreco = ['0-1000', '1000-1500', '1500-2000', '2000-3000', '3000-4000', '4000-5000', '6000-8000', '8000-11000'];
+        vm.filtro_faixa = function(faixa) {
+            faixa = faixa.split(",");
+            console.log(faixa);
+            // Como os valor vêm dividos por traço, basta fazer um split considerando o traço
+            var valoresFaixa = faixa[2].split("-");
+            console.log(valoresFaixa);
+            // A query é construída a partir da categoria selecionada e da faixa de valores
+//            query = {
+//                "categoria": vm.selectedCategoria,
+                query.menorPreco= Number(valoresFaixa[0]);
+                query.maiorPreco= Number(valoresFaixa[1]);
+//            };
+            //console.log(query);
+
+//            vm.produtos = httpService.save({
+//                categoria: vm.selectedCategoria,
+//                tipo_filtro: 'filtro_faixa'
+//            }, query, function() {
+//                console.log("O filtro eh: ", query);
+//            });
+
+console.log(query)
+            produtosApi.getDataByFilter([query, display], 'filtro_faixa', query.categoria, function(data) {
+                vm.productsByCategory = data;
+                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                console.log('returned', vm.productsByCategory)
+            })
+
         };
 
     }

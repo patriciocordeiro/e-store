@@ -48,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Passport set up
 
-app.use(session({secret: 'olamilepatricioeyasmincordeiro'}))
+app.use(session({secret: 'olamilepatricioeyasmincordeiro', saveUninitialized:false}))
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login sessions
 require('./auth/passport.auth')(passport);

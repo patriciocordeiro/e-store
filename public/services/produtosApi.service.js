@@ -12,17 +12,11 @@ angular.module('myApp').service('produtosApi', ['httpService',
 
         this.getSelectedCategory = function(selectedCategoria) {
             console.log(selectedCategoria);
-
             return selectedCategoria;
-
-            //            {
-            //                console.log('executado');
-            //                console.log(selectedCategoria);
-            //            }
         }
 
         this.getDatabYCatgory = function(query, category, callback) {
-            httpService.get({
+            httpService.save({
                 categoria: category
                 //                tipo_filtro: 'filtro_comum'
             }, query, function(data) {
@@ -32,10 +26,10 @@ angular.module('myApp').service('produtosApi', ['httpService',
 
         };
 
-        this.getDataByFiltroComum = function(query, category, callback) {
+        this.getDataByFilter = function(query, tipoFiltro, category, callback) {
             httpService.save({
                 categoria: category,
-                tipo_filtro: 'filtro_comum'
+                tipo_filtro: tipoFiltro
             }, query, function(data) {
                 data.abc = true;
                 return callback(data);
@@ -44,9 +38,7 @@ angular.module('myApp').service('produtosApi', ['httpService',
         };
 
 
-
         this.getDatabySearch = function(query, callback) {
-
             httpService.save({
                 acao: 'search'
             }, query, function(data) {
