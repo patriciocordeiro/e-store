@@ -15,12 +15,12 @@
         }
 
         //Get the selected category
-        vm.productsCategory = productCategory;
+        $scope.productsCategory = productCategory;
 
         //build the query
-        console.log('categoria', vm.productsCategory.category)
+        console.log('categoria', $scope.productsCategory.category)
         var query = {
-            categoria: vm.productsCategory.category,
+            categoria: $scope.productsCategory.category,
 
         }
         var display = {
@@ -87,16 +87,15 @@
             return (v);
         }
 
-        $scope.$watch("vm.productCategory.category", function(newValue, oldValue) {
+        $scope.$watch("productCategory.category", function(newValue, oldValue) {
             console.log('hold:', oldValue);
             console.log('new:', newValue);
             if (newValue != oldValue) {
                 query.categoria = newValue
-
-                console.log('hello')
+console.log('My Categoria query', query)
                 produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                     vm.productsByCategory = data;
-                    console.log('categoria controller greeting', vm.productsByCategory);
+                    console.log('categoria controller greeting', $scope.productsByCategory);
                     vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
                     vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
 
@@ -186,7 +185,7 @@
 
             }
 
-            produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+            produtosApi.getDataByFiltroComum([query, display], query.categoria, function(data) {
                 vm.productsByCategory = data;
                 vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
                 vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);

@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('myApp').controller('NavbarCtrl', ['$rootScope', 'productCategory', 'SearchProducts', NavbarCtrl]);
+    angular.module('myApp').controller('NavbarCtrl', ['$rootScope','$scope', 'productCategory', 'SearchProducts', NavbarCtrl]);
 
-    function NavbarCtrl($rootScope, productCategory, SearchProducts) {
+    function NavbarCtrl($rootScope, $scope, productCategory, SearchProducts) {
         var vm = this;
         vm.user = $rootScope.user;
         console.log('rootscope captured user', $rootScope.user)
@@ -15,8 +15,8 @@
 
         };
 
-        vm.productCategory = productCategory;
-        console.log('catgreeting', vm.productCategory.category)
+        $scope.productCategory = productCategory;
+        console.log('catgreeting', $scope.productCategory.category)
         //        var categoria;
         vm.getSelectedCategory = function(selectedCategory) {
             productCategory.category = selectedCategory;
