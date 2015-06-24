@@ -4,15 +4,22 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies']
 .run(function($rootScope, $state, authentication, $cookies) {
 
     //Check if user is loggedin (cookies)
+    var lastState = $cookies.get('lastState');
+
     $rootScope.loggedIn = false;
     authentication.isloggedin(function(response) {
         console.log(!response.user);
         if (response.user !== false) {
             console.log('resposta', response.local.firstName)
             $rootScope.loggedIn = true;
-            $state.go("app.dashboard");
-              $rootScope.loggedUser = response.local.firstName +' '+ response.local.lastName;
-//            $rootScope.loggedUser = $cookies.get('usuario');
+
+            //Ultimo estado visitado antes do refresh
+
+
+            $state.go(lastState || "app.dashboard");
+//            $state.reload();
+            $rootScope.loggedUser = response.local.firstName + ' ' + response.local.lastName;
+            //            $rootScope.loggedUser = $cookies.get('usuario');
         }
     });
 
@@ -28,6 +35,10 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies']
     $rootScope.$on('$stateChangeStart', function(event, toState, fromState, toParams) {
         console.log('mudei de estado', toState)
         var isLoggedIn = $rootScope.loggedIn;
+        if (fromState !== toState) {
+            $cookies.put('lastState', toState.name);
+            console.log('Cookie do estado atual adicionado com sucesso', toState.name)
+        }
         //check if client is trying to access a restricted page
         //toState.authenticate = true and is
         if (toState.authenticate && !isLoggedIn) {
@@ -65,8 +76,8 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies']
             //            template : '<h1>Funciona</h1>',
 
         })
-        
-            .state('app.produtosDetail', {
+
+        .state('app.produtosDetail', {
             url: "/produtos/:id",
             templateUrl: 'components/produtos/produtoDetail.view.html',
             controller: 'produtoDetailCtrl as vm',

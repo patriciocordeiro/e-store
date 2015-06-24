@@ -8,6 +8,7 @@
 
         //initialization------------------------------------------------------------------------------------------ 
         var vm = this;
+        
         vm.products = {
             maxShowItem: '20', //itens by page
             orderBy: 'lancamento' //products ordering
@@ -158,7 +159,7 @@
                 vm.productsByCategory = data;
                 vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
                 vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
-                console.log('returned', vm.productsByCategory)
+//                console.log('returned', vm.productsByCategory)
             })
 
             console.log('my', query)
@@ -166,7 +167,7 @@
 
 
         produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-            console.log('hello')
+//            console.log('hello')
             vm.productsByCategory = data;
             vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
             vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
@@ -229,6 +230,7 @@
             query.menorPreco = Number(valoresFaixa[0]);
             query.maiorPreco = Number(valoresFaixa[1]);
 
+            
             produtosApi.getDataByFilter([query, display], 'filtro_faixa', query.categoria, function(data) {
                 vm.productsByCategory = data;
                 vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
