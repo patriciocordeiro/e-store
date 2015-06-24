@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('myApp').controller('CategoriaCtrl', ['$scope', 'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', CategoriaCtrl]);
+    angular.module('myApp').controller('ProdutosCtrl', ['$scope', 'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', ProdutosCtrl]);
 
-    function CategoriaCtrl($scope, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
+    function ProdutosCtrl($scope, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
 
         //initialization------------------------------------------------------------------------------------------ 
         var vm = this;
@@ -13,20 +13,19 @@
             orderBy: 'lancamento' //products ordering
 
         }
-
+        
         //Get the selected category
         $scope.productsCategory = productCategory;
-
         //build the query
         console.log('categoria', $scope.productsCategory.category)
+        
         var query = {
             categoria: $scope.productsCategory.category,
-
         }
+
         var display = {
             maxShowItem: vm.products.maxShowItem
         }
-
         // Essa função foi feita para que os valores da Marca não se repitam nos filtros disponíveis
         var returnUniqueMarca = function(objetos) {
             //console.log("Meus objetos ", objetos);
@@ -128,31 +127,8 @@
             })
         }
 
-        //        vm.$watch('numProductsItens.maxShowItem', function(newValue, oldValue) {
-        //
-        //            console.log('hold:', oldValue);
-        //            console.log('new:', newValue);
-        //            if (newValue != oldValue) {
-        //                query.maxShowItem = newValue
-        //                vm.productsByCategory = produtosApi.getDatabYCatgory(query);
-        //                console.log('categoria controller greeting', query)
-        //            }
-        //
-        //        });
-        //
-        //        vm.$watch('orderByingProductsBy.orderBy', function(newValue, oldValue) {
-        //
-        //            console.log('hold:', oldValue);
-        //            console.log('new:', newValue);
-        //            if (newValue != oldValue) {
-        //                query.orderBy = newValue
-        //                vm.productsByCategory = produtosApi.getDatabYCatgory(query);
-        //                console.log('categoria controller greeting', query)
-        //            }
-        //
-        //        });
 
-        //Filters      var acumFilters = [];
+        //Filters
         var acumFilters = [];
         var filtroComumQuery;
         vm.filterBy = {
@@ -164,13 +140,6 @@
 
         vm.filtroComum = function(filterBy) {
             var filterBy = filterBy.split(",");
-            console.log('filtro', filterBy);
-
-            //Check if the attribute value of the object to filter should be a number (not string)     
-            //            if (filterBy[0] == 'num') { //if the first array field is num then (check this in index.html )
-            //                filterBy[2] = Number(filterBy[2]); // convert the string to number
-            //            }
-            console.log('filterby', filterBy)
             /*if the filter already exist*/
             if (filterBy[0] == 'null') {
                 delete query[filterBy[1]]; /*remove the existing filter from the query*/
@@ -195,8 +164,7 @@
             console.log('my', query)
         }
 
-        //        //Watch the limit value
-        //        console.log(query)
+
         produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
             console.log('hello')
             vm.productsByCategory = data;
@@ -245,8 +213,6 @@
             }
         };
 
-
-
         //create a srting array with list of price ranges for filtroFaixa
         // Foram criados mais alguns intervalos para cobrir a maior parte dos produtos
         // Isso pode ser otimizado pegando o maior valor e subtraindo pelo menor e dividindo pelo numero de faixas
@@ -259,21 +225,10 @@
             var valoresFaixa = faixa[2].split("-");
             console.log(valoresFaixa);
             // A query é construída a partir da categoria selecionada e da faixa de valores
-//            query = {
-//                "categoria": vm.selectedCategoria,
-                query.menorPreco= Number(valoresFaixa[0]);
-                query.maiorPreco= Number(valoresFaixa[1]);
-//            };
-            //console.log(query);
 
-//            vm.produtos = httpService.save({
-//                categoria: vm.selectedCategoria,
-//                tipo_filtro: 'filtro_faixa'
-//            }, query, function() {
-//                console.log("O filtro eh: ", query);
-//            });
+            query.menorPreco = Number(valoresFaixa[0]);
+            query.maiorPreco = Number(valoresFaixa[1]);
 
-console.log(query)
             produtosApi.getDataByFilter([query, display], 'filtro_faixa', query.categoria, function(data) {
                 vm.productsByCategory = data;
                 vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);

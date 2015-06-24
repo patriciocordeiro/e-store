@@ -59,6 +59,14 @@ exports.all = function(req, res, next) {
         });
 };
 
+//FIND ONE PRODUCT
+exports.unico = function(req, res, next) {
+    console.log(req.body)
+    products.findOne({_id:req.body.id}, function(err, data) {
+        console.log(data)
+        res.json([data])
+    });
+}
 ////FIND PRODUCTSBY CATEGORY
 //exports.category = function(req, res) {
 //    var query = req.params;

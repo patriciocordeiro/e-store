@@ -14,7 +14,7 @@
                 <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>
                 </li>
                 <li ng-repeat="category in vm.categories">
-                    <a ng-model="productCategory.category" ng-click="vm.getSelectedCategory(category)" ui-sref="app.categoria">{{category}}</a>
+                    <a ng-model="productCategory.category" ng-click="vm.getSelectedCategory(category)" ui-sref="app.produtos">{{category}}</a>
                 </li>
 
                 <li ng-hide="loggedIn"><a ui-sref="app.login">login</a>

@@ -50,6 +50,16 @@ angular.module('myApp').service('produtosApi', ['httpService',
             //            return categoryData;
 
         };
+
+        this.getProductDetails = function(query, callback) {
+            httpService.save({
+                categoria: 'tv',
+                id: 'id'
+            }, query, function(data) {
+                return callback(data);
+            });
+        };
+
         this.getLimit = function() {
             return 10;
         };

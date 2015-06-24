@@ -44,7 +44,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies']
         $stateProvider
             .state('app', {
                 abstract: true,
-                url: "/home",
+                url: "/app",
                 template: '<ui-view/>',
 
             })
@@ -56,12 +56,20 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies']
         })
 
 
-        .state('app.categoria', {
-            url: "/categoria",
-            templateUrl: 'components/categoria/categoria.view.html',
-            controller: 'CategoriaCtrl as vm',
+        .state('app.produtos', {
+            url: "/produtos",
+            templateUrl: 'components/produtos/produtos.view.html',
+            controller: 'ProdutosCtrl as vm',
             authenticate: true
             //            template : '<h1>Funciona</h1>',
+
+        })
+        
+            .state('app.produtosDetail', {
+            url: "/produtos/:id",
+            templateUrl: 'components/produtos/produtoDetail.view.html',
+            controller: 'produtoDetailCtrl as vm',
+            authenticate: true
 
         })
 
