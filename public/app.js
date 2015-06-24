@@ -8,10 +8,11 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies']
     authentication.isloggedin(function(response) {
         console.log(!response.user);
         if (response.user !== false) {
-            console.log(response)
+            console.log('resposta', response.local.firstName)
             $rootScope.loggedIn = true;
             $state.go("app.dashboard");
-            $rootScope.loggedUser = $cookies.get('usuario');
+              $rootScope.loggedUser = response.local.firstName +' '+ response.local.lastName;
+//            $rootScope.loggedUser = $cookies.get('usuario');
         }
     });
 

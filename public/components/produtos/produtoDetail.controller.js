@@ -2,22 +2,33 @@
 
     "use strict";
 
-    angular.module('myApp').controller('produtoDetailCtrl', ['$stateParams', 'produtosApi', produtoDetailCtrl]);
+    angular.module('myApp').controller('produtoDetailCtrl', ['$rootScope', '$stateParams', 'produtosApi', produtoDetailCtrl]);
 
-    function produtoDetailCtrl($stateParams, produtosApi) {
+    function produtoDetailCtrl($rootScope, $stateParams, produtosApi) {
         var vm = this;
 
+        //Get the product id from the state params
+        //The Id is passed via url
         vm.productId = $stateParams.id
-
-//        console.log('Id do produto', vm.productId)
-var query ={}
-query.id  = $stateParams.id
-//console.log(query)
+        var query = {}
+        query.id = $stateParams.id
+        //get the product data on the server db
         produtosApi.getProductDetails(query, function(response) {
-            
             vm.selectedProduct = response[0];
-//            console.log(response)
         });
-        
+        $rootScope.CarrinhoItens = [];
+        $rootScope.CarrinhoProdutos = [];
+
+        //function to get compra
+        vm.getCompra = function() {
+            //            $rootscope.items = push()
+            console.log(vm.productId)
+            $rootScope.CarrinhoItens.push(vm.productId);
+            $rootScope.CarrinhoProdutos.push(vm.selectedProduct)
+
+            console.log('Número de Itens no carrinho', $rootScope.CarrinhoItens.length);
+            console.log('Itens no carrinho', $rootScope.CarrinhoProdutos);
+        }
+
     }
 }());
