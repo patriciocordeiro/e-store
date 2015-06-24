@@ -2,18 +2,29 @@
 
     'use strict';
 
-    angular.module('myApp').controller('NavbarCtrl', ['$rootScope','$scope', 'productCategory', 'SearchProducts', NavbarCtrl]);
+    angular.module('myApp').controller('NavbarCtrl', ['$rootScope','$scope', 'productCategory', 'SearchProducts', '$cookies', NavbarCtrl]);
 
-    function NavbarCtrl($rootScope, $scope, productCategory, SearchProducts) {
+    function NavbarCtrl($rootScope, $scope, productCategory, SearchProducts, $cookies) {
         var vm = this;
         vm.user = $rootScope.user;
         console.log('rootscope captured user', $rootScope.user)
+
+
 
         vm.categories = ['tv', 'celular', 'tablet'];
         vm.SelectedCategory = {
             name: 'selecionar categoria' //initialize the category
 
         };
+
+        // Obtendo valor a partir do cookie
+        // Utiliza-se esse tipo de estrutura para evitar que no local de usuário não apareça nada
+        console.log('Usuario armazenado no cookie', $cookies.get('usuario'));
+        /*if($cookies.get('usuario') === undefined){
+            $scope.usuarioLogado = "visitante";
+        }else{
+            $scope.usuarioLogado = $cookies.get('usuario');
+        }*/
 
         $scope.productCategory = productCategory;
         console.log('catgreeting', $scope.productCategory.category)

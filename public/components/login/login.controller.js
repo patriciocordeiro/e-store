@@ -3,9 +3,9 @@
         'use strict';
 
 
-        angular.module('myApp').controller('LoginCtrl', ['$rootScope', '$state', 'authentication', LoginCtrl])
+        angular.module('myApp').controller('LoginCtrl', ['$rootScope', '$state', 'authentication', '$cookies', LoginCtrl])
 
-        function LoginCtrl($rootScope, $state, authentication) {
+        function LoginCtrl($rootScope, $state, authentication, $cookies) {
             var vm = this;
 
             //clear form after submite
@@ -33,8 +33,14 @@
                         console.log(response)
                         
                         if (response.email == user.email) {
-                            console.log('sucess')
-                            $rootScope.loggedUser = response.firstName + ' ' + response.lastName;
+                            console.log('sucess');
+                            
+                            // armazenando nome de usuário em cookie
+                            $cookies.put('usuario',response.firstName + ' ' + response.lastName);
+                            console.log("Login do usuario no cookie: ", $cookies.get('usuario')); 
+
+                            $rootScope.loggedUser = $cookies.get('usuario'); 
+
                             console.log($rootScope.loggedUser)
                             $rootScope.loggedIn = true;
                             $state.go('app.dashboard')

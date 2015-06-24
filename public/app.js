@@ -1,7 +1,7 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap'])
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies'])
 
-.run(function($rootScope, $state, authentication) {
+.run(function($rootScope, $state, authentication, $cookies) {
 
     //Check if user is loggedin (cookies)
     $rootScope.loggedIn = false;
@@ -11,13 +11,14 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap'])
             console.log(response)
             $rootScope.loggedIn = true;
             $state.go("app.dashboard");
-            $rootScope.loggedUser = response.firstName +' '+ response.lastName;
+            $rootScope.loggedUser = $cookies.get('usuario');
         }
     });
 
     $rootScope.logOut = function() {
         authentication.logOut(function(data) {
-            console.log(data)
+            console.log(data);
+            $cookies.remove('usuario');
             $state.go("app.home");
             $rootScope.loggedIn = false;
         });
@@ -25,7 +26,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap'])
 
     $rootScope.$on('$stateChangeStart', function(event, toState, fromState, toParams) {
         console.log('mudei de estado', toState)
-        var isLoggedIn = $rootScope.loggedIn
+        var isLoggedIn = $rootScope.loggedIn;
         //check if client is trying to access a restricted page
         //toState.authenticate = true and is
         if (toState.authenticate && !isLoggedIn) {
