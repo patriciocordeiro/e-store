@@ -19,12 +19,24 @@ angular.module('myApp').service('produtosApi', ['httpService',
             httpService.save({
                 categoria: category
                 //                tipo_filtro: 'filtro_comum'
-            }, query, function(data) {
+            }, query).$promise.then(function(data) {
                 data.abc = true;
                 return callback(data);
             });
 
         };
+
+        this.getDataOnLoad = function(query, callback) {
+            httpService.save({
+                categoria: 'tv'
+                //                tipo_filtro: 'filtro_comum'
+            }, query).$promise.then(function(data) {
+                data.abc = true;
+                return callback(data);
+            });
+
+        };
+
 
         this.getDataByFilter = function(query, tipoFiltro, category, callback) {
             httpService.save({

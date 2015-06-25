@@ -2,31 +2,61 @@
 
     'use strict';
 
-    angular.module('myApp').controller('ProdutosCtrl', ['$scope', 'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', ProdutosCtrl]);
+    angular.module('myApp').controller('ProdutosCtrl', ['$scope', '$cookies',
+        'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', ProdutosCtrl
+    ]);
 
-    function ProdutosCtrl($scope, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
-
+    function ProdutosCtrl($scope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
+        $cookies.put('patricio', 'patricio');
+        //        console.log('queryqueryquery', query.categoria)
         //initialization------------------------------------------------------------------------------------------ 
         var vm = this;
-        
-        vm.products = {
-            maxShowItem: '20', //itens by page
-            orderBy: 'lancamento' //products ordering
+
+        vm.lastprodutoState = $cookies.get('produtos');
+        var produtosDataOnCookies = vm.lastprodutoState.split(',');
+
+        var cookiesQuery = {
+            categoria: produtosDataOnCookies[0],
+            maxShowItem: produtosDataOnCookies[1],
+            orderBy: produtosDataOnCookies[2]
 
         }
-        
+
+        console.log('cookieQuery', vm.lastprodutoState)
+        produtosApi.getDataOnLoad([{
+            categoria: cookiesQuery.categoria
+        }, {
+            maxShowItem: cookiesQuery
+        }, {
+            orderBy: cookiesQuery
+        }], function(data) {
+            vm.productsByCategory = data;
+            //            console.log('On load/refresh: Get products');
+            vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+            vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+
+        })
+
+
+        vm.products = {
+            maxShowItem: cookiesQuery.maxShowItem || '20', //itens by page
+            orderBy: cookiesQuery.orderBy || 'lancamento' //products ordering
+        }
+
         //Get the selected category
         $scope.productsCategory = productCategory;
         //build the query
         console.log('categoria', $scope.productsCategory.category)
-        
+
         var query = {
             categoria: $scope.productsCategory.category,
         }
 
         var display = {
-            maxShowItem: vm.products.maxShowItem
+            maxShowItem: vm.products.maxShowItem,
+            orderBy: vm.products.orderBy
         }
+        console.log('MYDISPLAY', display.orderBy)
         // Essa função foi feita para que os valores da Marca não se repitam nos filtros disponíveis
         var returnUniqueMarca = function(objetos) {
             //console.log("Meus objetos ", objetos);
@@ -101,6 +131,9 @@
 
 
                 })
+                //Salve os parametros nos cookies
+                console.log('query do watch', display.orderBy)
+                $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
 
 
             }
@@ -115,6 +148,7 @@
                 vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
                 console.log('returned', vm.productsByCategory)
             });
+            $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
         };
 
         //get the ordering of products on the page
@@ -126,6 +160,8 @@
                 vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
                 console.log('returned', vm.productsByCategory)
             })
+            $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
+
         }
 
 
@@ -154,12 +190,14 @@
                 }
 
             }
+            query.categoria = cookiesQuery.categoria || query.categoria;
 
+            console.log('CATEGORIA', query.categoria)
             produtosApi.getDataByFilter([query, display], 'filtro_comum', query.categoria, function(data) {
                 vm.productsByCategory = data;
                 vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
                 vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
-//                console.log('returned', vm.productsByCategory)
+                //                console.log('returned', vm.productsByCategory)
             })
 
             console.log('my', query)
@@ -167,7 +205,7 @@
 
 
         produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-//            console.log('hello')
+            //            console.log('hello')
             vm.productsByCategory = data;
             vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
             vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
@@ -230,7 +268,7 @@
             query.menorPreco = Number(valoresFaixa[0]);
             query.maiorPreco = Number(valoresFaixa[1]);
 
-            
+
             produtosApi.getDataByFilter([query, display], 'filtro_faixa', query.categoria, function(data) {
                 vm.productsByCategory = data;
                 vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
@@ -240,6 +278,9 @@
 
         };
 
+        //set all cookiest
+
+        //        $cookies.put('usuario',response.firstName + ' ' + response.lastName);
     }
 
 })();
