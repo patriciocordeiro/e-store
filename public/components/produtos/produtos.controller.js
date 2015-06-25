@@ -13,34 +13,42 @@
         var vm = this;
 
         vm.lastprodutoState = $cookies.get('produtos');
-        var produtosDataOnCookies = vm.lastprodutoState.split(',');
+        if (vm.lastprodutoState) {
+            var produtosDataOnCookies = vm.lastprodutoState.split(',');
 
-        var cookiesQuery = {
-            categoria: produtosDataOnCookies[0],
-            maxShowItem: produtosDataOnCookies[1],
-            orderBy: produtosDataOnCookies[2]
+            var cookiesQuery = {
+                categoria: produtosDataOnCookies[0],
+                maxShowItem: produtosDataOnCookies[1],
+                orderBy: produtosDataOnCookies[2]
 
-        }
+            }
 
-        console.log('cookieQuery', vm.lastprodutoState)
-        produtosApi.getDataOnLoad([{
-            categoria: cookiesQuery.categoria
-        }, {
-            maxShowItem: cookiesQuery
-        }, {
-            orderBy: cookiesQuery
-        }], function(data) {
-            vm.productsByCategory = data;
-            //            console.log('On load/refresh: Get products');
-            vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-            vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+            console.log('cookieQuery', vm.lastprodutoState)
+            produtosApi.getDataOnLoad([{
+                categoria: cookiesQuery.categoria
+            }, {
+                maxShowItem: cookiesQuery
+            }, {
+                orderBy: cookiesQuery
+            }], function(data) {
+                vm.productsByCategory = data;
+                //            console.log('On load/refresh: Get products');
+                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
 
-        })
+            })
+
+            vm.products = {
+                maxShowItem: cookiesQuery.maxShowItem, //itens by page
+                orderBy: cookiesQuery.orderBy //products ordering
+            }
 
 
-        vm.products = {
-            maxShowItem: cookiesQuery.maxShowItem || '20', //itens by page
-            orderBy: cookiesQuery.orderBy || 'lancamento' //products ordering
+        } else {
+            vm.products = {
+                maxShowItem: '20', //itens by page
+                orderBy : 'lancamento' //products ordering
+            }
         }
 
         //Get the selected category
