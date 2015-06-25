@@ -67,6 +67,44 @@ exports.unico = function(req, res, next) {
         res.json([data])
     });
 }
+
+exports.myKart = function(req, res, next) {
+    console.log("Meus ids enviados: ", req.body.ids);
+
+    // Há duas vertentes
+    // A primeira eh que todos os ids serão pesquisados e retornados ao usuário
+    // A segunda que os ids idênticos serão eliminados, deixando para o angular contar os produtos iguais
+
+
+    // Esse código foi baseado em 7.2.1
+    // http://book.mixu.net/node/ch7.html
+    var produtosCarrinho = [];
+
+    function final(){
+        res.json(produtosCarrinho);
+    }
+
+    function getIds(id, callback){
+        products.findOne({_id:id}, function(err, data) {
+            console.log(data);
+            callback(data);
+        });
+    }
+
+    function pushData(id){
+        if(id){
+            getIds(id, function(result){
+                produtosCarrinho.push(result);
+                return pushData(req.body.ids.shift());
+            });
+        }else{
+            return final();
+        }
+    }
+
+    pushData(req.body.ids.shift());
+    
+}
 ////FIND PRODUCTSBY CATEGORY
 //exports.category = function(req, res) {
 //    var query = req.params;

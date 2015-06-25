@@ -29,7 +29,17 @@
             console.log('Número de Itens no carrinho', $rootScope.CarrinhoItens.length);
             console.log('Itens no carrinho', $rootScope.CarrinhoProdutos[0]);
             //$cookies.meuCarrinho = $rootScope.CarrinhoProdutos._id;
-            localStorageService.set('carrinho', $rootScope.CarrinhoProdutos[0]._id);
+            //localStorageService.set('carrinho', $rootScope.CarrinhoProdutos[0]._id);
+
+            // recuperar o valor de localStorage (LS)
+            // concatenar a medida que o usuário vai inserindo produto no carrinho
+
+            if(localStorageService.get('carrinho') === null){
+                localStorageService.set('carrinho', $rootScope.CarrinhoProdutos[0]._id);
+            }else{
+                localStorageService.set('carrinho', localStorageService.get('carrinho') + "," + $rootScope.CarrinhoProdutos[0]._id);
+            }
+            console.log("Variavel recupera id = ", localStorageService.get('carrinho'));
         }
 
     }

@@ -72,6 +72,16 @@ angular.module('myApp').service('produtosApi', ['httpService',
             });
         };
 
+        this.getProductsKart = function(query, callback){
+            httpService.save({
+                acao: 'myKart',
+                id: 'id'
+            }, query, function(data) {
+                //console.log(data);
+                return callback(data);
+            });
+        }
+
         this.getLimit = function() {
             return 10;
         };

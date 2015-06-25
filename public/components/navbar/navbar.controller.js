@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('myApp').controller('NavbarCtrl', ['$rootScope','$scope', 'productCategory', 'SearchProducts', '$cookies', NavbarCtrl]);
+    angular.module('myApp').controller('NavbarCtrl', ['$rootScope','$scope', 'productCategory', 'SearchProducts', '$cookies', 'localStorageService', NavbarCtrl]);
 
-    function NavbarCtrl($rootScope, $scope, productCategory, SearchProducts, $cookies) {
+    function NavbarCtrl($rootScope, $scope, productCategory, SearchProducts, $cookies, localStorageService) {
         var vm = this;
         vm.user = $rootScope.user;
         console.log('rootscope captured user', $rootScope.user)
@@ -41,6 +41,13 @@
             console.log(SearchProducts.value)
         };
 
+        // conta o número de produtos que foram adicionados no carrinho de compra
+        console.log("Meu localStorageService: ", localStorageService.get('carrinho'))
+        if(localStorageService.get('carrinho') === null){
+            vm.numeroProdutosCarrinho = 0;
+        }else{
+            vm.numeroProdutosCarrinho = localStorageService.get('carrinho').split(',').length;
+        }
 
    vm.selected = undefined;
         vm.states = {'marca':[{'samsung':['samsung tv', 'samsung celular', 'apple celular', 'nokia celular']}]}
