@@ -2,9 +2,9 @@
 
     "use strict";
 
-    angular.module('myApp').controller('minhaCestaCtrl', ['$rootScope', '$stateParams', 'produtosApi', 'localStorageService', '$cookies', '$state', minhaCestaCtrl]);
+    angular.module('myApp').controller('MinhaCestaCtrl', ['$rootScope', '$stateParams', 'produtosApi', 'localStorageService', '$cookies', '$state', MinhaCestaCtrl]);
 
-    function minhaCestaCtrl($rootScope, $stateParams, produtosApi, localStorageService, $cookies, $state) {
+    function MinhaCestaCtrl($rootScope, $stateParams, produtosApi, localStorageService, $cookies, $state) {
         var vm = this;
         vm.meuCarrinho = [];
         vm.title = "Minha cesta de compras";

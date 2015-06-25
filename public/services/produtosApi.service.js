@@ -19,11 +19,16 @@ angular.module('myApp').service('produtosApi', ['httpService',
             httpService.save({
                 categoria: category
                 //                tipo_filtro: 'filtro_comum'
-            }, query).$promise.then(function(data) {
-                data.abc = true;
-                return callback(data);
-            });
+            }, query).$promise.then(
+                function(data) {
+                    data.abc = true;
+                    return callback(data);
+                },
 
+                function(error) {
+                    console.log(error);
+                    return (error);
+                });
         };
 
         this.getDataOnLoad = function(query, callback) {
@@ -31,8 +36,11 @@ angular.module('myApp').service('produtosApi', ['httpService',
                 categoria: 'tv'
                 //                tipo_filtro: 'filtro_comum'
             }, query).$promise.then(function(data) {
-                data.abc = true;
+                //                data.abc = true;
                 return callback(data);
+            }, function(error) {
+                console.log(error);
+                return (error);
             });
 
         };
@@ -72,7 +80,7 @@ angular.module('myApp').service('produtosApi', ['httpService',
             });
         };
 
-        this.getProductsKart = function(query, callback){
+        this.getProductsKart = function(query, callback) {
             httpService.save({
                 acao: 'myKart',
                 id: 'id'

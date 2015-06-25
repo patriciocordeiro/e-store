@@ -2,12 +2,11 @@
 
     'use strict';
 
-    angular.module('myApp').controller('ProdutosCtrl', ['$scope', '$cookies',
+    angular.module('myApp').controller('ProdutosCtrl', ['$scope', '$rootScope', '$cookies',
         'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', ProdutosCtrl
     ]);
 
-    function ProdutosCtrl($scope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
-        $cookies.put('patricio', 'patricio');
+    function ProdutosCtrl($scope, $rootScope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
         //        console.log('queryqueryquery', query.categoria)
         //initialization------------------------------------------------------------------------------------------ 
         var vm = this;
@@ -47,7 +46,7 @@
         } else {
             vm.products = {
                 maxShowItem: '20', //itens by page
-                orderBy : 'lancamento' //products ordering
+                orderBy: 'lancamento' //products ordering
             }
         }
 
@@ -125,27 +124,45 @@
             return (v);
         }
 
-        $scope.$watch("productCategory.category", function(newValue, oldValue) {
-            console.log('hold:', oldValue);
-            console.log('new:', newValue);
-            if (newValue != oldValue) {
-                query.categoria = newValue
-                console.log('My Categoria query', query)
-                produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-                    vm.productsByCategory = data;
-                    console.log('categoria controller greeting', $scope.productsByCategory);
-                    vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-                    vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+
+        $rootScope.getCategory = function(categoria) {
+            console.log('executa que uma beleza', categoria)
+            query.categoria = categoria
+            console.log('My Categoria query', query)
+            produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+                vm.productsByCategory = data;
+                console.log('categoria controller greeting', $scope.productsByCategory);
+                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
 
 
-                })
-                //Salve os parametros nos cookies
-                console.log('query do watch', display.orderBy)
-                $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
+            })
+            //Salve os parametros nos cookies
+            console.log('query do watch', display.orderBy)
+            $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
+        };
 
-
-            }
-        });
+        //        $scope.$watch("productCategory.category", function(newValue, oldValue) {
+        //            console.log('hold:', oldValue);
+        //            console.log('new:', newValue);
+        //            if (newValue != oldValue) {
+        //                query.categoria = newValue
+        //                console.log('My Categoria query', query)
+        //                produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+        //                    vm.productsByCategory = data;
+        //                    console.log('categoria controller greeting', $scope.productsByCategory);
+        //                    vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+        //                    vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+        //
+        //
+        //                })
+        //                //Salve os parametros nos cookies
+        //                console.log('query do watch', display.orderBy)
+        //                $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
+        //
+        //
+        //            }
+        //        });
 
         //get maxShow item per page
         vm.getMaxShowItems = function(maxShowItem) {
@@ -212,12 +229,12 @@
         }
 
 
-        produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-            //            console.log('hello')
-            vm.productsByCategory = data;
-            vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-            vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
-        });
+        //        produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+        //            //            console.log('hello')
+        //            vm.productsByCategory = data;
+        //            vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+        //            vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+        //        });
         //        console.log(vm.productsByCategory);
         //        console.log('categoria controller greeting', query)
 

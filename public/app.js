@@ -17,7 +17,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
 
             $state.go(lastState || "app.dashboard");
-//            $state.reload();
+            //            $state.reload();
             $rootScope.loggedUser = response.local.firstName + ' ' + response.local.lastName;
             //            $rootScope.loggedUser = $cookies.get('usuario');
         }
@@ -26,7 +26,10 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
     $rootScope.logOut = function() {
         authentication.logOut(function(data) {
             console.log(data);
+            //remove all cookies
             $cookies.remove('usuario');
+            $cookies.remove('produtos');
+            $cookies.remove('lastState');
             $state.go("app.home");
             $rootScope.loggedIn = false;
         });
@@ -88,7 +91,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         .state('app.minhaCesta', {
             url: "/minhaCesta",
             templateUrl: 'components/produtos/minhaCesta.view.html',
-            controller: 'minhaCestaCtrl as vm',
+            controller: 'MinhaCestaCtrl as vm',
             authenticate: true
             //            template : '<h1>Funciona</h1>',
 
