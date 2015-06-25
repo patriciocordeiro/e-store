@@ -1,5 +1,5 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies'])
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule'])
 
 .run(function($rootScope, $state, authentication, $cookies) {
 
@@ -82,6 +82,15 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies']
             templateUrl: 'components/produtos/produtoDetail.view.html',
             controller: 'produtoDetailCtrl as vm',
             authenticate: true
+
+        })
+
+        .state('app.minhaCesta', {
+            url: "/minhaCesta",
+            templateUrl: 'components/produtos/minhaCesta.view.html',
+            controller: 'minhaCestaCtrl as vm',
+            authenticate: true
+            //            template : '<h1>Funciona</h1>',
 
         })
 

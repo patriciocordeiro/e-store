@@ -2,9 +2,9 @@
 
     "use strict";
 
-    angular.module('myApp').controller('produtoDetailCtrl', ['$rootScope', '$stateParams', 'produtosApi', produtoDetailCtrl]);
+    angular.module('myApp').controller('produtoDetailCtrl', ['$rootScope', '$stateParams', 'produtosApi', 'localStorageService','$cookies', produtoDetailCtrl]);
 
-    function produtoDetailCtrl($rootScope, $stateParams, produtosApi) {
+    function produtoDetailCtrl($rootScope, $stateParams, produtosApi, localStorageService, $cookies) {
         var vm = this;
 
         //Get the product id from the state params
@@ -27,7 +27,9 @@
             $rootScope.CarrinhoProdutos.push(vm.selectedProduct)
 
             console.log('Número de Itens no carrinho', $rootScope.CarrinhoItens.length);
-            console.log('Itens no carrinho', $rootScope.CarrinhoProdutos);
+            console.log('Itens no carrinho', $rootScope.CarrinhoProdutos[0]);
+            //$cookies.meuCarrinho = $rootScope.CarrinhoProdutos._id;
+            localStorageService.set('carrinho', $rootScope.CarrinhoProdutos[0]._id);
         }
 
     }
