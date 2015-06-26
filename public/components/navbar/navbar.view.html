@@ -11,16 +11,25 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul id="menu" class="nav navbar-nav">
-                <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>
-                </li>
-<!--
+<!--                <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>-->
+                <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a></li>
+                    </li>
+                    
                 <li ng-repeat="category in vm.categories">
                     <a ng-model="productCategory.category" ng-click="vm.getSelectedCategory(category)" ui-sref="app.produtos">{{category}}</a>
                 </li>
+
+<!--
+                    <li ng-repeat="category in vm.categories" >
+                        <a ui-sref="app.produtos" ng-click="getCategory(category)">{{category}}</a>
+                    </li>
 -->
+
+<!--
                 <li ng-repeat="category in vm.categories">
                     <a ng-model="productsCategory.category" ng-click="getCategory(category)" ui-sref="app.produtos">{{category}}</a>
                 </li>
+-->
                 <li ng-hide="loggedIn"><a ui-sref="app.login">login</a>
                 </li>
                 <li ng-hide="loggedIn"><a ui-sref="app.signup"> cadastre-se</a>

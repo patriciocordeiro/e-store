@@ -27,7 +27,7 @@
         }*/
 
         $scope.productCategory = productCategory;
-        console.log('catgreeting', $scope.productCategory.category)
+//        console.log('catgreeting', $scope.productCategory.category)
         //        var categoria;
         vm.getSelectedCategory = function(selectedCategory) {
             productCategory.category = selectedCategory;

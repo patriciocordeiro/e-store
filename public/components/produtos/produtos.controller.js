@@ -11,6 +11,10 @@
         //initialization------------------------------------------------------------------------------------------ 
         var vm = this;
 
+        var query = {};
+
+        $scope.productsCategory = productCategory;
+
         vm.lastprodutoState = $cookies.get('produtos');
         if (vm.lastprodutoState) {
             var produtosDataOnCookies = vm.lastprodutoState.split(',');
@@ -48,22 +52,46 @@
                 maxShowItem: '20', //itens by page
                 orderBy: 'lancamento' //products ordering
             }
+            var display = {
+                maxShowItem: vm.products.maxShowItem,
+                orderBy: vm.products.orderBy
+            }
+            query.categoria = $scope.productsCategory.category;
+            console.log(query.categoria)
+
+            //This is loaded on page load
+            produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+                console.log('getDatabYCatgory function loaded on page load')
+                vm.productsByCategory = data;
+                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
+            });
         }
+
+
 
         //Get the selected category
-        $scope.productsCategory = productCategory;
+        //                $scope.productsCategory = productCategory;
         //build the query
-        console.log('categoria', $scope.productsCategory.category)
+        //        console.log('categoria', $scope.productsCategory.category)
 
-        var query = {
-            categoria: $scope.productsCategory.category,
-        }
+        //        var query = {
+        //                    categoria: $scope.productsCategory.category,
+        //                };
+        //        
+        //    console.log(cookiesQuery.categoria)
+        //           query.categoria = cookiesQuery.categoria || query.categoria;
 
         var display = {
             maxShowItem: vm.products.maxShowItem,
             orderBy: vm.products.orderBy
         }
-        console.log('MYDISPLAY', display.orderBy)
+
+
+
+
+        //        console.log('MYDISPLAY', display.orderBy)
         // Essa função foi feita para que os valores da Marca não se repitam nos filtros disponíveis
         var returnUniqueMarca = function(objetos) {
             //console.log("Meus objetos ", objetos);
@@ -124,45 +152,55 @@
             return (v);
         }
 
+        //This is loaded on page load
+        //                        produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+        //                                console.log('getDatabYCatgory function loaded on page load')
+        //                    vm.productsByCategory = data;
+        //                    vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+        //                    vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+        //                });
+        //        
 
+        console.log('Produtos Controller executado')
         $rootScope.getCategory = function(categoria) {
             console.log('executa que uma beleza', categoria)
-            query.categoria = categoria
-            console.log('My Categoria query', query)
-            produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-                vm.productsByCategory = data;
-                console.log('categoria controller greeting', $scope.productsByCategory);
-                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+            //            query.categoria = categoria
+            //            console.log('My Categoria query', query)
+            //            produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+            //                vm.productsByCategory = data;
+            //                console.log('categoria controller greeting', $scope.productsByCategory);
+            //                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+            //                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
 
 
-            })
+            //            })
+            $rootScope.category = categoria;
             //Salve os parametros nos cookies
             console.log('query do watch', display.orderBy)
             $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
         };
 
-        //        $scope.$watch("productCategory.category", function(newValue, oldValue) {
-        //            console.log('hold:', oldValue);
-        //            console.log('new:', newValue);
-        //            if (newValue != oldValue) {
-        //                query.categoria = newValue
-        //                console.log('My Categoria query', query)
-        //                produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-        //                    vm.productsByCategory = data;
-        //                    console.log('categoria controller greeting', $scope.productsByCategory);
-        //                    vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-        //                    vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
-        //
-        //
-        //                })
-        //                //Salve os parametros nos cookies
-        //                console.log('query do watch', display.orderBy)
-        //                $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
-        //
-        //
-        //            }
-        //        });
+        $scope.$watch("productCategory.category", function(newValue, oldValue) {
+            console.log('hold:', oldValue);
+            console.log('new:', newValue);
+            if (newValue != oldValue) {
+                query.categoria = newValue
+                console.log('My Categoria query', query)
+                produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+                    vm.productsByCategory = data;
+                    console.log('categoria controller greeting', $scope.productsByCategory);
+                    vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
+                    vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+
+
+                })
+                //Salve os parametros nos cookies
+                console.log('query do watch', display.orderBy)
+                $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
+
+
+            }
+        });
 
         //get maxShow item per page
         vm.getMaxShowItems = function(maxShowItem) {

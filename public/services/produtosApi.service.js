@@ -9,7 +9,7 @@ angular.module('myApp').service('produtosApi', ['httpService',
         //            console.log($scope.selectedCategoria)
 
         //        var produtos = {};
-
+        console.log('Serviço inicializado')
         this.getSelectedCategory = function(selectedCategoria) {
             console.log(selectedCategoria);
             return selectedCategoria;
@@ -94,7 +94,9 @@ angular.module('myApp').service('produtosApi', ['httpService',
             return 10;
         };
 
+        this.teste = {
 
+        }
 
 
         //        return produtos;

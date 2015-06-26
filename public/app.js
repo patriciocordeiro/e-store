@@ -2,10 +2,10 @@
 angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule'])
 
 .run(function($rootScope, $state, authentication, $cookies) {
-
+console.log('My $rootScope', $rootScope)
     //Check if user is loggedin (cookies)
     var lastState = $cookies.get('lastState');
-
+// $rootScope.getCategory('tv'); 
     $rootScope.loggedIn = false;
     authentication.isloggedin(function(response) {
         console.log(!response.user);
