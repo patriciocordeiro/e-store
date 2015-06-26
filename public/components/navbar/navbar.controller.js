@@ -42,12 +42,17 @@
         };
 
         // conta o número de produtos que foram adicionados no carrinho de compra
+        // Utiliza-se o watch para ele sempre ficar verificando a variável e atualizá-la automaticamente na página
         console.log("Meu localStorageService: ", localStorageService.get('carrinho'))
-        if(localStorageService.get('carrinho') === null){
-            vm.numeroProdutosCarrinho = 0;
-        }else{
-            vm.numeroProdutosCarrinho = localStorageService.get('carrinho').split(',').length;
-        }
+        $rootScope.$watch(
+            function(){
+                if(localStorageService.get('carrinho') === null){
+                    vm.numeroProdutosCarrinho = 0;
+                }else{
+                    vm.numeroProdutosCarrinho = localStorageService.get('carrinho').split(',').length;
+                }
+            }   
+        );
 
    vm.selected = undefined;
         vm.states = {'marca':[{'samsung':['samsung tv', 'samsung celular', 'apple celular', 'nokia celular']}]}

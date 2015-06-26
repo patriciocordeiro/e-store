@@ -29,7 +29,7 @@
                 </li>
                 <li ng-hide="!loggedIn"><a href="#" ng-click="logOut()">Sair</a>
                 </li>
-                <li ng-hide="!loggedIn"><a ui-sref="app.minhaCesta" style="color:blue;"><strong><i class="fa fa-shopping-cart fa-2x" ></i> Meu Carrinho {{vm.numeroProdutosCarrinho}}</strong></a> 
+                <li ng-hide="!loggedIn"><a ui-sref="app.minhaCesta" style="color:blue;" ng-model="vm.numeroProdutosCarrinho"><strong><i class="fa fa-shopping-cart fa-2x" ></i> Meu Carrinho {{vm.numeroProdutosCarrinho}}</strong></a> 
                 </li>
             </ul>
         </div>
