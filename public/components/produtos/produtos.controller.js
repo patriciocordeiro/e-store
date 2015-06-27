@@ -3,10 +3,10 @@
     'use strict';
 
     angular.module('myApp').controller('ProdutosCtrl', ['$scope', '$rootScope', '$cookies',
-        'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', ProdutosCtrl
+        'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', 'myFilters', ProdutosCtrl
     ]);
 
-    function ProdutosCtrl($scope, $rootScope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService) {
+    function ProdutosCtrl($scope, $rootScope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService, myFilters) {
         //        console.log('queryqueryquery', query.categoria)
         //initialization------------------------------------------------------------------------------------------ 
         var vm = this;
@@ -36,8 +36,9 @@
             }], function(data) {
                 vm.productsByCategory = data;
                 //            console.log('On load/refresh: Get products');
-                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+
 
             })
 
@@ -63,8 +64,8 @@
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                 console.log('getDatabYCatgory function loaded on page load')
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
                 $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
             });
         }
@@ -89,68 +90,6 @@
         }
 
 
-
-
-        //        console.log('MYDISPLAY', display.orderBy)
-        // Essa função foi feita para que os valores da Marca não se repitam nos filtros disponíveis
-        var returnUniqueMarca = function(objetos) {
-            //console.log("Meus objetos ", objetos);
-            var v = [];
-            var exit = true;
-            var j = 0;
-            if (objetos.length != 0) { // Quando é clicado em "selecionar categoria", a função ng-click entende como uma ação e 
-                // manda um vetor vazio para a função, então não deve-se fazer nada
-                // Esse loop elimina os elementos iguais para serem mostrados no filtro
-                for (var i = 0; i < objetos.length; i++) {
-                    if (v.length != 0) {
-                        while (exit) {
-                            if (objetos[i].marca === v[j].marca) {
-                                exit = false;
-                            } else if ((objetos[i].marca !== v[j].marca) && (j == v.length - 1)) {
-                                v.push(objetos[i]);
-                            }
-                            j++;
-                        }
-                        j = 0;
-                        exit = true;
-                    } else {
-                        v.push(objetos[i]);
-                    }
-                }
-            }
-            console.log("Minhas marcas nesse vetor: ", v);
-            return (v);
-        }
-        // Faz a mesma coisa que a primeira, porém agora para o tamanho da tela
-        var returnUniqueTela = function(objetos) {
-            //console.log("Meus objetos ", objetos);
-            var v = [];
-            var exit = true;
-            var j = 0;
-            if (objetos.length != 0) { // Quando é clicado em "selecionar categoria", a função ng-click entende como uma ação e 
-                // manda um vetor vazio para a função, então não deve-se fazer nada
-                // Esse loop elimina os elementos iguais para serem mostrados no filtro
-                for (var i = 0; i < objetos.length; i++) {
-                    if (v.length != 0) {
-                        while (exit) {
-                            if (objetos[i].tamanho_tela === v[j].tamanho_tela) {
-                                exit = false;
-                            } else if ((objetos[i].tamanho_tela !== v[j].tamanho_tela) && (j == v.length - 1)) {
-                                v.push(objetos[i]);
-                            }
-                            j++;
-                        }
-                        j = 0;
-                        exit = true;
-                    } else {
-                        v.push(objetos[i]);
-                    }
-                }
-            }
-
-            console.log("Meus tamanhos de telas nesse vetor: ", v);
-            return (v);
-        }
 
         //This is loaded on page load
         //                        produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
@@ -189,9 +128,8 @@
                 produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                     vm.productsByCategory = data;
                     console.log('categoria controller greeting', $scope.productsByCategory);
-                    vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-                    vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
-
+                    vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                    vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
 
                 })
                 //Salve os parametros nos cookies
@@ -202,13 +140,15 @@
             }
         });
 
+
         //get maxShow item per page
         vm.getMaxShowItems = function(maxShowItem) {
             display.maxShowItem = maxShowItem;
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+
                 console.log('returned', vm.productsByCategory)
             });
             $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
@@ -219,8 +159,9 @@
             display.orderBy = orderBy;
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+
                 console.log('returned', vm.productsByCategory)
             })
             $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
@@ -258,9 +199,9 @@
             console.log('CATEGORIA', query.categoria)
             produtosApi.getDataByFilter([query, display], 'filtro_comum', query.categoria, function(data) {
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
-                //                console.log('returned', vm.productsByCategory)
+                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+
             })
 
             console.log('my', query)
@@ -334,8 +275,9 @@
 
             produtosApi.getDataByFilter([query, display], 'filtro_faixa', query.categoria, function(data) {
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
+                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+
                 console.log('returned', vm.productsByCategory)
             })
 
