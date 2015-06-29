@@ -71,16 +71,16 @@
         //        vm.quantidade = [1, 2, 3, 4, ];
         //-----------------------------------------------------
         //Função para obter a quantidade de cada produto
-        -------------------------------------------------------
-            vm.getQuFantidade = function(index, value) {
-                //soma a quantidade com 1 (botao +) ou -1 (botao -)
-                vm.quantidade[index] = vm.quantidade[index] + value;
-                //O valor preco_total do carrinho recebe um novo valor
-                vm.meuCarrinho[index].preco_total = precoUnitario[index] * vm.quantidade[index];
-                //soma o valor de todos os produtos no carrinho
-                for (var i = 0; i < precoUnitario.length; i++) {
-                    vm.precoSubTotal += vm.meuCarrinho[i].preco_total
-                }
+        //-------------------------------------------------------
+        vm.getQuantidade = function(index, value) {
+            //soma a quantidade com 1 (botao +) ou -1 (botao -)
+            vm.quantidade[index] = vm.quantidade[index] + value;
+            //O valor preco_total do carrinho recebe um novo valor
+            vm.meuCarrinho[index].preco_total = precoUnitario[index] * vm.quantidade[index];
+            //soma o valor de todos os produtos no carrinho
+            for (var i = 0; i < precoUnitario.length; i++) {
+                vm.precoSubTotal += vm.meuCarrinho[i].preco_total
+            }
         };
         //------------------------------------------------------------------
     }
