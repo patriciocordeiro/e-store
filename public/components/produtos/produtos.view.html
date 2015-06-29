@@ -46,11 +46,13 @@
 
             <div class="row">
 <!--                #/app/teams/{{team.id}}"-->
-                <a ng-href="#/app/produtos/{{products._id}}" class="col-md-4" ng-repeat="products in vm.productsByCategory">
-                    <h1><strong>{{products.nome}}</strong></h1>
-                    <h3>{{products.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{products.marca}}                                     </h3>
+                <div class="col-md-4" ng-repeat="products in vm.productsByCategory">
+                    <a ng-href="#/app/produtos/{{products._id}}">
+                        <h1><strong>{{products.nome}}</strong></h1>
+                        <h3>{{products.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{products.marca}}                                     </h3>
+                    </a>
                     <h3 style="color:red">R$ {{products.preco}}</h3>
-                    
+                        
                     <div class="input-group">
                         <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
@@ -58,7 +60,7 @@
                         <modal-avaliacao></modal-avaliacao>
                         <modal-visualizacao></modal-visualizacao>
                     </div>
-                </a>
+                </div>
             </div>
 
         </div>
