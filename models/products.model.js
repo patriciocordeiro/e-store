@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 
 var productsSchema = mongoose.Schema({
+//    _id:Array,
     name: String,
     categoria: String,
     marca: String,

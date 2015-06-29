@@ -62,7 +62,9 @@ exports.all = function(req, res, next) {
 //FIND ONE PRODUCT
 exports.unico = function(req, res, next) {
     console.log(req.body)
-    products.findOne({_id:req.body.id}, function(err, data) {
+    products.findOne({
+        _id: req.body.id
+    }, function(err, data) {
         console.log(data)
         res.json([data])
     });
@@ -70,6 +72,16 @@ exports.unico = function(req, res, next) {
 
 exports.myKart = function(req, res, next) {
     console.log("Meus ids enviados: ", req.body.ids);
+    products.find()
+        .where('_id')
+        .in(req.body.ids)
+        .exec(function(err, data) {
+            //     { field: { $in: [<value1>, <value2>, ... <valueN> ] } }
+            if (err) throw err
+            console.log('Produtos retornados', data)
+            res.json(data)
+
+        });
 
     // Há duas vertentes
     // A primeira eh que todos os ids serão pesquisados e retornados ao usuário
@@ -78,32 +90,34 @@ exports.myKart = function(req, res, next) {
 
     // Esse código foi baseado em 7.2.1
     // http://book.mixu.net/node/ch7.html
-    var produtosCarrinho = [];
+    //    var produtosCarrinho = [];
+    //
+    //    function final() {
+    //        res.json(produtosCarrinho);
+    //    }
 
-    function final(){
-        res.json(produtosCarrinho);
-    }
+    //    function getIds(id, callback) {
+    //        products.findOne({
+    //            _id: id
+    //        }, function(err, data) {
+    //            console.log(data);
+    //            callback(data);
+    //        });
+    //    }
+    //
+    //    function pushData(id) {
+    //        if (id) {
+    //            getIds(id, function(result) {
+    //                produtosCarrinho.push(result);
+    //                return pushData(req.body.ids.shift());
+    //            });
+    //        } else {
+    //            return final();
+    //        }
+    //    }
+    //
+    //    pushData(req.body.ids.shift());
 
-    function getIds(id, callback){
-        products.findOne({_id:id}, function(err, data) {
-            console.log(data);
-            callback(data);
-        });
-    }
-
-    function pushData(id){
-        if(id){
-            getIds(id, function(result){
-                produtosCarrinho.push(result);
-                return pushData(req.body.ids.shift());
-            });
-        }else{
-            return final();
-        }
-    }
-
-    pushData(req.body.ids.shift());
-    
 }
 ////FIND PRODUCTSBY CATEGORY
 //exports.category = function(req, res) {
