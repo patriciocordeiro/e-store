@@ -119,6 +119,16 @@ exports.myKart = function(req, res, next) {
     //    pushData(req.body.ids.shift());
 
 }
+
+exports.ratingProduct = function(req, res, next){
+    console.log("Produto para ser avaliado: ", req.body);
+
+    products.update({'_id':req.body.id},{'$push':{'avaliacao':req.body.avaliacao}}, function(err, data){
+        if (err) throw err;
+        console.log('Produto avaliado', data);
+        res.json([{retorno:"Obrigado por avaliar"}]);
+    });
+}
 ////FIND PRODUCTSBY CATEGORY
 //exports.category = function(req, res) {
 //    var query = req.params;

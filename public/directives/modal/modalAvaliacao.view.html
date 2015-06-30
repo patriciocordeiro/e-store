@@ -5,29 +5,30 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Avaliação de Produtos</h4>
         </div>
         <form role="form" style="padding-left:20px">
             <div class="radio">
-                <label><input type="radio" name="optradio" ng-click="getAvaliacao('cinco')">&#9733 &#9733 &#9733 &#9733 &#9733</label>
+                <label><input type="radio" name="optradio" ng-click="vm.getAvaliacao('5')">&#9733 &#9733 &#9733 &#9733 &#9733</label>
             </div>
             <div class="radio">
-                <label><input type="radio" name="optradio" ng-click="getAvaliacao('quatro')">&#9733 &#9733 &#9733 &#9733</label>
+                <label><input type="radio" name="optradio" ng-click="vm.getAvaliacao('4')">&#9733 &#9733 &#9733 &#9733</label>
             </div>
             <div class="radio">
-                <label><input type="radio" name="optradio" ng-click="getAvaliacao('tres')">&#9733 &#9733 &#9733</label>
+                <label><input type="radio" name="optradio" ng-click="vm.getAvaliacao('3')">&#9733 &#9733 &#9733</label>
             </div>
             <div class="radio">
-                <label><input type="radio" name="optradio" ng-click="getAvaliacao('dois')">&#9733 &#9733</label>
+                <label><input type="radio" name="optradio" ng-click="vm.getAvaliacao('2')">&#9733 &#9733</label>
             </div>
             <div class="radio">
-                <label><input type="radio" name="optradio" ng-click="getAvaliacao('um')">&#9733</label>
+                <label><input type="radio" name="optradio" ng-click="vm.getAvaliacao('1')">&#9733</label>
             </div>
+
+            <span ng-style="vm.modalStyle">{{vm.semAvaliacao}}</span>
         </form>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" ng-click="enviarAvaliacaoProduto()" data-dismiss="modal">Confirmar</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-default" ng-click="vm.enviarAvaliacaoProduto()">Confirmar</button>
+            <button type="button" class="btn btn-default" ng-click="vm.closeModal()" data-dismiss="modal">Fechar</button>
         </div>
       </div>
       

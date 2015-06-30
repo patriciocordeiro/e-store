@@ -3,10 +3,10 @@
     'use strict';
 
     angular.module('myApp').controller('ProdutosCtrl', ['$scope', '$rootScope', '$cookies',
-        'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', 'myFilters', ProdutosCtrl
+        'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', 'myFilters', 'ratingService', ProdutosCtrl
     ]);
 
-    function ProdutosCtrl($scope, $rootScope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService, myFilters) {
+    function ProdutosCtrl($scope, $rootScope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService, myFilters, ratingService) {
         //        console.log('queryqueryquery', query.categoria)
         //initialization------------------------------------------------------------------------------------------ 
         var vm = this;
@@ -218,7 +218,50 @@
         //        console.log('categoria controller greeting', query)
 
         // Aqui são as funções relacionadas a avaliação de produtos
-        vm.getIdProduto = function(produtoId, categoria) {
+
+        // previamente seta o campo de avaliação como vazio
+        vm.semAvaliacao = "Campo de avaliação vazio";
+        vm.modalStyle = {color:'red'};
+        vm.checked = false;
+        
+        vm.getIdProduto = function(id, categoria){
+            ratingService.setId(id);
+            ratingService.setCategoria(categoria);
+        };
+
+        vm.getAvaliacao = function(avaliacao) {
+            vm.semAvaliacao = "";
+            ratingService.setAvaliacao(avaliacao);
+        };
+        vm.enviarAvaliacaoProduto = function(){
+            console.log("Eu avaliei o produtoId: ", ratingService.getId());
+            console.log("Categoria: ", ratingService.getCategoria());
+            console.log("Avaliacao: ", ratingService.getAvaliacao());
+
+            if(ratingService.getAvaliacao() === undefined){
+                vm.semAvaliacao = "Campo de avaliação vazio";
+            }else{
+                var queryAvaliacao = {
+                    'id': ratingService.getId(),
+                    'avaliacao': parseInt(ratingService.getAvaliacao())
+                };
+
+                produtosApi.getRatingProduct(queryAvaliacao, function(data){
+                    console.log("Dado retornada da minha avaliacao: ", data);
+                    vm.semAvaliacao = "Sua avaliacao foi enviada com sucesso";
+                    vm.modalStyle = {color:'blue'};
+                    //vm.checked = false;
+                });
+            }
+        }
+
+        vm.closeModal = function(){
+            vm.semAvaliacao = "Campo de avaliação vazio";
+            //vm.checked = false;
+            vm.modalStyle = {color:'red'};
+        }
+
+        /*vm.getIdProduto = function(produtoId, categoria) {
             modalService.id = produtoId;
             modalService.categoria = categoria;
             console.log("Produto a ser avaliado", modalService.id);
@@ -254,7 +297,7 @@
             } else {
                 vm.maxAvaliacoes = 0;
             }
-        };
+        };*/
 
         //create a srting array with list of price ranges for filtroFaixa
         // Foram criados mais alguns intervalos para cobrir a maior parte dos produtos
