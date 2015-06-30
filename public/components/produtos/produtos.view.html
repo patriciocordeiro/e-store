@@ -55,7 +55,7 @@
                         
                     <div class="input-group">
                         <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="vm.getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalA" ng-click="vm.getIdProduto(products._id, products.categoria)">Avaliar</button>
                         <modal-avaliacao></modal-avaliacao>
                         <modal-visualizacao></modal-visualizacao>

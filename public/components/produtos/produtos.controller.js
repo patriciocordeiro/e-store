@@ -247,7 +247,7 @@
                 };
 
                 produtosApi.getRatingProduct(queryAvaliacao, function(data){
-                    console.log("Dado retornada da minha avaliacao: ", data);
+                    console.log("Dado retornado da minha avaliacao: ", data);
                     vm.semAvaliacao = "Sua avaliacao foi enviada com sucesso";
                     vm.modalStyle = {color:'blue'};
                     //vm.checked = false;
@@ -259,6 +259,48 @@
             vm.semAvaliacao = "Campo de avaliação vazio";
             //vm.checked = false;
             vm.modalStyle = {color:'red'};
+        }
+
+        vm.getProdutoVisualizacao = function(produtoVis){
+            console.log("Produto visualizado: ", produtoVis);
+            var queryProduct = {};
+            queryProduct.id = produtoVis._id;
+            produtosApi.showRatingProduct(queryProduct, function(data){
+                console.log("Dado retornada da minha visualizacao: ", data[0].avaliacao);
+                //console.log("Number of ocurrences: ", _.sortedIndex(data[0].avaliacao, 5));
+                vm.produtoVisualizado = {};
+                vm.produtoVisualizado.maxAvaliacoes = data[0].avaliacao.length;
+                vm.produtoVisualizado.cinco = 0;
+                vm.produtoVisualizado.quatro = 0;
+                vm.produtoVisualizado.tres = 0;
+                vm.produtoVisualizado.dois = 0;
+                vm.produtoVisualizado.um = 0;
+                for(var i = 0; i < data[0].avaliacao.length; i++){
+                    switch(data[0].avaliacao[i]){
+                        case 5:
+                            vm.produtoVisualizado.cinco = vm.produtoVisualizado.cinco + 1;
+                            break;
+                        case 4:
+                            vm.produtoVisualizado.quatro = vm.produtoVisualizado.quatro + 1;
+                            break;
+                        case 3:
+                            vm.produtoVisualizado.tres = vm.produtoVisualizado.tres + 1;
+                            break;
+                        case 2:
+                            vm.produtoVisualizado.dois = vm.produtoVisualizado.dois + 1;
+                            break;
+                        case 1:
+                            vm.produtoVisualizado.um = vm.produtoVisualizado.um + 1;
+                            break;
+                    }
+                }
+                vm.produtoVisualizado.cincoP = 100*vm.produtoVisualizado.cinco/vm.produtoVisualizado.maxAvaliacoes;
+                vm.produtoVisualizado.quatroP = 100*vm.produtoVisualizado.quatro/vm.produtoVisualizado.maxAvaliacoes;
+                vm.produtoVisualizado.tresP = 100*vm.produtoVisualizado.tres/vm.produtoVisualizado.maxAvaliacoes;
+                vm.produtoVisualizado.doisP = 100*vm.produtoVisualizado.dois/vm.produtoVisualizado.maxAvaliacoes;
+                vm.produtoVisualizado.umP = 100*vm.produtoVisualizado.um/vm.produtoVisualizado.maxAvaliacoes;
+                console.log("Caracteristicas do meu produto visualizado: ", vm.produtoVisualizado);
+            });
         }
 
         /*vm.getIdProduto = function(produtoId, categoria) {

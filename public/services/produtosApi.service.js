@@ -100,6 +100,16 @@ angular.module('myApp').service('produtosApi', ['httpService',
             });
         }
 
+        this.showRatingProduct = function(query, callback) {
+            httpService.save({
+                acao: 'showRateProduct',
+                id: 'id'
+            }, query, function(data) {
+                //console.log(data);
+                return callback(data);
+            });
+        }
+
         this.getLimit = function() {
             return 10;
         };

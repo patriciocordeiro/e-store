@@ -8,18 +8,46 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Visualização das Avaliações</h4>
         </div>
-        <div class="modal-body">
-            5 estrelas: <progress max="{{maxAvaliacoes}}" value="{{produtosParaVisualizar.avaliacao.cinco}}"></progress>
-            ({{produtosParaVisualizar.avaliacao.cinco}})<br>
-            4 estrelas: <progress max="{{maxAvaliacoes}}" value="{{produtosParaVisualizar.avaliacao.quatro}}"></progress>
-            ({{produtosParaVisualizar.avaliacao.quatro}})<br>
-            3 estrelas: <progress max="{{maxAvaliacoes}}" value="{{produtosParaVisualizar.avaliacao.tres}}"></progress>
-            ({{produtosParaVisualizar.avaliacao.tres}})<br>
-            2 estrelas: <progress max="{{maxAvaliacoes}}" value="{{produtosParaVisualizar.avaliacao.dois}}"></progress>
-            ({{produtosParaVisualizar.avaliacao.dois}})<br>
-            1 estrelas: <progress max="{{maxAvaliacoes}}" value="{{produtosParaVisualizar.avaliacao.um}}"></progress>
-            ({{produtosParaVisualizar.avaliacao.um}})<br>
+        <!--<div class="modal-body">
+            5 estrelas: <progress max="{{vm.produtoVisualizado.maxAvaliacoes}}" value="{{vm.produtoVisualizado.cinco}}"></progress>
+            ({{vm.produtoVisualizado.cinco}})<br>
+            4 estrelas: <progress max="{{vm.produtoVisualizado.maxAvaliacoes}}" value="{{vm.produtoVisualizado.quatro}}"></progress>
+            ({{vm.produtoVisualizado.quatro}})<br>
+            3 estrelas: <progress max="{{vm.produtoVisualizado.maxAvaliacoes}}" value="{{vm.produtoVisualizado.tres}}"></progress>
+            ({{vm.produtoVisualizado.tres}})<br>
+            2 estrelas: <progress max="{{vm.produtoVisualizado.maxAvaliacoes}}" value="{{vm.produtoVisualizado.dois}}"></progress>
+            ({{vm.produtoVisualizado.dois}})<br>
+            1 estrelas: <progress max="{{vm.produtoVisualizado.maxAvaliacoes}}" value="{{vm.produtoVisualizado.um}}"></progress>
+            ({{vm.produtoVisualizado.um}})<br>
+        </div>-->
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{vm.produtoVisualizado.cincoP}}%">
+            <span >{{vm.produtoVisualizado.cinco}} Usuário avaliaram com 5 &#9733</span>
+          </div>
         </div>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{vm.produtoVisualizado.quatroP}}%">
+            <span >{{vm.produtoVisualizado.quatro}} Usuário avaliaram com 4 &#9733</span>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{vm.produtoVisualizado.tresP}}%">
+            <span >{{vm.produtoVisualizado.tres}} Usuário avaliaram com 3 &#9733</span>
+          </div>
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{vm.produtoVisualizado.doisP}}%">
+            <span >{{vm.produtoVisualizado.dois}} Usuário avaliaram com 2 &#9733</span>
+          </div>
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{vm.produtoVisualizado.umP}}%">
+            <span >{{vm.produtoVisualizado.um}} Usuário avaliaram com 1 &#9733</span>
+          </div>
+        </div>
+
       </div>
       
     </div>

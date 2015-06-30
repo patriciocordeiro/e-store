@@ -77,8 +77,8 @@ exports.myKart = function(req, res, next) {
         .in(req.body.ids)
         .exec(function(err, data) {
             //     { field: { $in: [<value1>, <value2>, ... <valueN> ] } }
-            if (err) throw err
-            console.log('Produtos retornados', data)
+            if (err) throw err;
+            console.log('Produtos retornados', data);
             res.json(data)
 
         });
@@ -127,6 +127,23 @@ exports.ratingProduct = function(req, res, next){
         if (err) throw err;
         console.log('Produto avaliado', data);
         res.json([{retorno:"Obrigado por avaliar"}]);
+    });
+}
+
+exports.showRatingProduct = function(req, res, next){
+    console.log("Produto para ser visualizado: ", req.body);
+
+    /*products.update({'_id':req.body.id},{'$push':{'avaliacao':req.body.avaliacao}}, function(err, data){
+        if (err) throw err;
+        console.log('Produto avaliado', data);
+        res.json([{retorno:"Obrigado por avaliar"}]);
+    });*/
+    //res.json([{retorno:"mostrando a avaliacao"}]);
+    products.findOne({'_id':req.body.id}).exec(function(err, data){
+        //var retorno = {};
+        if (err) throw err;
+        console.log('Produtos retornados', data.avaliacao);
+        res.json([{avaliacao:data.avaliacao}]);
     });
 }
 ////FIND PRODUCTSBY CATEGORY
