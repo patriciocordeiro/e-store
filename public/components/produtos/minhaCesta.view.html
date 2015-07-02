@@ -3,7 +3,8 @@
         <div class="panel-heading">
             <h3>{{vm.title}}</h3>
         </div>
-        <div class="panel-body">
+
+        <div class="panel-body" ng-show="!vm.basketEmpty">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -26,7 +27,7 @@
 
                 <tbody>
                     <center>
-                        <tr ng-repeat="products in vm.meuCarrinho">
+                        <tr ng-repeat="products in vm.meuCarrinho track by $index">
                             <td>
                                 <p>{{products.nome}} {{products.categoria}} {{products.marca}} tela {{products.tamanho_tela}}" {{products.frequencia}}</p>
                             </td>
@@ -35,7 +36,7 @@
                                 <button ng-click="vm.getQuantidade($index, -1)">-</button>
                                 <input style="text-align:center" type="text" maxlength="3" ng-model="vm.quantidade[$index]" />
                                 <button value="1" ng-click="vm.getQuantidade($index, 1)">+</button>{{vm.getQuantidade[$index]}}
-                                <button class="btn btn-link">Remover item</button>
+                                <button class="btn btn-link" ng-click="vm.removeItendaCesta($index)" ui-sref="app.minhaCesta">Remover item</button>
                             </td>
                             <td>
                                 <p>R$ {{products.preco}}</p>
@@ -48,8 +49,12 @@
                 </tbody>
             </table>
             <button ng-hide="!loggedIn" class="btn btn btn-danger" ng-click="vm.finalizarCompra()">Finalizar compra</button>
-
         </div>
+        <div class="painel-body" ng-show="vm.basketEmpty">
+            <center><h1>Sua cesta está Vazia</h1></center>
+          
+        </div>
+
     </div>
 
 

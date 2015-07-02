@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('myApp').controller('NavbarCtrl', ['$rootScope','$scope', 'productCategory', 'SearchProducts', '$cookies', 'localStorageService', NavbarCtrl]);
+    angular.module('myApp').controller('NavbarCtrl', ['$rootScope', '$scope', 'productCategory', 'SearchProducts', '$cookies', 'localStorageService', NavbarCtrl]);
 
     function NavbarCtrl($rootScope, $scope, productCategory, SearchProducts, $cookies, localStorageService) {
         var vm = this;
@@ -27,7 +27,7 @@
         }*/
 
         $scope.productCategory = productCategory;
-//        console.log('catgreeting', $scope.productCategory.category)
+        //        console.log('catgreeting', $scope.productCategory.category)
         //        var categoria;
         vm.getSelectedCategory = function(selectedCategory) {
             productCategory.category = selectedCategory;
@@ -45,21 +45,25 @@
         // Utiliza-se o watch para ele sempre ficar verificando a variável e atualizá-la automaticamente na página
         console.log("Meu localStorageService: ", localStorageService.get('carrinho'))
         $rootScope.$watch(
-            function(){
-                if(localStorageService.get('carrinho') === null){
+            function() {
+                if (!localStorageService.get('carrinho')) {
                     vm.numeroProdutosCarrinho = 0;
-                }else{
+                } else {
+                    console.log(localStorageService.get('carrinho').split(','))
+//                    vm.numeroProdutosCarrinho = localStorageService.get('carrinho').split(',').length;
                     vm.numeroProdutosCarrinho = localStorageService.get('carrinho').split(',').length;
+//                    console.log()
                 }
-            }   
+            }
         );
 
-   vm.selected = undefined;
-        vm.states = {'marca':[{'samsung':['samsung tv', 'samsung celular', 'apple celular', 'nokia celular']}]}
-            
-            
-        
-//          vm.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-        
+        vm.selected = undefined;
+        vm.states = {
+            'marca': [{
+                'samsung': ['samsung tv', 'samsung celular', 'apple celular', 'nokia celular']
+            }]
+        }
+
+
     };
 })();
