@@ -35,7 +35,7 @@ console.log('My $rootScope', $rootScope)
         });
     }
 
-    $rootScope.$on('$stateChangeStart', function(event, toState, fromState, toParams) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
         console.log('mudei de estado', toState)
         var isLoggedIn = $rootScope.loggedIn;
         if (fromState !== toState) {
@@ -49,6 +49,11 @@ console.log('My $rootScope', $rootScope)
             //if toState.authenticate = true and isLoggedIn = false
             //Redirect to login page
             $state.go("app.login");
+        }
+
+        if(1){//toState.name == "app.avaliacao"
+            console.log("Esse eh o meu estado atual: ", toState.name);
+            console.log("Esse o estado de onde venho: ", fromState.name);
         }
     })
     console.log('Hello')
@@ -84,6 +89,14 @@ console.log('My $rootScope', $rootScope)
             url: "/produtos/:id",
             templateUrl: 'components/produtos/produtoDetail.view.html',
             controller: 'produtoDetailCtrl as vm',
+            authenticate: true
+
+        })
+
+        .state('app.avaliacao', {
+            url: "/avaliacao/:id",
+            templateUrl: 'components/rating/ratingProduct.view.html',
+            controller: 'RatingProductCtrl as vm',
             authenticate: true
 
         })

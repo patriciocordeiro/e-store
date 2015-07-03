@@ -56,11 +56,7 @@
             } else {
                 console.log('Produto já se encontra no carrinho')
             }
-            //------------------------------------------------------------------------
-            //------------------------------------------------------------------------
-
-
-
+            
             //            console.log('Número de Itens no carrinho', $rootScope.CarrinhoItens.length);
             //            console.log('Itens no carrinho', $rootScope.CarrinhoProdutos[0]);
             //$cookies.meuCarrinho = $rootScope.CarrinhoProdutos._id;
@@ -76,6 +72,14 @@
             //            }
             //            console.log("Variavel recupera id = ", localStorageService.get('carrinho'));
         }
+
+    // Função para armazenamento local da informação do id e nome do produto
+    vm.armazenarInformacao = function(id, nome){
+        //console.log("EU RECEBI ", id);
+        //console.log("EU RECEBI ", nome);
+        localStorageService.set('idProdutoAvaliado', id);
+        localStorageService.set('nomeProdutoAvaliado', nome);
+    }
 
     }
 }());

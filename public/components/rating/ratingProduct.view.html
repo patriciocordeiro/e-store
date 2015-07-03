@@ -1,0 +1,84 @@
+<div style="margin-top:200px" class="container">
+
+	<form class="form-horizontal">
+		<fieldset>
+
+		<!-- Form Name -->
+		<legend><h1>{{vm.title}}</h1></legend>
+
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="textTitulo">Título da avaliação</label>  
+		  <div class="col-md-8">
+		  <input id="textTitulo" name="textTitulo" ng-model="vm.titulo" type="text" placeholder="ex.: gostei muito do produto!" class="form-control input-md" required="">
+		    
+		  </div>
+		</div>
+
+		<!-- Multiple Radios (inline) -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="radiosAvaliacao">Avaliação Geral</label>
+		  <div class="col-md-4"> 
+		    <label class="radio-inline" for="radiosAvaliacao-0">
+		      <input type="radio" name="radiosAvaliacao" id="radiosAvaliacao-0" ng-model="vm.avaliacao" value="1" checked="checked">
+		      1
+		    </label> 
+		    <label class="radio-inline" for="radiosAvaliacao-1">
+		      <input type="radio" name="radiosAvaliacao" id="radiosAvaliacao-1" ng-model="vm.avaliacao" value="2">
+		      2
+		    </label> 
+		    <label class="radio-inline" for="radiosAvaliacao-2">
+		      <input type="radio" name="radiosAvaliacao" id="radiosAvaliacao-2" ng-model="vm.avaliacao" value="3">
+		      3
+		    </label> 
+		    <label class="radio-inline" for="radiosAvaliacao-3">
+		      <input type="radio" name="radiosAvaliacao" id="radiosAvaliacao-3" ng-model="vm.avaliacao" value="4">
+		      4
+		    </label> 
+		    <label class="radio-inline" for="radiosAvaliacao-4">
+		      <input type="radio" name="radiosAvaliacao" id="radiosAvaliacao-4" ng-model="vm.avaliacao" value="5">
+		      5
+		    </label>
+		  </div>
+		</div>
+
+		<!-- Textarea -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="textOpiniao">Escreva sua opinião</label>
+		  <div class="col-md-4">                     
+		    <textarea class="form-control" id="textOpiniao" name="textOpiniao" ng-model="vm.opiniao" ></textarea>
+		  </div>
+		</div>
+
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="textNome">Nome</label>  
+		  <div class="col-md-8">
+		  <input id="textNome" name="textNome" type="text" placeholder="" class="form-control input-md" ng-model="vm.nome" required="">
+		    
+		  </div>
+		</div>
+
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="textEmail">Email</label>  
+		  <div class="col-md-8">
+		  <input id="textEmail" name="textEmail" type="text" placeholder="" class="form-control input-md" ng-model="vm.email" required="">
+		    
+		  </div>
+		</div>
+
+		<!-- Button (Double) -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="buttonFinal"></label>
+		  <div class="col-md-8" style="text-align: center">
+		    <button id="buttonFinal" name="buttonFinal" class="btn btn-danger">Cancelar</button>
+
+		    <button id="buttonConfimacao" name="buttonConfimacao" class="btn btn-success" ng-click="vm.botaoConfirmar()">Confirmar</button>
+		  </div>
+		</div>
+
+		</fieldset>
+	</form>
+
+</div>

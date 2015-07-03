@@ -12,7 +12,13 @@ var productsSchema = mongoose.Schema({
     memoria_interna: String,
     sistema_operacional: String,
     preco: Number,
-    avaliacao: [Number]
+    avaliacao_produto: [{
+        titulo:String,
+        avaliacao:Number,
+        opiniao: String,
+        nome: String,
+        email: String
+    }]
 });
 
 //create the model for products and expose it to our app

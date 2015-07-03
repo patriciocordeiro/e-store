@@ -121,9 +121,22 @@ exports.myKart = function(req, res, next) {
 }
 
 exports.ratingProduct = function(req, res, next){
-    console.log("Produto para ser avaliado: ", req.body);
+    console.log("Caracteristica do produto: ", req.body);
 
-    products.update({'_id':req.body.id},{'$push':{'avaliacao':req.body.avaliacao}}, function(err, data){
+    var query = {};
+
+    query.titulo = req.body.titulo;
+    query.avaliacao = req.body.avaliacao;
+    query.opiniao = req.body.opiniao;
+    query.nome = req.body.nome;
+    query.email = req.body.email;
+
+    /*products.update({'_id':req.body.id},{'$push':{'avaliacao':req.body.avaliacao}}, function(err, data){
+        if (err) throw err;
+        console.log('Produto avaliado', data);
+        res.json([{retorno:"Obrigado por avaliar"}]);
+    });*/
+    products.update({'_id':req.body.id}, {'$push':{'avaliacao_produto':query}}, function(err, data){
         if (err) throw err;
         console.log('Produto avaliado', data);
         res.json([{retorno:"Obrigado por avaliar"}]);
