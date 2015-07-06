@@ -13,6 +13,7 @@ var productsSchema = mongoose.Schema({
     sistema_operacional: String,
     preco: Number,
     avaliacao_produto: [{
+        //_id:false,
         titulo:String,
         avaliacao:Number,
         opiniao: String,

@@ -9,6 +9,7 @@
 
         //Get the product id from the state params
         //The Id is passed via url
+        $stateParams.id = localStorageService.get('idProdutoDetalhe');
         vm.productId = $stateParams.id
         vm.idExists = false; //Exibe uma mensagem quando o produto já existe no carrinho
         var query = {}
@@ -16,6 +17,8 @@
         $rootScope.CarrinhoProdutos = [];
 
         query.id = $stateParams.id
+
+        console.log("O id do produto eh ", $stateParams.id);
         //get the product data on the server db
         produtosApi.getProductDetails(query, function(response) {
             vm.selectedProduct = response[0];
