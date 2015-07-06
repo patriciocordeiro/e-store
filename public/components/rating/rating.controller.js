@@ -9,7 +9,7 @@
 	function RatingProductCtrl ($scope, $rootScope, $stateParams, localStorageService, produtosApi, $state){
 		var vm = this;
 		//localStorageService.set('idProdutoAvaliacao', $stateParams.id);
-		vm.title = "Avaliação: " + localStorageService.get('idProdutoAvaliado') + " - " + localStorageService.get('nomeProdutoAvaliado');
+		vm.title = "Avaliação: " + localStorageService.get('nomeProdutoAvaliado');
 
 		vm.botaoConfirmar = function(){
 			var query = {};

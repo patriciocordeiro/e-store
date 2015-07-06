@@ -9,7 +9,7 @@
 
         //Get the product id from the state params
         //The Id is passed via url
-        $stateParams.id = localStorageService.get('idProdutoDetalhe');
+        //$stateParams.id = localStorageService.get('idProdutoDetalhe');
         vm.productId = $stateParams.id
         vm.idExists = false; //Exibe uma mensagem quando o produto já existe no carrinho
         var query = {}
