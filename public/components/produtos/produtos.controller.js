@@ -3,10 +3,11 @@
     'use strict';
 
     angular.module('myApp').controller('ProdutosCtrl', ['$scope', '$rootScope', '$cookies',
-        'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', 'myFilters', 'ratingService', ProdutosCtrl
+        'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', 'myFilters', 'ratingService', 
+        'localStorageService', ProdutosCtrl
     ]);
 
-    function ProdutosCtrl($scope, $rootScope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService, myFilters, ratingService) {
+    function ProdutosCtrl($scope, $rootScope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService, myFilters, ratingService, localStorageService) {
         //        console.log('queryqueryquery', query.categoria)
         //initialization------------------------------------------------------------------------------------------ 
         var vm = this;
@@ -220,7 +221,7 @@
         // Aqui são as funções relacionadas a avaliação de produtos
 
         // previamente seta o campo de avaliação como vazio
-        vm.semAvaliacao = "Campo de avaliação vazio";
+        /*vm.semAvaliacao = "Campo de avaliação vazio";
         vm.modalStyle = {color:'red'};
         vm.checked = false;
         
@@ -259,6 +260,12 @@
             vm.semAvaliacao = "Campo de avaliação vazio";
             //vm.checked = false;
             vm.modalStyle = {color:'red'};
+        }*/
+
+        // Função de armazenamento do id do produto para visualização dos detalhes
+        vm.storeIdProductDetail = function(id){
+            console.log("Meu id ", id);
+            localStorageService.set('idProdutoDetalhe',id);
         }
 
         vm.getProdutoVisualizacao = function(produtoVis){

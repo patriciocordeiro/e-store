@@ -1,6 +1,8 @@
 <div style="margin-top:200px" class="container">
 
-	<form class="form-horizontal">
+
+
+	<form class="form-horizontal" novalidate>
 		<fieldset>
 
 		<!-- Form Name -->
@@ -18,7 +20,7 @@
 		<!-- Multiple Radios (inline) -->
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="radiosAvaliacao">Avaliação Geral</label>
-		  <div class="col-md-4"> 
+		  <div class="col-md-4" required=""> 
 		    <label class="radio-inline" for="radiosAvaliacao-0">
 		      <input type="radio" name="radiosAvaliacao" id="radiosAvaliacao-0" ng-model="vm.avaliacao" value="1" checked="checked">
 		      1
@@ -72,13 +74,16 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="buttonFinal"></label>
 		  <div class="col-md-8" style="text-align: center">
-		    <button id="buttonFinal" name="buttonFinal" class="btn btn-danger">Cancelar</button>
+		    <button id="buttonFinal" name="buttonFinal" class="btn btn-danger" ng-click="vm.botaoCancelar()">Cancelar</button>
 
 		    <button id="buttonConfimacao" name="buttonConfimacao" class="btn btn-success" ng-click="vm.botaoConfirmar()">Confirmar</button>
 		  </div>
 		</div>
-
 		</fieldset>
 	</form>
+
+	<div ng-show="vm.avaliacaoNotOK" style="text-align: center">
+		<h3><span class="label label-danger">Algum problema na sua avaliação</span></h3>
+	</div>
 
 </div>

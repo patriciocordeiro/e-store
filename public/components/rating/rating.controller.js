@@ -1,12 +1,15 @@
 (function () {
 	'use strict';
 
-	angular.module('myApp').controller('RatingProductCtrl', ['$scope', '$rootScope', '$stateParams', 'localStorageService', 'produtosApi', RatingProductCtrl]);
+	angular.module('myApp').controller('RatingProductCtrl', ['$scope', '$rootScope', '$stateParams', 'localStorageService', 'produtosApi', '$state', RatingProductCtrl]);
+	
 
-	function RatingProductCtrl ($scope, $rootScope, $stateParams, localStorageService, produtosApi){
+	vm.avaliacaoNotOK = false;
+
+	function RatingProductCtrl ($scope, $rootScope, $stateParams, localStorageService, produtosApi, $state){
 		var vm = this;
 		//localStorageService.set('idProdutoAvaliacao', $stateParams.id);
-		vm.title = "Avaliação: " + localStorageService.get('idProdutoAvaliado') + " - " + localStorageService.get('nomeProdutoAvaliado');
+		vm.title = "Avaliação: " + localStorageService.get('nomeProdutoAvaliado');
 
 		vm.botaoConfirmar = function(){
 			var query = {};
@@ -21,9 +24,24 @@
 
 			console.log("Eu vou enviar para o servidor: ", query);
 
-			produtosApi.getRatingProduct(query, function(data){
-				console.log("Dado retornado da minha avaliacao: ", data);
-			});
+			if(query.titulo === undefined || query.avaliacao === NaN || query.nome === undefined || query.email === undefined){
+				vm.avaliacaoNotOK = true;
+			}else{
+				produtosApi.getRatingProduct(query, function(data){
+					console.log("Dado retornado da minha avaliacao: ", data);
+
+					if(data[0].retorno === "Obrigado por avaliar"){
+						$state.go("app.home");
+					}else{
+						vm.avaliacaoNotOK = true;
+					}
+				});
+			}
+		}
+
+		vm.botaoCancelar = function(){
+			console.log("Qualquer coisa");
+			$state.go("app.home");
 		}
 	}
 })();

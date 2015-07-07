@@ -1,8 +1,7 @@
 'use strict'
 angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule'])
-
-.run(function($rootScope, $state, authentication, $cookies) {
-    console.log('My $rootScope', $rootScope)
+.run(function($rootScope, $state, authentication, $cookies, localStorageService) {
+console.log('My $rootScope', $rootScope)
     //Check if user is loggedin (cookies)
     var lastState = $cookies.get('lastState');
     // $rootScope.getCategory('tv'); 
@@ -15,12 +14,27 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
             //Ultimo estado visitado antes do refresh
 
-
             //            $state.go(lastState || "app.dashboard");
-            $state.go(lastState || "dashboard");
+            //$state.go(lastState || "dashboard");
+            //console.log("MEU ULTIMO ESTADO: ", lastState);
+            if(lastState === "app.produtosDetail" || lastState === "app.avaliacao"){
+                $state.go(lastState || "app.dashboard", {id:localStorageService.get('idProdutoDetalhe')});
+            }else{
+                $state.go(lastState || "app.dashboard");
+            }
             //            $state.reload();
             $rootScope.loggedUser = response.local.firstName + ' ' + response.local.lastName;
             //            $rootScope.loggedUser = $cookies.get('usuario');
+            //var test = true;
+            //            if(test==true){
+           // if(toState.name === "app.produtosDetail"){
+               // console.log("ESTOU RODANDO AQUI NO PRODUCT DETAIL ", toState);//55633a204ce147e1f98ec41e
+               
+                
+              //$state.go("app.produtosDetail",{id:"55633a204ce147e1f98ec41e"});
+                //$state.go(lastState || "app.dashboard");
+              
+            //}
         }
     });
 
@@ -36,13 +50,17 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         });
     }
 
+
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
         console.log('mudei de estado', toState)
         var isLoggedIn = $rootScope.loggedIn;
         if (fromState !== toState) {
             $cookies.put('lastState', toState.name);
-            console.log('Cookie do estado atual adicionado com sucesso', toState.name)
+            console.log('Cookie do estado atual adicionado com sucesso', toState.name);
+
+
         }
+
         //check if client is trying to access a restricted page
         //toState.authenticate = true and is
         if (toState.authenticate && !isLoggedIn) {
