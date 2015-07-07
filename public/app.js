@@ -2,10 +2,10 @@
 angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule'])
 
 .run(function($rootScope, $state, authentication, $cookies) {
-console.log('My $rootScope', $rootScope)
+    console.log('My $rootScope', $rootScope)
     //Check if user is loggedin (cookies)
     var lastState = $cookies.get('lastState');
-// $rootScope.getCategory('tv'); 
+    // $rootScope.getCategory('tv'); 
     $rootScope.loggedIn = false;
     authentication.isloggedin(function(response) {
         console.log(!response.user);
@@ -16,7 +16,8 @@ console.log('My $rootScope', $rootScope)
             //Ultimo estado visitado antes do refresh
 
 
-            $state.go(lastState || "app.dashboard");
+            //            $state.go(lastState || "app.dashboard");
+            $state.go(lastState || "dashboard");
             //            $state.reload();
             $rootScope.loggedUser = response.local.firstName + ' ' + response.local.lastName;
             //            $rootScope.loggedUser = $cookies.get('usuario');
@@ -51,7 +52,7 @@ console.log('My $rootScope', $rootScope)
             $state.go("app.login");
         }
 
-        if(1){//toState.name == "app.avaliacao"
+        if (1) { //toState.name == "app.avaliacao"
             console.log("Esse eh o meu estado atual: ", toState.name);
             console.log("Esse o estado de onde venho: ", fromState.name);
         }
@@ -136,15 +137,73 @@ console.log('My $rootScope', $rootScope)
 
         })
 
-        .state('app.dashboard', {
+        .state('dashboard', {
             url: "/dashboard",
             templateUrl: 'components/dashboard/dashboard.view.html',
             controller: 'Dashboard as vm',
             //            template : '<h1>Funciona</h1>',
-            authenticate: true
+            authenticate: true,
+
+
 
 
         })
-        console.log('router')
-        $urlRouterProvider.otherwise('home/home');
+        //            .state('dashboard.email', {
+        //                url: '/email',
+        //                views: {
+        //                    "user@app": {
+        //                        template: '<h1 style="margin-top:200px">Viwe password</h1>',
+        //                        controller: 'controller as vm',
+        //                    }
+        //                }
+        //            })
+        .state('dashboard.email', {
+            url: "/email",
+            templateUrl: 'components/dashboard/userAlterarEmail.view.html',
+            //            controller: 'blala as vm',
+            //            template : '<h1>Funciona</h1>',
+            //                authenticate: true
+        })
+            .state('dashboard.password', {
+                url: "/password",
+                templateUrl: 'components/dashboard/userAlterarSenha.view.html',
+                //                controller: 'blala as vm',
+                //                authenticate: true
+            })
+            .state('dashboard.dados', {
+                url: "/dados",
+                templateUrl: 'components/dashboard/userAlterarDados.view.html',
+                //                controller: 'blala as vm',
+                //                authenticate: true
+            })
+             .state('dashboard.endereco', {
+                url: "/endereco",
+                templateUrl: 'components/dashboard/userAlterarEndereco.view.html',
+                //                controller: 'blala as vm',
+                //                authenticate: true
+            })
+
+
+
+        //        .state('dashboard', {
+        //            url: "/dashboard",
+        //            views: {
+        //                '': {
+        //                    templateUrl: 'components/dashboard/dashboard.view.html',
+        //                    controller: 'Dashboard as vm'
+        //                },
+        //                "email@": {
+        //                    template: '<h1 style="margin-top:200px">Viwe password</h1>'
+        //                },
+        //                "password@": {
+        //                    template: '<<h1 style="margin-top:200px">view password</h1>>'
+        //
+        //                }
+        //                //                templateUrl: 'components / dashboard / dashboard.view.html ',
+        //                //                controller: 'Dashboard as vm',
+        //                //                //            template : ' < h1 > Funciona < /h1>',
+        //                //                authenticate: true
+        //            }
+        //        })
+        //        console.log('router') $urlRouterProvider.otherwise('home/home');
     });

@@ -43,7 +43,7 @@
 
                             console.log($rootScope.loggedUser)
                             $rootScope.loggedIn = true;
-                            $state.go('app.dashboard')
+                            $state.go('dashboard')
 
                         } else {
                             vm.loginFailMessage = 'Usuário e/ou senha incorretos. Tente novamente';

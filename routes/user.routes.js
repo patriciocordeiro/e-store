@@ -8,7 +8,7 @@ module.exports = function(app, express, passport) {
     //    });
 
     router.post('/login', function(req, res, next) {
-        passport.authenticate('login', function(err, user, info) {
+        passport.authenticate('local-login', function(err, user, info) {
             if (err) {
                 console.log(err)
                 return res.send(err.code);
@@ -32,7 +32,7 @@ module.exports = function(app, express, passport) {
 
         })(req, res, next);
     });
-    router.post('/signup', passport.authenticate('signup'), function(req, res) {
+    router.post('/signup', passport.authenticate('local-signup'), function(req, res) {
         //     router.post('/users/signup',  function(req, res) {
 
         console.log('executado')

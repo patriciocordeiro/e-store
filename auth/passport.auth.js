@@ -21,21 +21,21 @@ module.exports = function(passport) {
     //    LOCAL SIGNUP
     //     we are using named strategies since we have one for login and one for signup
     //     by default, if there was no name, it would just be called 'local'
-    passport.use('signup', new LocalStrategy({
-            //            usernameField: 'email',
-            //            passwordField: 'password',
+    passport.use('local-signup', new LocalStrategy({
+                        usernameField: 'email',
+                        passwordField: 'password',
             passReqToCallback: true
         },
-        function(req, username, password, done) {
+        function(req, email, password, done) {
 
             // asynchronous
             // User.findOne wont fire unless data is sent back
 
-            findOrCreateUser = function() {
+         process.nextTick(function(){
 
 
                 User.findOne({
-                    'local.username': username
+                    'local.email': email
                 }, function(err, user) {
 
                     if (err) {
@@ -51,12 +51,12 @@ module.exports = function(passport) {
                         // create the user
                         var newUser = new User();
                         // set the user's local credentials
-                        newUser.local.username = username;
+                       
                         newUser.local.password = newUser.generateHash(password);
+                         newUser.local.username = email;
                         newUser.local.firstName = req.body.firstName;
                         newUser.local.lastName = req.body.lastName;
                         newUser.local.email = req.body.email;
-
 
                         //Save the user in the database
                         newUser.save(function(err) {
@@ -71,14 +71,14 @@ module.exports = function(passport) {
 
                     }
                 });
-            };
-            process.nextTick(findOrCreateUser);
+            });
+           
             //        console.log('Executado com sucesso')
         }));
 
 
 
-    passport.use('login', new LocalStrategy({
+    passport.use('local-login', new LocalStrategy({
 
         // by default, local strategy uses username and password, we will override with email
         usernameField: 'email',
@@ -123,7 +123,7 @@ module.exports = function(passport) {
     }));
 
 
-    passport.use('facebook', new FacebookStrategy({
+    passport.use('facebook-login', new FacebookStrategy({
         // pull in our app id and secret from our auth.config.js file
             clientID: configAuth.facebookAuth.clientID,
             clientSecret: configAuth.facebookAuth.clientSecret,
