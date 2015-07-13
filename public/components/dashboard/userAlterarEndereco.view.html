@@ -1,7 +1,7 @@
 <form>
     <div class="form-group">
         <label for="exampleInputEmail1">Tipo de residênciao</label>
-        <select id="addressForm.friendlyAddressNameOptions" ng-model="vm.user.tipoEndereco">
+        <select id="addressForm.friendlyAddressNameOptions" ng-model="vm.user.endereco.tipoEndereco">
             <option value="Apartamento">Apartamento</option>
             <option value="Casa">Casa</option>
             <option value="Comercial">Comercial</option>
@@ -14,7 +14,7 @@
     <div class="form-group">
         <label for="exampleInputPassword1">CEP*</label>
         <!--        <div class="input-group">-->
-        <input ng-model="vm.user.endereco.cep" type="text" maxlength="8" class="form-control" required>
+        <input ng-model="vm.user.endereco.cep" ui-mask="99999-999" type="text" class="form-control" required>
         <!--        </div>-->
     </div>
 

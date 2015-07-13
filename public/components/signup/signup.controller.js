@@ -11,7 +11,7 @@
             sexo: 'Selecione',
             //            cpf: '',
             //            birthDate: '',
-            //            telefone: '',
+//            telefone: null,
             //            celular: '',
             email: '',
             password: '',
@@ -30,15 +30,15 @@
             console.log('Signup está funcionando', newUser)
             if (newUser) {
                 newUser.username = newUser.email
-                console.log(newUser)
-                  console.log(typeof newUser.birthDate);
+                console.log('NewUser', newUser)
+                console.log(typeof newUser.birthDate);
                 authentication.signup({
                     //                    username: newUser.email,
                     //                    fullName: newUser.fullName,
                     //                    email: newUser.email,
                     //                    password: newUser.password
                     //                    //                    vm.newUser:
-                  
+
                     fullName: newUser.fullName,
                     username: newUser.email,
                     sexo: newUser.sexo,
@@ -48,7 +48,7 @@
                     celular: newUser.celular,
                     email: newUser.email,
                     password: newUser.password,
-//                    retypePassword: newUser.retypePassword,
+                    //retypePassword: newUser.retypePassword,
                     tipoEndereco: newUser.tipoEndereco,
                     cep: newUser.cep,
                     endereco: newUser.endereco,

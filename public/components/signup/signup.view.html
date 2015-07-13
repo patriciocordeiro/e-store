@@ -24,7 +24,7 @@
         <div class="form-group" ng-class="{'has-error':signupForm.cpf.$invalid}">
             <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>CPF</label>
             <div class="col-sm-3">
-                <input ng-model="vm.newUser.cpf" ui-mask="999.999.999-99" type="text" name="cpf" class="form-control" maxlength="11" required>
+                <input ng-model="vm.newUser.cpf" ui-mask="999.999.999-99" type="text" name="cpf" class="form-control" required>
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':signupForm.birthDate.$invalid}">
@@ -36,13 +36,13 @@
         <div class="form-group" ng-class="{'has-error':signupForm.telefone.$invalid}">
             <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Telefone residencial</label>
             <div class="col-sm-3">
-                <input ng-model="vm.newUser.telefone" ui-mask="(99) 9999-9999" type="text" name="telefone" class="form-control" maxlength="11" required>
+                <input ng-model="vm.newUser.telefone" ui-mask="(99) 9999-9999" type="text" name="telefone" class="form-control" required/>
             </div>
         </div>
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">Telefone celular</label>
             <div class="col-sm-3">
-                <input ng-model="vm.newUser.celular" ui-mask="(99) 99999-9999" type="text" name="celular" class="form-control" maxlength="11">
+                <input ng-model="vm.newUser.celular" ui-mask="(99) 99999-9999" type="text" name="celular" class="form-control">
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':signupForm.email.$invalid}">
@@ -83,7 +83,7 @@
         <div class="form-group" ng-class="{'has-error':signupForm.cep.$invalid}">
             <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>CEP</label>
             <div class="col-sm-3">
-                <input ng-model="vm.newUser.cep" ui-mask="99999-999" type="text" name="cep" class="form-control" maxlength="8" required>
+                <input ng-model="vm.newUser.cep" ui-mask="99999-999" type="text" name="cep" class="form-control" required>
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':signupForm.endereco.$invalid}">

@@ -19,13 +19,13 @@
 
     <div class="form-group">
         <label for="InputTelefone">Telefone residencial</label>
-        <input ng-model="vm.user.telefone" type="text" class="form-control" required>
+        <input ng-model="vm.user.telefone"  ui-mask="(99) 9999-9999" type="text" class="form-control" required>
     </div>
     
     <div class="form-group">
         <label for="Inputcelular">Telefone resicelular</label>
-        <input ng-model="vm.user.celular" type="text" class="form-control" maxlength="9" required>
+        <input ng-model="vm.user.celular"  ui-mask="(99) 9999-9999" type="text" class="form-control"  required>
     </div>
     <button type="submit" class="btn btn-success" ng-click="vm.updateDadosCadastrais(vm.user)">Salvar</button>
-    <input ng-model="vm.user" type="text">
+ 
 </form>
