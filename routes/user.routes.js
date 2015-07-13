@@ -1,4 +1,4 @@
-module.exports = function(app, express, passport) {
+module.exports = function(app, express, passport, User) {
     var router = express.Router();
 
     //    router.post('/login', passport.authenticate('login'), function(req, res) {
@@ -36,10 +36,19 @@ module.exports = function(app, express, passport) {
         //     router.post('/users/signup',  function(req, res) {
 
         console.log('executado')
+        console.log(req.body)
         res.send(req.newUser)
         //      console.log('hello', req.body.email) 
     })
 
+    //    router.post('/signup', function(req, res) {
+    //        //     router.post('/users/signup',  function(req, res) {
+    //
+    //        console.log('executado')
+    //        console.log(req.body.newUser)
+    //        res.send(req.newUser)
+    //        //      console.log('hello', req.body.email) 
+    //    })
 
     router.get('/isloggedin', function(req, res, next) {
         res.send(req.isAuthenticated() ? req.user : {
@@ -59,12 +68,13 @@ module.exports = function(app, express, passport) {
     }));
 
     router.get('/login/facebook/callback', passport.authenticate('facebook'), function(req, res, next) {
-//        console.log(req)
+        //        console.log(req)
         res.send(req.user);
-//        successRedirect : '/home',
-    })
+        //        successRedirect : '/home',
+    });
 
-
+    router.post('/user/updateAddress', User.updateUserEndereco);
+    router.post('/user/updateDadosCadastrais', User.updateDadosCadastrais);
 
     app.use('/', router);
 }

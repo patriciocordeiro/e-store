@@ -14,4 +14,9 @@ angular.module('myApp').factory('httpServiceAvaliacao', function($resource) {
 angular.module('myApp').factory('httpLoginService', function($resource) {
        return $resource('http://localhost:3000/:acao/:social',
        {acao:'@acao', social:'@social'},{'get':{method:'GET', isArray:false},'save':{method:'POST', isArray:false}})
-}); 
+});
+
+angular.module('myApp').factory('httpUserService', function($resource) {
+       return $resource('http://localhost:3000/user/:acao',
+       {acao:'@acao'},{'get':{method:'GET', isArray:false},'save':{method:'POST', isArray:false}})
+});

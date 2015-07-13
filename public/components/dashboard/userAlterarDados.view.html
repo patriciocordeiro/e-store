@@ -1,30 +1,31 @@
 <form>
     <div class="form-group">
-        <label for="exampleInputEmail1">Nome Completo</label>
+        <label for="InputFullName">Nome Completo</label>
         <!--        <div class="input-group">-->
-        <input ng-model="user.fullName" type="text" class="form-control" id="nomeCompleto" required>
+        <input ng-model="vm.user.fullName" type="text" class="form-control" id="nomeCompleto" required>
         <!--        </div>-->
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Apelido</label>
+<!--    <div class="form-group">-->
+<!--        <label for="InputApelido">Apelido</label>-->
         <!--        <div class="input-group">-->
-        <input ng-model="user.apelido" type="text" class="form-control" required>
+<!--        <input ng-model="vm.user.apelido" type="text" class="form-control" required>-->
         <!--        </div>-->
+<!--    </div>-->
+
+    <div class="form-group">
+        <label for="InputBirthDate">Data de nascimento</label>
+        <input ng-model="vm.user.birthDate" type="date" class="form-control" required>
     </div>
 
     <div class="form-group">
-        <label for="exampleInputPassword1">Data de nascimento</label>
-        <input type="date" class="form-control" required>
-    </div>
-
-    <div class="form-group">
-        <label for="exampleInputPassword1">Telefone residencial</label>
-        <input type="date" class="form-control" required>
+        <label for="InputTelefone">Telefone residencial</label>
+        <input ng-model="vm.user.telefone" type="text" class="form-control" required>
     </div>
     
     <div class="form-group">
-        <label for="exampleInputPassword1">Telefone resicelular</label>
-        <input type="text" class="form-control" maxlength="9" required>
+        <label for="Inputcelular">Telefone resicelular</label>
+        <input ng-model="vm.user.celular" type="text" class="form-control" maxlength="9" required>
     </div>
-    <button type="submit" class="btn btn-success">Salvar</button>
+    <button type="submit" class="btn btn-success" ng-click="vm.updateDadosCadastrais(vm.user)">Salvar</button>
+    <input ng-model="vm.user" type="text">
 </form>

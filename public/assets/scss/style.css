@@ -1,13 +1,17 @@
 /* line 2, C:/Users/Asus/Google Drive/Home Solutions/projetos/e-commerce/app/css/style.scss */
-/* line 2, C:/Users/Asus/Google Drive/Home Solutions/projetos/ecommerceApp/assets/scss/style.scss */
+/* line 2, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
 .content-area {
   border-left: solid 2px #d4d3d3; }
 
 /* line 5, C:/Users/Asus/Google Drive/Home Solutions/projetos/e-commerce/app/css/style.scss */
-/* line 6, C:/Users/Asus/Google Drive/Home Solutions/projetos/ecommerceApp/assets/scss/style.scss */
+/* line 6, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
 .show-area {
   border-left: solid 1px #d4d3d3;
   border-right: solid 1px #d4d3d3; }
+
+/* line 10, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.asterix {
+  color: red; }
 
 /*# sourceMappingURL=style.css.map */
 /*# sourceMappingURL=style.css.map */

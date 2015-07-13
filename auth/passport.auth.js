@@ -22,16 +22,17 @@ module.exports = function(passport) {
     //     we are using named strategies since we have one for login and one for signup
     //     by default, if there was no name, it would just be called 'local'
     passport.use('local-signup', new LocalStrategy({
-                        usernameField: 'email',
-                        passwordField: 'password',
-            passReqToCallback: true
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true,
         },
         function(req, email, password, done) {
-
+            console.log('chegou do cliente', req.body)
             // asynchronous
             // User.findOne wont fire unless data is sent back
 
-         process.nextTick(function(){
+            process.nextTick(function() {
+
 
 
                 User.findOne({
@@ -51,12 +52,29 @@ module.exports = function(passport) {
                         // create the user
                         var newUser = new User();
                         // set the user's local credentials
-                       
-                        newUser.local.password = newUser.generateHash(password);
-                         newUser.local.username = email;
-                        newUser.local.firstName = req.body.firstName;
-                        newUser.local.lastName = req.body.lastName;
+
+                        //                        newUser.local.password = newUser.generateHash(password);
+                        //                        newUser.local.username = email;
+                        //                        newUser.local.firstName = req.body.firstName;
+                        //                        newUser.local.lastName = req.body.lastName;
+                        //                        newUser.local.email = req.body.email;
+
+                        newUser.local.fullName = req.body.fullName;
                         newUser.local.email = req.body.email;
+                        newUser.local.password = newUser.generateHash(password);
+                        newUser.local.sexo = req.body.sexo;
+                        newUser.local.birthDate = req.body.birthDate;
+                        newUser.local.telefone = req.body.telefone;
+                        newUser.local.celular = req.body.celular;
+                        newUser.local.endereco.tipoEndereco = req.body.tipoEndereco;
+                        newUser.local.endereco.cep = req.body.cep;
+                        newUser.local.endereco.endereco = req.body.endereco;
+                        newUser.local.endereco.complemento = req.body.complemento;
+                        newUser.local.endereco.numero = req.body.numero;
+                        newUser.local.endereco.referencia = req.body.referencia;
+                        newUser.local.endereco.bairro = req.body.bairro;
+                        newUser.local.endereco.cidade = req.body.cidade;
+                        newUser.local.endereco.estado = req.body.estado;
 
                         //Save the user in the database
                         newUser.save(function(err) {
@@ -72,10 +90,9 @@ module.exports = function(passport) {
                     }
                 });
             });
-           
+
             //        console.log('Executado com sucesso')
         }));
-
 
 
     passport.use('local-login', new LocalStrategy({
@@ -122,9 +139,68 @@ module.exports = function(passport) {
         });
     }));
 
+    //---------------------------------------------------------------------
+    //----------User Endereco de entrega-----------------------------------
+//    passport.use('local-updateEndereco', new LocalStrategy({
+//            usernameField: 'email',
+//            passwordField: 'password',
+//            passReqToCallback: true,
+//        },
+//        function(req, email, password, done) {
+//            console.log('chegou do cliente', email)
+//            // asynchronous
+//            // User.findOne wont fire unless data is sent back
+//
+//            process.nextTick(function() {
+//
+//                User.findOne({
+//                    'local.email': email
+//                }, function(err, user) {
+//
+//                    if (err) {
+//                        return done(err);
+//                    }
+//
+//                    if (!user) {
+//                        return done(null, false, {
+//                            message: 'user does not exist'
+//                        });
+//                    } else {
+//                        //Se o usuário existe
+//                        //Atualize os dados cadastrais
+//                        //                        var user = new User
+//                        var query = req.body.endereco
+//                        console.log(query)
+//                        User.update({
+//                            'local.email': email
+//                        }, {
+//                            $set: {
+//                                'local.telefone': '818996565'
+//                            }
+//                        }, function(err, user) {
+//                            if (err) {
+//                                console.log(err)
+//                                return done(err)
+//
+//                            } else {
+//                                console.log('Eendereço atualizado com sucesso', user)
+//
+//                                return done(null, user);
+//                            }
+//
+//                        });
+//                    }
+//
+//                });
+//            });
+//        }
+//
+//    ));
+    //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
 
     passport.use('facebook-login', new FacebookStrategy({
-        // pull in our app id and secret from our auth.config.js file
+            // pull in our app id and secret from our auth.config.js file
             clientID: configAuth.facebookAuth.clientID,
             clientSecret: configAuth.facebookAuth.clientSecret,
             callbackURL: configAuth.facebookAuth.callbackURL

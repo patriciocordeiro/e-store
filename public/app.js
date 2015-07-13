@@ -1,82 +1,84 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule'])
-.run(function($rootScope, $state, authentication, $cookies, localStorageService) {
-console.log('My $rootScope', $rootScope)
-    //Check if user is loggedin (cookies)
-    var lastState = $cookies.get('lastState');
-    // $rootScope.getCategory('tv'); 
-    $rootScope.loggedIn = false;
-    authentication.isloggedin(function(response) {
-        console.log(!response.user);
-        if (response.user !== false) {
-            console.log('resposta', response.local.firstName)
-            $rootScope.loggedIn = true;
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask'])
+    .run(function($rootScope, $state, authentication, $cookies, localStorageService) {
+        console.log('My $rootScope', $rootScope)
+        //Check if user is loggedin (cookies)
+        var lastState = $cookies.get('lastState');
+        // $rootScope.getCategory('tv'); 
+        $rootScope.loggedIn = false;
+        authentication.isloggedin(function(response) {
+            console.log(!response.user);
+            if (response.user !== false) {
+                console.log('resposta', response.local.firstName)
+                $rootScope.loggedIn = true;
 
-            //Ultimo estado visitado antes do refresh
+                //Ultimo estado visitado antes do refresh
 
-            //            $state.go(lastState || "app.dashboard");
-            //$state.go(lastState || "dashboard");
-            //console.log("MEU ULTIMO ESTADO: ", lastState);
-            if(lastState === "app.produtosDetail" || lastState === "app.avaliacao"){
-                $state.go(lastState || "app.dashboard", {id:localStorageService.get('idProdutoDetalhe')});
-            }else{
-                $state.go(lastState || "app.dashboard");
-            }
-            //            $state.reload();
-            $rootScope.loggedUser = response.local.firstName + ' ' + response.local.lastName;
-            //            $rootScope.loggedUser = $cookies.get('usuario');
-            //var test = true;
-            //            if(test==true){
-           // if(toState.name === "app.produtosDetail"){
-               // console.log("ESTOU RODANDO AQUI NO PRODUCT DETAIL ", toState);//55633a204ce147e1f98ec41e
-               
-                
-              //$state.go("app.produtosDetail",{id:"55633a204ce147e1f98ec41e"});
+                //            $state.go(lastState || "app.dashboard");
+                //$state.go(lastState || "dashboard");
+                //console.log("MEU ULTIMO ESTADO: ", lastState);
+                if (lastState === "app.produtosDetail" || lastState === "app.avaliacao") {
+                    $state.go(lastState || "app.dashboard", {
+                        id: localStorageService.get('idProdutoDetalhe')
+                    });
+                } else {
+                    $state.go(lastState || "app.dashboard");
+                }
+                //            $state.reload();
+                $rootScope.loggedUser = response.local.fullName;
+                //            $rootScope.loggedUser = $cookies.get('usuario');
+                //var test = true;
+                //            if(test==true){
+                // if(toState.name === "app.produtosDetail"){
+                // console.log("ESTOU RODANDO AQUI NO PRODUCT DETAIL ", toState);//55633a204ce147e1f98ec41e
+
+
+                //$state.go("app.produtosDetail",{id:"55633a204ce147e1f98ec41e"});
                 //$state.go(lastState || "app.dashboard");
-              
-            //}
-        }
-    });
 
-    $rootScope.logOut = function() {
-        authentication.logOut(function(data) {
-            console.log(data);
-            //remove all cookies
-            $cookies.remove('usuario');
-            $cookies.remove('produtos');
-            $cookies.remove('lastState');
-            $state.go("app.home");
-            $rootScope.loggedIn = false;
+                //}
+            }
         });
-    }
 
-
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
-        console.log('mudei de estado', toState)
-        var isLoggedIn = $rootScope.loggedIn;
-        if (fromState !== toState) {
-            $cookies.put('lastState', toState.name);
-            console.log('Cookie do estado atual adicionado com sucesso', toState.name);
-
-
+        $rootScope.logOut = function() {
+            authentication.logOut(function(data) {
+                console.log(data);
+                //remove all cookies
+                $cookies.remove('usuario');
+                $cookies.remove('produtos');
+                $cookies.remove('lastState');
+                $state.go("app.home");
+                $rootScope.loggedIn = false;
+            });
         }
 
-        //check if client is trying to access a restricted page
-        //toState.authenticate = true and is
-        if (toState.authenticate && !isLoggedIn) {
-            event.preventDefault();
-            //if toState.authenticate = true and isLoggedIn = false
-            //Redirect to login page
-            $state.go("app.login");
-        }
 
-        if (1) { //toState.name == "app.avaliacao"
-            console.log("Esse eh o meu estado atual: ", toState.name);
-            console.log("Esse o estado de onde venho: ", fromState.name);
-        }
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
+            console.log('mudei de estado', toState)
+            var isLoggedIn = $rootScope.loggedIn;
+            if (fromState !== toState) {
+                $cookies.put('lastState', toState.name);
+                console.log('Cookie do estado atual adicionado com sucesso', toState.name);
+
+
+            }
+
+            //check if client is trying to access a restricted page
+            //toState.authenticate = true and is
+            if (toState.authenticate && !isLoggedIn) {
+                event.preventDefault();
+                //if toState.authenticate = true and isLoggedIn = false
+                //Redirect to login page
+                $state.go("app.login");
+            }
+
+            if (1) { //toState.name == "app.avaliacao"
+                console.log("Esse eh o meu estado atual: ", toState.name);
+                console.log("Esse o estado de onde venho: ", fromState.name);
+            }
+        })
+        console.log('Hello')
     })
-    console.log('Hello')
-})
     .config(function($stateProvider, $urlRouterProvider) {
 
 
@@ -185,16 +187,16 @@ console.log('My $rootScope', $rootScope)
             .state('dashboard.password', {
                 url: "/password",
                 templateUrl: 'components/dashboard/userAlterarSenha.view.html',
-                //                controller: 'blala as vm',
+                controller: 'Dashboard as vm',
                 //                authenticate: true
             })
             .state('dashboard.dados', {
                 url: "/dados",
                 templateUrl: 'components/dashboard/userAlterarDados.view.html',
-                //                controller: 'blala as vm',
+                controller: 'Dashboard as vm',
                 //                authenticate: true
             })
-             .state('dashboard.endereco', {
+            .state('dashboard.endereco', {
                 url: "/endereco",
                 templateUrl: 'components/dashboard/userAlterarEndereco.view.html',
                 //                controller: 'blala as vm',

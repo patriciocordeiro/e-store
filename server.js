@@ -13,6 +13,7 @@ var mongoose = require('mongoose');
 var routes = require('./routes/user.routes');
 //var users = require('./routes/user.routes')(express);
 var products = require('./config/products.config');
+var User = require('./config/user.config')
 
 
 //Database
@@ -52,7 +53,7 @@ app.use(session({secret: 'olamilepatricioeyasmincordeiro', saveUninitialized:fal
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login sessions
 require('./auth/passport.auth')(passport);
-require('./routes/user.routes')(app, express, passport);
+require('./routes/user.routes')(app, express, passport, User);
 require('./routes/products.routes')(app, express, products);
 app.use('/', routes);
 //app.use('/', users);

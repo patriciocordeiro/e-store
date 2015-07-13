@@ -1,27 +1,23 @@
-//angular.module('myApp').service('authentication', ['httpLoginService',
-//    function(httpLoginService) {
-//
-//        this.signup = function(query, callback) {
-//
-//            httpLoginService.save({
-//                acao: 'signup',
-//            }, query, function(data) {
-//                data.abc = true;
-//                //console.log(data);
-//                return callback(data);
-//            });
-//
-//        };
-//
-//        this.login = function(query, callback) {
-//            httpLoginService.save({
-//                acao: 'login',
-//            }, query, function(data) {
-//                data.abc = true;
-//                //console.log(data);
-//                return callback(data);
-//            });
-//
-//        };
-//    }
-//])
+'use strict'
+angular.module('myApp').service('userService', function(httpUserService) {
+
+    this.userDadosCadastrais = 'usuario';
+
+    this.updateUserData = function(acao, query, callback) {
+        httpUserService.save({
+            acao: acao
+            //                tipo_filtro: 'filtro_comum'
+        }, query).$promise.then(
+            function(data) {
+                data.abc = true;
+                return callback(data);
+            },
+
+            function(error) {
+                console.log(error);
+                return callback(error);
+            });
+    };
+
+
+});
