@@ -1,8 +1,11 @@
 <form>
+
+    <label>Permitir alteração de dados: <input type="checkbox" ng-model="vm.permicaoAlteracaoDados.dadosCadastrais" ng-true-value="false" ng-false-value="true"></label><br/>
+    
     <div class="form-group">
         <label for="InputFullName">Nome Completo</label>
         <!--        <div class="input-group">-->
-        <input ng-model="vm.user.fullName" type="text" class="form-control" id="nomeCompleto" required>
+        <input ng-model="vm.user.fullName" type="text" class="form-control" id="nomeCompleto" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
         <!--        </div>-->
     </div>
 <!--    <div class="form-group">-->
@@ -14,18 +17,18 @@
 
     <div class="form-group">
         <label for="InputBirthDate">Data de nascimento</label>
-        <input ng-model="vm.user.birthDate" type="date" class="form-control" required>
+        <input ng-model="vm.user.birthDate" type="date" class="form-control" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
     </div>
 
     <div class="form-group">
         <label for="InputTelefone">Telefone residencial</label>
-        <input ng-model="vm.user.telefone"  ui-mask="(99) 9999-9999" type="text" class="form-control" required>
+        <input ng-model="vm.user.telefone"  ui-mask="(99) 9999-9999" type="text" class="form-control" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
     </div>
     
     <div class="form-group">
         <label for="Inputcelular">Telefone resicelular</label>
-        <input ng-model="vm.user.celular"  ui-mask="(99) 9999-9999" type="text" class="form-control"  required>
+        <input ng-model="vm.user.celular"  ui-mask="(99) 9999-9999" type="text" class="form-control" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
     </div>
-    <button type="submit" class="btn btn-success" ng-click="vm.updateDadosCadastrais(vm.user)">Salvar</button>
+    <button type="submit" class="btn btn-success" ng-click="vm.updateDadosCadastrais(vm.user)" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais">Salvar</button>
  
 </form>

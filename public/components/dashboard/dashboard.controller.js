@@ -9,6 +9,11 @@
         vm.user = userService.userDadosCadastrais
         vm.user.birthDate = new Date(userService.userDadosCadastrais.birthDate)
 
+        // Definições dos valores para alteração de dados
+        vm.permicaoAlteracaoDados = {
+            dadosCadastrais : true,
+            enderecoEntrega : true
+        }
 
         vm.updateEndereco = function(dados) {
             console.log('executado', dados)
