@@ -93,6 +93,7 @@
 //            } else {
                 //soma a quantidade com 1 (botao +) ou -1 (botao -)
                 vm.quantidade[index] = vm.quantidade[index] + value;
+                console.log(vm.quantidade[0]);
                 //O valor preco_total do carrinho recebe um novo valor
                 vm.meuCarrinho[index].preco_total = precoUnitario[index] * vm.quantidade[index];
                 //soma o valor de todos os produtos no carrinho
@@ -100,6 +101,10 @@
                     precoSubTotalTemp += vm.meuCarrinho[i].preco_total;
                     vm.precoSubTotal = precoSubTotalTemp;
                 };
+
+                if(vm.quantidade[0] === 0){
+                    vm.removeItendaCesta(index);
+                }
 //            };
         };
         //------------------------------------------------------------------
