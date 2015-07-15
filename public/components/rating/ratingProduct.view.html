@@ -19,8 +19,8 @@
 
 		<!-- Multiple Radios (inline) -->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="radiosAvaliacao">Avaliação Geral</label>
-		  <div class="col-md-4" required=""> 
+		  <label class="col-md-4 control-label">Avaliação Geral</label>
+		  <!-- <div class="col-md-4" required=""> 
 		    <label class="radio-inline" for="radiosAvaliacao-0">
 		      <input type="radio" name="radiosAvaliacao" id="radiosAvaliacao-0" ng-model="vm.avaliacao" value="1" checked="checked">
 		      1
@@ -41,7 +41,8 @@
 		      <input type="radio" name="radiosAvaliacao" id="radiosAvaliacao-4" ng-model="vm.avaliacao" value="5">
 		      5
 		    </label>
-		  </div>
+		  </div> -->
+		  <rating ng-model="vm.avaliacao" max="5"></rating>
 		</div>
 
 		<!-- Textarea -->

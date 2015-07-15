@@ -6,6 +6,8 @@
 
 	vm.avaliacaoNotOK = false;
 
+	vm.avaliacao = 0;
+
 	function RatingProductCtrl ($scope, $rootScope, $stateParams, localStorageService, produtosApi, $state){
 		var vm = this;
 		//localStorageService.set('idProdutoAvaliacao', $stateParams.id);
