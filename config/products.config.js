@@ -120,6 +120,35 @@ exports.myKart = function(req, res, next) {
 
 }
 
+// function my_loop(value, callback){
+//     var sum = 0;
+//     var my_final = 0;
+//     for(var i = 0; i < value.avaliacao_produto.length; i++){
+//         sum = sum + value.avaliacao_produto[i].avaliacao;
+
+//         if(i === value.avaliacao_produto.length - 1){
+//             return callback(sum);
+//         }
+//     }
+// }
+
+/*function async(arg, callback){
+    console.log("Soma: " + soma + "Valor a ser somado: " + arg);
+}*/
+var soma = 0;
+var items = [];
+
+function series(item){
+    if(item){
+        console.log("soma atual: " + soma + " avaliacao do item: " + item.avaliacao);
+        soma = soma + item.avaliacao;
+        console.log("Nova soma: ", soma);
+        return series(items.shift());
+    }else{
+        return soma;
+    }
+}
+
 exports.ratingProduct = function(req, res, next){
     console.log("Caracteristica do produto: ", req.body);
 
@@ -131,15 +160,68 @@ exports.ratingProduct = function(req, res, next){
     query.nome = req.body.nome;
     query.email = req.body.email;
 
-    /*products.update({'_id':req.body.id},{'$push':{'avaliacao':req.body.avaliacao}}, function(err, data){
-        if (err) throw err;
-        console.log('Produto avaliado', data);
-        res.json([{retorno:"Obrigado por avaliar"}]);
-    });*/
-    products.update({'_id':req.body.id}, {'$push':{'avaliacao_produto':query}}, function(err, data){
-        if (err) throw err;
-        console.log('Produto avaliado', data);
-        res.json([{retorno:"Obrigado por avaliar"}]);
+    var avaliacoes = 0;
+    var media = 0;
+    var tamanho = 0;
+    var soma_avaliacoes = 0;
+    soma = 0;
+    items = [];
+
+    /*
+        Sempre que for adicionado for avaliado um produto no banco de dados, uma nova média eh calculada
+        O produto eh encontrado, as avaliações são obtidas e então eh calculado uma nova média.
+        Então essa média substitui a que já estava
+    */
+    products.findOne({
+        _id: req.body.id
+    }, function(err, dado) {
+        //console.log(data)
+        //res.json([data])
+
+        items = dado.avaliacao_produto;
+        console.log("ITEMS: ", items.length);
+        tamanho = items.length;
+
+
+        if(dado.avaliacao_produto){
+            soma_avaliacoes = series(items.shift());
+
+            media = (soma_avaliacoes + query.avaliacao)/(tamanho+1);
+            console.log("Olha a media: " + media + " query.avaliacao: " + query.avaliacao + " tamanho: " + tamanho);
+
+            // my_loop(dado.avaliacao_produto, function(result){
+
+            //     avaliacoes = result;
+
+            //     console.log("Minhas avaliacoes ", avaliacoes);
+            //     media = avaliacoes/(dado.avaliacao_produto.length+1);
+
+            //     console.log("minha media", media);
+
+            products.update({'_id':req.body.id}, {'$push':{'avaliacao_produto':query}}, function(err, data){
+                if (err) throw err;
+                //console.log('Produto avaliado PUSH', data);
+
+                products.update({'_id':req.body.id}, {'$set':{'media_avaliacoes':media}}, function(err, prodMedia){
+                    if (err) throw err;
+                    //console.log('Produto avaliado SET', prodMedia);
+                    res.json([{retorno:"Obrigado por avaliar"}]);
+                });
+            });
+        }else{
+            products.update({'_id':req.body.id}, {'$push':{'avaliacao_produto':query}}, function(err, data){
+                if (err) throw err;
+
+                media = query.avaliacao;
+
+                products.update({'_id':req.body.id}, {'$set':{'media_avaliacoes':media}}, function(err, prodMedia){
+                    if (err) throw err;
+                    console.log('Produto avaliado SET', prodMedia);
+                    res.json([{retorno:"Obrigado por avaliar"}]);
+                });
+            });
+        }
+
     });
 }
 

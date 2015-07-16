@@ -1,4 +1,5 @@
 <div style="margin-top:200px" class="container">
+
     <h4>Itens por página</h4>
     <select ng-model="vm.products.maxShowItem" ng-change="vm.getMaxShowItems(vm.products.maxShowItem)">
         <option value="20">20</option>
@@ -55,8 +56,10 @@
                         
                     <div class="input-group">
                         <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="vm.getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
-                        <modal-visualizacao></modal-visualizacao>
+                        <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="vm.getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
+                        <modal-visualizacao></modal-visualizacao> -->
+                        <rating ng-model="products.media_avaliacoes" max="5" readonly="vm.isReadonly"></rating>
+                        <span class="label" ng-class="{'label-warning': 100*(products.media_avaliacoes || 0)/5<30, 'label-info': 100*(products.media_avaliacoes || 0)/5>=30 && 100*(products.media_avaliacoes || 0)/5<70, 'label-success': 100*(products.media_avaliacoes || 0)/5>=70}">{{100*(products.media_avaliacoes || 0)/5 | number:2}}%</span>
                     </div>
                 </div>
             </div>

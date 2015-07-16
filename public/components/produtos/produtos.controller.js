@@ -16,6 +16,14 @@
 
         $scope.productsCategory = productCategory;
 
+        /*
+            Código de configuração da diretiva rating
+            para exibir a avaliação dos produtos feita pelos usuários
+        */
+        vm.minhaAvaliacao = 0;
+        vm.percent = 100 * (vm.minhaAvaliacao / 5);
+        vm.isReadonly = true;
+
         vm.lastprodutoState = $cookies.get('produtos');
         if (vm.lastprodutoState) {
             var produtosDataOnCookies = vm.lastprodutoState.split(',');
