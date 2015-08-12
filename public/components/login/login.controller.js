@@ -44,6 +44,7 @@
                         console.log(response)
 
                         // armazenando nome de usuário em cookie
+                        $cookies.put('email', response.email);
                         $cookies.put('usuario', response.fullName);
                         console.log("Login do usuario no cookie: ", $cookies.get('usuario'));
                         
