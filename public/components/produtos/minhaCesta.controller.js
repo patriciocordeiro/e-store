@@ -20,8 +20,9 @@
         var idsafterRemove = false;
 
 
-        console.log("Carrinho de produtos: ", $rootScope.CarrinhoProdutos);
-        console.log("Foi posto no carrinho id: ", typeof localStorageService.get('carrinho'));
+
+        //console.log("Carrinho de produtos: ", $rootScope.CarrinhoProdutos);
+        console.log("EMAIL DO USUARIO: ", $cookies.get('email'));
 
         //query.id = localStorageService.get('carrinho');
         // recuperar ids e armazenar em vetor

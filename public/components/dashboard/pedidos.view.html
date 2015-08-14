@@ -1,0 +1,27 @@
+<div class="container">
+
+	 <div class="col-md-8" ng-repeat="pedido in vm.pedidos">
+	 	<!--data-target referencia o _id da compra feita-->
+		<a href="#" class="list-group-item" data-toggle="collapse" data-target="#{{pedido._id}}">Pedido feito em {{pedido.data}}</a>
+		<div id="{{pedido._id}}" class="sublinks collapse">
+			<div ng-repeat="compra in pedido.compras">
+				<a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span>{{compra.id}} - {{compra.quantidade}}</a>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Panel Default</h3>
+                </div>
+                <ul class="list-group">
+                    <a href="#" class="list-group-item">Cras justo odio</a>
+                    <a href="http://www.jquery2dotnet.com/2014/01/two-way-scrolling-in-single-div.html" class="list-group-item active">Dapibus ac facilisis in</a>
+                    <a href="#" class="list-group-item">Morbi leo risus</a>
+                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                    <a href="#" class="list-group-item">Vestibulum at eros</a>
+                </ul>
+            </div>
+        </div> -->
+</div>

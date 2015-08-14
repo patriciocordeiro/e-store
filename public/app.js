@@ -202,6 +202,13 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 //                controller: 'blala as vm',
                 //                authenticate: true
             })
+            .state('dashboard.pedidos', {
+                url: "/pedidos",
+                templateUrl: 'components/dashboard/pedidos.view.html',
+                controller: 'DashboardPedidosCtrl as vm'
+                //                controller: 'blala as vm',
+                //                authenticate: true
+            })
 
 
 
