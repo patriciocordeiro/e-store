@@ -22,7 +22,7 @@
 
 
         //console.log("Carrinho de produtos: ", $rootScope.CarrinhoProdutos);
-        console.log("EMAIL DO USUARIO: ", $cookies.get('email'));
+        //console.log("EMAIL DO USUARIO: ", $cookies.get('email'));
 
         //query.id = localStorageService.get('carrinho');
         // recuperar ids e armazenar em vetor
