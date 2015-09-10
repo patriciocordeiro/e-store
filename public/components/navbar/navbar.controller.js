@@ -10,8 +10,6 @@
         console.log('rootscope captured user', $rootScope.user)
 
 
-
-        vm.categories = ['tv', 'celular', 'tablet'];
         vm.SelectedCategory = {
             name: 'selecionar categoria' //initialize the category
 

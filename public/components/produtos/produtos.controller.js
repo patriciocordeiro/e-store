@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('myApp').controller('ProdutosCtrl', ['$scope', '$rootScope', '$cookies',
-        'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', 'myFilters', 'ratingService', 
+        'httpService', 'produtosApi', 'productCategory', 'httpServiceAvaliacao', 'modalService', 'myFilters', 'ratingService',
         'localStorageService', ProdutosCtrl
     ]);
 
@@ -11,10 +11,33 @@
         //        console.log('queryqueryquery', query.categoria)
         //initialization------------------------------------------------------------------------------------------ 
         var vm = this;
+        var filterRange; /*Total de filtros*/
 
         var query = {};
 
         $scope.productsCategory = productCategory;
+
+        /*
+        ************************************************
+            Categoria dos Filtros
+            No futuro talvez os nomes sejam preenchidos 
+            automaticamente 
+        ************************************************
+        */
+        vm.myfiltersName = ['marca', 'tamanho tela', 'faixa preco']
+        //==================================================
+
+
+
+
+
+        /*
+            Código de configuração da diretiva rating
+            para exibir a avaliação dos produtos feita pelos usuários
+        */
+        vm.minhaAvaliacao = 0;
+        vm.percent = 100 * (vm.minhaAvaliacao / 5);
+        vm.isReadonly = true;
 
         vm.lastprodutoState = $cookies.get('produtos');
         if (vm.lastprodutoState) {
@@ -36,9 +59,33 @@
                 orderBy: cookiesQuery
             }], function(data) {
                 vm.productsByCategory = data;
+
+
+                //                console.log('result', vm.filtersName);
+
                 //            console.log('On load/refresh: Get products');
-                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+                vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory)
+                filterRange = vm.myFiltersMarca[0].length;
+                console.log('FILTROSOSOSOSOSO', vm.myFiltersMarca[0]);
+                console.log('MEU ARRAY', filterRange);
+
+
+                //                var test;
+                //                test = vm.myFiltersMarca[0];
+                //                console.log(test[0]);
+                //                console.log(_.pick(test[1], "marca"));
+                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+                //                var valor;
+
+                //                    .without(['_id','tags', 'nome' , 'lancamento','avaliacao_produto'])
+                //                .value();
+
+                //                var array=['_id','tags', 'nome' , 'lancamento','avaliacao_produto']
+                //                var evens = _.remove(array, function(n) {
+                //                    return n % 2 == 0;
+                //                });
+
+                //                console.log('foreach aqui', );
 
 
             })
@@ -65,14 +112,39 @@
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                 console.log('getDatabYCatgory function loaded on page load')
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+                vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory)
+                filterRange = vm.myFiltersMarca[0].length;
+
+
+
+
+                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
                 $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
+
+
+                console.log('dados dos produtos', vm.productsByCategory);
             });
         }
 
-
-
+        vm.filtroMarca = {
+            marca: [{
+                type: 'marca',
+                name: 'Asus'
+            }, {
+                type: 'marca',
+                name: 'LG'
+            }, {
+                type: 'marca',
+                name: 'Samsung'
+            }, {
+                type: 'tela',
+                name: 20
+            }],
+            tela: ['10', '12', '20']
+        }
+        console.log('HELLLOOOO', vm.filtroMarca.marca);
+        console.log(vm.myfiltersTela);
         //Get the selected category
         //                $scope.productsCategory = productCategory;
         //build the query
@@ -129,12 +201,15 @@
                 produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                     vm.productsByCategory = data;
                     console.log('categoria controller greeting', $scope.productsByCategory);
-                    vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                    vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+                    vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory)
+                    filterRange = vm.myFiltersMarca[0].length;
+
+                    //                    vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+                    console.log(vm.myfiltersMarca);
 
                 })
                 //Salve os parametros nos cookies
-                console.log('query do watch', display.orderBy)
+                console.log('query do watch', display.orderBy);
                 $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
 
 
@@ -147,8 +222,13 @@
             display.maxShowItem = maxShowItem;
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+                vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory);
+                filterRange = vm.myFiltersMarca[0].length;
+
+
+                //
+                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
 
                 console.log('returned', vm.productsByCategory)
             });
@@ -160,8 +240,12 @@
             display.orderBy = orderBy;
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+                vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory);
+                filterRange = vm.myFiltersMarca[0].length;
+
+
+                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
 
                 console.log('returned', vm.productsByCategory)
             })
@@ -200,8 +284,12 @@
             console.log('CATEGORIA', query.categoria)
             produtosApi.getDataByFilter([query, display], 'filtro_comum', query.categoria, function(data) {
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+                vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory);
+                filterRange = vm.myFiltersMarca[0].length;
+
+                //
+                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
 
             })
 
@@ -263,16 +351,16 @@
         }*/
 
         // Função de armazenamento do id do produto para visualização dos detalhes
-        vm.storeIdProductDetail = function(id){
+        vm.storeIdProductDetail = function(id) {
             console.log("Meu id ", id);
-            localStorageService.set('idProdutoDetalhe',id);
+            localStorageService.set('idProdutoDetalhe', id);
         }
 
-        vm.getProdutoVisualizacao = function(produtoVis){
+        vm.getProdutoVisualizacao = function(produtoVis) {
             console.log("Produto visualizado: ", produtoVis);
             var queryProduct = {};
             queryProduct.id = produtoVis._id;
-            produtosApi.showRatingProduct(queryProduct, function(data){
+            produtosApi.showRatingProduct(queryProduct, function(data) {
                 console.log("Dado retornada da minha visualizacao: ", data[0].avaliacao);
                 //console.log("Number of ocurrences: ", _.sortedIndex(data[0].avaliacao, 5));
                 vm.produtoVisualizado = {};
@@ -282,8 +370,8 @@
                 vm.produtoVisualizado.tres = 0;
                 vm.produtoVisualizado.dois = 0;
                 vm.produtoVisualizado.um = 0;
-                for(var i = 0; i < data[0].avaliacao.length; i++){
-                    switch(data[0].avaliacao[i]){
+                for (var i = 0; i < data[0].avaliacao.length; i++) {
+                    switch (data[0].avaliacao[i]) {
                         case 5:
                             vm.produtoVisualizado.cinco = vm.produtoVisualizado.cinco + 1;
                             break;
@@ -301,11 +389,11 @@
                             break;
                     }
                 }
-                vm.produtoVisualizado.cincoP = 100*vm.produtoVisualizado.cinco/vm.produtoVisualizado.maxAvaliacoes;
-                vm.produtoVisualizado.quatroP = 100*vm.produtoVisualizado.quatro/vm.produtoVisualizado.maxAvaliacoes;
-                vm.produtoVisualizado.tresP = 100*vm.produtoVisualizado.tres/vm.produtoVisualizado.maxAvaliacoes;
-                vm.produtoVisualizado.doisP = 100*vm.produtoVisualizado.dois/vm.produtoVisualizado.maxAvaliacoes;
-                vm.produtoVisualizado.umP = 100*vm.produtoVisualizado.um/vm.produtoVisualizado.maxAvaliacoes;
+                vm.produtoVisualizado.cincoP = 100 * vm.produtoVisualizado.cinco / vm.produtoVisualizado.maxAvaliacoes;
+                vm.produtoVisualizado.quatroP = 100 * vm.produtoVisualizado.quatro / vm.produtoVisualizado.maxAvaliacoes;
+                vm.produtoVisualizado.tresP = 100 * vm.produtoVisualizado.tres / vm.produtoVisualizado.maxAvaliacoes;
+                vm.produtoVisualizado.doisP = 100 * vm.produtoVisualizado.dois / vm.produtoVisualizado.maxAvaliacoes;
+                vm.produtoVisualizado.umP = 100 * vm.produtoVisualizado.um / vm.produtoVisualizado.maxAvaliacoes;
                 console.log("Caracteristicas do meu produto visualizado: ", vm.produtoVisualizado);
             });
         }
@@ -367,8 +455,8 @@
 
             produtosApi.getDataByFilter([query, display], 'filtro_faixa', query.categoria, function(data) {
                 vm.productsByCategory = data;
-                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
+                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
+                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
 
                 console.log('returned', vm.productsByCategory)
             })
@@ -378,6 +466,53 @@
         //set all cookiest
 
         //        $cookies.put('usuario',response.firstName + ' ' + response.lastName);
+
+        //left navbar configurations//
+
+
+        //        vm.getSelectedFilterName = function(filterName) {
+        //            switch (filterName) {
+        //                case 'marca':
+        //                    return vm.myfiltersMarca
+        //
+        //                    break;
+        //                case 'tamanho tela':
+        //                    return vm.myfiltersMarca
+        //                    break;
+        //                default:
+        //                    return vm.myfiltersMarca
+        //                    break;
+        //            }
+        //
+        //        }
+
+
+        /*
+         ************************************************
+            Controle do left-navbar
+         ************************************************
+        */
+        vm.isCollapsed = [];
+
+        //Inicialize todos os filtros collapsed
+        var isCollapsedtrue = _.range(7).map(function() {
+            return true
+        })
+        vm.isCollapsed = isCollapsedtrue;
+        //        console.log(filterRange)
+
+        vm.getSelectedFiltersName = function(index, value) {
+            vm.isCollapsed = isCollapsedtrue = _.range(7).map(function() {
+                return true
+            });
+            vm.isCollapsed[index] = !value;
+            //            vm.isCollapsed[!index] = value;
+            console.log('isCollapsedtrue', isCollapsedtrue)
+
+        }
+        //==================================================
+        console.log('Filtro', vm.myfiltersTela);
+
     }
 
 })();

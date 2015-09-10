@@ -1,46 +1,398 @@
 <div style="margin-top:200px" class="container">
+    <!--    <img id="zoom_01" src='../../assets/img/small/image1.png' data-zoom-image="../../assets/img/large/image1.jpg" />-->
+
     <div class="container">
-        <h1>Detalhes do produto</h1>
-        <h1><strong>{{vm.selectedProduct.nome}}</strong></h1>
+        <div class="row">
+            <!--
+            <div class="col col-md-2">
+                Area das pequenas fotos
+            </div>
+-->
+            <div class="col col-md-5">
 
-        <h3>{{vm.selectedProduct.caracteristicas}} {{vm.selectedProduct.categoria}} {{vm.selectedProduct.tamanho_tela}}" {{vm.selectedProduct.frequencia}}  {{vm.products.marca}}   
+                <!--
+                <div ng-repeat="image in vm.myImage">
+                    <img src={{image}}>
+
+                </div>
+-->
+
+                <div ng-init="data-image ='../../assets/img/small/image1.png'"></div>
+                <img id="img_01" ng-src="../../assets/img/small/image1.png" data-zoom-image="../../assets/img/large/image1.jpg" />
+                <div id="gal1">
+
+                    <a ng-class="{'active':myclass}" ng-mouseenter="myclass=true" ng-mouseleave="myclass=false" class="active" class="active" data-image="../../assets/img/small/image1.png" data-zoom-image="../../assets/img/large/image1.jpg">
+                        <img height="20%" width="20%" id="img_01" ng-src="../../assets/img/small/image1.png" />
+                    </a>
+
+
+
+
+<!--
+                    <a ng-class="{'active':myclass2}" ng-mouseover="{data-image='../../assets/img/small/image1.png'}" ng-mouseleave="myclass2=false" class="active" class="active" data-zoom-image="../../assets/img/large/image1.jpg">
+                        <img height="20%" width="20%" id="img_01" ng-src="../../assets/img/small/image1.png" />
+                    </a>
+-->
+
+
+<!--
+                    <a ng-class="{'active':myclass1}" ng-mouseenter="myclass1=true" ng-mouseleave="myclass1=false" class="active" href="#" data-image="../../assets/img/small/image3.png" data-zoom-image="../../assets/img/large/image3.jpg">
+                        <img height="20%" width="20%" id="img_01" ng-src="../../assets/img/small/image3.png" />
+                    </a>
+-->
+
+                    <a href="#" data-image="../../assets/img/small/image3.png" data-zoom-image="../../assets/img/large/image3.jpg">
+                        <img height="20%" width="20%" id="img_01" src="../../assets/img/large/image3.jpg" />
+                    </a>
+                    </a>
+                    <a href="#" data-image="../../assets/img/small/image4.png" data-zoom-image="../../assets/img/large/image4.jpg">
+                        <img height="20%" width="20%" id="img_01" src="../../assets/img/large/image4.jpg" />
+                    </a>
+
+                </div>
+                <!--- See more at: http://www.elevateweb.co.uk/image-zoom/examples#sthash.cX6kfy2U.dpuf-->
+
+
+            </div>
+            <div class="col col-md-5">
+                <!--
+                <h1><strong>{{vm.selectedProduct.nome}}</strong></h1>
+
+                <h3>{{vm.selectedProduct.caracteristicas}} {{vm.selectedProduct.categoria}} {{vm.selectedProduct.tamanho_tela}}" {{vm.selectedProduct.frequencia}}  {{vm.products.marca}}   
         </h3>
-        <h3 style="color:red">R$ {{vm.selectedProduct.preco}}</h3>
+                <h3 style="color:red">R$ {{vm.selectedProduct.preco}}</h3>
+                <h1>Detalhes do produto</h1>
+-->
 
-        <!--{{vm.selectedProduct.avaliacao_produto[0]}}-->
 
-        <div class="input-group">
-	        <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
-	        <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>-->
+                <!--{{vm.selectedProduct.avaliacao_produto[0]}}-->
 
-	        <a type="button" class="btn btn-default" ng-click="vm.armazenarInformacao(vm.selectedProduct._id, vm.selectedProduct.nome)" ng-href="#/app/avaliacao/{{vm.selectedProduct._id}}">Avalie!</a>
+                <!--                <div class="input-group">-->
+                <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
+                <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>-->
 
-	        <!--<modal-visualizacao></modal-visualizacao>-->
-	    </div>
-	    <br>
+                <!--                    <a type="button" class="btn btn-default" ng-click="vm.armazenarInformacao(vm.selectedProduct._id, vm.selectedProduct.nome)" ng-href="#/app/avaliacao/{{vm.selectedProduct._id}}">Avalie!</a>-->
 
-        <button class="btn btn btn-danger" ng-click="vm.getCompra()">Adicionar ao Carrinho</button>
-        <button class="btn btn btn-danger"><a ui-sref="app.minhaCesta">Ir para o carrinho</a></button>
-<!--        <button class="btn btn btn-danger"><a ui-sref="app.minhaCesta">Ir para o carrinho</a>-->
-        </button>
-<!--        Esta div só será exibida se o produto selecionado já está no carrinho-->
-        <br/>
-        <div ng-show="vm.idExists">
-            <h3><span class="label label-danger">Este produto já se encotra no carrinho</span></h3>
-            <a ui-sref="app.minhaCesta">Ir para o carrinho</a>
-           
+                <!--<modal-visualizacao></modal-visualizacao>-->
+                <!--                </div>-->
+                <!--
+                <div class="col-sm-offset-{number}">
+
+                </div>
+-->
+                <h2> {{vm.selectedProduct.categoria}}  {{vm.selectedProduct.marca}} tela {{vm.selectedProduct.tamanho_tela}} polegadas</h2>
+                <ul class="list-inline">
+                    <li>
+                        <!--                        <rating class="rating rating-fa fa-2x" ng-model="3.2 " max="5"></rating>-->
+                        <!--                        <rating ng-model="3" readonly="true"></rating>-->
+                    </li>
+                    <li>
+                        <span class="badge">2</span>&nbsp; avaliaçoes
+                    </li>
+                    <li><a href="#" class="btn" ng-click="vm.armazenarInformacao(vm.selectedProduct._id, vm.selectedProduct.nome)" ng-href="#/app/avaliacao/{{vm.selectedProduct._id}}">Avalie este produto</a>
+                    </li>
+                </ul>&n&n&n&n
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col col-md-6">
+                                <h2 style="color:red"><strong>R$ {{vm.selectedProduct.preco}}</strong></h2>
+                            </div>
+                            <div class="col col-md-6">
+                                <div class="btn btn btn-danger" ng-click="vm.getCompra()">
+                                    <h3>Comprar</h3>
+                                </div>
+                                <!--                                <button class="btn btn btn-danger"><a ui-sref="app.minhaCesta">Ir para o carrinho</a>-->
+                                <!--                                </button>-->
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!--        <button class="btn btn btn-danger"><a ui-sref="app.minhaCesta">Ir para o carrinho</a>-->
+                <!--                </button>-->
+                <!--        Esta div só será exibida se o produto selecionado já está no carrinho-->
+                <br/>
+                <div ng-show="vm.idExists">
+                    <h3><span class="label label-danger">Este produto já se encotra no carrinho</span></h3>
+                    <a ui-sref="app.minhaCesta">Ir para o carrinho</a>
+
+                </div>
+                <br>
+            </div>
         </div>
-        <br>
+        <br/>
+        <div id="product-information">
+            <tabset class="border" justified="true">
+                <!--             <tabset class="border" justified="true">-->
+                <tab heading="Detalhes do produto" ng-click="gotoBottom()">
+                    <div class="my-tab-body">
+                        <center>
+                            <h2>Visão Geral</h2>
+
+                            <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec sollicitudin molestie malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Donec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta.</p>
+                        </center>
+                    </div>
+                </tab>
+
+                <tab heading="Informações técnicas" ng-click="gotoBottom()">
+                    <div class="my-tab-body">
+                        <h2>Informações Técnicas</h2>
+                        <table class="table">
+                            <tr ng-repeat="(productDetailsAtr, productDetails) in vm.selectedProduct">
+                                <td class="active">{{productDetailsAtr}}</td>
+                                <td class="active">{{productDetails}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </tab>
+                <tab heading="Avaliação dos clientes" ng-click="gotoBottom()">
+                    <div id="tab-avaliacao">
+                        <h2>Avaliação dos Clientes</h2>
+                        <div class="avaliacao-recomend-text">
+                            <h4 class="rating-total-header">84% dos avaliadores recomendam este produto</h4>
+                        </div>
+                        <button class="btn my-btn">Avalie este produto</button>
+                        <div class="rating-resumo">
+                            <div class="rating-stars-media row">
+                                <div class="col-sm-3">
+                                    <!--                                    <rating readonly="true" style="color:#e8112d" class=" rating rating-fa fa-3x" ng-model="4" max="5"></rating>-->
+                                    <!--                                    <ng-rate-it ng-model="5" min="0" max="5" step="1" read-only="true"></ng-rate-it>-->
+
+                                    <div awesome-rating="vm.rating" class="fa fa-4x" awesome-rating-options="vm.options"></div>
+                                    <!--                                    <div class="awesomeRating" awesome-rating="rating" awesome-rating-options="options"></div>-->
+                                    <!--
+                                    <div class="awesomeRatingValue">
+                                        <span class="awesomeRatingValue" ng-bind="'Rating value: ' + rating"></span>
+                                    </div>
+-->
+                                    <!--                                    
+<input id="input-id" type="number" class="rating" min=1 max=10 step=2 data-size="lg" data-rtl="true">-->
+                                    <!--                                    <input id="input-2" class="rating">-->
+                                </div>
+                                <div class="col-sm-2 rating-total-text">
+                                    <h4 class="rating-total-header">49 Avaliações</h4>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <progressbar value="55"></progressbar>
+                                        </li>
+                                        <li>
+                                            <progressbar value="24"></progressbar>
+                                        </li>
+                                        <li>
+                                            <progressbar value="32"></progressbar>
+                                        </li>
+                                        <li>
+                                            <progressbar value="32"></progressbar>
+                                        </li>
+                                        <li>
+                                            <progressbar value="32"></progressbar>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-sm-2 star-bar-value">
+                                    <ul class="list-unstyled">
+                                        <li>5 Estrelas (44)</li>
+                                        <li>4 Estrelas (8)</li>
+                                        <li>3 Estrelas (6)</li>
+                                        <li>2 Estrelas (2)</li>
+                                        <li>1 Estrela (3)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-group" ng-repeat="avaliacao in vm.selectedProduct.avaliacao_produto">
+                            <div class="list-group-item">
+                                <div class="list-group-item-heading">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <ul class="list-inline">
+                                                <!--                                                <li>-->
+                                                <!--                                                <rating readonly="true" style="color:#e8112d" class=" rating rating-fa fa-2x" ng-model="4" max="5"></rating>-->
+                                                <!--                                                </li>-->
+                                                <!--
+                                                <li>
+                                                    <h4><strong style="color:red">{{avaliacao.titulo}}</strong></h4>
+                                                </li>
+-->
+                                                <div awesome-rating="vm.rating" class="fa fa-2x" awesome-rating-options="vm.options"></div>
+                                            </ul>
+                                            <div class="avaliacao-recomendacao">
+                                                <span>Eu recomendo este produto</span>
+                                            </div>
+                                            <div class="avaliacao-nome">
+                                                <a href="#"><strong>{{avaliacao.nome}}</strong></a>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="avaliacao-titulo">
+                                                <span class="avaliacao-titulo-header">{{avaliacao.titulo}}</span>
+                                                <br/>
+                                                <span class="avaliacao-titulo-data">{{avaliacao.data | date : 'd MMM. y' : Z}}
+                                            </div>
+                                            <p class="list-group-item-text">{{avaliacao.opiniao}}</p>
+                                            <br/>
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <ul class="list-inline">
+                                                        <li>
+                                                            <p class="list-group-item-text">Esta avaliaçao foi útil?</p>
+                                                        </li>
+                                                        <li>
+                                                            <p class="list-group-item-text"><i class="fa fa-thumbs-up btn">&nbsp; Sim&nbsp;<span class="badge">2</span>
+                                                </i>
+                                                </p>
+                                                </li>
+                                                <li>
+                                                    <p class="list-group-item-text"><i class="fa fa-thumbs-down btn">&nbsp; Não&nbsp;<span class="badge">3</span></i>
+                                                    </p>
+
+
+                                                </li>
+
+                                                </ul>
+
+                                                </p>
+                                                </li>
+                                                </ul>
+                                                <div class="avaliacao-comment-icon">
+                                                    <!--                                                    <p class="list-group-item-text">-->
+                                                    <a href="#">
+                                                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                                        <span class="avaliacao-comment-icon-text">Comentar</span>
+                                                    </a>
+                                                </div>
+                                                <!--                                                </p>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </tab>
+            </tabset>
+            </div>
+
+            <!--
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">Informações do produto</h1>
+        </div>
+        <div class="panel-body">
+            <h3>Detalhes do produto</h3>
+            <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec sollicitudin molestie malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Donec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta.</p>
+            <h3>Informações técnicas</h3>
+            <table class="table">
+                <tr ng-repeat="(productDetailsAtr, productDetails) in vm.selectedProduct">
+                    <td class="active">{{productDetailsAtr}}</td>
+                    <td class="active">{{productDetails}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+-->
+
+            <!--
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">Avaliação dos clientes</h1>
+        </div>
+        <div class="panel-body">
+            <div class="list-group" ng-repeat="avaliacao in vm.selectedProduct.avaliacao_produto">
+                <div class="list-group-item">
+                    <div class="list-group-item-heading">
+                        <ul class="list-inline">
+                            <li>
+                                                                    <rating style="color:#FFC925" class="rating-fa fa-2x" ng-model="4" max="5"></rating>
+                            </li>
+                            <li>
+                                <h4><strong style="color:red">{{avaliacao.titulo}}</strong></h4>
+                            </li>
+                        </ul>
+                        <p>Por: <a href="#"><strong>{{avaliacao.nome}}</strong></a> em <span>{{avaliacao.data | date : 'd MMM. y' : Z}}</span>
+                        </p>
+
+                        <p class="list-group-item-text">{{avaliacao.opiniao}}</p>
+                        <br/>
+                        <ul class="list-inline">
+                            <li>
+                                <p class="list-group-item-text"><a href="#"><i class="fa fa-comment">&nbsp <strong>Comentar</strong></i></a>
+                                </p>
+                            </li>
+
+                            <li>
+                                <ul class="list-inline">
+                                    <li>
+                                        <p class="list-group-item-text">Esta avaliaçao foi útil?</p>
+                                    </li>
+                                    <li>
+                                        <p class="list-group-item-text"><i class="fa fa-thumbs-up btn" style="color:#5cb85c">&nbsp; Sim&nbsp;<span class="badge">2</span></i>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="list-group-item-text"><i class="fa fa-thumbs-down btn" style="color:#D9534F">&nbsp; Não&nbsp;<span class="badge">3</span></i>
+                                        </p>
+
+
+                                    </li>
+
+                                </ul>
+
+                                </p>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">Panel footer</div>
+        </div>
+
+
+    </div>
+
+-->
+            <!--
+
         <div class="breadcrumb">
             <h3 style="color:blue">Avaliação dos clientes</h3>
-            <br>
             <div class="list-group" ng-repeat="avaliacao in vm.selectedProduct.avaliacao_produto">
-                <h4 class="list-group-item-heading">{{avaliacao.titulo}}</h4>
+                <br>
+                <div class="list-group">
+                    <ul class="list-inline">
+                        <li>
+                            <rating style="background-color:yellow" class="rating-fa fa-2x" ng-model="4" max="5"></rating>
+                        </li>
+                        <li><strong style="color:red"><h4>{{avaliacao.opiniao}}</h4></strong>
+                        </li>
+                    </ul>
+                    {{avaliacao.nome}}
+                    <rating ng-model="3" max="5"></rating>
+                </div>
+-->
+            <!--
+            <div class="list-group" ng-repeat="avaliacao in vm.selectedProduct.avaliacao_produto">
+                                <h4 class="list-group-item-heading">{{avaliacao.titulo}}</h4>
                 <p class="list-group-item-text">{{avaliacao.opiniao}}</p>
                 <p class="list-group-item-text">Avaliado com {{avaliacao.avaliacao}}</p>
                 <p class="list-group-item-text">Nome: {{avaliacao.nome}}</p>
                 <p class="list-group-item-text">Email: {{avaliacao.email}}</p>
             </div>
+-->
+            <!--
+            </div>
         </div>
-    </div>
-</div>
+-->
+            <!--<img src="../../assets/img/ionic.png">-->
+

@@ -1,0 +1,38 @@
+<div id="prdct-category-nav" ng-controller="productCatNavBar as vm">
+    <nav class="navbar navbar-default navbar-product-category">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                <div class="nav navbar-nav">
+                    <div id="product-nav-subcategory">
+                        <tabset justified="true">
+                            <tab ng-repeat="prdctNavCat in vm.productNavCategories" ng-init="isTabActive=false" ng-mouseover="isTabActive=true" active="isTabActive">
+                                <tab-heading>{{prdctNavCat}}</tab-heading>
+                                <div class="product-subcat" ng-mouseleave="isTabActive=false">
+                                    <div class="container">
+                                        <ul class="list-inline">
+                                            <li ng-repeat="prdctNavSubCat in vm.productNavSubcategories[$index]">
+                                                <a href="#" ng-click="vm.getSelectedCategory(prdctNavSubCat.name)" ui-sref="app.produtos">
+                                                    <img src={{prdctNavSubCat.imgPath}}>
+                                                    </br>
+                                                    <span  class="subcategory-name">{{prdctNavSubCat.name}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </tab>
+                        </tabset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

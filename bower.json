@@ -8,10 +8,15 @@
     "angular-ui-router": "~0.2.15",
     "angular-resource": "latest",
     "angular-bootstrap": "latest",
-    "angular-cookies": "~1.4.1",
-    "angular-local-storage": "~0.2.2",
+    "angular-cookies": "latest",
+    "angular-local-storage": "latest",
     "lodash": "latest",
     "angular-validation-match": "~1.5.1",
-    "angular-ui-mask": "~1.2.0"
+    "angular-ui-mask": "~1.2.0",
+    "elevatezoom": "*",
+    "bootstrap-star-rating": "~3.5.3",
+    "angular-rateit": "~2.0.3",
+    "awesome-rating": "~1.0.0",
+    "angular-material": "~0.10.0"
   }
 }

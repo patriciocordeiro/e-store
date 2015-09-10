@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
 
     <title>E-Commerce Web Page</title>
     <!--Modulos do angular-->
@@ -16,14 +18,23 @@
     <script src="lib/lodash/lodash.min.js"></script>
     <script src="lib/angular-validation-match/src/angular-validation-match.js"></script>
     <script src="lib/angular-ui-mask/src/mask.js"></script>
+    <!--    <script src="lib/angular-rateit/src/ng-rateit.js"></script>-->
     <!--        <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>-->
 
     <!--Meus modulos-->
     <script src="app.js"></script>
     <!--    <script src="assets/lib/ionic/js/angular-ui/angular-ui-router.js"></script>-->
     <!--    <script src="mainController.js"></script>-->
+    <!--    <script src="lib/elevatezoom-master/jquery-1.8.3.min.js"></script>-->
+    <!--    <script src='jquery-1.8.3.min.js'></script>-->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.js"></script>
+    <script src="lib/elevatezoom-master/jquery.elevatezoom.js"></script>
+    <script src="lib/bootstrap-star-rating/js/star-rating.min.js"></script>
+    <script src="lib/awesome-rating/dist/awesomeRating.angular.js"></script>
+    <!--    <link href="lib/bootstrap-star-rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />-->
+
+
 
 
     <!--services-->
@@ -39,6 +50,7 @@
 
     <!--controllers-->
     <script src="components/navbar/navbar.controller.js"></script>
+    <script src="components/navbar/productCatNavBar.controller.js"></script>
     <script src="components/navbar/navbar.directive.js"></script>
     <script src="components/home/home.controller.js"></script>
     <script src="components/produtos/produtos.controller.js"></script>
@@ -50,24 +62,83 @@
     <script src="components/dashboard/dashboard.controller.js"></script>
     <script src="components/rating/rating.controller.js"></script>
 
+
     <!--custom directives-->
 
     <script src="directives/modal/modal.directive.js"></script>
+    <script src="directives/navbar/productCategoryNavBar.directive.js"></script>
 
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/scss/style.css" rel="stylesheet" />
     <link href="assets/css/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="lib/angular-rateit/dist/ng-rateit.css" />
+    <link rel="stylesheet" href="lib/awesome-rating/dist/awesomeRating.css" />
+    <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+
 
 
 </head>
 <!--head-->
 
 <body ng-app=myApp>
-    <my-bootstrap-nav-bar></my-bootstrap-nav-bar>
-    <my-bootstrap-nav-bar></my-bootstrap-nav-bar>
-    <ui-view></ui-view>
-    <div ui-view="email"></div>
-    <div ui-view="password"></div>
+
+    <script src="lib/angular-aria/angular-aria.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-material/angular-material.js"></script>
+
+
+    <div class="container-fluid">
+        <my-bootstrap-nav-bar>
+        </my-bootstrap-nav-bar>
+        <product-category-nav-bar></product-category-nav-bar>
+
+        <ui-view></ui-view>
+        <div ui-view="email"></div>
+        <div ui-view="password"></div>
+    </div>
+
+
+
+
+
+    <!--
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            alert('hello')
+            $("#img_01").elevateZoom({
+                gallery: 'gal1',
+                cursor: 'pointer',
+                galleryActiveClass: "active",
+                imageCrossfade: true,
+                loadingIcon: "http://www.elevateweb.co.uk/spinner.gif"
+            });
+
+            $("#img_01").bind("click", function(e) {
+                var ez = $('#img_01').data('elevateZoom');
+                ez.closeAll(); //NEW: This function force hides the lens, tint and window	
+                $.fancybox(ez.getGalleryList());
+                return false;
+            });
+
+        });
+    </script>
+-->
+
+    <!--
+    <script type="text/javascript">
+        $(document).ready(function() {
+                alert('ola')
+                $('#zoom_01').elevateZoom({
+                    zoomType: "inner",
+                    cursor: "crosshair",
+                    zoomWindowFadeIn: 500,
+                    zoomWindowFadeOut: 750
+                });
+            });
+    </script>
+-->
+
 </body>
 
 </html>

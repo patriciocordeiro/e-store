@@ -1,68 +1,273 @@
-<div style="margin-top:200px" class="container">
-    <h4>Itens por página</h4>
-    <select ng-model="vm.products.maxShowItem" ng-change="vm.getMaxShowItems(vm.products.maxShowItem)">
-        <option value="20">20</option>
-        <option value="40">40</option>
-        <option value="60">60</option>
-    </select>
-    {{products.maxShowItem}}
+<!--<div layout="rwo" layout-align="center center" layout-sm="column">-->
 
-    <select ng-model="vm.products.orderBy" ng-change="vm.getOrdering(vm.products.orderBy)">
-        <option value="-preco">Maior preço</option>
-        <option value="preco">Menor preço</option>
-        <option value="lancamento">Lançamento</option>
-    </select>
-    {{products.orderBy}}
-    <div class="row">
-
-        <div class="col-md-3">
-            <h2>Filtrar</h2>
-            <h4>Marca</h4>
-            <form>
-                <div class="checkbox" ng-repeat="filters in vm.myfiltersMarca">
-                    <label>
-                        <input type="checkbox" ng-model="vm.filterBy.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.marca)" />{{filters.marca}}
-                    </label>
+<!--<div layout="column" style="height:500px;">-->
+<div layout="column">
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left fixed md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Filtros</h1>
+            </md-toolbar>
+            <md-content flex role="navigation" layout-padding>
+                <md-button ng-click="close()" class="md-primary" hide-gt-md>
+                    Close Sidenav Left
+                </md-button>
+                <!--
+                <div ng-init="type='marca'">
+                    <div ng-repeat="filters in vm.filtroMarca.marca | filter:{type:type}">
+                        {{filters.name}}
+                    </div>
                 </div>
-            </form>
-            <input type="text" ng-model="productCategory.category" />{{productCategory.category}}
+-->
+                <!--
+                <div ng-repeat="filters in vm.myFiltersMarca[0]">
+                    {{filters.marca}}
+                </div>
+                <p hide-md show-gt-md>
+                    This sidenav is locked open on your device. To go back to the default behavior, narrow your display.
+                </p>
+-->
+                <md-list ng-repeat="filtersName in vm.myFiltersMarca[0] track by $index">
+                    <!--                    <md-list>-->
+                    <!--                    <fieldset class="standard">-->
+                    <!--                    <div flex>-->
+                    <md-button style="width:90%" class="md-button-toggle  primary" ng-model="vm.isCollapsed[$index]" ng-click="vm.getSelectedFiltersName($index, vm.isCollapsed[$index])">
+                        <div layout="row" layout-align="space-between center">
+                            <div class="btn-title">
+                                <h4 md-title>{{filtersName}}</h4>
+                            </div>
+                            <!--                            <span flex></span> -->
+                            <!-- use up the empty space -->
+                            <div>
+                                <md-icon md-svg-src="md-toggle-arrow"></md-icon>
+                            </div>
+                        </div>
+                    </md-button>
+                    <!--                    </div>-->
 
-            <h4 class="info">Tamanho da Tela</h4>
-            <div class="checkbox" ng-repeat="filters in vm.myfiltersTela">
-                <label>
-                    <input type="checkbox" ng-model="vm.filterBy.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="vm.filtroComum(vm.filterBy.tamanho_tela)" />{{filters.tamanho_tela}}"
-                </label>
+                    <!--                <hr>-->
+                    <div collapse="vm.isCollapsed[$index]">
+                        <md-list-item ng-repeat="(key, val) in vm.myFiltersMarca[$index+1]">
+                            <div flex>
+                                <md-checkbox class="md-primary" ng-model="vm.filterBy.val" ng-true-value="'str,{{filtersName}},{{val}}'" ng-false-value="'null,{{filtersName}},{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.val)" aria-label="{{val}}">
+                                    {{val}}
+                                </md-checkbox>
+                                <md-divider></md-divider>
+                            </div>
+                        </md-list-item>
+                    </div>
+                    <md-divider></md-divider>
+                    <!--
+                    <div flex>
+                        <h3 class="md-title"><span class="md-primary"></span>Hello</h3>
+                    </div>
+-->
+                    <!--                    <md-button class="primary" ng-init="isCollapsed($index)=false" ng-click="isCollapsed($index) = !isCollapsed($index)">Marca</md-button>>-->
+                    <!--                <hr>-->
+                    <!--
+                    <div collapse="isCollapsed($index)">
+                        <md-list-item ng-repeat="filters in vm.myFiltersMarca[1]">
+                            <div flex>
+                                <md-checkbox ng-model="vm.filterBy.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="vm.filtroComum(vm.filterBy.tamanho_tela)" class="md-primary" aria-label="tela">
+                                    {{filters.tamanho_tela}}"
+                                </md-checkbox>
+                                <md-divider></md-divider>
+                            </div>
+                        </md-list-item>
+                    </div>
+-->
+
+                    <!--                    </fieldset>-->
+                </md-list>
+            </md-content>
+        </md-sidenav>
+        <!--        <md-content flex layout-padding>-->
+        <md-content class="md-padding md-whiteframe-z3">
+            <div>
+                <md-button ng-click="toggleLeft()" class="btn-toggle-left-nav md-primary" hide-gt-md>
+                    Toggle left
+                </md-button>
             </div>
+            <!--            <div layout="row">-->
+            <!--
+                <md-input-container>
+                    <label>State</label>
+                    <md-select ng-model="vm.products.maxShowItem" ng-change="vm.getMaxShowItems(vm.products.maxShowItem)">
+                        <md-option value="20">20</md-option>
+                        <md-option value="40">40</md-option>
+                        <md-option value="60">60</md-option>
+                    </md-select>
+                </md-input-container>
+-->
+            <!--            </div>-->
+            <!--                <div class="produtos-show-area">-->
+            <!--            <md-grid-list md-cols-sm="1" md-cols="4" md-cols-md="2" md-cols-lg="2" md-gutter="30px" md-row-height="4:4">-->
+            <!--                        <md-grid-list md-cols-sm="1" md-cols="4" md-cols-md="2" md-cols-lg="2" md-gutter="1em" md-row-height="4:4">-->
 
-            <h4>Faixa de Preco</h4>
-            <div class="radio" ng-repeat="faixapreco in vm.faixaPreco">
-                <label>
-                    <input type="radio" ng-model="vm.filterBy.name" value="num,preco,{{faixapreco}}" ng-click="vm.filtro_faixa(vm.filterBy.name)">{{faixapreco}}
-                </label>
+            <!--                <md-grid-tile style="border: grey solid 1px" ng-repeat="products in vm.productsByCategory">-->
+            <!--                    <md-card>-->
+            <!--                        <a ng-href="#/app/produtos/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">-->
+            <!--                            <div class="product-image">-->
+
+            <!--                            </md-card>-->
+            <!--                            <img class="img-responsive" src="../../assets/img/produtos/phone/pSNYNA-MDRZX330BT-B_main_v217.png">-->
+
+            <!--                            </div>-->
+            <!--                        </a>-->
+
+            <!--
+                    <md-list>
+                        <md-list-item>
+                            <md-card>
+
+                                <img class="md-card-image" alt="image caption" src="../../assets/img/produtos/phone/pSNYNA-MDRZX330BT-B_main_v217.png">
+                            </md-card>
+                        </md-list-item>
+-->
+
+            <!--                        <md-card-content>-->
+            <!--                            <p class="md-sub-heading">{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}} {{products.marca}} Proin eget tortor risus.</p>-->
+
+
+
+            <!--                            <h4 class="md-sub-heading">{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}} {{products.marca}} Proin eget tortor risus.</h4>-->
+            <!--                            <div class="btn btn-add-basket">Comprar</div>-->
+            <!--                            <div awesome-rating="products.media_avaliacoes" awesome-rating-options="vm.options"></div>-->
+            <!--                        </md-card-content>-->
+            <!--                    </md-card>-->
+
+            <!--
+                        <md-list-item>
+                            <div class="prd-content md-padding">
+                                <h4 class="md-sub-heading">{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}} {{products.marca}} Proin eget tortor risus.</h4>
+                            </div>
+                        </md-list-item>
+
+                    </md-list>
+-->
+
+            <!--                    </md-list-item>-->
+
+            <!--                       
+
+                       
+                        <!--                                </md-list>-->
+            <!--                     
+                        <!--                    </md-card>-->
+
+
+            <!--
+
+                    <md-grid-tile-footer class="md-padding">
+
+                        <div awesome-rating="products.media_avaliacoes" awesome-rating-options="vm.options"></div>
+                        <h4 class="md-title">Paracosm</h4>
+                        <h4 class="md-title">Paracosm</h4>
+
+                    </md-grid-tile-footer>
+-->
+
+
+            <!--
+                </md-grid-tile>
+            </md-grid-list>
+-->
+
+            <!--
+            <div layout="row" layout-margin>
+                <div layout="column">
+                </div>
+                <div ng-repeat="products in vm.productsByCategory">
+                    <md-card>
+                        <img src="../../assets/img/produtos/phone/pSNYNA-MDRZX330BT-B_main_v217.png">
+                    </md-card>
+
+                </div>
             </div>
-        </div>
+-->
 
-        <div class="col-md-9 show-area">
+            <!--</div>-->
+            <!--
+            <div class='md-padding' layout="row" flex>
+                <div layout="row" flex>
+                    <div class="parent" layout="column" flex=33>
+                        <md-card class="card" ng-repeat="products in vm.productsByCategory">
+                            <img src="../../assets/img/produtos/phone/pSNYNA-MDRZX330BT-B_main_v217.png">
+                        </md-card>
+                    </div>
+                </div>
+            </div>
+-->
 
-            <div class="row">
-<!--                #/app/teams/{{team.id}}"-->
-                <div class="col-md-4" ng-repeat="products in vm.productsByCategory">
-                    <a ng-href="#/app/produtos/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">
-                        <h1><strong>{{products.nome}}</strong></h1>
-                        <h3>{{products.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{products.marca}}                                     </h3>
-                    </a>
-                    <h3 style="color:red">R$ {{products.preco}}</h3>
-                        
-                    <div class="input-group">
-                        <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="vm.getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
-                        <modal-visualizacao></modal-visualizacao>
+            <!--            md-colums=md-colums=-->
+                            <div layout="row">
+                    <md-input-container>
+                        <label>State</label>
+                        <md-select ng-model="select">
+                            <md-option value="Para">Para</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                </div>
+            <div class="produtos-show-area">
+
+                <div class="row">
+
+                    <div class=" mycol col col-xs-10 col-sm-6 col-md-4 col-lg-3" ng-repeat="products in vm.productsByCategory">
+                        <a ng-href="#/app/produtos/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">
+                            <div class="product-image">
+                                <!--                                <img src="../../assets/img/produtos/phone/pSNYNA-MDRZX330BT-B_main_v217.png">-->
+                                <img src="../../assets/img/produtos/tv/pSNYNA-XBR65X850C_main_v217.png">
+
+                            </div>
+                            <div class="product-description">
+                                <span class="product-title"><p>{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}}{{products.frequencia}}{{products.marca}}
+                        </p></span>
+                            </div>
+
+                            <div class="product-description">
+                                <div awesome-rating="products.media_avaliacoes" awesome-rating-options="vm.options"></div>
+
+                                <h3 class="md-headline"><strong>R$ {{products.preco}}</strong></h5>
+                                <div class="btn btn-add-basket">Comprar</div>
+                            </div>
+                            <!--                        <md-button class="md-primary">gdgdgd</md-button>-->
+                            <!--                        <md-button class="md-raised md-accent">Primary</md-button>-->
+                        </a>
+
                     </div>
                 </div>
             </div>
 
-        </div>
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--
+                <div>
+                    
+          <md-button ng-click="toggleRight()"
+            class="md-primary">
+            Toggle right
+          </md-button>
 
-    </div>
+                </div>
 
+
+
+                <!--</div>-->
+            <!--<div flex></div>-->
+        </md-content>
+
+    </section>
 </div>
+
+
+<!--
+    <div flex="66" flex-sm="100">
+        Helelo
+    </div>
+-->
+
+<!--</div>-->
+
+
+
+

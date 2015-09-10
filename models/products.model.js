@@ -12,6 +12,7 @@ var productsSchema = mongoose.Schema({
     memoria_interna: String,
     sistema_operacional: String,
     preco: Number,
+    media_avaliacoes: Number,
     avaliacao_produto: [{
         //_id:false,
         titulo:String,

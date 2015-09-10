@@ -1,5 +1,5 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask'])
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask','awesome-rating','ngMaterial'])
     .run(function($rootScope, $state, authentication, $cookies, localStorageService) {
         console.log('My $rootScope', $rootScope)
         //Check if user is loggedin (cookies)
@@ -101,7 +101,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             url: "/produtos",
             templateUrl: 'components/produtos/produtos.view.html',
             controller: 'ProdutosCtrl as vm',
-            authenticate: true
+            authenticate: false
             //            template : '<h1>Funciona</h1>',
 
         })
@@ -110,7 +110,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             url: "/produtos/:id",
             templateUrl: 'components/produtos/produtoDetail.view.html',
             controller: 'produtoDetailCtrl as vm',
-            authenticate: true
+            authenticate: false
 
         })
 
@@ -118,7 +118,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             url: "/avaliacao/:id",
             templateUrl: 'components/rating/ratingProduct.view.html',
             controller: 'RatingProductCtrl as vm',
-            authenticate: true
+            authenticate: false
 
         })
 
@@ -162,7 +162,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             templateUrl: 'components/dashboard/dashboard.view.html',
             controller: 'Dashboard as vm',
             //            template : '<h1>Funciona</h1>',
-            authenticate: true,
+            authenticate: false,
 
 
 

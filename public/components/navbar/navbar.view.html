@@ -1,56 +1,42 @@
-<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl as vm">
-    <div class="container">
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">Logo</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul id="menu" class="nav navbar-nav">
-                <!--                <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>-->
-                <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>
-                </li>
-                </li>
-
-                <li ng-repeat="category in vm.categories">
-                    <a ng-model="productCategory.category" ng-click="vm.getSelectedCategory(category)" ui-sref="app.produtos">{{category}}</a>
-                </li>
-
-                <!--
-                    <li ng-repeat="category in vm.categories" >
-                        <a ui-sref="app.produtos" ng-click="getCategory(category)">{{category}}</a>
+<div id="nav-bar-menu">
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl as vm">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../../assets/img/logo/sonyLogo.png">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul id="menu" class="nav navbar-nav navbar-right">
+                    <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>
                     </li>
--->
+                    <li ng-hide="loggedIn"><a ui-sref="app.login">login</a>
+                    </li>
+                    <li><a ui-sref="dashboard">Minha Conta</a>
+                    </li>
+                    <li><a ui-sref="dashboard">Meus Pedidos</a>
+                    </li>
+                    <li ng-hide="loggedIn"><a ui-sref="app.signup"> cadastre-se</a>
+                    </li>
+                    <li ng-hide="!loggedIn"><a><span style="color:red">Olá {{loggedUser}}</span></a>
+                    </li>
 
-                <!--
-                <li ng-repeat="category in vm.categories">
-                    <a ng-model="productsCategory.category" ng-click="getCategory(category)" ui-sref="app.produtos">{{category}}</a>
-                </li>
--->
-                <li ng-hide="loggedIn"><a ui-sref="app.login">login</a>
-                </li>
-                <li ng-hide="loggedIn"><a ui-sref="app.signup"> cadastre-se</a>
-                </li>
-                <li ng-hide="!loggedIn"><a><span style="color:red">Olá {{loggedUser}}</span></a>
-                </li>
-                </li>
-                <li ng-hide="!loggedIn"><a ui-sref="dashboard">Minha Conta</a>
-                </li>
-                <li ng-hide="!loggedIn"><a ui-sref="app.minhaCesta" style="color:blue;" ng-model="vm.numeroProdutosCarrinho"><strong><i class="fa fa-shopping-cart fa-2x" ></i> Meu Carrinho {{vm.numeroProdutosCarrinho}}</strong></a> 
-                </li>
-                <li ng-hide="!loggedIn"><a href="#" ng-click="logOut()">Sair</a>
-            </ul>
-        </div>
+                    <li ng-hide="!loggedIn"><a ui-sref="app.minhaCesta" style="color:blue;" ng-model="vm.numeroProdutosCarrinho"><strong><i class="fa fa-shopping-cart fa-2x" ></i> Meu Carrinho {{vm.numeroProdutosCarrinho}}</strong></a> 
+                    </li>
+                    <li ng-hide="!loggedIn"><a href="#" ng-click="logOut()">Sair</a>
+                    </li>
+                </ul>
+            </div>
+            <!--
         <div class="row">
-            <!-- /.col-lg-6 -->
             <div class="col-lg-6 col-lg-offset-3">
                 <div class="input-group">
-                    <!--                    <input ng-model="vm.searchProducts.value" ng-model-options="{ updateOn: 'mousedown blur' }" type="text" class="form-control" placeholder="Entre com a sua busca ... ">-->
-
                     <input type="text" placeholder="Entre com a sua busca ... " ng-model="vm.selected" typeahead="state for state in vm.states.marca[0].samsung | filter:$viewValue | limitTo:8" class="form-control">
 
                     <span class="input-group-btn">
@@ -62,10 +48,9 @@
                     </span>
 
                 </div>
-                <!-- /input-group -->
             </div>
-            <!-- /.col-lg-6 -->
         </div>
-        <!-- /.row -->
-    </div>
-</nav>
+-->
+        </div>
+    </nav>
+</div>

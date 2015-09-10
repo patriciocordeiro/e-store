@@ -1,17 +1,384 @@
+/* line 5, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+h1, h2, h3, p, a {
+  font-family: SST, 'SST W01 Roman', Arial, sans-serif !important;
+  color: #30343f !important; }
+
 /* line 2, C:/Users/Asus/Google Drive/Home Solutions/projetos/e-commerce/app/css/style.scss */
-/* line 2, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
-.content-area {
-  border-left: solid 2px #d4d3d3; }
-
 /* line 5, C:/Users/Asus/Google Drive/Home Solutions/projetos/e-commerce/app/css/style.scss */
-/* line 6, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
-.show-area {
-  border-left: solid 1px #d4d3d3;
-  border-right: solid 1px #d4d3d3; }
-
-/* line 10, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+/* line 21, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
 .asterix {
   color: red; }
 
-/*# sourceMappingURL=style.css.map */
+/*set a border on the images to prevent shifting*/
+/*Change the colour*
+    .active img {
+        border: 2px solid #333 !important;} - See more at: http://www.elevateweb.co.uk/image-zoom/examples#sthash.KH8Wervt.dpuf
+        /*# sourceMappingURL=style.css.map */
+/*----------------------------------------------
+RATING STAR CUSTOM
+----------------------------------------------*/
+/* line 42, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.rating-star {
+  color: #dadde3 !important; }
+  /* line 44, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  .rating-star.fa-star {
+    color: #e8112d !important; }
+
+/*------------------------------------------------------/
+Mude a estrela sem fundo para a estrela com fundo
+-------------------------------------------------------*/
+/* line 53, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.fa-star-o:before {
+  content: "\f005" !important; }
+
+/* line 82, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.rating-resumo {
+  margin-bottom: 6%; }
+  /* line 84, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  .rating-resumo .rating-stars-media {
+    margin-top: 2%;
+    margin-bottom: 2%; }
+    /* line 87, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    .rating-resumo .rating-stars-media .rating-total-text {
+      padding-top: 1%; }
+
+/* line 92, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.rating-total-header {
+  font-size: 14px;
+  font-weight: bold; }
+
+/* line 96, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.star-bar-value {
+  margin-top: 0 !important; }
+  /* line 97, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  .star-bar-value li {
+    height: 16px !important;
+    margin-bottom: 7px !important;
+    font-size: 12px;
+    line-height: 20px !important; }
+
+/* line 108, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.progress {
+  width: 80%;
+  margin-top: 7px;
+  height: 8px !important;
+  margin-bottom: 15px !important;
+  background-color: #dadde3 !important;
+  border-radius: 0 !important; }
+  /* line 115, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  .progress .progress-bar {
+    background-color: #e8112d; }
+
+/* line 119, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.btn-login-btn {
+  background-color: #1058A2;
+  color: white;
+  min-width: 100%; }
+
+/* line 127, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.my-btn {
+  background-color: #1058A2;
+  color: white; }
+
+/* line 131, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.btn-signup-btn {
+  background-color: #1058A2;
+  color: white; }
+
+/* line 137, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.page-header {
+  margin-top: 18px;
+  padding-bottom: 18px; }
+
+/* line 141, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#loginbox {
+  padding-top: 30px; }
+  /* line 144, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #loginbox .row .login-box, #loginbox .row .signup-box {
+    padding-left: 80px;
+    padding-right: 70px; }
+  /* line 148, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #loginbox .row .login-box {
+    border-right: 1px solid #DADCDF; }
+    /* line 150, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    #loginbox .row .login-box .form-horizontal {
+      margin-top: 18px; }
+  /* line 155, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #loginbox .row .signup-box li {
+    line-height: 27px; }
+  /* line 159, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #loginbox .row .login-heading {
+    font-weight: normal !important;
+    line-height: 24px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding-bottom: 18px; }
+
+/* line 169, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#nav-bar-menu .navbar-default {
+  background-color: #000000 !important; }
+  /* line 171, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #nav-bar-menu .navbar-default a {
+    font-size: 11px !important;
+    font-weight: bold;
+    color: #eaedf4 !important; }
+
+/* line 180, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#product-information .nav-tabs.nav-justified li.active {
+  border-top: solid 5px #5787f5; }
+  /* line 182, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #product-information .nav-tabs.nav-justified li.active a {
+    background-color: white !important; }
+  /* line 185, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #product-information .nav-tabs.nav-justified li.active a:after {
+    content: '';
+    position: absolute;
+    left: 46%;
+    top: -1px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid #5787f5; }
+/* line 207, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#product-information .nav-tabs.nav-justified li {
+  padding: 0 2px !important; }
+  /* line 209, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #product-information .nav-tabs.nav-justified li a {
+    background-color: #e8edf4;
+    border-radius: 0px;
+    padding: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase; }
+
+/* line 223, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#product-nav-subcategory {
+  background-color: white;
+  overflow: visible;
+  margin: 0 !important;
+  padding: 0 !important;
+  left: 0 !important;
+  text-align: center; }
+  /* line 224, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #product-nav-subcategory .nav-tabs.nav-justified {
+    background-color: #EAEDF3 !important;
+    border: none; }
+    /* line 237, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    #product-nav-subcategory .nav-tabs.nav-justified a {
+      border: none;
+      letter-spacing: -0.4px !important;
+      padding: 14px 0 !important;
+      font-size: 13px !important;
+      font-weight: bold !important;
+      color: #30343f; }
+    /* line 250, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    #product-nav-subcategory .nav-tabs.nav-justified li.active {
+      border-bottom: solid 5px #4571ec;
+      background-color: #EAEDF3 !important;
+      a: after;
+      a-content: '';
+      a-position: absolute;
+      a-left: 46%;
+      a-bottom: -12px;
+      a-width: 0;
+      a-height: 0;
+      a-border-left: 5px solid transparent;
+      a-border-right: 5px solid transparent;
+      a-border-top: 8px solid #4571ec; }
+      /* line 264, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+      #product-nav-subcategory .nav-tabs.nav-justified li.active a {
+        background-color: #EAEDF3 !important;
+        border: none;
+        color: #4571ec;
+        cursor: auto; }
+
+/* line 284, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#tab-avaliacao {
+  padding-top: 50px; }
+  /* line 287, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #tab-avaliacao .avaliacao-recomendacao span {
+    background-color: aliceblue;
+    padding: 10px 4px !important;
+    margin-left: 0;
+    font-weight: bold;
+    font-size: 12px; }
+  /* line 295, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #tab-avaliacao .avaliacao-nome {
+    margin: 6% 0;
+    text-decoration: underline;
+    text-transform: capitalize; }
+  /* line 301, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #tab-avaliacao .avaliacao-comment-icon .avaliacao-comment-icon-text {
+    text-decoration: underline;
+    color: #4571EC; }
+  /* line 305, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #tab-avaliacao .avaliacao-comment-icon .glyphicon {
+    color: #4571EC; }
+  /* line 309, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #tab-avaliacao h2 {
+    padding-top: 1%;
+    padding-bottom: 2%; }
+  /* line 313, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #tab-avaliacao p {
+    font-size: 14px;
+    line-height: 1.6em; }
+  /* line 317, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #tab-avaliacao .avaliacao-recomend-text {
+    margin-bottom: 2%; }
+  /* line 320, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #tab-avaliacao .avaliacao-titulo {
+    margin-bottom: 2%; }
+    /* line 322, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    #tab-avaliacao .avaliacao-titulo .avaliacao-titulo-header {
+      font-size: 18px;
+      font-weight: bold;
+      padding-bottom: 0; }
+    /* line 327, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    #tab-avaliacao .avaliacao-titulo .avaliacao-titulo-data {
+      font-size: 12px;
+      margin-top: 0;
+      padding-top: 0;
+      font-weight: bold;
+      color: #777; }
+  /* line 335, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #tab-avaliacao .list-group {
+    margin-bottom: 0; }
+    /* line 337, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    #tab-avaliacao .list-group .list-group-item {
+      padding: 3% 0;
+      border-left: none !important;
+      border-right: none !important; }
+
+/* line 344, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#prdct-category-nav {
+  overflow: visible !important;
+  padding-top: 100px; }
+  /* line 347, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #prdct-category-nav .navbar-default {
+    background-color: #EAEDF3 !important; }
+    /* line 349, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    #prdct-category-nav .navbar-default li {
+      padding: 0 !important;
+      margin: 0 !important; }
+      /* line 352, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+      #prdct-category-nav .navbar-default li a {
+        color: #30343F;
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: capitalize; }
+
+/* line 361, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.product-subcat {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 220px !important;
+  max-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background-color: white;
+  float: left;
+  z-index: 50;
+  box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.25); }
+  /* line 386, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  .product-subcat .subcategory-name {
+    line-height: 18px;
+    font-weight: normal !important;
+    list-style: none;
+    text-decoration: none; }
+  /* line 400, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  .product-subcat ul {
+    position: absolute !important;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    height: 100%; }
+    /* line 411, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    .product-subcat ul li {
+      height: 100%; }
+  /* line 419, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  .product-subcat li:hover {
+    background-color: #eaedf4; }
+    /* line 421, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+    .product-subcat li:hover a {
+      color: #4571ec !important;
+      text-decoration: none; }
+
+/***********************************************************
+Product page css
+************************************************************/
+/* line 439, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.btn-title {
+  text-transform: capitalize; }
+
+/* line 442, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.btn-toggle-left-nav {
+  -ms-transform: rotate(90deg);
+  /* IE 9 */
+  -webkit-transform: rotate(90deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+  margin-top: 50% !important;
+  margin-left: 0% !important;
+  padding-left: 0 !important;
+  position: fixed !important;
+  z-index: 20 !important; }
+
+/* line 455, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.product-image {
+  text-align: center;
+  border: 1px solid #dadcdf; }
+  /* line 463, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  .product-image img {
+    max-width: 100%; }
+
+/* line 467, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.btn-add-basket {
+  font-size: 12px !important;
+  border-radius: 0;
+  color: white;
+  background-color: #ED4E24;
+  font-weight: bold; }
+
+/* line 474, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.mycol {
+  margin-bottom: 3%; }
+
+/* line 485, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#product-page .produtos-show-area .product-description {
+  padding-left: 10px; }
+  /* line 488, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #product-page .produtos-show-area .product-description h5 {
+    font-weight: bold !important;
+    text-transform: capitalize; }
+/* line 495, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#product-page .produtos-show-area .filter-heading {
+  font-size: 12px !important; }
+/* line 500, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#product-page .product-filter-area .btn {
+  width: 100%;
+  margin-bottom: 0;
+  background-color: #e8edf4;
+  border-radius: 0;
+  border: none;
+  font-weight: bold; }
+/* line 508, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#product-page .product-filter-area .checkbox {
+  margin-top: 0 !important; }
+/* line 511, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#product-page .product-filter-area ul {
+  color: #5787f5;
+  border-radius: 0 !important; }
+  /* line 514, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #product-page .product-filter-area ul li {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #dadcdf; }
+
+/* line 525, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.prd-content {
+  display: block;
+  color: aqua; }
+
 /*# sourceMappingURL=style.css.map */
