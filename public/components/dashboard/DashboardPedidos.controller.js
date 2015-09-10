@@ -11,60 +11,10 @@
 
         console.log("Dados Cadastrais: ", vm.pedidos);
 
-        // vm.findProducts = function(compras){
-        //     console.log("Compras feitas: ", compras);
-
-        //     var query = {};
-        //     query = {
-        //         ids:[]
-        //     };
-
-        //     var tamanho = compras.length;
-
-        //     for(var i = 0; i < tamanho; i++){
-        //         query.ids.push(compras[i].id);
-        //     }
-
-        //     console.log("Minha query: ", query);
-
-        //     produtosApi.getProductsKart(query, function(response){
-        //         //minhasCompras = response;
-
-        //         for(var i = 0; i < tamanho; i++){
-        //             minhasCompras[i] = response[i];
-        //             minhasCompras[i].quantidade = compras[i].quantidade;
-        //             console.log(i);
-        //         }
-
-        //         console.log("Os produtos encontrados: ", minhasCompras);
-
-        //         //minhasCompras = response;
-
-        //     });
-
-        //     return minhasCompras;
-        // }
-
-         /*  var query = {};
-            query = {
-                ids:[]
-            };
- var tamanho = vm.pedidos[1].compras.length;
- for(var i = 0; i < tamanho; i++){
-                query.ids.push(vm.pedidos[1].compras[i].id);
-            }
-        console.log("id dos pedidos",  query.ids);
-
-             produtosApi.getProductsKart(query, function(response){
-        console.log("minha resposta", response);
-        vm.minhasCompras = response;
-     });*/
-
-
-
         var nPedidos = vm.pedidos.length; // variável que captura o numero de pedidos feito pelo usuário
         var contador = 0;
         vm.minhasCompras = {};
+        var quantidades = [];
 
         var query = {};
         query = {
@@ -74,27 +24,12 @@
         // for para percorrer o número de compras feitas pelo usuário
         for(var i = 0; i < nPedidos; i++){
 
-            // montar a query de pedido para inserir em minhas compras
-            //var meuPedido = {};
-
-            /*meuPedido = {
-                data: vm.pedidos[i].data
-            }*/
-
-            // percorre o número de compras de um pedido
             var nCompras = vm.pedidos[i].compras.length;
 
             for(var j = 0; j < nCompras; j++){
                 query.ids.push(vm.pedidos[i].compras[j].id);
+                quantidades.push(vm.pedidos[i].compras[j].quantidade);
             }
-
-            /*produtosApi.getProductsKart(query, function(response){
-                meuPedido.id = contador;
-                meuPedido.compras = response;
-                vm.minhasCompras.push(meuPedido);
-
-                console.log("MEU PEDIDO FEITO: ", vm.minhasCompras);
-            });*/
         }
 
         produtosApi.getProductsKart(query, function(response){
@@ -114,6 +49,7 @@
                 pedido.produtos = [];
 
                 for(var j = 0; j < nProdutos; j++){
+                    response[contador].quantidade = quantidades[contador];
                     pedido.produtos.push(response[contador]);
                     contador++;
                 }
@@ -125,10 +61,5 @@
             vm.minhasCompras = todosPedidos;
         });
     };
-
-
-
-
-
 
 })();
