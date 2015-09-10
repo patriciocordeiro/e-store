@@ -25,7 +25,10 @@ module.exports = function(app, express, passport, User) {
                 if (err) {
                     return next(err);
                 }
-                res.send(req.user.local);
+                res.send({
+                    'local':req.user.local,
+                    'pedidos': req.user.pedidos
+                });
             });
             //        console.log('usuario', req.user);
             //        res.send(req.user);
@@ -75,6 +78,7 @@ module.exports = function(app, express, passport, User) {
 
     router.post('/user/updateAddress', User.updateUserEndereco);
     router.post('/user/updateDadosCadastrais', User.updateDadosCadastrais);
+    router.post('/user/adicionaPedido', User.adicionaPedido);
 
     app.use('/', router);
 }

@@ -3,9 +3,9 @@
     'use strict';
 
 
-    angular.module('myApp').controller('LoginCtrl', ['$rootScope', '$state', 'authentication', '$cookies', 'userService', LoginCtrl])
+    angular.module('myApp').controller('LoginCtrl', ['$rootScope', '$state', 'authentication', '$cookies', 'userService', 'localStorageService', LoginCtrl])
 
-    function LoginCtrl($rootScope, $state, authentication, $cookies, userService) {
+    function LoginCtrl($rootScope, $state, authentication, $cookies, userService, localStorageService) {
         var vm = this;
 
         //clear form after submite
@@ -39,12 +39,13 @@
                 }, function(response) {
                     console.log(response)
 
-                    if (response.email == user.email) {
+                    if (response.local.email == user.email) {
                         console.log('sucess');
                         console.log(response)
 
                         // armazenando nome de usuário em cookie
-                        $cookies.put('usuario', response.fullName);
+                        $cookies.put('email', response.local.email);
+                        $cookies.put('usuario', response.local.fullName);
                         console.log("Login do usuario no cookie: ", $cookies.get('usuario'));
                         
                         //Paase os credencias do usuário para rootscope
@@ -56,7 +57,8 @@
                         $rootScope.loggedIn = true;
                         
                         //preencha os dados cadastrais com os dados do usuário
-                        userService.userDadosCadastrais = response;
+                        userService.userDadosCadastrais = response.local;
+                        userService.userPedidos = response.pedidos;
                         
                         //Vá para a página do usuário
                         $state.go('dashboard')

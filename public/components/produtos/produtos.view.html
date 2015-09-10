@@ -181,6 +181,32 @@
                         <img src="../../assets/img/produtos/phone/pSNYNA-MDRZX330BT-B_main_v217.png">
                     </md-card>
 
+<div style="margin-top:200px" class="container">
+
+    <h4>Itens por página</h4>
+    <select ng-model="vm.products.maxShowItem" ng-change="vm.getMaxShowItems(vm.products.maxShowItem)">
+        <option value="20">20</option>
+        <option value="40">40</option>
+        <option value="60">60</option>
+    </select>
+    {{products.maxShowItem}}
+
+    <select ng-model="vm.products.orderBy" ng-change="vm.getOrdering(vm.products.orderBy)">
+        <option value="-preco">Maior preço</option>
+        <option value="preco">Menor preço</option>
+        <option value="lancamento">Lançamento</option>
+    </select>
+    {{products.orderBy}}
+    <div class="row">
+
+        <div class="col-md-3">
+            <h2>Filtrar</h2>
+            <h4>Marca</h4>
+            <form>
+                <div class="checkbox" ng-repeat="filters in vm.myfiltersMarca">
+                    <label>
+                        <input type="checkbox" ng-model="vm.filterBy.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.marca)" />{{filters.marca}}
+                    </label>
                 </div>
             </div>
 -->
@@ -196,6 +222,7 @@
                     </div>
                 </div>
             </div>
+
 -->
 
             <!--            md-colums=md-colums=-->
@@ -234,6 +261,25 @@
                             <!--                        <md-button class="md-raised md-accent">Primary</md-button>-->
                         </a>
 
+        </div>
+
+        <div class="col-md-9 show-area">
+
+            <div class="row">
+<!--                #/app/teams/{{team.id}}"-->
+                <div class="col-md-4" ng-repeat="products in vm.productsByCategory">
+                    <a ng-href="#/app/produtos/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">
+                        <h1><strong>{{products.nome}}</strong></h1>
+                        <h3>{{products.caracteristicas}} {{products.categoria}} {{products.tamanho_tela}}" {{products.frequencia}}  {{products.marca}}                                     </h3>
+                    </a>
+                    <h3 style="color:red">R$ {{products.preco}}</h3>
+                        
+                    <div class="input-group">
+                        <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
+                        <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="vm.getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
+                        <modal-visualizacao></modal-visualizacao> -->
+                        <rating ng-model="products.media_avaliacoes" max="5" readonly="vm.isReadonly"></rating>
+                        <span class="label" ng-class="{'label-warning': 100*(products.media_avaliacoes || 0)/5<30, 'label-info': 100*(products.media_avaliacoes || 0)/5>=30 && 100*(products.media_avaliacoes || 0)/5<70, 'label-success': 100*(products.media_avaliacoes || 0)/5>=70}">{{100*(products.media_avaliacoes || 0)/5 | number:2}}%</span>
                     </div>
                 </div>
             </div>

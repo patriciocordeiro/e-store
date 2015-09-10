@@ -27,11 +27,6 @@
         vm.myfiltersName = ['marca', 'tamanho tela', 'faixa preco']
         //==================================================
 
-
-
-
-
-        /*
             Código de configuração da diretiva rating
             para exibir a avaliação dos produtos feita pelos usuários
         */

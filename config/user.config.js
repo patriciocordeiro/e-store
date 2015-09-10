@@ -54,3 +54,19 @@ exports.updateDadosCadastrais = function(req, res, next) {
 
     });
 }
+
+exports.adicionaPedido = function(req, res, next){
+    console.log("Olha o que chegou aqui: ", req.body);
+    var pedido = {
+        'data':req.body.data,
+        'compras':req.body.compras
+    }
+
+    console.log("O meu pedido feito: ", pedido);
+
+    User.update({'local.email':req.body.email}, {'$push':{'pedidos':pedido}}, function(err, data){
+        if (err) throw err;
+
+        res.send("OKAY");
+    });
+}

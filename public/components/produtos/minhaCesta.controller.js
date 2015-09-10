@@ -2,9 +2,9 @@
 
     "use strict";
 
-    angular.module('myApp').controller('MinhaCestaCtrl', ['$rootScope', '$stateParams', 'produtosApi', 'localStorageService', '$cookies', '$state', MinhaCestaCtrl]);
+    angular.module('myApp').controller('MinhaCestaCtrl', ['$rootScope', '$stateParams', 'produtosApi', 'localStorageService', '$cookies', '$state', 'userService', MinhaCestaCtrl]);
 
-    function MinhaCestaCtrl($rootScope, $stateParams, produtosApi, localStorageService, $cookies, $state) {
+    function MinhaCestaCtrl($rootScope, $stateParams, produtosApi, localStorageService, $cookies, $state, userService) {
         var vm = this;
         vm.title = "Minha cesta"; // Tituolo da página
         vm.meuCarrinho = []; //Meu carrinho de compras
@@ -20,8 +20,9 @@
         var idsafterRemove = false;
 
 
-        console.log("Carrinho de produtos: ", $rootScope.CarrinhoProdutos);
-        console.log("Foi posto no carrinho id: ", typeof localStorageService.get('carrinho'));
+
+        //console.log("Carrinho de produtos: ", $rootScope.CarrinhoProdutos);
+        //console.log("EMAIL DO USUARIO: ", $cookies.get('email'));
 
         //query.id = localStorageService.get('carrinho');
         // recuperar ids e armazenar em vetor
@@ -69,8 +70,77 @@
 
         vm.finalizarCompra = function() {
             console.log("Finalizando compra");
+            var carrinho = localStorageService.get('carrinho').split(',');
+            var tamanho = carrinho.length;
+            var pedido = {};
+            var compras = [];
+            for(var i = 0; i < tamanho; i++){
+                compras.push({
+                    'id':carrinho[i],
+                    'quantidade':vm.quantidade[i]
+                });
+            }
+
+            pedido = {
+                'email':$cookies.get('email'),
+                'data':getCurrentDate(),
+                'compras':compras
+            };
+            //console.log("A quantidade atual eh: ", vm.quantidade);
+            //console.log("Produtos no carrinho: ", carrinho);
+
+            adicionaPedido(pedido);
             localStorageService.remove('carrinho');
             $state.go("app.home");
+        }
+
+        /* Função de adição de pedidos a conta do usuário
+        * Ele recebe os dados de:
+        * quantidade, ids e data
+        {
+            'data':data
+            [
+                {
+                    'quantidade': q1,
+                    'id': id1
+                },
+                {
+                    'quantidade': q2,
+                    'id': id2
+                }
+                .
+                .
+                .
+            ]
+        }
+        */
+        function adicionaPedido(pedido){
+            console.log("Meu pedido: ", pedido);
+            //console.log("Email", $cookies.get('email'));
+            userService.updateUserData('adicionaPedido', pedido, function(data){
+                console.log(data);
+            });
+        }
+
+        /*
+        * Função para obter a data atual
+        */
+
+        function getCurrentDate(){
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+
+            var yyyy = today.getFullYear();
+            if(dd<10){
+                dd='0'+dd
+            } 
+            if(mm<10){
+                mm='0'+mm
+            } 
+            var today = dd+'/'+mm+'/'+yyyy;
+
+            return today;
         }
 
         //console.log('Meu carrinho de produtos: ', vm.meuCarrinho);

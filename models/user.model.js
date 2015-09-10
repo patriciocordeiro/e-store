@@ -41,6 +41,18 @@ var userSchema = mongoose.Schema({
         name: String
 
     },
+
+    pedidos:[
+        {
+            data: String,
+            compras: [
+                {
+                    id: String,
+                    quantidade: Number
+                }
+            ]
+        }
+    ],
 });
 
 // methods ======================
