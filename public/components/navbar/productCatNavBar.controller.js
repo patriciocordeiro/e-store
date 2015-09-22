@@ -95,16 +95,27 @@
         //        var categoria;
         vm.getSelectedCategory = function(selectedCategory) {
 
-//            var selected = vm.productNavSubcategories[selectedCategory]
+            //            var selected = vm.productNavSubcategories[selectedCategory]
             console.log(selectedCategory)
             productCategory.category = selectedCategory;
             //            console.log('mudou para', productCategory.category)
         };
 
+        var productNavCatLength = vm.productNavCategories.length;
+        vm.showSubMenu = new Array(productNavCatLength);
+        var i = 0;
 
-        //        vm.isCollapsed = true;
+        while (i < productNavCatLength) {
+            vm.showSubMenu[i++] = true;
+        }
 
-        //        console.log(vm.isCollapsed)
+        console.log(vm.showSubMenu);
+
+        vm.getSelectedSubMenu = function(index) {
+            vm.showSubMenu[index] = !vm.showSubMenu[index];
+            console.log(vm.showSubMenu);
+        }
+
     };
 
 })();

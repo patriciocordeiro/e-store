@@ -17,6 +17,6 @@
     "bootstrap-star-rating": "~3.5.3",
     "angular-rateit": "~2.0.3",
     "awesome-rating": "~1.0.0",
-    "angular-material": "~0.10.0"
+    "angular-material": "*"
   }
 }

@@ -88,15 +88,32 @@
     <script src="lib/angular-material/angular-material.js"></script>
 
 
-    <div class="container-fluid">
+<!--    <div class="container-fluid">-->
         <my-bootstrap-nav-bar>
         </my-bootstrap-nav-bar>
+        
+        <div class="row" style="margin-top:5%">
+            <div class="col-lg-6 col-lg-offset-3">
+                <div class="input-group">
+                    <input type="text" placeholder="Entre com a sua busca ... " ng-model="vm.selected" typeahead="state for state in vm.states.marca[0].samsung | filter:$viewValue | limitTo:8" class="form-control">
+
+                    <span class="input-group-btn">
+                        <a ui-sref="app.search" ng-click="vm.getSearchValue(vm.searchProducts.value)">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </a>
+                    </span>
+
+                </div>
+            </div>
+        </div>
         <product-category-nav-bar></product-category-nav-bar>
 
         <ui-view></ui-view>
         <div ui-view="email"></div>
         <div ui-view="password"></div>
-    </div>
+<!--    </div>-->
 
 
 

@@ -491,23 +491,24 @@
 
         //Inicialize todos os filtros collapsed
         var isCollapsedtrue = _.range(7).map(function() {
-            return true
+            return true;
         })
         vm.isCollapsed = isCollapsedtrue;
         //        console.log(filterRange)
 
         vm.getSelectedFiltersName = function(index, value) {
             vm.isCollapsed = isCollapsedtrue = _.range(7).map(function() {
-                return true
+                return true;
             });
             vm.isCollapsed[index] = !value;
             //            vm.isCollapsed[!index] = value;
-            console.log('isCollapsedtrue', isCollapsedtrue)
+            console.log('isCollapsedtrue', isCollapsedtrue);
 
         }
         //==================================================
         console.log('Filtro', vm.myfiltersTela);
 
     }
+    
 
 })();
