@@ -45,7 +45,7 @@
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
                                     <li role="menuitem" ng-repeat="prdctNavSubCat in vm.productNavSubcategories[$index]" ng-mouseenter="vm.getSelectedSubMenu($index)" ng-mouseleave="vm.getSelectedSubMenu($index)">
                                         <a href="#" ng-click="vm.getSelectedCategory(prdctNavSubCat.name)" ui-sref="app.produtos">
-                                            <img src={{prdctNavSubCat.imgPath}}\>
+                                            <img src="{{prdctNavSubCat.imgPath}}" />
                                             <span class="subcategory-name">{{prdctNavSubCat.name}}</span>
                                         </a>
                                     </li>
