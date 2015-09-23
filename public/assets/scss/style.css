@@ -325,6 +325,8 @@ Product page css
 }
 .material-icons.md-36 { font-size: 36px; }
 
+.material-icons.md-light { color: rgb(51,122,183); }
+
 a.mySideNav {
   text-decoration: none;
 }
