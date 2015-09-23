@@ -1,0 +1,82 @@
+<div class="container">
+    <h1 style="margin-top:120px">welcome to your page {{vm.user.fullName}}</h1>
+    <div class="row">
+        <div class="col col-md-3">
+
+            <a id="home" style="display:none;"></a>
+
+            <div class="list-group">
+
+                <a class="list-group-item active"><h4 class="list-group-item-heading">Meus Pedidos</h4></a>
+                <a class="list-group-item" ui-sref="dashboard.pedidos">Últimos Pedidos</a>
+
+                <a class="list-group-item" href="">Pedidos em Aberto</a>
+
+                <a class="list-group-item" href="">Pedidos Entregues</a>
+
+                <a class="list-group-item" href="">Pedidos por Número</a>
+
+                <a class="list-group-item" href="">Pedidos por Data</a>
+
+                <a class="list-group-item" href="">Todos os Pedidos</a>
+            </div>
+
+            <div class="list-group" id="menuDadosCadastrais">
+                <a class="list-group-item active"><h4 class="list-group-item-heading">Meus Dados Cadastrais</h4></a>
+
+                <a class="list-group-item" ui-sref="dashboard.email">Alterar E-mail</a>
+
+                <a class="list-group-item" ui-sref="dashboard.password">Alterar Senha</a>
+
+                <a class="list-group-item" ui-sref="dashboard.dados">Alterar Dados Cadastrais</a>
+
+<!--                <a class="list-group-item" ui-sref="/dashboard.endereco">E-mail de Ofertas</a>-->
+
+                <a class="list-group-item" ui-sref="dashboard.endereco">Endereço de Entrega</a>
+
+            </div>
+            <div id="menuOutrosServicos" class="li">
+                <a class="list-group-item active"><h4 class="list-group-item-heading">Outros serviços</h4></a>
+                <a class="list-group-item" href="">2ª via do boleto</a>
+
+                <a class="list-group-item" href="">2ª via Nota Fiscal</a>
+
+                <a class="list-group-item" href="">Pagar com Débito em Conta</a>
+
+                <a class="list-group-item" href="">Cancelar Pedido</a>
+
+<!--                <a class="list-group-item" href="">Vale Presente</a>-->
+
+<!--                <a class="list-group-item" href="">Central de Atendimento</a>-->
+
+            </div>
+            <!--
+            <li id="menuOneClick" class="li">
+                <a id="linkOneClick" href="../../pages/home"><strong>Caixa Expresso</strong></a>
+                <ul>
+                    <li><a id="configOneClick" href="../../pages/ConfigOneClickBuy/">Configurar Caixa Expresso</a>
+                    </li>
+                    <li><a id="addAddressOneClick" class="lightbox-new-address-oneclick iframe" href="../../pages/OneClickBuyNewAddressLightBox/">Incluir endereço de entrega</a>
+                    </li>
+                    <li><a id="addCreditCardOneClick" class="lightbox-new-creditcard-oneclick iframe" href="../../pages/OneClickBuyCreditCardLightBox/">Incluir cartão de crédito</a>
+                    </li>
+                    <li></li>
+                </ul>
+            </li>
+-->
+
+        </div>
+        <div class="col col-md-9">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Panel title</h3>
+                </div>
+                <div class="panel-body">
+                    <ui-view></ui-view>
+                </div>
+                <div class="panel-footer">Panel footer</div>
+            </div>
+
+        </div>
+    </div>

@@ -7,9 +7,11 @@
     function Dashboard(userService, httpUserService) {
         var vm = this;
         vm.user = userService.userDadosCadastrais
-        vm.user.birthDate = new Date(userService.userDadosCadastrais.birthDate)
+        //vm.user.birthDate = new Date(userService.userDadosCadastrais.birthDate)
 
         // Definições dos valores para alteração de dados
+        vm.nothing = function(){}
+
         vm.permicaoAlteracaoDados = {
             dadosCadastrais : true,
             enderecoEntrega : true
