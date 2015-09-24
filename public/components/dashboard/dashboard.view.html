@@ -3,7 +3,7 @@
         <section layout="row" flex>
             <md-sidenav class="md-sidenav-left fixed md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
                 <md-toolbar class="md-theme-indigo headerPanel">
-                    <h1 class="md-toolbar-tools myToolbar">Filtros</h1>
+                    <h1 class="md-toolbar-tools myToolbar">Olá {{vm.user.fullName}}!</h1>
                 </md-toolbar>
                 <md-content flex role="navigation" layout-padding>
                     <md-button ng-click="close()" class="md-primary" hide-gt-md>
@@ -42,7 +42,7 @@
                 </div>
             </div>
 -->
-            <md-content>
+           <!--  <md-content>
                 <md-toolbar class="md-accent">
                     <h2 class="md-toolbar-tools">
                       <span flex>Panel title</span>
@@ -51,7 +51,17 @@
                 <md-content layout-margin  layout-padding>
                     <ui-view></ui-view>
                 </md-content>
-            </md-content>
+            </md-content> -->
+
+            <div layout="column" class="relative" layout-fill role="main">
+                <md-toolbar class="dashboardPanel">
+                    <h3 class="toolbarDashboard"> &nbsp Dashboard</h3>
+                </md-toolbar>
+
+                <md-content layout-margin  layout-padding>
+                    <ui-view></ui-view>
+                </md-content>
+            </div>
 
 
         </section>
