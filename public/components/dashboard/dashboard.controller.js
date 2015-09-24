@@ -13,8 +13,9 @@
         vm.nothing = function(){}
 
         vm.permicaoAlteracaoDados = {
-            dadosCadastrais : true,
-            enderecoEntrega : true
+            dadosCadastrais : false,
+            enderecoEntrega : false,
+            senha: false
         }
 
         vm.updateEndereco = function(dados) {
