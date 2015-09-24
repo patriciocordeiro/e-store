@@ -1,20 +1,11 @@
-<form>
+<!-- <form>
 
     <label>Permitir alteração de dados: <input type="checkbox" ng-model="vm.permicaoAlteracaoDados.dadosCadastrais" ng-true-value="false" ng-false-value="true"></label><br/>
     
     <div class="form-group">
         <label for="InputFullName">Nome Completo</label>
-        <!--        <div class="input-group">-->
         <input ng-model="vm.user.fullName" type="text" class="form-control" id="nomeCompleto" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
-        <!--        </div>-->
     </div>
-<!--    <div class="form-group">-->
-<!--        <label for="InputApelido">Apelido</label>-->
-        <!--        <div class="input-group">-->
-<!--        <input ng-model="vm.user.apelido" type="text" class="form-control" required>-->
-        <!--        </div>-->
-<!--    </div>-->
-
     <div class="form-group">
         <label for="InputBirthDate">Data de nascimento</label>
         <input ng-model="vm.user.birthDate" type="date" class="form-control" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
@@ -32,3 +23,80 @@
     <button type="submit" class="btn btn-success" ng-click="vm.updateDadosCadastrais(vm.user)" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais">Salvar</button>
  
 </form>
+ -->
+<md-card flex-gt-sm="90" flex-gt-md="80">
+    <md-card-content>
+        <h2>Informações de usuário</h2>
+        <form>
+            <div layout layout-sm="column">
+                <md-datepicker ng-model="vm.user.birthDate" md-placeholder="Enter date"></md-datepicker>
+                <md-input-container flex>
+                    <md-icon class="material-icons">perm_identity</md-icon>
+                    <input ng-model="vm.user.fullName" placeholder="Nome Completo">
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <md-icon class="material-icons">phone</md-icon>
+                    <input ng-model="vm.user.telefone" ui-mask="(99) 9999-9999">
+                </md-input-container>
+                <md-input-container flex>
+                    <md-icon class="material-icons">phonelink_ring</md-icon>
+                    <input ng-model="vm.user.celular" ui-mask="(99) 9999-9999">
+                </md-input-container>
+            </div>
+            <div layout="column" layout-align="center center">
+                <md-input-container>
+                    <md-button class="md-primary confirmButton">
+                        <i class="material-icons md-36" style="color:black;">done_all</i>
+                    </md-button>
+                </md-input-container>
+            </div>
+        </form>
+    </md-card-content>
+</md-card>
+<md-card flex-gt-sm="90" flex-gt-md="80">
+    <md-card-content>
+        <h2>Informações de Email</h2>
+        <form>
+            <md-input-container flex>
+                <md-icon class="material-icons">email</md-icon>
+                <input ng-model="user.email" type="email" placeholder="Email Atual" ng-required="true">
+            </md-input-container>
+            <md-input-container flex>
+                <md-icon class="material-icons">autorenew</md-icon>
+                <input ng-model="user.email" type="email" placeholder="Novo Email" ng-required="true">
+            </md-input-container>
+            <div layout="column" layout-align="center center">
+                <md-input-container>
+                    <md-button class="md-primary confirmButton">
+                        <i class="material-icons md-36" style="color:black;">done_all</i>
+                    </md-button>
+                </md-input-container>
+            </div>
+        </form>
+    </md-card-content>
+</md-card>
+
+<md-card flex-gt-sm="90" flex-gt-md="80">
+    <md-card-content>
+        <h2>Informações de Senha</h2>
+        <form>
+            <md-input-container flex>
+                <md-icon class="material-icons">verified_user</md-icon>
+                <input ng-model="user.email" type="email" placeholder="Senha Atual" ng-required="true">
+            </md-input-container>
+            <md-input-container flex>
+                <md-icon class="material-icons">autorenew</md-icon>
+                <input ng-model="user.email" type="password" placeholder="Nova Senha" ng-required="true">
+            </md-input-container>
+            <div layout="column" layout-align="center center">
+                <md-input-container>
+                    <md-button class="md-primary confirmButton">
+                        <i class="material-icons md-36" style="color:black;">done_all</i>
+                    </md-button>
+                </md-input-container>
+            </div>
+        </form>
+    </md-card-content>
+</md-card>
