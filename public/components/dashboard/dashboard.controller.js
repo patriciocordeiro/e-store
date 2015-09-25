@@ -17,6 +17,8 @@
             }
             userService.recoverUserData('recoverUser', query, function(data) {
                 vm.user = data.local;
+                //console.log("DADOS: ", data);
+                userService.userPedidos = data.pedidos;
             });
         }
 

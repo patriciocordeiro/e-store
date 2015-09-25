@@ -78,7 +78,6 @@ exports.recoverUser = function(req, res, next){
     }, function(err, data) {
         data.local.password = "";
         data.facebook = "";
-        console.log(data);
         res.json(data);
     });
 }
