@@ -296,4 +296,9 @@ Product page css
 .open > .dropdown-menu {
   display: inline-flex; }
 
+/* line 547, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.navbaIcons {
+  display: block;
+  text-align: center; }
+
 /*# sourceMappingURL=style.css.map */
