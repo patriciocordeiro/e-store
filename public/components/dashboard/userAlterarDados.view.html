@@ -27,11 +27,9 @@
 <md-card flex-gt-sm="90" flex-gt-md="80">
     <md-card-content>
         <h2>Informações de Usuário</h2>
-        <div>
             <md-checkbox ng-model="vm.permicaoAlteracaoDados.dadosCadastrais">
-                Alterar informações pessoais?
+                Habilite a alteração de informações pessoais.
             </md-checkbox>
-        </div>
         <form>
             <div layout layout-sm="column">
                 <md-datepicker ng-model="vm.user.birthDate" md-placeholder="Enter date" ng-disabled="!vm.permicaoAlteracaoDados.dadosCadastrais"></md-datepicker>
@@ -63,18 +61,21 @@
 <md-card flex-gt-sm="90" flex-gt-md="80">
     <md-card-content>
         <h2>Informações de Email</h2>
+        <md-checkbox ng-model="vm.permicaoAlteracaoDados.email">
+            Habilite a alteração de email.
+        </md-checkbox>
         <form>
             <md-input-container flex>
                 <md-icon class="material-icons">email</md-icon>
-                <input type="email" placeholder="Email Atual" ng-required="true">
+                <input type="email" placeholder="Email Atual" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.email">
             </md-input-container>
             <md-input-container flex>
                 <md-icon class="material-icons">autorenew</md-icon>
-                <input type="email" placeholder="Novo Email" ng-required="true">
+                <input type="email" placeholder="Novo Email" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.email">
             </md-input-container>
             <div layout="column" layout-align="center center">
                 <md-input-container>
-                    <md-button class="md-primary confirmButton">
+                    <md-button class="md-primary confirmButton" ng-disabled="!vm.permicaoAlteracaoDados.email">
                         <i class="material-icons md-36" style="color:black;">done_all</i>
                     </md-button>
                 </md-input-container>
@@ -85,22 +86,25 @@
 <md-card flex-gt-sm="90" flex-gt-md="80">
     <md-card-content>
         <h2>Informações de Senha</h2>
+        <md-checkbox ng-model="vm.permicaoAlteracaoDados.senha">
+            Habilite a alteração de senha.
+        </md-checkbox>
         <form>
             <md-input-container flex>
                 <md-icon class="material-icons">verified_user</md-icon>
-                <input ng-model="vm.user.oldPassword" type="password" placeholder="Senha Atual" ng-required="true">
+                <input ng-model="vm.user.oldPassword" type="password" placeholder="Senha Atual" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.senha">
             </md-input-container>
             <md-input-container flex>
                 <md-icon class="material-icons">autorenew</md-icon>
-                <input ng-model="vm.user.newPassword" type="password" placeholder="Nova Senha" ng-required="true">
+                <input ng-model="vm.user.newPassword" type="password" placeholder="Nova Senha" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.senha">
             </md-input-container>
             <md-input-container flex>
                 <md-icon class="material-icons">autorenew</md-icon>
-                <input ng-model="vm.user.passwordConfirm" type="password" placeholder="Repitir Nova Senha" ng-required="true">
+                <input ng-model="vm.user.passwordConfirm" type="password" placeholder="Repitir Nova Senha" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.senha">
             </md-input-container>
             <div layout="column" layout-align="center center">
                 <md-input-container>
-                    <md-button class="md-primary confirmButton">
+                    <md-button class="md-primary confirmButton" ng-disabled="!vm.permicaoAlteracaoDados.senha">
                         <i class="material-icons md-36" style="color:black;">done_all</i>
                     </md-button>
                 </md-input-container>

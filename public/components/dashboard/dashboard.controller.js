@@ -15,6 +15,7 @@
         vm.permicaoAlteracaoDados = {
             dadosCadastrais : false,
             enderecoEntrega : false,
+            email:false,
             senha: false
         }
 
