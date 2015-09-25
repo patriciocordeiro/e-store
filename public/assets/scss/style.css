@@ -302,3 +302,42 @@ Product page css
   text-align: center; }
 
 /*# sourceMappingURL=style.css.map */
+
+/* Cuidado para não deletares outra vez */
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-light {
+    color: rgb(51, 122, 183);
+}
+
+a.mySideNav {
+    text-decoration: none;
+}
+
+.myToolbar {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.headerPanel {
+    background-color: black !important;
+}
+
+.dashboardPanel {
+    background-color: #ccc !important;
+}
+
+.toolbarDashboard {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+md-datepicker {
+    padding-right: 20px;
+}
+
+.confirmButton {
+  background-color:rgb(192,192,192) !important;
+} 

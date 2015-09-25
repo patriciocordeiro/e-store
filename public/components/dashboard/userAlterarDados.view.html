@@ -50,7 +50,7 @@
             </div>
             <div layout="column" layout-align="center center">
                 <md-input-container>
-                    <md-button class="md-primary confirmButton" disabled="{{info_user}}" ng-disabled="!vm.permicaoAlteracaoDados.dadosCadastrais">
+                    <md-button class="md-primary confirmButton" disabled="{{info_user}}" ng-disabled="!vm.permicaoAlteracaoDados.dadosCadastrais" ng-click="vm.updateDadosCadastrais(vm.user)">
                         <i class="material-icons md-36" style="color:black;">done_all</i>
                     </md-button>
                 </md-input-container>
@@ -104,7 +104,7 @@
             </md-input-container>
             <div layout="column" layout-align="center center">
                 <md-input-container>
-                    <md-button class="md-primary confirmButton" ng-disabled="!vm.permicaoAlteracaoDados.senha">
+                    <md-button class="md-primary confirmButton" ng-disabled="!vm.permicaoAlteracaoDados.senha" ng-click="vm.updatePassword(vm.user)">
                         <i class="material-icons md-36" style="color:black;">done_all</i>
                     </md-button>
                 </md-input-container>
