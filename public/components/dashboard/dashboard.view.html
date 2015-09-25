@@ -3,7 +3,7 @@
         <section layout="row" flex>
             <md-sidenav class="md-sidenav-left fixed md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
                 <md-toolbar class="md-theme-indigo headerPanel">
-                    <h1 class="md-toolbar-tools myToolbar">Olá {{vm.user.fullName}}!</h1>
+                    <h1 class="md-toolbar-tools myToolbar">Olá {{loggedUser}}!</h1>
                 </md-toolbar>
                 <md-content flex role="navigation" layout-padding>
                     <md-button ng-click="close()" class="md-primary" hide-gt-md>

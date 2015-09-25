@@ -2,11 +2,25 @@
 
     'use strict';
 
-    angular.module('myApp').controller('Dashboard', ['userService', Dashboard])
+    angular.module('myApp').controller('Dashboard', ['userService', 'httpUserService', '$rootScope', '$cookies', Dashboard])
 
-    function Dashboard(userService, httpUserService) {
+    function Dashboard(userService, httpUserService, $rootScope, $cookies) {
         var vm = this;
-        vm.user = userService.userDadosCadastrais
+        vm.user = userService.userDadosCadastrais;
+        //vm.user.birthDate = new Date(userService.userDadosCadastrais.birthDate);
+        /*
+            Função que impede que os dados do usuário sejam perdidos caso a página seja atualiada
+        */
+        if(vm.user === "usuario"){
+            var query = {
+                email: $cookies.get('email')
+            }
+            userService.recoverUserData('recoverUser', query, function(data) {
+                vm.user = data.local;
+            });
+        }
+
+
         //vm.user.birthDate = new Date(userService.userDadosCadastrais.birthDate)
 
         // Definições dos valores para alteração de dados
@@ -40,7 +54,7 @@
             dados.username = dados.email
             userService.updateUserData('updateDadosCadastrais', dados, function(data) {
                 console.log(data)
-            })
+            });
 
         }
 

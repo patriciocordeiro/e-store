@@ -56,7 +56,6 @@ exports.updateDadosCadastrais = function(req, res, next) {
 }
 
 exports.adicionaPedido = function(req, res, next){
-    console.log("Olha o que chegou aqui: ", req.body);
     var pedido = {
         'data':req.body.data,
         'compras':req.body.compras
@@ -68,5 +67,18 @@ exports.adicionaPedido = function(req, res, next){
         if (err) throw err;
 
         res.send("OKAY");
+    });
+}
+
+exports.recoverUser = function(req, res, next){
+    console.log("Olha o que chegou aqui LOGGED USER: ", req.body);
+
+    User.findOne({
+        'local.email': req.body.email
+    }, function(err, data) {
+        data.local.password = "";
+        data.facebook = "";
+        console.log(data);
+        res.json(data);
     });
 }
