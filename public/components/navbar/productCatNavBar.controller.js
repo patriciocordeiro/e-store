@@ -9,7 +9,28 @@
         // for open navigation tab on mouseover
         //        $scope.isTabActive = false;
 
-        vm.productNavCategories = ['Celular & Tablet', 'Tv & Video', 'Audio & Home Theater', 'Cameras Digitais', 'Cameras de Vídeo', 'Vídeo Games', 'Informática'];
+        vm.productNavCategories = [{
+            name: 'Celular & Tablet',
+            icon:'tablet',
+        }, {
+            name: 'Tv & Video',
+            icon:'tv',
+        }, {
+            name: 'Audio & Home Theater',
+            icon:'theaters',
+        }, {
+            name: 'Cameras Digitais',
+            icon:'photo_camera',
+        }, {
+            name: 'Cameras de Vídeo',
+            icon:'videocam',
+        }, {
+            name: 'Vídeo Games',
+            icon:'games',
+        },{ 
+            name: 'Informática',
+            icon:'laptop_mac'
+        }];
 
         var imgProductNavFolder = '../../assets/img/productNav/'
         vm.productNavSubcategories = [
