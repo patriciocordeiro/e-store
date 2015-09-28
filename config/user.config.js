@@ -76,8 +76,13 @@ exports.recoverUser = function(req, res, next){
     User.findOne({
         'local.email': req.body.email
     }, function(err, data) {
-        data.local.password = "";
-        data.facebook = "";
-        res.json(data);
+        console.log("MEU DADO: ", data);
+        if (data === null) {
+            res.json({message:"nothing"})
+        }else{
+            data.local.password = "";
+            data.facebook = "";
+            res.json(data);
+        };
     });
 }

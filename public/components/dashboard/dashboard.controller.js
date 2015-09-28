@@ -16,9 +16,12 @@
                 email: $cookies.get('email')
             }
             userService.recoverUserData('recoverUser', query, function(data) {
-                vm.user = data.local;
-                //console.log("DADOS: ", data);
-                userService.userPedidos = data.pedidos;
+                if (data.message === "nothing") {
+                    console.log("Aqui era para ter um toast: ", data);
+                }else{
+                    vm.user = data.local;
+                    userService.userPedidos = data.pedidos;
+                };
             });
         }
 
