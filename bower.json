@@ -17,6 +17,8 @@
     "bootstrap-star-rating": "~3.5.3",
     "angular-rateit": "~2.0.3",
     "awesome-rating": "~1.0.0",
-    "angular-material": "*"
+    "angular-material": "*",
+    "angular-breadcrumb": "~0.4.1",
+    "angular-utils-ui-breadcrumbs": "~0.2.1"
   }
 }

@@ -10,19 +10,19 @@
                         Close Sidenav Left
                     </md-button>
                     <md-list>
-                        <a class="mySideNav" ng-mouseenter="account_circle='md-light'" ng-mouseleave="account_circle=''" ui-sref="dashboard.dados">
+                        <a class="mySideNav" ng-mouseenter="account_circle='md-light'" ng-mouseleave="account_circle=''" ui-sref="app.dashboard.dados">
                             <md-list-item ng-click="nothing()"><i class="material-icons md-36" ng-class="account_circle">account_circle</i>&nbsp Sua conta</md-list-item>
                         </a>
                         <md-divider></md-divider>
-                        <a ui-sref="dashboard.pedidos" class="mySideNav" ng-mouseenter="view_list='md-light'" ng-mouseleave="view_list=''">
+                        <a ui-sref="app.dashboard.pedidos" class="mySideNav" ng-mouseenter="view_list='md-light'" ng-mouseleave="view_list=''">
                             <md-list-item ng-click="nothing()"><i class="material-icons md-36" ng-class="view_list">view_list</i>&nbsp Pedidos</md-list-item>
                         </a>
                         <md-divider></md-divider>
-                        <a class="mySideNav" ui-sref="dashboard.dados" ng-mouseenter="edit='md-light'" ng-mouseleave="edit=''">
+                        <a class="mySideNav" ui-sref="app.dashboard.dados" ng-mouseenter="edit='md-light'" ng-mouseleave="edit=''">
                             <md-list-item ng-click="nothing()"><i class="material-icons md-36" ng-class="edit">edit</i>&nbsp Dados Pessoais</md-list-item>
                         </a>
                         <md-divider></md-divider>
-                        <a class="mySideNav" ui-sref="dashboard.endereco" ng-mouseenter="home='md-light'" ng-mouseleave="home=''">
+                        <a class="mySideNav" ui-sref="app.dashboard.endereco" ng-mouseenter="home='md-light'" ng-mouseleave="home=''">
                             <md-list-item ng-click="nothing()"><i class="material-icons md-36" ng-class="home">home</i>&nbsp Endereços</md-list-item>
                         </a>
                         <md-divider></md-divider>
