@@ -80,7 +80,7 @@
 
 
                                         <div ng-repeat="(section, value) in vm.productNavCategories[$index].subcat">
-                                            Key: {{section}} value: {{value}}
+<!--                                            Key: {{section}} value: {{value}}-->
                                             <!--                                            <div flex ng-repeat="(subsection, value) in value.subsubcat">-->
                                             <!--                                                <h1>Index:{{$index}} {{value.name}}</h1>-->
                                             <div collapse=vm.subCatisCollapsed[$index]>
@@ -90,6 +90,7 @@
                                                             <a href="#">
                                                    {{value.name}}                                          
                                                             </a>
+                                                            <img src="{{value.imgPath}}" />
                                                         </div>
                                                     </div>
                                                 </div>

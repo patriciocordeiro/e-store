@@ -36,35 +36,44 @@
 
         vm.productNavCategories = [{
             name: 'Eletrônicos',
-            icon: 'tablet',
+            icon: 'tv',
             subcat: [{
                 name: 'Celulares & Tablets',
                 imgPath: imgProductNavFolder + 'eletronicos/' + 'CelularTablet.png',
                 subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navTablet.png',
                     name: 'tablet'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navCelular.png',
                     name: 'dual chip'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navIphone.png',
                     name: 'iphone'
                 }]
             }, {
                 name: 'Cameras',
                 imgPath: imgProductNavFolder + 'eletronicos/' + 'CameraFotoVideo.png',
                 subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navCam1.png',
                     name: 'cam1'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navCam2.png',
                     name: 'cam2'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navCam3.png',
                     name: 'cam3'
                 }]
             }, {
                 name: 'Tv & Home Theater',
                 imgPath: imgProductNavFolder + 'eletronicos/' + 'TvHomeTheater.png',
                 subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navTv1.png',
                     name: 'Tv1'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navTv2.png',
                     name: 'Tv2'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navTv3.png',
                     name: 'Tv3'
                 }]
 
@@ -72,10 +81,13 @@
                 name: 'Cameras de Vídeo',
                 imgPath: imgProductNavFolder + 'eletronicos/' + 'VideoCameras.png',
                 subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navVideo1.png',
                     name: 'Video1'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navVideo2.png',
                     name: 'Video2'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navVideo3.png',
                     name: 'Video3'
                 }]
 
@@ -83,10 +95,13 @@
                 name: 'Som',
                 imgPath: imgProductNavFolder + 'eletronicos/' + 'Som.png',
                 subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navSom1.png',
                     name: 'Som1'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navSom2.png',
                     name: 'Som2'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navSom3.png',
                     name: 'Som3'
                 }]
 
@@ -96,63 +111,166 @@
             icon: 'laptop_mac',
             subcat: [{
                 name: 'Notebook & NetBook',
-                imgPath: imgProductNavFolder + 'eletronicos/' + 'CelularTablet.png',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'noteNet.png',
                 subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navNote1.png',
                     name: 'Notebook1'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navNote2.png',
                     name: 'Notebook2'
                 }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navNote3.png',
                     name: 'Notebook3'
                 }]
             }, {
                 name: 'HD Externo',
-                imgPath: imgProductNavFolder + 'eletronicos/' + 'CameraFotoVideo.png',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'hdExterno.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navHD1.png',
+                    name: 'HD1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navHD2.png',
+                    name: 'HD2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navHD3.png',
+                    name: 'HD3'
+                }]
             }, {
                 name: 'Monitor',
-                imgPath: imgProductNavFolder + 'eletronicos/' + 'TvHomeTheater.png'
-
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'monitor.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navMon1.png',
+                    name: 'Monitor1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navMon2.png',
+                    name: 'Monitor2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navMon3.png',
+                    name: 'Monitor3'
+                }]
             }, {
                 name: 'Workstation',
-                imgPath: imgProductNavFolder + 'eletronicos/' + 'VideoCameras.png'
-
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'workstation.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navWork1.png',
+                    name: 'Workstation1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navWork2.png',
+                    name: 'Workstation2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navWork3.png',
+                    name: 'Workstation3'
+                }]
             }, {
-                name: 'Som ',
-                imgPath: imgProductNavFolder + 'eletronicos/' + 'Som.png'
-
+                name: 'Impressora',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'impressora.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navPrint1.png',
+                    name: 'Impressora1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navPrint2.png',
+                    name: 'Impressora2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navPrint3.png',
+                    name: 'Impressora3'
+                }]
             }]
         }, {
             name: 'Eletrodomésticos',
-            icon: 'theaters',
-            subcat: [{
-                name: 'Celulares & Tablets'
+            icon: 'power',
+            subcat: [
+            {
+                name: 'Geladeira',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'geladeira.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navGel1.png',
+                    name: 'Geladeira1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navGel2.png',
+                    name: 'Geladeira2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navGel3.png',
+                    name: 'Geladeira3'
+                }]
             }, {
-                name: 'Cameras'
+                name: 'Fogão',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'fogao.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navFog1.png',
+                    name: 'Fogao1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navFog2.png',
+                    name: 'Fogao2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navFog3.png',
+                    name: 'Fogao3'
+                }]
+            },
+            {
+                name: 'Máquina de lavar',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'lavar.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navLav1.png',
+                    name: 'Lavar1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navLav2.png',
+                    name: 'Lavar2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navLav3.png',
+                    name: 'Lavar3'
+                }]
             }]
 
         }, {
             name: 'Ar & Ventilação',
-            icon: 'photo_camera',
-            subcat: [{
-                name: 'Celulares & Tablets',
-                imgPath: imgProductNavFolder + 'eletronicos/' + 'CelularTablet.png'
+            icon: 'local_hotel',
+            subcat: [
+            {
+                name: 'Ventilador'
             }, {
-                name: 'Cameras',
-                imgPath: imgProductNavFolder + 'eletronicos/' + 'CameraFotoVideo.png'
-
+                name: 'Ar-condicionado'
+            },
+            {
+                name: 'Umidificador'
             }]
 
         }, {
             name: 'Móveis',
-            icon: 'videocam',
-            subcat: ['Celulares & Tablets', 'Cameras']
+            icon: 'domain',
+            subcat: [
+            {
+                name: 'Prateleira'
+            }, {
+                name: 'Armário'
+            },
+            {
+                name: 'Sofá e cama'
+            }]
 
         }, {
             name: 'Saúde & Beleza',
-            icon: 'games',
+            icon: 'mood',
+            subcat: [
+            {
+                name: 'Academia'
+            }, {
+                name: 'Cosmético'
+            },
+            {
+                name: 'Esporte'
+            }]
         }, {
             name: 'Entretenimento',
-            icon: 'laptop_mac',
-            subcat: ['Celulares & Tablets', 'Cameras']
+            icon: 'directions_run',
+            subcat: [
+            {
+                name: 'Console'
+            }, {
+                name: 'Jogo de mesa'
+            },
+            {
+                name: 'Jogo para console'
+            }]
 
         }];
         //
