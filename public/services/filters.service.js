@@ -1,42 +1,23 @@
 angular.module('myApp').service('myFilters', [
 
     function() {
-
-        console.log('Filters')
-        //        this.revomeDuplicates = function(myObject, type) {
-        //            var result = _.chain(myObject)
-        //            .unique(type) //remove duplicados 
-        //            .sortBy(type) // Organizar em ordem alfabetica
-        //            .value();
-        //            return result
-        //        }
-
+        console.log('SERVICO FILTRO INICIADO')
         this.revomeDuplicates = function(myObject) {
-
-
             var result = [];
-            //            var teste = myObject[0];
-
             _(myObject[0]).forEach(
                 function(n, key) {
-                    //                   vm.filterName  = key;
-                    console.log(key);
                     result.push(key);
                 }).value();
-            console.log(result);
             //remova os campos que não deseja usar como filtro
             var filtersNameTemp = _.without(result, '_id', 'tags', 'nome', 'lancamento', 'avaliacao_produto', 'preco', 'categoria')
             //remova os caracteres como:"_", "/", etc\
             filtersNameLength = filtersNameTemp.length;
             var filtersName =[];
             for(var i=0; i<filtersNameLength; i++){
-                filtersName[i] = filtersNameTemp[i].replace(/_/g, ' ')
-                console.log(filtersName[i]);
+//                filtersName[i] = filtersNameTemp[i].replace(/_/g, ' ')
+                filtersName[i] = filtersNameTemp[i]
             }
-            
-//            var input = ["mila_cordeiro"] 
-//            input.replace(/[^\w\s]/gi, '')
-//            console.log(input.replace(/_\W/g, ' '))
+
             //Abaixo usamos lodash para filtrar e tal
             var uniqueValueArray = [];
             uniqueValueArray.push(filtersName);
@@ -55,20 +36,12 @@ angular.module('myApp').service('myFilters', [
                 _(uniqueValue).forEach(function(val) {
                     /*o pick (lodash) vai retornar 
                       apenas o campo filtername*/
-                    uniquefiltered.push(_.pick(val, filterName));
+                uniquefiltered.push(_.pick(val, filterName));
                 }).value();
-                console.log(_.pluck(uniquefiltered, filterName));
                 uniqueValueArray.push(_.pluck(uniquefiltered, filterName));
-                //                uniqueValueArray.push(uniquefiltered);
                 uniquefiltered = [];
-                //                console.log(test)
-
-
             }).value();
-
-            console.log('minha', uniqueValueArray);
             return uniqueValueArray;
-
         };
 
     }

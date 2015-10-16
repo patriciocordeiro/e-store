@@ -8,24 +8,12 @@
     ]);
 
     function ProdutosCtrl($scope, $rootScope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService, myFilters, ratingService, localStorageService) {
-        //        console.log('queryqueryquery', query.categoria)
-        //initialization------------------------------------------------------------------------------------------ 
+        //initialization---------------- 
         var vm = this;
         var filterRange; /*Total de filtros*/
-
+        var maxNumOfItens; // Max number of retuned itens from the server
         var query = {};
-
         $scope.productsCategory = productCategory;
-
-        /*
-        ************************************************
-            Categoria dos Filtros
-            No futuro talvez os nomes sejam preenchidos 
-            automaticamente 
-        ************************************************
-        */
-        vm.myfiltersName = ['marca', 'tamanho tela', 'faixa preco']
-        //==================================================
         /*
             Código de configuração da diretiva rating
             para exibir a avaliação dos produtos feita pelos usuários
@@ -44,8 +32,6 @@
                 orderBy: produtosDataOnCookies[2]
 
             }
-
-            console.log('cookieQuery', vm.lastprodutoState)
             produtosApi.getDataOnLoad([{
                 categoria: cookiesQuery.categoria
             }, {
@@ -54,35 +40,9 @@
                 orderBy: cookiesQuery
             }], function(data) {
                 vm.productsByCategory = data;
-
-
-                //                console.log('result', vm.filtersName);
-
-                //            console.log('On load/refresh: Get products');
+                maxNumOfItens = vm.productsByCategory.length;
                 vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory)
                 filterRange = vm.myFiltersMarca[0].length;
-                console.log('FILTROSOSOSOSOSO', vm.myFiltersMarca[0]);
-                console.log('MEU ARRAY', filterRange);
-
-
-                //                var test;
-                //                test = vm.myFiltersMarca[0];
-                //                console.log(test[0]);
-                //                console.log(_.pick(test[1], "marca"));
-                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
-                //                var valor;
-
-                //                    .without(['_id','tags', 'nome' , 'lancamento','avaliacao_produto'])
-                //                .value();
-
-                //                var array=['_id','tags', 'nome' , 'lancamento','avaliacao_produto']
-                //                var evens = _.remove(array, function(n) {
-                //                    return n % 2 == 0;
-                //                });
-
-                //                console.log('foreach aqui', );
-
-
             })
 
             vm.products = {
@@ -90,274 +50,178 @@
                 orderBy: cookiesQuery.orderBy //products ordering
             }
 
-
         } else {
             vm.products = {
                 maxShowItem: '20', //itens by page
-                orderBy: 'lancamento' //products ordering
+                orderBy: 'marca -1' //products ordering
             }
             var display = {
                 maxShowItem: vm.products.maxShowItem,
                 orderBy: vm.products.orderBy
             }
             query.categoria = $scope.productsCategory.category;
-            console.log(query.categoria)
-
             //This is loaded on page load
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-                console.log('getDatabYCatgory function loaded on page load')
                 vm.productsByCategory = data;
+                maxNumOfItens = vm.productsByCategory.length;
                 vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory)
                 filterRange = vm.myFiltersMarca[0].length;
-
-
-
-
-                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
                 $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
-
-
-                console.log('dados dos produtos', vm.productsByCategory);
             });
         }
-
-        vm.filtroMarca = {
-            marca: [{
-                type: 'marca',
-                name: 'Asus'
-            }, {
-                type: 'marca',
-                name: 'LG'
-            }, {
-                type: 'marca',
-                name: 'Samsung'
-            }, {
-                type: 'tela',
-                name: 20
-            }],
-            tela: ['10', '12', '20']
-        }
-        console.log('HELLLOOOO', vm.filtroMarca.marca);
-        console.log(vm.myfiltersTela);
-        //Get the selected category
-        //                $scope.productsCategory = productCategory;
-        //build the query
-        //        console.log('categoria', $scope.productsCategory.category)
-
-        //        var query = {
-        //                    categoria: $scope.productsCategory.category,
-        //                };
-        //        
-        //    console.log(cookiesQuery.categoria)
-        //           query.categoria = cookiesQuery.categoria || query.categoria;
 
         var display = {
             maxShowItem: vm.products.maxShowItem,
             orderBy: vm.products.orderBy
         }
-
-
-
-        //This is loaded on page load
-        //                        produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-        //                                console.log('getDatabYCatgory function loaded on page load')
-        //                    vm.productsByCategory = data;
-        //                    vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-        //                    vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
-        //                });
-        //        
-
-        console.log('Produtos Controller executado')
         $rootScope.getCategory = function(categoria) {
-            console.log('executa que uma beleza', categoria)
-            //            query.categoria = categoria
-            //            console.log('My Categoria query', query)
-            //            produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-            //                vm.productsByCategory = data;
-            //                console.log('categoria controller greeting', $scope.productsByCategory);
-            //                vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-            //                vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
-
-
-            //            })
             $rootScope.category = categoria;
             //Salve os parametros nos cookies
-            console.log('query do watch', display.orderBy)
             $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
         };
-
+        /*
+         ************************************************
+          watch for product category change
+         ************************************************
+        */
         $scope.$watch("productCategory.category", function(newValue, oldValue) {
-            console.log('hold:', oldValue);
-            console.log('new:', newValue);
             if (newValue != oldValue) {
                 query.categoria = newValue
-                console.log('My Categoria query', query)
                 produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                     vm.productsByCategory = data;
-                    console.log('categoria controller greeting', $scope.productsByCategory);
+                    maxNumOfItens = vm.productsByCategory.length;
                     vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory)
                     filterRange = vm.myFiltersMarca[0].length;
-
-                    //                    vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
-                    console.log(vm.myfiltersMarca);
-
                 })
                 //Salve os parametros nos cookies
-                console.log('query do watch', display.orderBy);
                 $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
-
-
             }
         });
-
-
-        //get maxShow item per page
+        /*
+         ************************************************
+          get maxShow item per page
+         ************************************************
+        */
         vm.getMaxShowItems = function(maxShowItem) {
             display.maxShowItem = maxShowItem;
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                 vm.productsByCategory = data;
+                maxNumOfItens = vm.productsByCategory.length;
                 vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory);
                 filterRange = vm.myFiltersMarca[0].length;
-
-
-                //
-                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
-
-                console.log('returned', vm.productsByCategory)
             });
             $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
         };
-
-        //get the ordering of products on the page
+        /*
+         ************************************************
+          get the ordering of products on the page
+         ************************************************
+        */
         vm.getOrdering = function(orderBy) {
             display.orderBy = orderBy;
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
                 vm.productsByCategory = data;
+                maxNumOfItens = vm.productsByCategory.length()
                 vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory);
                 filterRange = vm.myFiltersMarca[0].length;
-
-
-                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
-
-                console.log('returned', vm.productsByCategory)
             })
             $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
-
         }
-
-
-        //Filters
-        var acumFilters = [];
-        var filtroComumQuery;
-        vm.filterBy = {
-            marca: '', //initialize the filter
-            preco: '', //initialize the filter
-            tamanho_tela: '' //initialize the filter
+        /*+++++++++++++++++++++++++++++++++++++++++++
+                    Common Filter 
+        ++++++++++++++++++++++++++++++++++++++++++++*/
+        vm.selected = [];
+        vm.filtAllObj = [];
+        vm.teste = [];
+        vm.caract = {} //apagar
+        var filtComQryObj = {};
+        vm.filtCat = [];
+        vm.filtVal = [];
+        console.log(vm.filtCat);
+        //check if filter was deselected
+        vm.exists = function(item, filtros) {
+            return filtros.indexOf(item) > -1;
         };
 
+        vm.filtroComum = function(item, filtCat, filtros) {
+            console.log('Executado filtroComum');
+            vm.currFiltArray = [];
+            var idx = filtros.indexOf(item);
+            var filtQryIn = {};
+            var filtObj = {};
 
-        vm.filtroComum = function(filterBy) {
-            var filterBy = filterBy.split(",");
-            /*if the filter already exist*/
-            if (filterBy[0] == 'null') {
-                delete query[filterBy[1]]; /*remove the existing filter from the query*/
+            filtObj[filtCat] = item;
+
+
+            if (idx > -1) {
+                // if deselected remove 
+                filtros.splice(idx, 1);
+                vm.filtAllObj.splice(idx, 1);
+                vm.filtCat.splice(idx, 1);
+                console.log(filtComQryObj);
+                console.log('removed', filtCat);
             } else {
+                // if selected push selected
+                filtros.push(item);
+                vm.filtAllObj.push(filtObj);
 
-                acumFilters.push(filterBy); /*add one more filter to query*/
-                //Construct the query object
-                var queryValorFiltro = {};
-                for (var i = 0; i < acumFilters.length; i++) {
-                    query[acumFilters[i][1]] = acumFilters[i][2];
-                }
-
+                vm.filtCat.push(filtCat);
+                vm.filtVal.push(item);
+                console.log(vm.filtAllObj);
+                console.log('caracteristica', vm.caract);
             }
+            //crete the property $in for query in the server
+            filtQryIn['$in'] = _.compact(new _.pluck(vm.filtAllObj, filtCat));
+            if (filtQryIn['$in'].length == 0) {
+                //if a propertey is empty, remove
+                delete filtComQryObj[filtCat];
+                console.log(filtComQryObj);
+
+            } else {
+                //insert current filter in his category
+                filtComQryObj[filtCat] = filtQryIn;
+            }
+
+            /*This section formats the filt data to display*/
+            //get all selected filter values
+            var val = _.values(filtComQryObj);
+            var filtArraysTemp = []; //array containing 
+            for (var j = 0; j < val.length; j++) {
+                //get the values for each filter property
+                filtArraysTemp[j] = val[j].$in;
+            }
+            //join all values in an array
+            vm.currFiltArray = _.flatten(filtArraysTemp);
+            vm.teste = {};
+            vm.teste.cat = vm.filtCat;
+            vm.teste.value = vm.filtVal;
+            console.log(vm.teste);
+
+
+            /*This section send the query to server*/
+            query.filtroComum = filtComQryObj;
             query.categoria = cookiesQuery.categoria || query.categoria;
-
-            console.log('CATEGORIA', query.categoria)
-            produtosApi.getDataByFilter([query, display], 'filtro_comum', query.categoria, function(data) {
-                vm.productsByCategory = data;
-                vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory);
-                filterRange = vm.myFiltersMarca[0].length;
-
-                //
-                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
-
-            })
-
-            console.log('my', query)
-        }
-
-
-        //        produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
-        //            //            console.log('hello')
-        //            vm.productsByCategory = data;
-        //            vm.myfiltersMarca = returnUniqueMarca(vm.productsByCategory);
-        //            vm.myfiltersTela = returnUniqueTela(vm.productsByCategory);
-        //        });
-        //        console.log(vm.productsByCategory);
-        //        console.log('categoria controller greeting', query)
-
-        // Aqui são as funções relacionadas a avaliação de produtos
-
-        // previamente seta o campo de avaliação como vazio
-        /*vm.semAvaliacao = "Campo de avaliação vazio";
-        vm.modalStyle = {color:'red'};
-        vm.checked = false;
-        
-        vm.getIdProduto = function(id, categoria){
-            ratingService.setId(id);
-            ratingService.setCategoria(categoria);
-        };
-
-        vm.getAvaliacao = function(avaliacao) {
-            vm.semAvaliacao = "";
-            ratingService.setAvaliacao(avaliacao);
-        };
-        vm.enviarAvaliacaoProduto = function(){
-            console.log("Eu avaliei o produtoId: ", ratingService.getId());
-            console.log("Categoria: ", ratingService.getCategoria());
-            console.log("Avaliacao: ", ratingService.getAvaliacao());
-
-            if(ratingService.getAvaliacao() === undefined){
-                vm.semAvaliacao = "Campo de avaliação vazio";
-            }else{
-                var queryAvaliacao = {
-                    'id': ratingService.getId(),
-                    'avaliacao': parseInt(ratingService.getAvaliacao())
-                };
-
-                produtosApi.getRatingProduct(queryAvaliacao, function(data){
-                    console.log("Dado retornado da minha avaliacao: ", data);
-                    vm.semAvaliacao = "Sua avaliacao foi enviada com sucesso";
-                    vm.modalStyle = {color:'blue'};
-                    //vm.checked = false;
+            // send request to the server with filters
+            produtosApi.getDataByFilter([query, display], 'filtro_comum',
+                query.categoria, function(data) {
+                    //put server response data in the vm
+                    vm.productsByCategory = data;
                 });
-            }
         }
-
-        vm.closeModal = function(){
-            vm.semAvaliacao = "Campo de avaliação vazio";
-            //vm.checked = false;
-            vm.modalStyle = {color:'red'};
-        }*/
-
-        // Função de armazenamento do id do produto para visualização dos detalhes
+        /*
+         ************************************************
+           Função de armazenamento do id do produto 
+           para visualização dos detalhes
+         ************************************************
+        */
         vm.storeIdProductDetail = function(id) {
-            console.log("Meu id ", id);
             localStorageService.set('idProdutoDetalhe', id);
         }
 
         vm.getProdutoVisualizacao = function(produtoVis) {
-            console.log("Produto visualizado: ", produtoVis);
             var queryProduct = {};
             queryProduct.id = produtoVis._id;
             produtosApi.showRatingProduct(queryProduct, function(data) {
-                console.log("Dado retornada da minha visualizacao: ", data[0].avaliacao);
-                //console.log("Number of ocurrences: ", _.sortedIndex(data[0].avaliacao, 5));
                 vm.produtoVisualizado = {};
                 vm.produtoVisualizado.maxAvaliacoes = data[0].avaliacao.length;
                 vm.produtoVisualizado.cinco = 0;
@@ -389,126 +253,68 @@
                 vm.produtoVisualizado.tresP = 100 * vm.produtoVisualizado.tres / vm.produtoVisualizado.maxAvaliacoes;
                 vm.produtoVisualizado.doisP = 100 * vm.produtoVisualizado.dois / vm.produtoVisualizado.maxAvaliacoes;
                 vm.produtoVisualizado.umP = 100 * vm.produtoVisualizado.um / vm.produtoVisualizado.maxAvaliacoes;
-                console.log("Caracteristicas do meu produto visualizado: ", vm.produtoVisualizado);
             });
         }
-
-        /*vm.getIdProduto = function(produtoId, categoria) {
-            modalService.id = produtoId;
-            modalService.categoria = categoria;
-            console.log("Produto a ser avaliado", modalService.id);
-            console.log("Categoria do produto", modalService.categoria);
-        };
-        vm.getAvaliacao = function(avaliacao) {
-            modalService.avaliacao = avaliacao;
-            console.log("Minha avaliacao: ", avaliacao);
-        };
-        vm.enviarAvaliacaoProduto = function() {
-            console.log("Id: ", modalService.id);
-            console.log("Avaliacao ", modalService.avaliacao);
-            console.log("Categoria ", modalService.categoria);
-            var queryAvaliacao = {
-                'id': modalService.id,
-                'avaliacao': modalService.avaliacao,
-                'categoria': modalService.categoria
-            };
-
-            httpServiceAvaliacao.save({
-                categoria: modalService.categoria,
-                avaliacao: modalService.avaliacao
-            }, queryAvaliacao, function() {
-                console.log("Os dados da avaliacao sao: ", queryAvaliacao);
-            });
-        };
-
-        vm.getProdutoVisualizacao = function(produtoVis) {
-            vm.produtosParaVisualizar = produtoVis;
-            if (typeof produtoVis.avaliacao !== "undefined") {
-                vm.maxAvaliacoes = parseInt(produtoVis.avaliacao.um || 0) + parseInt(produtoVis.avaliacao.dois || 0) +
-                    parseInt(produtoVis.avaliacao.tres || 0) + parseInt(produtoVis.avaliacao.quatro || 0) + parseInt(produtoVis.avaliacao.cinco || 0);
-            } else {
-                vm.maxAvaliacoes = 0;
-            }
-        };*/
-
-        //create a srting array with list of price ranges for filtroFaixa
+        /*
+         ************************************************
+            Filtro faixa de valores
+         ************************************************
+        */
+        //create a string array with filtros of price ranges for filtroFaixa
         // Foram criados mais alguns intervalos para cobrir a maior parte dos produtos
         // Isso pode ser otimizado pegando o maior valor e subtraindo pelo menor e dividindo pelo numero de faixas
         // Assim pode ter faixas mais precisas
         vm.faixaPreco = ['0-1000', '1000-1500', '1500-2000', '2000-3000', '3000-4000', '4000-5000', '6000-8000', '8000-11000'];
         vm.filtro_faixa = function(faixa) {
             faixa = faixa.split(",");
-            console.log(faixa);
             // Como os valor vêm dividos por traço, basta fazer um split considerando o traço
             var valoresFaixa = faixa[2].split("-");
-            console.log(valoresFaixa);
             // A query é construída a partir da categoria selecionada e da faixa de valores
-
             query.menorPreco = Number(valoresFaixa[0]);
             query.maiorPreco = Number(valoresFaixa[1]);
-
-
             produtosApi.getDataByFilter([query, display], 'filtro_faixa', query.categoria, function(data) {
                 vm.productsByCategory = data;
-                //                vm.myfiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory, "marca")
-                //                vm.myfiltersTela = myFilters.revomeDuplicates(vm.productsByCategory, "tamanho_tela")
-
-                console.log('returned', vm.productsByCategory)
             })
-
         };
-
-        //set all cookiest
-
-        //        $cookies.put('usuario',response.firstName + ' ' + response.lastName);
-
-        //left navbar configurations//
-
-
-        //        vm.getSelectedFilterName = function(filterName) {
-        //            switch (filterName) {
-        //                case 'marca':
-        //                    return vm.myfiltersMarca
-        //
-        //                    break;
-        //                case 'tamanho tela':
-        //                    return vm.myfiltersMarca
-        //                    break;
-        //                default:
-        //                    return vm.myfiltersMarca
-        //                    break;
-        //            }
-        //
-        //        }
-
-
         /*
          ************************************************
             Controle do left-navbar
          ************************************************
         */
         vm.isCollapsed = [];
-
         //Inicialize todos os filtros collapsed
         var isCollapsedtrue = _.range(7).map(function() {
             return true;
         })
         vm.isCollapsed = isCollapsedtrue;
-        //        console.log(filterRange)
-
         vm.getSelectedFiltersName = function(index, value) {
             vm.isCollapsed = isCollapsedtrue = _.range(7).map(function() {
                 return true;
             });
             vm.isCollapsed[index] = !value;
-            //            vm.isCollapsed[!index] = value;
-            console.log('isCollapsedtrue', isCollapsedtrue);
-
         }
-        //==================================================
-        console.log('Filtro', vm.myfiltersTela);
+
+        /*
+         ************************************************
+            Show more pagination
+         ************************************************
+        */
+        var pageItems = Number(vm.products.maxShowItem);
+        vm.maxShowitens = pageItems;
+        vm.nomoreToShow = true //triggered if there are no more itens to show
+        vm.showMore = function() {
+            vm.maxShowitens = vm.maxShowitens + pageItems / 2;
+            if (vm.maxShowitens >= maxNumOfItens) {
+                vm.nomoreToShow = false;
+            }
+        }
+        vm.showLess = function() {
+            vm.maxShowitens = vm.maxShowitens - pageItems / 2;
+            if (vm.maxShowitens <= pageItems) {
+                vm.nomoreToShow = true;
+            }
+        }
 
     }
-    
 
 })();

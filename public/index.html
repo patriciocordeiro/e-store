@@ -18,6 +18,8 @@
     <script src="lib/lodash/lodash.min.js"></script>
     <script src="lib/angular-validation-match/src/angular-validation-match.js"></script>
     <script src="lib/angular-ui-mask/src/mask.js"></script>
+    <script src="lib/angular-breadcrumb/dist/angular-breadcrumb.min.js"></script>
+    <script src="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js"></script>
     <!--    <script src="lib/angular-rateit/src/ng-rateit.js"></script>-->
     <!--        <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>-->
 
@@ -88,32 +90,43 @@
     <script src="lib/angular-material/angular-material.js"></script>
 
 
-<!--    <div class="container-fluid">-->
-        <my-bootstrap-nav-bar>
-        </my-bootstrap-nav-bar>
-        
-        <div class="row" style="margin-top:5%">
-            <div class="col-lg-6 col-lg-offset-3">
-                <div class="input-group">
-                    <input type="text" placeholder="Entre com a sua busca ... " ng-model="vm.selected" typeahead="state for state in vm.states.marca[0].samsung | filter:$viewValue | limitTo:8" class="form-control">
+    <!--    <div class="container-fluid">-->
+    <my-bootstrap-nav-bar>
+    </my-bootstrap-nav-bar>
 
-                    <span class="input-group-btn">
+    <div class="row" style="margin-top:5%">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="input-group">
+                <input type="text" placeholder="Entre com a sua busca ... " ng-model="vm.selected" typeahead="state for state in vm.states.marca[0].samsung | filter:$viewValue | limitTo:8" class="form-control">
+
+                <span class="input-group-btn">
                         <a ui-sref="app.search" ng-click="vm.getSearchValue(vm.searchProducts.value)">
                             <button class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </a>
-                    </span>
+                </button>
+                </a>
+                </span>
 
-                </div>
             </div>
         </div>
-        <product-category-nav-bar></product-category-nav-bar>
+    </div>
+    <product-category-nav-bar></product-category-nav-bar>
+    <h2>
+<!--         <div ncy-breadcrumb></div>-->
+        <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy"  template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
 
-        <ui-view></ui-view>
-        <div ui-view="email"></div>
-        <div ui-view="password"></div>
-<!--    </div>-->
+    </h2>
+
+    <ui-view></ui-view>
+    <!--    <div ui-view="content"></div>-->
+    <div ui-view="products"></div>
+    <div ui-view="dashboard"></div>
+    <div ui-view="productsDetail"></div>
+<!--
+    <div ui-view="email"></div>
+    <div ui-view="password"></div>
+-->
+    <!--    </div>-->
 
 
 

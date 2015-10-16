@@ -95,7 +95,7 @@ angular.module('myApp').controller('mainController', ['$scope', 'httpService',
             tamanho_tela: '' //initialize the filter
         };
 
-        var acumFilters = [];
+        var vm.acumFilters = [];
         var filtroComumQuery;
         var filtroComumQuery;
         $scope.filtroComum = function(toFilter) {
@@ -111,16 +111,16 @@ angular.module('myApp').controller('mainController', ['$scope', 'httpService',
                 delete filtroComumQuery[$scope.toFilter[1]];
             } else {
 
-                acumFilters.push($scope.toFilter);
-                //            console.log(acumFilters[0][2])
+                vm.acumFilters.push($scope.toFilter);
+                //            console.log(vm.acumFilters[0][2])
                 //            var teste ={};
                 //            console.log('acumulado', teste)
                 //Construct the query object
                 var queryValorFiltro = {};
                 //            queryValorFiltro[$scope.toFilter[1]] = $scope.toFilter[2]; //property field
                 //            
-                for (var i = 0; i < acumFilters.length; i++) {
-                    queryValorFiltro[acumFilters[i][1]] = acumFilters[i][2];
+                for (var i = 0; i < vm.acumFilters.length; i++) {
+                    queryValorFiltro[vm.acumFilters[i][1]] = vm.acumFilters[i][2];
                 }
 
                 var queryCategoria = {

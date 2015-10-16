@@ -292,69 +292,32 @@ Product page css
   color: aqua; }
 
 /******************************************************/
-/* line 543, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
-.open > .dropdown-menu {
-  display: inline-flex; }
+/* line 549, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.dropdown-toggle .section-name {
+  display: block;
+  text-align: center !important; }
 
-/* line 547, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
-.navbaIcons {
+/* line 556, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.navbarIcons {
   display: block;
   text-align: center; }
 
+/* line 560, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.prd-section-menu {
+  border-left: 1px solid red; }
+
+/* line 566, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+#product-nav-subcategory li {
+  border-left: 1px solid grey;
+  min-width: 180px; }
+  /* line 570, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  #product-nav-subcategory li:nth-last-child(1) {
+    border-right: 1px solid grey; }
+
+/* line 579, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.dropdown-menu {
+  min-height: 350px;
+  max-height: 350px;
+  min-width: 50%; }
+
 /*# sourceMappingURL=style.css.map */
-
-/* Cuidado para não deletares outra vez */
-/* Falta integrar ao sass */
-.material-icons.md-36 {
-    font-size: 36px;
-}
-
-.material-icons.md-light {
-    color: rgb(51, 122, 183);
-}
-
-a.mySideNav {
-    text-decoration: none;
-}
-
-.myToolbar {
-    color: white !important;
-    font-weight: bold !important;
-}
-
-.headerPanel {
-    background-color: black !important;
-}
-
-.dashboardPanel {
-    background-color: #ccc !important;
-}
-
-.toolbarDashboard {
-    color: black !important;
-    font-weight: bold !important;
-}
-
-md-datepicker {
-    padding-right: 20px;
-}
-
-.confirmButton {
-  background-color:rgb(192,192,192) !important;
-}
-
-*::-webkit-input-placeholder {
-    color: white;
-}
-*:-moz-placeholder {
-    /* FF 4-18 */
-    color: white;
-}
-*::-moz-placeholder {
-    /* FF 19+ */
-    color: white;
-}
-*:-ms-input-placeholder {
-    /* IE 10+ */
-    color: white;
-}

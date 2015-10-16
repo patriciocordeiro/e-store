@@ -121,6 +121,12 @@
             productCategory.category = selectedCategory;
             //            console.log('mudou para', productCategory.category)
         };
+        
+        vm.getSelectedProductSection = function (selecteProductSection) {
+            productCategory.section = selecteProductSection;
+            console.log(productCategory.section);
+            
+        }
 
         var productNavCatLength = vm.productNavCategories.length;
         vm.showSubMenu = new Array(productNavCatLength);

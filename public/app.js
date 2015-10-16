@@ -1,5 +1,5 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask','awesome-rating','ngMaterial'])
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs'])
     .run(function($rootScope, $state, authentication, $cookies, localStorageService) {
         console.log('My $rootScope', $rootScope)
         //Check if user is loggedin (cookies)
@@ -84,34 +84,108 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         $stateProvider
             .state('app', {
-                abstract: true,
-                url: "/app",
-                template: '<ui-view/>',
-
+                url: "^",
+                views: {
+                    "products@": {
+                        templateUrl: 'components/home/home.view.html',
+                        controller: 'HomeCtrl',
+                    }
+                },
+                data: {
+                    displayName: 'Home',
+                }
             })
 
-        .state('app.home', {
-            url: "/home",
-            templateUrl: 'components/home/home.view.html',
-            controller: 'HomeCtrl'
-        })
-
-
         .state('app.produtos', {
-            url: "/produtos",
-            templateUrl: 'components/produtos/produtos.view.html',
-            controller: 'ProdutosCtrl as vm',
-            authenticate: false
-            //            template : '<h1>Funciona</h1>',
+            abstract: true,
+            url: "/app/produtos",
+            template: '<ui-view/>',
+            data: {
+                proxy: 'app.produtos.list'
+            }
 
         })
 
-        .state('app.produtosDetail', {
-            url: "/produtos/:id",
-            templateUrl: 'components/produtos/produtoDetail.view.html',
-            controller: 'produtoDetailCtrl as vm',
-            authenticate: false
 
+
+        //        .state('app.produtos', {
+        //            url: "/produtos",
+        //            views: {
+        //                "products@": {
+        //                    templateUrl: 'components/produtos/produtos.view.html',
+        //                    controller: 'ProdutosCtrl as vm',
+        //                    authenticate: false,
+        //                    data: {
+        //                        displayName: 'Eletronicos'
+        //                    }
+        //                }
+        //            }
+        //
+        //        })
+
+        .state('app.produtos.section', {
+            url: "/:section",
+            views: {
+                "products@": {
+                    template: 'HUHUHUHUhHUH',
+//                    controller: 'ProdutosCtrl as vm',
+                    authenticate: false,
+                    function($scope, section) {
+                        //                        $scope.category = category;
+                        $scope.section = section;
+                        console.log($scope.section);
+                    }
+                }
+            },
+            data: {
+                displayName: '{{section}}',
+            },
+            resolve: {
+                section: function(productCategory) {
+                    return productCategory.section;
+                    //                    return productCategory.category;
+
+                }
+            }
+        })
+
+        .state('app.produtos.section.category', {
+            url: "/:category",
+            views: {
+                "products@": {
+                    templateUrl: 'components/produtos/produtos.view.html',
+                    controller: 'ProdutosCtrl as vm',
+                    authenticate: false,
+                    function($scope, category) {
+                        //                        $scope.category = category;
+                        $scope.category = category;
+                        console.log($scope.category);
+                    }
+                }
+            },
+            data: {
+                displayName: '{{category}}',
+            },
+            resolve: {
+                category: function(productCategory) {
+                    return productCategory.category;
+
+                }
+            }
+        })
+
+        .state('app.produtos.list.detail', {
+            url: "/:id",
+            views: {
+                'products@': {
+                    templateUrl: 'components/produtos/produtoDetail.view.html',
+                    controller: 'produtoDetailCtrl as vm',
+                    authenticate: false
+                }
+            },
+            data: {
+                displayName: 'Tbnb'
+            }
         })
 
         .state('app.avaliacao', {
@@ -157,15 +231,18 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         })
 
-        .state('dashboard', {
-            url: "/dashboard",
-            templateUrl: 'components/dashboard/dashboard.view.html',
-            controller: 'Dashboard as vm',
-            //            template : '<h1>Funciona</h1>',
-            authenticate: false,
-
-
-
+        .state('app.dashboard', {
+            url: "/app/dashboard",
+            views: {
+                'products@': {
+                    templateUrl: 'components/dashboard/dashboard.view.html',
+                    controller: 'Dashboard as vm',
+                    authenticate: false,
+                }
+            },
+            data: {
+                displayName: 'Dashboard'
+            }
 
         })
         //            .state('dashboard.email', {
@@ -177,35 +254,42 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         //                    }
         //                }
         //            })
-        .state('dashboard.email', {
+        .state('app.dashboard.email', {
             url: "/email",
             templateUrl: 'components/dashboard/userAlterarEmail.view.html',
             //            controller: 'blala as vm',
             //            template : '<h1>Funciona</h1>',
             //                authenticate: true
         })
-            .state('dashboard.password', {
+            .state('app.dashboard.password', {
                 url: "/password",
                 templateUrl: 'components/dashboard/userAlterarSenha.view.html',
                 controller: 'Dashboard as vm',
                 //                authenticate: true
             })
-            .state('dashboard.dados', {
+            .state('app.dashboard.dados', {
                 url: "/dados",
                 templateUrl: 'components/dashboard/userAlterarDados.view.html',
-                controller: 'Dashboard as vm',
+                controller: 'Dashboard as vm'
+
                 //                authenticate: true
             })
-            .state('dashboard.endereco', {
+            .state('app.dashboard.endereco', {
                 url: "/endereco",
                 templateUrl: 'components/dashboard/userAlterarEndereco.view.html',
+                data: {
+                    displayName: 'Meus endereços'
+                }
                 //                controller: 'blala as vm',
                 //                authenticate: true
             })
-            .state('dashboard.pedidos', {
+            .state('app.dashboard.pedidos', {
                 url: "/pedidos",
                 templateUrl: 'components/dashboard/pedidos.view.html',
-                controller: 'DashboardPedidosCtrl as vm'
+                controller: 'DashboardPedidosCtrl as vm',
+                data: {
+                    displayName: 'Meus endereços',
+                }
                 //                controller: 'blala as vm',
                 //                authenticate: true
             })
@@ -233,4 +317,6 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         //            }
         //        })
         //        console.log('router') $urlRouterProvider.otherwise('home/home');
+
+
     });

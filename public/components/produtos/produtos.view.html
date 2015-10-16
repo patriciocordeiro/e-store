@@ -2,21 +2,24 @@
 
 <!--<div layout="column" style="height:500px;">-->
 <div class="container-fluid">
+
     <div layout="column">
         <section layout="row" flex>
             <md-sidenav class="md-sidenav-left fixed md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+                <!--
                 <md-toolbar class="md-theme-indigo">
                     <h1 class="md-toolbar-tools">Filtros</h1>
                 </md-toolbar>
+-->
                 <md-content flex role="navigation" layout-padding>
                     <md-button ng-click="close()" class="md-primary" hide-gt-md>
                         Close Sidenav Left
                     </md-button>
-                    <md-list ng-repeat="filtersName in vm.myFiltersMarca[0] track by $index">
+                    <md-list ng-repeat="filtCat in vm.myFiltersMarca[0] track by $index">
                         <md-button style="width:90%" class="md-button-toggle  primary" ng-model="vm.isCollapsed[$index]" ng-click="vm.getSelectedFiltersName($index, vm.isCollapsed[$index])">
                             <div layout="row" layout-align="space-between center">
                                 <div class="btn-title">
-                                    <h4 md-title>{{filtersName}}</h4>
+                                    <h4 md-title>{{filtCat}}</h4>
                                 </div>
                                 <div>
                                     <md-icon md-svg-src="md-toggle-arrow"></md-icon>
@@ -26,8 +29,16 @@
                         <div collapse="vm.isCollapsed[$index]">
                             <md-list-item ng-repeat="(key, val) in vm.myFiltersMarca[$index+1]">
                                 <div flex>
-                                    <md-checkbox class="md-primary" ng-model="vm.filterBy.val" ng-true-value="'str,{{filtersName}},{{val}}'" ng-false-value="'null,{{filtersName}},{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.val)" aria-label="{{val}}">
-                                        {{val}}
+                                    <!--
+                                    
+                                    <md-checkbox class="md-primary" ng-model="vm.filterBy.val" ng-true-value="'str,{{filtCat}},{{val}}'" ng-false-value="'null,{{filtCat}},{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.val)" aria-label="{{val}}">
+                                       {{key}} {{val}}
+                                    </md-checkbox>
+-->
+
+
+                                    <md-checkbox ng-checked="vm.exists(val, vm.selected)" ng-click="vm.filtroComum(val,filtCat, vm.selected)">
+                                        {{ val }} <span ng-if="vm.exists(val, vm.selected)">selected</span>
                                     </md-checkbox>
                                     <md-divider></md-divider>
                                 </div>
@@ -37,45 +48,73 @@
                     </md-list>
                 </md-content>
             </md-sidenav>
-            <md-content class="md-padding md-whiteframe-z3">
-                <div>
-                    <md-button ng-click="toggleLeft()" class="btn-toggle-left-nav md-primary" hide-gt-md>
-                        Toggle left
-                    </md-button>
-                </div>
-                <div layout="row">
-                    <md-input-container>
-                        <label>State</label>
-                        <md-select ng-model="select">
-                            <md-option value="Para">Para</md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div class="produtos-show-area">
-                    <div class="row">
-                                                <div class=" mycol col col-xs-10 col-sm-6 col-md-2 col-lg-3" ng-repeat="products in vm.productsByCategory">
-<!--                        <div class=" mycol col-md-3" ng-repeat="products in vm.productsByCategory">-->
-                            <a ng-href="#/app/produtos/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">
-                                <div class="product-image">
-                                    <img src="../../assets/img/produtos/tv/pSNYNA-XBR65X850C_main_v217.png">
-                                </div>
-                                <div class="product-description">
-                                    <span class="product-title">
-                                        <p>{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}}{{products.frequencia}}{{products.marca}}                </p>                                </span>
-                                </div>
+            <div layout="column">
+                <md-toolbar class="md-accent">
 
-                                <div class="product-description">
-                                    <div awesome-rating="products.media_avaliacoes" awesome-rating-options="vm.options">
+                    <div layout="row" layout-align="center center">
+                        <div flex ng-repeat="selFilters in  vm.currFiltArray ">
+                            <input type="checkbox" ng-checked="vm.exists(selFilters, vm.selected)" ng-click="vm.filtroComum(selFilters,'marca', vm.selected)" />{{selFilters}}
+                        </div>
+                    </div>
+                    <h2 class="md-toolbar-tools">
+                        
+<!--                         <div class="md-flex">-->
+                        <md-input-container>
+<!--                            <label>Itens por página</label>-->
+                            <md-select ng-model="vm.products.maxShowItem">
+                                <md-option value="20">20</md-option>
+                                <md-option value="40">40</md-option>
+                                <md-option value="60">60</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <span flex></span>
+<!--                              </span>-->
+<!--                         <span class="md-flex">-->
+                        <md-input-container style="padding-bottom:0">
+<!--                            <label>State</label>-->
+                            <md-select ng-model="select">
+                                <md-option value="Para">Para</md-option>
+                            </md-select>
+                        </md-input-container>
+<!--                        </span>-->
+                       
+                    </h2>
+                </md-toolbar>
+                <md-content class="md-padding md-whiteframe-z3">
+                    <div>
+                        <md-button ng-click="toggleLeft()" class="btn-toggle-left-nav md-primary" hide-gt-md>
+                            Toggle left
+                        </md-button>
+                    </div>
+                    <div class="produtos-show-area">
+
+
+                        <div class="row">
+                            <div class=" mycol col col-xs-10 col-sm-6 col-md-2 col-lg-3" ng-repeat="products in vm.productsByCategory | limitTo:vm.maxShowitens">
+                                <!--                        <div class=" mycol col-md-3" ng-repeat="products in vm.productsByCategory">-->
+                                <a ng-href="#/app/produtos/categoria/{{productsCategory.category}}/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">
+                                    <div class="product-image">
+                                        <img src="../../assets/img/produtos/tv/pSNYNA-XBR65X850C_main_v217.png">
+
+                                    </div>
+                                    <div class="product-description">
+                                        <span class="product-title">
+                                        <p>{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}}{{products.frequencia}}{{products.marca}} {{products.cor}} {{products.camera}}                </p>                                </span>
                                     </div>
 
-                                    <h3 class="md-headline"><strong>R$ {{products.preco}}</strong></h3>
-                                    <div class="btn btn-add-basket">Comprar</div>
-                                </div>
-                            </a>
+                                    <div class="product-description">
+                                        <div awesome-rating="products.media_avaliacoes" awesome-rating-options="vm.options">
+                                        </div>
 
-                        </div>
+                                        <h3 class="md-headline"><strong>R$ {{products.preco}}</strong></h3>
+                                        <div class="btn btn-add-basket">Comprar</div>
+                                    </div>
+                                </a>
 
-                        <!--
+                            </div>
+
+
+                            <!--
                         <div class="col-md-9 show-area">
                             <div class="row">
                                 <div class="col-md-4" ng-repeat="products in vm.productsByCategory">
@@ -88,10 +127,10 @@
 
                                     <div class="input-group">
 -->
-                        <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
-                        <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="vm.getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
+                            <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
+                            <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="vm.getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
                         <modal-visualizacao></modal-visualizacao> -->
-                        <!--
+                            <!--
                                         <rating ng-model="products.media_avaliacoes" max="5" readonly="vm.isReadonly"></rating>
                                         <span class="label" ng-class="{'label-warning': 100*(products.media_avaliacoes || 0)/5<30, 'label-info': 100*(products.media_avaliacoes || 0)/5>=30 && 100*(products.media_avaliacoes || 0)/5<70, 'label-success': 100*(products.media_avaliacoes || 0)/5>=70}">{{100*(products.media_avaliacoes || 0)/5 | number:2}}%
                                 </span>
@@ -100,9 +139,13 @@
                             </div>
                         </div>
 -->
+                        </div>
                     </div>
-                </div>
-            </md-content>
+                    <button ng-show="vm.nomoreToShow" ng-click="vm.showMore()">Show more</button>
+                    <button ng-show="!vm.nomoreToShow" ng-click="vm.showLess()">Show Less</button>
+
+                </md-content>
+            </div>
         </section>
     </div>
 </div>

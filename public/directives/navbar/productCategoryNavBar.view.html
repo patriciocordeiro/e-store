@@ -12,78 +12,33 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                 <div class="nav navbar-nav">
                     <div id="product-nav-subcategory">
-                        <!--
-                        <tabset justified="true">
-                            <tab ng-repeat="prdctNavCat in vm.productNavCategories" ng-init="isTabActive=false" ng-mouseover="isTabActive=true" active="isTabActive">
-                                <tab-heading>{{prdctNavCat}}</tab-heading>
-                                <div class="product-subcat" ng-mouseleave="isTabActive=false">
-                                    <div class="container">
-                                        <ul class="list-inline">
-                                            <li ng-repeat="prdctNavSubCat in vm.productNavSubcategories[$index]">
-                                                <a href="#" ng-click="vm.getSelectedCategory(prdctNavSubCat.name)" ui-sref="app.produtos">
-                                                    <img src={{prdctNavSubCat.imgPath}}>
-                                                    </br>
-                                                    <span  class="subcategory-name">{{prdctNavSubCat.name}}</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </tab>
-                        </tabset>
--->
-                        <ul class="nav navbar-nav">
 
-                            <li ng-repeat="prdctNavCat in vm.productNavCategories" dropdown is-open="isOpen" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false" dropdown on-toggle="toggled(open)">
-                                <!--                            <div layout="row" layout-align="space-around center">-->
-                                <!--                        <div class="btn-group" dropdown is-open="status.isopen">-->
-                                <!--                                <span dropdown on-toggle="toggled(open)">-->
-                                <!--                                <ul class="nav navbar-nav">-->
-                                <!--                                    <li class="dropdown" id="simple-dropdown">-->
-                                <a href role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled" role="button" aria-haspopup="true" aria-expanded="false"><span class="navbaIcons"><i class="material-icons">{{prdctNavCat.icon}}</i></span>{{prdctNavCat.name}}</a>
-                                <!--                                    </li>-->
-                                <!--                                </ul>-->
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-                                    <li role="menuitem" ng-repeat="prdctNavSubCat in vm.productNavSubcategories[$index]" ng-mouseenter="vm.getSelectedSubMenu($index)" ng-mouseleave="vm.getSelectedSubMenu($index)">
-                                        <a href="#" ng-click="vm.getSelectedCategory(prdctNavSubCat.name)" ui-sref="app.produtos">
-                                            <img src="{{prdctNavSubCat.imgPath}}">
-                                            <span class="subcategory-name">{{prdctNavSubCat.name}}</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!--                        </span>-->
-                            </li>
-                        </ul>
+                        <ul class="nav navbar-nav prd-section-navbar">
+                            <div layout="row" layout-align="center center">
+                                <li ng-repeat="prdctNavCat in vm.productNavCategories" dropdown is-open="isOpen" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false" dropdown on-toggle="toggled(open)">
+                                    <a class="dropdown-toggle" ng-disabled="disabled" ui-sref="app.produtos.section({section:prdctNavCat.name})" ng-mouseenter="vm.getSelectedProductSection(prdctNavCat.name)"> <span class="navbarIcons"><i class="material-icons">{{prdctNavCat.icon}}</i></span><span class="section-name">{{prdctNavCat.name}}</span></a>
 
-                        <!--                        <ul class="dropdown-menu" role="menu">-->
-                        <!--                            <li ng-repeat="prdctNavCat in vm.productNavCategories" ng-init="isActive[$index]=true" ng-mouseenter="isActive[$index]=false"  ng-click="vm.getSelectedSubMenu($index)" ng-mouseleave="isActive[$index]=true">-->
-                        <!--
-
-                            <li role="menuitem" ng-repeat="prdctNavCat in vm.productNavCategories" ng-mouseenter="vm.getSelectedSubMenu($index)" ng-mouseleave="vm.getSelectedSubMenu($index)">
--->
-                        <!--                                <a>-->
-                        <!--                                <a href="#">{{prdctNavCat}}</a>-->
-                        <!--                                <div id="prdSubcatNav" class="container" ng-hide="vm.showSubMenu[$index]">-->
-                        <!--                                    <ul class="list-inline">-->
-                        <!--
-                                    <ul>
-                                        <li ng-repeat="prdctNavSubCat in vm.productNavSubcategories[$index]">
-                                            <a href="#" ng -click="vm.getSelectedCategory(prdctNavSubCat.name)" ui-sref="app.produtos">
-                                                <img src={{prdctNavSubCat.imgPath}}>
-                                                </br>
+                                    <!--                                <a ui-sref="app.produtos.section({section:prdctNavCat.name})" ng-mouseenter="vm.getSelectedProductSection(prdctNavCat.name)" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled"><span class="navbaIcons"><i class="material-icons">{{prdctNavCat.icon}}</i></span>{{prdctNavCat.name}}</a>-->
+                                    <!--                                    </li>-->
+                                    <!--                                </ul>-->
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+                                        <li role="menuitem" ng-repeat="prdctNavSubCat in vm.productNavSubcategories[$index]" ng-mouseenter="vm.getSelectedSubMenu($index)" ng-mouseleave="vm.getSelectedSubMenu($index)">
+                                            <a ng-click="vm.getSelectedCategory(prdctNavSubCat.name)" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})">
+                                                <img src="{{prdctNavSubCat.imgPath}}">
                                                 <span class="subcategory-name">{{prdctNavSubCat.name}}</span>
                                             </a>
                                         </li>
+                                         <li class="divider"></li>
+                                         <li role="menuitem"><a href="#">Mais sobre {{prdctNavCat.name}}</a></li>
+                                        
                                     </ul>
-                                </div>
-                            </li>
-                        </ul>
 
+                                </li>
+                            </div>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </nav>
-</div>-->
+</div>

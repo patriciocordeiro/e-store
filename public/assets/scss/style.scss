@@ -534,17 +534,50 @@ Product page css
 /******************************************************/
 
 #login {
-//    background-color: aquamarine;
+    //    background-color: aquamarine;
     //    margin-top:5%;
-//    border-left: solid 1px black; 
+    //    border-left: solid 1px black; 
 
 }
-#prdSubcatNav {} 
-.open > .dropdown-menu {
-    display: inline-flex;
+#prdSubcatNav {} .open > .dropdown-menu {
+    //    display: inline-flex;
+
+}
+.dropdown-toggle {
+//    li {
+       
+    .section-name{
+        display: block;
+         text-align: center !important;
+    }
+//    }
 }
 //**********************************************************
-.navbaIcons{
+.navbarIcons {
     display: block;
     text-align: center;
+}
+.prd-section-menu {
+    border-left: 1px solid red;
+    
+}
+//
+#product-nav-subcategory{
+    li{
+         border-left: 1px solid grey;
+        
+        min-width: 180px;
+        &:nth-last-child(1){
+             border-right: 1px solid grey;
+        }
+    }
+    .prd-section-navbar{
+        
+    }
+}
+
+.dropdown-menu{
+    min-height: 350px;
+    max-height: 350px;
+    min-width: 50%;
 }

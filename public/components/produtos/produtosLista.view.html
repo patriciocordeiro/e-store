@@ -1,0 +1,27 @@
+<div class="produtos-show-area">
+    <div class="row">
+        <div class=" mycol col col-xs-10 col-sm-6 col-md-2 col-lg-3" ng-repeat="products in vm.productsByCategory">
+            <a ng-href="#/app/produtos/categoria/{{productsCategory.category}}/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">
+                <div class="product-image">
+                    <img src="../../assets/img/produtos/tv/pSNYNA-XBR65X850C_main_v217.png">
+
+                </div>
+                <div class="product-description">
+                    <span class="product-title">
+                                        <p>{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}}{{products.frequencia}}{{products.marca}}                </p>                                </span>
+                </div>
+
+                <div class="product-description">
+                    <div awesome-rating="products.media_avaliacoes" awesome-rating-options="vm.options">
+                    </div>
+
+                    <h3 class="md-headline"><strong>R$ {{products.preco}}</strong></h3>
+                    <div class="btn btn-add-basket">Comprar</div>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
