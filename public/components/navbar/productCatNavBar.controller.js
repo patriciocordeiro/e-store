@@ -226,12 +226,31 @@
             icon: 'local_hotel',
             subcat: [
             {
-                name: 'Ventilador'
+                name: 'Ventilador',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'ventilador.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navVent1.png',
+                    name: 'Ventilador1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navVent2.png',
+                    name: 'Ventilador2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navVent3.png',
+                    name: 'Ventilador3'
+                }]
             }, {
-                name: 'Ar-condicionado'
-            },
-            {
-                name: 'Umidificador'
+                name: 'Ar-condicionado',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'ar.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navAr1.png',
+                    name: 'Ar1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navAr2.png',
+                    name: 'Ar2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navAr3.png',
+                    name: 'Ar3'
+                }]
             }]
 
         }, {
@@ -239,12 +258,32 @@
             icon: 'domain',
             subcat: [
             {
-                name: 'Prateleira'
-            }, {
-                name: 'Armário'
+                name: 'Armário',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'armario.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navArm1.png',
+                    name: 'Armario1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navArm2.png',
+                    name: 'Armario2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navArm3.png',
+                    name: 'Armario3'
+                }]   
             },
             {
-                name: 'Sofá e cama'
+                name: 'Sofá e cama',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'sofa.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navSofa1.png',
+                    name: 'Sofa1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navSofa2.png',
+                    name: 'Sofa2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navSofa3.png',
+                    name: 'Sofa3'
+                }]  
             }]
 
         }, {
@@ -252,24 +291,90 @@
             icon: 'mood',
             subcat: [
             {
-                name: 'Academia'
+                name: 'Academia',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'academia.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navAca1.png',
+                    name: 'Academia1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navAca2.png',
+                    name: 'Academia2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navAca3.png',
+                    name: 'Academia3'
+                }] 
             }, {
-                name: 'Cosmético'
+                name: 'Cosmético',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'cosmetico.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navCos1.png',
+                    name: 'Cosmetico1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navCos2.png',
+                    name: 'Cosmetico2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navCos3.png',
+                    name: 'Cosmetico3'
+                }] 
             },
             {
-                name: 'Esporte'
+                name: 'Esporte',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'esporte.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navEsp1.png',
+                    name: 'Esporte1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navEsp2.png',
+                    name: 'Esporte2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navEsp3.png',
+                    name: 'Esporte3'
+                }] 
             }]
         }, {
             name: 'Entretenimento',
             icon: 'directions_run',
             subcat: [
             {
-                name: 'Console'
+                name: 'Console',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'consoles.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navGame1.png',
+                    name: 'Console1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navGame2.png',
+                    name: 'Console2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navGame3.png',
+                    name: 'Console3'
+                }] 
             }, {
-                name: 'Jogo de mesa'
+                name: 'Jogo de mesa',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'table.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navTab1.png',
+                    name: 'Mesa1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navTab2.png',
+                    name: 'Mesa2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navTab3.png',
+                    name: 'Mesa3'
+                }] 
             },
             {
-                name: 'Jogo para console'
+                name: 'Jogo para console',
+                imgPath: imgProductNavFolder + 'eletronicos/' + 'jogos.png',
+                subsubcat: [{
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navJog1.png',
+                    name: 'Jogo1'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navJog2.png',
+                    name: 'Jogo2'
+                }, {
+                    imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navJog3.png',
+                    name: 'Jogo3'
+                }] 
             }]
 
         }];
