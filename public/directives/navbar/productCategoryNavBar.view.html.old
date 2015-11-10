@@ -1,0 +1,83 @@
+<div ng-controller="productCatNavBar as vm" style="margin-top:2%">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                <div class="nav navbar-nav">
+                    <div id="product-nav-subcategory">
+
+                        <ul class="nav navbar-nav prd-section-navbar">
+                            <div layout="row" layout-align="center center">
+                                <li class="menu-large" ng-repeat="prdctNavCat in vm.productNavCategories" dropdown is-open="isOpen" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false" dropdown on-toggle="toggled(open)" auto-close="outsideClick">
+                                    <a class="dropdown-toggle" ng-disabled="disabled" ui-sref="app.produtos.section({section:prdctNavCat.name})" ng-mouseenter="vm.getSelectedProductSection(prdctNavCat.name)"> <span class="navbarIcons"><i class="material-icons">{{prdctNavCat.icon}}</i></span><span class="section-name">{{prdctNavCat.name}}</span>
+                                    </a>
+
+                                    <!--                                <a ui-sref="app.produtos.section({section:prdctNavCat.name})" ng-mouseenter="vm.getSelectedProductSection(prdctNavCat.name)" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled"><span class="navbaIcons"><i class="material-icons">{{prdctNavCat.icon}}</i></span>{{prdctNavCat.name}}</a>-->
+                                    <!--                                    </li>-->
+                                    <!--                                </ul>-->
+
+                                    <ul class="dropdown-menu sub-menu full-screen-menu row" role="menu" aria-labelledby="single-button">
+                                        <div class="container" layout="row" layout-align="space-around center">
+                                            <!--                                            <li flex layout-align="center center" class="prd-sub-menu" role="menuitem" ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat" ng-mouseenter="vm.getSelectedSubMenu($index)" ng-mouseleave="vm.getSelectedSubMenu($index)" ng-click="isCollapsed = true">-->
+                                            <li flex layout-align="center center" class="prd-sub-menu" role="menuitem" ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat" ng-click="vm.subCatisCollapsed=!vm.subCatisCollapsed">
+                                                <!--                                                <a ng-click="vm.getSelectedCategory(prdctNavSubCat.name)" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})">-->
+                                                <a class="list-group-item" data-toggle="collapse" ng-click="vm.getSelectedCategory(prdctNavSubCat.name)">
+                                                    <!--                                                                                                      <div layout="row">-->
+                                                    <!--                                                        <div flex>-->
+                                                    <img src="{{prdctNavSubCat.imgPath}}">
+
+                                                    <h3 class="md-subhead">{{prdctNavSubCat.name}}</h3>
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </div>-->
+                                                </a>
+                                                <br/>
+                                                <div class="dropdown-menu sub-menu">
+                                                    <span class="prd-nav-submenu">                                  
+                                                    <div collapse="vm.subCatisCollapsed">
+                                            <div class="well well-lg ">
+                                                <div  layout="row" layout-align="center center">
+                                                    <div flex ng-repeat="prdctNavSubSubCat in vm.productNavSubcategories[0]">
+                                                        <a href="#">
+                                                            {{prdctNavSubSubCat.name}}
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                                </span>
+                                                </div>
+
+                                            </li>
+                                            <!--                                            <li class="divider"></li>-->
+                                            <!--                                            <li role="menuitem"><a href="#">Veja toda a loja de {{prdctNavCat.name}}</a>-->
+                                            <!--                                            </li>-->
+                                        </div>
+
+
+
+
+                                    </ul>
+                                    <!--                                        </div>-->
+                                    <!--                                    </div>-->
+
+                                </li>
+                            </div>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</div>
+

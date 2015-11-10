@@ -153,7 +153,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             url: "/:category",
             views: {
                 "products@": {
-                    templateUrl: 'components/produtos/produtos.view.html',
+                    templateUrl: 'components/produtos/produtosLista.view.html',
                     controller: 'ProdutosCtrl as vm',
                     authenticate: false,
                     function($scope, category) {

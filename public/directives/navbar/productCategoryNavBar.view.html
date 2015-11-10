@@ -15,24 +15,89 @@
 
                         <ul class="nav navbar-nav prd-section-navbar">
                             <div layout="row" layout-align="center center">
-                                <li ng-repeat="prdctNavCat in vm.productNavCategories" dropdown is-open="isOpen" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false" dropdown on-toggle="toggled(open)">
-                                    <a class="dropdown-toggle" ng-disabled="disabled" ui-sref="app.produtos.section({section:prdctNavCat.name})" ng-mouseenter="vm.getSelectedProductSection(prdctNavCat.name)"> <span class="navbarIcons"><i class="material-icons">{{prdctNavCat.icon}}</i></span><span class="section-name">{{prdctNavCat.name}}</span></a>
+                                <li class="menu-large" ng-repeat="prdctNavCat in vm.productNavCategories" dropdown is-open="isOpen" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false" dropdown on-toggle="toggled(open)" auto-close="outsideClick">
+                                    <a class="dropdown-toggle" ng-disabled="disabled" ui-sref="app.produtos.section({section:prdctNavCat.name})" ng-mouseenter="vm.getSelectedProductSection(prdctNavCat.name)"> <span class="navbarIcons"><i class="material-icons">{{prdctNavCat.icon}}</i></span><span class="section-name">{{prdctNavCat.name}}</span>
+                                    </a>
 
                                     <!--                                <a ui-sref="app.produtos.section({section:prdctNavCat.name})" ng-mouseenter="vm.getSelectedProductSection(prdctNavCat.name)" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled"><span class="navbaIcons"><i class="material-icons">{{prdctNavCat.icon}}</i></span>{{prdctNavCat.name}}</a>-->
                                     <!--                                    </li>-->
                                     <!--                                </ul>-->
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-                                        <li role="menuitem" ng-repeat="prdctNavSubCat in vm.productNavSubcategories[$index]" ng-mouseenter="vm.getSelectedSubMenu($index)" ng-mouseleave="vm.getSelectedSubMenu($index)">
-                                            <a ng-click="vm.getSelectedCategory(prdctNavSubCat.name)" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})">
-                                                <img src="{{prdctNavSubCat.imgPath}}">
-                                                <span class="subcategory-name">{{prdctNavSubCat.name}}</span>
-                                            </a>
-                                        </li>
-                                         <li class="divider"></li>
-                                         <li role="menuitem"><a href="#">Mais sobre {{prdctNavCat.name}}</a></li>
-                                        
-                                    </ul>
 
+                                    <ul class="dropdown-menu full-screen-menu row" role="menu" aria-labelledby="single-button">
+                                        <div class="container" layout="row" layout-align="space-around center">
+                                            <!--                                            <li flex layout-align="center center" class="prd-sub-menu" role="menuitem" ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat" ng-mouseenter="vm.getSelectedSubMenu($index)" ng-mouseleave="vm.getSelectedSubMenu($index)" ng-click="isCollapsed = true">-->
+                                            <li flex layout-align="center center" class="prd-sub-menu" role="menuitem" ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat" ng-click="vm.collapseSubSubMenu($index,vm.subCatisCollapsed[$index])">
+                                                <!--                                                <a ng-click="vm.getSelectedCategory(prdctNavSubCat.name)" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})">-->
+                                                <a data-toggle="collapse" data-target="#sub-sub-menu-{{$index}}" ng-click="vm.getSelectedCategory(prdctNavSubCat.name)">
+
+                                                    <!--                                                                                                      <div layout="row">-->
+                                                    <!--                                                        <div flex>-->
+                                                    <img src="{{prdctNavSubCat.imgPath}}">
+
+                                                    <h3 class="md-subhead">{{prdctNavSubCat.name}}</h3>
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </div>-->
+                                                </a>
+                                                <!--
+                                                <div flex ng-repeat="subsubsection in vm.productNavCategories[$index].subcat[$index].subsubcat">
+                                                    <a href="#">
+                                                       {{subsubsection}}                                          
+                                                            </a>
+                                                </div>
+-->
+                                            </li>
+
+                                            <!--                                            <div class="colapse" id="sub-sub-menu" ng-repeat="prdctNavSubSubCat in vm.productNavSubcategories">-->
+                                            <!--                                                <div class=">-->
+
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
+
+                                        </div>
+                                        <!--                                        <div ng-repeat="prdctNavSubSubCat in vm.productNavSubcategories">-->
+                                        <!--                                            {{prdctNavSubSubCat}}-->
+                                        <!--                                            <div class="colapse prd-nav-submenu" id="sub-sub-menu" collapse="vm.subCatisCollapsed">-->
+                                        <!--                                            <div class="coll[0apse" ng-class="vm.isCollapsedSubSubMenu=in" id="sub-sub-menu-{{$index}}">-->
+                                        <!--                                            <div collapse="vm.subCatisCollapsed[$index]">-->
+                                        <!--
+                                        <div ng-repeat="(section, value) in vm.productNavSubcategories[$index]">Key: {{section}} value: {{value}}
+                                            <div ng-repeat="subsection in value">
+                                                <div collapse=vm.subCatisCollapsed[$index]>
+                                                    <div class="well well-lg">
+                                                        <div layout="row" layout-align="center center">
+                                                            <div flex ng-repeat="subsection in value[$index].itens">
+                                                                <a href="#">
+                                                       {{subsection}}                                          
+                                                            </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+-->
+
+
+
+                                        <div ng-repeat="(section, value) in vm.productNavCategories[$index].subcat">
+<!--                                            Key: {{section}} value: {{value}}-->
+                                            <!--                                            <div flex ng-repeat="(subsection, value) in value.subsubcat">-->
+                                            <!--                                                <h1>Index:{{$index}} {{value.name}}</h1>-->
+                                            <div collapse=vm.subCatisCollapsed[$index]>
+                                                <div class="well well-lg">
+                                                    <div layout="row" layout-align="center center">
+                                                        <div flex ng-repeat="(subsection, value) in value.subsubcat">
+                                                            <a href="#">
+                                                   {{value.name}}                                          
+                                                            </a>
+                                                            <img src="{{value.imgPath}}" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--                                            </div>-->
+                                        </div>
+                                    </ul>
                                 </li>
                             </div>
                         </ul>

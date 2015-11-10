@@ -214,6 +214,13 @@ Mude a estrela sem fundo para a estrela com fundo
   background-color: red;
   margin-top: 200px; }
 
+/* line 390, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.subcategory-name {
+  line-height: 18px;
+  font-weight: bold !important;
+  list-style: none;
+  text-decoration: none; }
+
 /***********************************************************
 Product page css
 ************************************************************/
@@ -292,32 +299,49 @@ Product page css
   color: aqua; }
 
 /******************************************************/
-/* line 549, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+/* line 542, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.prd-sub-menu {
+  display: inline-flex; }
+
+/* line 547, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
 .dropdown-toggle .section-name {
   display: block;
   text-align: center !important; }
 
-/* line 556, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+/* line 555, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
 .navbarIcons {
   display: block;
   text-align: center; }
 
-/* line 560, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+/* line 559, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
 .prd-section-menu {
   border-left: 1px solid red; }
 
-/* line 566, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+/* line 564, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
 #product-nav-subcategory li {
   border-left: 1px solid grey;
   min-width: 180px; }
-  /* line 570, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+  /* line 567, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
   #product-nav-subcategory li:nth-last-child(1) {
     border-right: 1px solid grey; }
 
-/* line 579, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
-.dropdown-menu {
-  min-height: 350px;
-  max-height: 350px;
-  min-width: 50%; }
+/* line 595, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.full-screen-menu {
+  width: 100% !important;
+  text-align: center;
+  padding: 5% 0 5%; }
+
+/* line 604, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.menu-large {
+  position: static !important; }
+
+/* line 608, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.prd-nav-submenu {
+  width: 100%;
+  display: block; }
+
+/* line 613, C:/webApp/ecommerceApp/public/assets/scss/style.scss */
+.teste {
+  margin-top: 8% !important; }
 
 /*# sourceMappingURL=style.css.map */
