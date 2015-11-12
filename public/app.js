@@ -128,7 +128,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             views: {
                 "products@": {
                     template: 'HUHUHUHUhHUH',
-//                    controller: 'ProdutosCtrl as vm',
+                    //                    controller: 'ProdutosCtrl as vm',
                     authenticate: false,
                     function($scope, section) {
                         //                        $scope.category = category;
@@ -215,20 +215,30 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         .state('app.signup', {
             url: "/signup",
-            templateUrl: 'components/signup/signup.view.html',
-            controller: 'SignupCtrl as vm'
-            //            template : '<h1>Funciona</h1>',
-
+            views: {
+                'products@': {
+                    templateUrl: 'components/signup/signup.view.html',
+                    controller: 'SignupCtrl as vm'
+                    //            template : '<h1>Funciona</h1>',
+                }
+            },
+            data: {
+                displayName: 'Dashboard'
+            }
         })
 
         .state('app.login', {
             url: "/login",
-            templateUrl: 'components/login/login.view.html',
-            controller: 'LoginCtrl as vm',
-            //            template : '<h1>Funciona</h1>',
-
-
-
+            views: {
+                'products@': {
+                    templateUrl: 'components/login/login.view.html',
+                    controller: 'LoginCtrl as vm',
+                    //            template : '<h1>Funciona</h1>',
+                }
+            },
+            data: {
+                displayName: 'Login'
+            }
         })
 
         .state('app.dashboard', {

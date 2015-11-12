@@ -48,26 +48,30 @@
 
 <div id="login" class="container">
 
-<!--    <div layout="row" layout-align="space-around center" layout-sm="column" layout-align-sm="space-around center">-->
-        <md-content layout-padding layout="row" layout-align="space-around center" layout-sm="column" layout-align-sm="space-around center">
-            <div flex="33" flex-sm="100">
-                <form name="vm.loginForm" ng-submit="vm.submitForm(vm.loginForm.$valid)" class="form-horizontal" role="form" novalidate>
+    <!--    <div layout="row" layout-align="space-around center" layout-sm="column" layout-align-sm="space-around center">-->
+    <md-content layout-padding layout="row" layout-align="space-around center" layout-sm="column" layout-align-sm="space-around center">
+        <div flex="50" flex-sm="100">
+            <form name="vm.loginForm" ng-submit="vm.submitForm(vm.loginForm.$valid)" class="form-horizontal" role="form" novalidate>
 
-                    <h3 class="md-display-1">Já tenho cadastro</h3>
-                    <div style="color:red">{{vm.loginFailMessage}}</div>
+                <div style="color:red">{{vm.loginFailMessage}}</div>
+                <div layout="column" layout-align="center center">
+                    <h4 class="md-title">Bem vindo, faça seu login</h4>
+                    <i class="material-icons md-48">account_circle</i>
+                </div>
+                <md-input-container>
+                    <label>E-mail</label>
+                    <input type="email" ng-model="vm.user.email" placeholder="E-mail" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Senha</label>
+                    <input type="password" ng-model="vm.user.password" required>
+                </md-input-container>
+                <!--                <label>Esqueci minha senha</label>-->
+                <md-button class="md-raised md-primary" type="submit" ng-click="vm.loginLocal(vm.user)">Entrar</md-button>
+            </form>
+        </div>
 
-                    <md-input-container>
-                        <label>E-mail</label>
-                        <input type="email" ng-model="vm.user.email" placeholder="E-mail" required>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Senha</label>
-                        <input type="password" ng-model="vm.user.password" required>
-                    </md-input-container>
-                    <md-button class="md-raised md-primary" type="submit" ng-click="vm.loginLocal(vm.user)">Entrar</md-button>
-                </form>
-            </div>
-
+        <!--
             <div flex="33" flex-sm="100">
                 <h3 class="md-display-1">Não tenho cadastro</h3>
                 <p>Crie o seu cadastro e aproveite vantagens que incluem:</p>
@@ -81,8 +85,9 @@
                 <md-button class="md-raised md-primary">Criar Cadastro</md-button>
 
             </div>
-        </md-content>
-<!--    </div>-->
+-->
+    </md-content>
+    <!--    </div>-->
 </div>
 
 

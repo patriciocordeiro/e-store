@@ -1,6 +1,6 @@
 <div id="nav-bar-menu">
     <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl as vm">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -9,20 +9,20 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                    <img src="../../assets/img/logo/sonyLogo.png">
+                    <img src="../../assets/img/logo/sonyLogo2.png">
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul id="menu" class="nav navbar-nav navbar-right">
-                    <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>
-                    </li>
-                    <li ng-hide="loggedIn"><a ui-sref="app.login">login</a>
+<!--                    <li><a ng-model="productCategory.category" ui-sref="app.home">Home</a>-->
+<!--                    </li>-->
+                    <li ng-hide="loggedIn"><a ui-sref="app.login">Login</a>
                     </li>
                     <li><a ui-sref="app.dashboard">Minha Conta</a>
                     </li>
                     <li><a ui-sref="app.dashboard">Meus Pedidos</a>
                     </li>
-                    <li ng-hide="loggedIn"><a ui-sref="app.signup"> cadastre-se</a>
+                    <li ng-hide="loggedIn"><a ui-sref="app.signup">Cadastre-se</a>
                     </li>
                     <li ng-hide="!loggedIn"><a><span style="color:red">Olá {{loggedUser}}</span></a>
                     </li>
