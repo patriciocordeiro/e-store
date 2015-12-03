@@ -1,0 +1,1168 @@
+/* line 5, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 6, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 7, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 8, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 9, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 10, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 11, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 12, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 13, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 14, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 15, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 16, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+h1,
+h2,
+h3,
+p,
+a {
+  font-family: SST, 'SST W01 Roman', Arial, sans-serif !important;
+  color: #30343f !important; }
+
+/* line 10, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 11, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 13, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 15, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 17, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 19, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 21, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 23, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 25, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 27, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 29, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 31, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.material-icons.md-18 {
+  font-size: 18px; }
+
+/* line 11, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 15, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 18, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 21, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 24, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 27, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 30, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 33, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 36, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 39, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 42, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 45, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.material-icons.md-24 {
+  font-size: 24px; }
+
+/* line 12, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 19, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 23, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 27, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 31, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 35, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 39, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 43, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 47, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 51, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 55, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 59, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.material-icons.md-36 {
+  font-size: 36px; }
+
+/* line 13, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 23, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 28, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 33, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 38, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 43, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 48, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 53, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 58, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 63, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 68, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 73, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.material-icons.md-48 {
+  font-size: 48px; }
+
+/* line 14, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 27, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 33, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 39, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 45, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 51, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 57, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 63, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 69, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 75, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 81, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 87, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.material-icons.md-48 {
+  font-size: 60px; }
+
+/* line 2, C:/Users/Asus/Google Drive/Home Solutions/projetos/e-commerce/app/css/style.scss */
+/* line 5, C:/Users/Asus/Google Drive/Home Solutions/projetos/e-commerce/app/css/style.scss */
+/* line 31, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 33, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 40, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 47, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 54, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 61, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 68, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 75, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 82, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 89, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 96, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 103, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.asterix {
+  color: red; }
+
+/*set a border on the images to prevent shifting*/
+/*Change the colour*
+    .active img {
+        border: 2px solid #333 !important;} - See more at: http://www.elevateweb.co.uk/image-zoom/examples#sthash.KH8Wervt.dpuf
+        /*# sourceMappingURL=style.css.map */
+/*----------------------------------------------
+RATING STAR CUSTOM
+----------------------------------------------*/
+/* line 52, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 45, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 53, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 61, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 69, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 77, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 85, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 93, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 101, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 109, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 117, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 125, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.rating-star {
+  color: #dadde3 !important; }
+
+/* line 54, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 48, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 58, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 67, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 76, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 85, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 94, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 103, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 112, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 121, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 130, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 139, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.rating-star.fa-star {
+  color: #e8112d !important; }
+
+/*------------------------------------------------------/
+Mude a estrela sem fundo para a estrela com fundo
+-------------------------------------------------------*/
+/* line 63, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 55, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 66, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 76, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 86, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 96, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 106, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 116, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 126, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 136, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 146, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 156, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.fa-star-o:before {
+  content: "\f005" !important; }
+
+/* line 92, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 59, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 71, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 82, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 93, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 104, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 115, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 126, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 137, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 148, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 159, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 170, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.rating-resumo {
+  margin-bottom: 6%; }
+
+/* line 94, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 62, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 76, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 88, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 100, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 112, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 124, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 136, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 148, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 160, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 172, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 184, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.rating-resumo .rating-stars-media {
+  margin-top: 2%;
+  margin-bottom: 2%; }
+
+/* line 97, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 66, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 82, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 95, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 108, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 121, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 134, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 147, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 160, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 173, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 186, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 199, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.rating-resumo .rating-stars-media .rating-total-text {
+  padding-top: 1%; }
+
+/* line 102, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 70, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 87, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 101, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 115, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 129, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 143, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 157, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 171, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 185, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 199, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 213, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.rating-total-header {
+  font-size: 14px;
+  font-weight: bold; }
+
+/* line 106, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 75, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 93, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 108, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 123, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 138, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 153, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 168, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 183, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 198, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 213, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 228, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.star-bar-value {
+  margin-top: 0 !important; }
+
+/* line 107, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 78, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 98, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 114, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 130, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 146, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 162, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 178, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 194, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 210, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 226, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 242, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.star-bar-value li {
+  height: 16px !important;
+  margin-bottom: 7px !important;
+  font-size: 12px;
+  line-height: 20px !important; }
+
+/* line 118, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 85, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 106, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 123, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 140, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 157, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 174, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 191, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 208, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 225, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 242, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 259, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.progress {
+  width: 80%;
+  margin-top: 7px;
+  height: 8px !important;
+  margin-bottom: 15px !important;
+  background-color: #dadde3 !important;
+  border-radius: 0 !important; }
+
+/* line 125, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 93, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 116, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 134, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 152, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 170, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 188, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 206, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 224, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 242, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 260, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 278, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.progress .progress-bar {
+  background-color: #e8112d; }
+
+/* line 137, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 97, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 121, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 140, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 159, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 178, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 197, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 216, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 235, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 254, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 273, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 292, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.my-btn {
+  background-color: #1058A2;
+  color: white; }
+
+/* line 141, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 102, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 127, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 147, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 167, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 187, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 207, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 227, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 247, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 267, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 287, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 307, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.btn-signup-btn {
+  background-color: #1058A2;
+  color: white; }
+
+/* line 147, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 107, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 133, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 154, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 175, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 196, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 217, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 238, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 259, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 280, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 301, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 322, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.page-header {
+  margin-top: 18px;
+  padding-bottom: 18px; }
+
+/* line 179, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 112, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 139, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 161, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 183, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 205, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 227, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 249, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 271, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 293, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 315, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 337, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#nav-bar-menu .navbar-default {
+  background-color: #000000 !important; }
+
+/* line 181, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 115, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 144, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 167, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 190, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 213, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 236, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 259, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 282, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 305, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 328, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 351, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#nav-bar-menu .navbar-default a {
+  font-size: 11px !important;
+  font-weight: bold;
+  color: #eaedf4 !important; }
+
+/* line 190, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 121, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 151, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 175, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 199, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 223, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 247, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 271, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 295, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 319, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 343, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 367, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-information .nav-tabs.nav-justified li.active {
+  border-top: solid 5px #5787f5; }
+
+/* line 192, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 124, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 156, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 181, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 206, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 231, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 256, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 281, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 306, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 331, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 356, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 381, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-information .nav-tabs.nav-justified li.active a {
+  background-color: white !important; }
+
+/* line 195, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 127, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 161, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 187, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 213, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 239, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 265, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 291, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 317, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 343, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 369, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 395, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-information .nav-tabs.nav-justified li.active a:after {
+  content: '';
+  position: absolute;
+  left: 46%;
+  top: -1px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid #5787f5; }
+
+/* line 217, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 139, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 174, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 201, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 228, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 255, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 282, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 309, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 336, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 363, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 390, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 417, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-information .nav-tabs.nav-justified li {
+  padding: 0 2px !important; }
+
+/* line 219, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 142, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 179, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 207, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 235, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 263, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 291, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 319, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 347, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 375, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 403, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 431, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-information .nav-tabs.nav-justified li a {
+  background-color: #e8edf4;
+  border-radius: 0px;
+  padding: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+/* line 296, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 151, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 189, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 218, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 247, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 276, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 305, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 334, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 363, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 392, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 421, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 450, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao {
+  padding-top: 50px; }
+
+/* line 299, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 154, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 194, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 224, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 254, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 284, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 314, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 344, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 374, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 404, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 434, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 464, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .avaliacao-recomendacao span {
+  background-color: aliceblue;
+  padding: 10px 4px !important;
+  margin-left: 0;
+  font-weight: bold;
+  font-size: 12px; }
+
+/* line 307, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 161, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 203, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 234, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 265, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 296, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 327, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 358, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 389, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 420, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 451, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 482, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .avaliacao-nome {
+  margin: 6% 0;
+  text-decoration: underline;
+  text-transform: capitalize; }
+
+/* line 313, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 166, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 210, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 242, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 274, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 306, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 338, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 370, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 402, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 434, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 466, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 498, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .avaliacao-comment-icon .avaliacao-comment-icon-text {
+  text-decoration: underline;
+  color: #4571EC; }
+
+/* line 317, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 170, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 216, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 249, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 282, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 315, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 348, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 381, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 414, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 447, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 480, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 513, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .avaliacao-comment-icon .glyphicon {
+  color: #4571EC; }
+
+/* line 321, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 173, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 221, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 255, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 289, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 323, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 357, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 391, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 425, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 459, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 493, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 527, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao h2 {
+  padding-top: 1%;
+  padding-bottom: 2%; }
+
+/* line 325, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 177, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 227, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 262, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 297, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 332, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 367, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 402, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 437, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 472, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 507, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 542, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao p {
+  font-size: 14px;
+  line-height: 1.6em; }
+
+/* line 329, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 181, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 233, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 269, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 305, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 341, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 377, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 413, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 449, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 485, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 521, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 557, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .avaliacao-recomend-text {
+  margin-bottom: 2%; }
+
+/* line 332, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 184, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 238, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 275, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 312, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 349, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 386, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 423, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 460, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 497, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 534, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 571, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .avaliacao-titulo {
+  margin-bottom: 2%; }
+
+/* line 334, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 187, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 243, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 281, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 319, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 357, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 395, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 433, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 471, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 509, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 547, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 585, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .avaliacao-titulo .avaliacao-titulo-header {
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 0; }
+
+/* line 339, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 192, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 250, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 289, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 328, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 367, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 406, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 445, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 484, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 523, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 562, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 601, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .avaliacao-titulo .avaliacao-titulo-data {
+  font-size: 12px;
+  margin-top: 0;
+  padding-top: 0;
+  font-weight: bold;
+  color: #777; }
+
+/* line 347, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 199, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 259, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 299, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 339, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 379, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 419, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 459, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 499, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 539, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 579, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 619, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .list-group {
+  margin-bottom: 0; }
+
+/* line 349, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 202, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 264, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 305, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 346, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 387, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 428, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 469, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 510, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 551, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 592, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 633, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#tab-avaliacao .list-group .list-group-item {
+  padding: 3% 0;
+  border-left: none !important;
+  border-right: none !important; }
+
+/* line 356, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 208, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 271, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 313, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 355, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 397, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 439, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 481, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 523, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 565, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 607, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 649, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#prdct-category-nav {
+  background-color: red;
+  margin-top: 200px; }
+
+/* line 400, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 213, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 277, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 320, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 363, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 406, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 449, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 492, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 535, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 578, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 621, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 664, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.subcategory-name {
+  line-height: 18px;
+  font-weight: bold !important;
+  list-style: none;
+  text-decoration: none; }
+
+/***********************************************************
+Product page css
+************************************************************/
+/* line 454, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 223, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 288, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 332, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 376, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 420, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 464, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 508, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 552, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 596, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 640, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 684, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.btn-title {
+  text-transform: capitalize; }
+
+/* line 457, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 227, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 293, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 338, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 383, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 428, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 473, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 518, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 563, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 608, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 653, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 698, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.btn-toggle-left-nav {
+  -ms-transform: rotate(90deg);
+  /* IE 9 */
+  -webkit-transform: rotate(90deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+  margin-top: 50% !important;
+  margin-left: 0% !important;
+  padding-left: 0 !important;
+  position: fixed !important;
+  z-index: 20 !important; }
+
+/* line 470, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 240, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 307, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 353, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 399, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 445, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 491, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 537, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 583, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 629, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 675, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 721, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.product-image {
+  text-align: center;
+  border: 1px solid #dadcdf; }
+
+/* line 478, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 244, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 313, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 360, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 407, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 454, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 501, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 548, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 595, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 642, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 689, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 736, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.product-image img {
+  max-width: 100%; }
+
+/* line 482, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 248, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 318, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 366, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 414, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 462, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 510, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 558, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 606, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 654, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 702, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 750, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.btn-add-basket {
+  font-size: 12px !important;
+  border-radius: 0;
+  color: white;
+  background-color: #ED4E24;
+  font-weight: bold; }
+
+/* line 489, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 256, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 327, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 376, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 425, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 474, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 523, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 572, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 621, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 670, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 719, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 768, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.mycol {
+  margin-bottom: 3%; }
+
+/* line 500, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 260, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 332, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 382, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 432, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 482, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 532, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 582, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 632, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 682, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 732, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 782, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-page .produtos-show-area .product-description {
+  padding-left: 10px; }
+
+/* line 503, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 263, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 337, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 388, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 439, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 490, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 541, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 592, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 643, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 694, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 745, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 796, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-page .produtos-show-area .product-description h5 {
+  font-weight: bold !important;
+  text-transform: capitalize; }
+
+/* line 510, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 268, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 343, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 395, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 447, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 499, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 551, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 603, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 655, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 707, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 759, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 811, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-page .produtos-show-area .filter-heading {
+  font-size: 12px !important; }
+
+/* line 515, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 272, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 348, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 401, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 454, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 507, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 560, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 613, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 666, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 719, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 772, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 825, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-page .product-filter-area .btn {
+  width: 100%;
+  margin-bottom: 0;
+  background-color: #e8edf4;
+  border-radius: 0;
+  border: none;
+  font-weight: bold; }
+
+/* line 523, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 281, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 358, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 412, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 466, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 520, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 574, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 628, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 682, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 736, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 790, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 844, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-page .product-filter-area .checkbox {
+  margin-top: 0 !important; }
+
+/* line 526, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 285, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 363, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 418, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 473, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 528, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 583, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 638, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 693, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 748, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 803, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 858, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-page .product-filter-area ul {
+  color: #5787f5;
+  border-radius: 0 !important; }
+
+/* line 529, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 289, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 369, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 425, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 481, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 537, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 593, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 649, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 705, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 761, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 817, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 873, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-page .product-filter-area ul li {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid #dadcdf; }
+
+/* line 540, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 296, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 377, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 434, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 491, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 548, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 605, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 662, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 719, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 776, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 833, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 890, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.prd-content {
+  display: block;
+  color: aqua; }
+
+/******************************************************/
+/* line 552, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 302, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 384, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 442, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 500, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 558, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 616, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 674, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 732, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 790, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 848, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 906, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.prd-sub-menu {
+  display: inline-flex; }
+
+/* line 557, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 306, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 389, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 448, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 507, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 566, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 625, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 684, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 743, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 802, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 861, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 920, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.dropdown-toggle .section-name {
+  display: block;
+  text-align: center !important; }
+
+/* line 565, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 311, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 395, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 455, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 515, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 575, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 635, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 695, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 755, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 815, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 875, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 935, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.navbarIcons {
+  display: block;
+  text-align: center; }
+
+/* line 569, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 316, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 401, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 462, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 523, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 584, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 645, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 706, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 767, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 828, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 889, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 950, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.prd-section-menu {
+  border-left: 1px solid red; }
+
+/* line 575, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 320, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 406, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 468, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 530, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 592, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 654, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 716, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 778, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 840, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 902, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 964, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-nav-subcategory li {
+  border-left: 1px solid grey;
+  min-width: 180px; }
+
+/* line 579, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 324, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 412, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 475, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 538, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 601, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 664, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 727, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 790, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 853, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 916, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 979, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-nav-subcategory li:nth-last-child(1) {
+  border-right: 1px solid grey; }
+
+/* line 588, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 328, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 417, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 481, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 545, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 609, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 673, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 737, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 801, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 865, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 929, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 993, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.dropdown-menu {
+  min-height: 350px;
+  max-height: 350px;
+  min-width: 50%; }
+
+/* line 595, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 334, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 424, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 489, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 554, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 619, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 684, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 749, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 814, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 879, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 944, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 1009, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-nav-subcategory li {
+  border-left: 1px solid grey;
+  min-width: 180px; }
+
+/* line 598, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 338, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 430, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 496, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 562, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 628, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 694, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 760, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 826, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 892, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 958, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 1024, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+#product-nav-subcategory li:nth-last-child(1) {
+  border-right: 1px solid grey; }
+
+/* line 626, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 342, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 435, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 502, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 569, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 636, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 703, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 770, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 837, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 904, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 971, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 1038, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.full-screen-menu {
+  width: 100% !important;
+  text-align: center;
+  padding: 5% 0 5%; }
+
+/* line 635, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 348, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 442, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 510, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 578, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 646, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 714, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 782, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 850, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 918, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 986, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 1054, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.menu-large {
+  position: static !important; }
+
+/* line 639, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 352, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 447, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 516, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 585, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 654, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 723, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 792, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 861, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 930, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 999, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 1068, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.prd-nav-submenu {
+  width: 100%;
+  display: block; }
+
+/* line 644, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 357, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 453, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 523, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 593, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 663, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 733, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 803, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 873, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 943, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 1013, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+/* line 1083, C:/webApp/ecommerceApp/public/assets/scss/style.scss.old */
+.teste {
+  margin-top: 8% !important; }
+
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+/*# sourceMappingURL=style.scss.old.map */
+
+/*# sourceMappingURL=style.scss.old.map */

@@ -11,14 +11,14 @@
     "angular-cookies": "latest",
     "angular-local-storage": "latest",
     "lodash": "latest",
-    "angular-validation-match": "~1.5.1",
-    "angular-ui-mask": "~1.2.0",
+    "angular-validation-match": "*",
+    "angular-ui-mask": "*",
     "elevatezoom": "*",
-    "bootstrap-star-rating": "~3.5.3",
-    "angular-rateit": "~2.0.3",
-    "awesome-rating": "~1.0.0",
+    "bootstrap-star-rating": "*",
+    "angular-rateit": "*",
+    "awesome-rating": "*",
     "angular-material": "*",
-    "angular-breadcrumb": "~0.4.1",
-    "angular-utils-ui-breadcrumbs": "~0.2.1"
+    "angular-breadcrumb": "*",
+    "angular-utils-ui-breadcrumbs": "*"
   }
 }
