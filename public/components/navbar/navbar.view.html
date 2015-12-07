@@ -1,56 +1,70 @@
-<div>
-
-    <md-toolbar class="md-accent">
+<div layout="row" layout-wrap class="my-top-nav-bar">
+    <md-toolbar class="my-md-menu-top">
         <div class="container">
-            <div layout="row">
-                <div flex="50">
-                    <ul layout="row" layout-align="end center">
-                        <md-button><a ui-sref="app.login">Login</a>
-                        </md-button>
-
-                        <li ng-hide="loggedIn"><a ui-sref="app.login">Login</a>
-                        </li>
-                        <li><a ui-sref="app.dashboard">Minha Conta</a>
-                        </li>
-                        <li><a ui-sref="app.dashboard">Meus Pedidos</a>
-                        </li>
-                        <li ng-hide="loggedIn"><a ui-sref="app.signup">Cadastre-se</a>
-                        </li>
-                        <li ng-hide="!loggedIn"><a href="#" ng-click="logOut()">Sair</a>
-                        </li>
-                    </ul>
-                </div>
-                <div flex="50">
-                    <md-menu>
-                        <!-- Trigger element is a md-button with an icon -->
-                        <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">sdadad
-                            <md-icon md-svg-icon="call:phone"></md-icon>
-                        </md-button>
-                        <md-menu-content>
-                            <md-menu-item>
-                                <md-button ng-click="doSomething()">Do Something</md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
-
-                    <md-menu>
-                        <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open some menu">
-                            <md-icon md-menu-origin md-svg-icon="call:phone"></md-icon>
-                        </md-button>
-                        <md-menu-content>
-                            <md-menu-item>
-                                <md-button ng-click="doSomething()" aria-label="Do something">
-                                    <md-icon md-menu-align-target md-svg-icon="call:phone"></md-icon>
-                                    Do Something
-                                </md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
+            <div class="md-toolbar-tools" layout="row">
+                <div flex layout="row" layout-align="end center">
+                    <md-button ui-sref="app.login">Login
+                    </md-button>
+                    <md-button ui-sref="app.dashboard">Meus Pedidos
+                    </md-button>
+                    <md-button ui-sref="app.signup">Cadastre-se
+                    </md-button>
+                    <md-button ng-hide="!loggedIn" ui-sref="logOut()">Sair
+                    </md-button>
                 </div>
             </div>
         </div>
-
     </md-toolbar>
     <md-toolbar>
+        <div layout="row" layout-align="center center" layout-wrap>
+            <div flex="66">
+                <div class="md-toolbar-tools">
+                    <div flex layout="row" layout-align="start center">
+                        <md-menu-bar>
+                            <md-menu>
+                                <md-button ng-click="$mdOpenMenu()">
+                                    File
+                                </md-button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-menu>
+                                            <md-button ng-click="ctrl.sampleAction('share', $event)">
+                                                Componentes Passivos
+                                            </md-button>
+                                            <md-menu-content>
+                                                <md-menu-iten>
+                                                    <md-button>
+                                                        Resistor
+                                                    </md-button>
+                                                </md-menu-iten>
+                                                <md-menu-iten>
+                                                    <md-button>
+                                                        Capacitor
+                                                    </md-button>
+                                                </md-menu-iten>
+                                            </md-menu-content>
+                                        </md-menu>
+                                    </md-menu-item>
+                                    <md-menu-divider></md-menu-divider>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-bar>
+                        <md-button ui-sref="^">
+                            <img src="../../assets/img/logo/sonyLogo2.png">
+                        </md-button>
+                        <md-button ui-sref="app.produtos">Produtos
+                        </md-button>
+                        <md-button ui-sref="app.dashboard">Kits
+                        </md-button>
+                        <md-button ui-sref="app.signup">Universitários
+                        </md-button>
+                        <md-button ui-sref="app.signup">Laboratórios
+                        </md-button>
+                        <md-button ui-sref="app.signup">Cursos
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </md-toolbar>
 </div>

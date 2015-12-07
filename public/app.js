@@ -1,5 +1,5 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs'])
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs','md.data.table'])
     .run(function($rootScope, $state, authentication, $cookies, localStorageService) {
         console.log('My $rootScope', $rootScope)
         //Check if user is loggedin (cookies)
@@ -88,7 +88,8 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 views: {
                     "products@": {
                         templateUrl: 'components/home/home.view.html',
-                        controller: 'HomeCtrl',
+//                        controller: 'HomeCtrl',
+                        controller: 'ProdutosCtrl as vm', //apagar qdo terminar o teste
                     }
                 },
                 data: {

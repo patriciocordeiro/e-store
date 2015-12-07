@@ -19,6 +19,7 @@
     "awesome-rating": "*",
     "angular-material": "*",
     "angular-breadcrumb": "*",
-    "angular-utils-ui-breadcrumbs": "*"
+    "angular-utils-ui-breadcrumbs": "*",
+    "angular-material-data-table": "~0.8.14"
   }
 }

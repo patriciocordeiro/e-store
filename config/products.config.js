@@ -12,7 +12,8 @@ exports.category = function(req, res, next) {
         .limit(display.maxShowItem)
         .exec(function(err, data) {
             if (err) return err;
-            res.json(data)
+//        console.log(data);
+            res.json(data);
         });
 };
 

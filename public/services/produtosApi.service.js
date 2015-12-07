@@ -17,7 +17,8 @@ angular.module('myApp').service('produtosApi', ['httpService',
 
         this.getDatabYCatgory = function(query, category, callback) {
             httpService.save({
-                categoria: category
+                //                categoria: category
+                categoria: 'tv' //apenas para teste. remover e colodar o acima
                 //                tipo_filtro: 'filtro_comum'
             }, query).$promise.then(
                 function(data) {
@@ -37,6 +38,16 @@ angular.module('myApp').service('produtosApi', ['httpService',
                 //                tipo_filtro: 'filtro_comum'
             }, query).$promise.then(function(data) {
                 //                data.abc = true;
+                return callback(data);
+            }, function(error) {
+                console.log(error);
+                return (error);
+            });
+
+        };
+        //Get all products
+        this.prdGetAll = function(query, callback) {
+            httpService.save({}, query).$promise.then(function(data) {
                 return callback(data);
             }, function(error) {
                 console.log(error);

@@ -1,14 +1,29 @@
 //colors
-$indigo: #3F51B5;
-$light_bue:#03A9F4;
-#nav-bar-menu {
-    .navbar-default {
-         height: 80px;
-        background-color: $indigo !important;
-        a {
-            font-size: 15px !important;
-            font-weight: bold;
-            color: #eaedf4 !important;
-        }
+$indigo:#3F51B5;
+ $light_bue:#03A9F4;
+ .my-md-menu-top {
+    max-height: 20px !important;
+    background-color: #fff9f9 !important;
+    .md-button {
+        color: #3F79C2 !important;
+        text-transform: capitalize;
     }
+}
+#my-breadcrumb {
+    font-size: 12px;
+}
+//Product page
+table,
+th,
+td {
+//    border: 1px solid grey;
+//    border-collapse: collapse;
+//    padding: 5px;
+    text-align: center;
+}
+table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff;
 }

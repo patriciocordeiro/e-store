@@ -20,7 +20,7 @@ var User = require('./config/user.config')
 var database = require('./config/database.config');
 //connect to mongo database
 //connect to databas
-mongoose.connect('mongodb://localhost/ecommerce');
+mongoose.connect(database.url);
 //check if connected
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -48,8 +48,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Passport set up
-
-app.use(session({secret: 'olamilepatricioeyasmincordeiro', saveUninitialized:false}))
+app.use(session({secret: 'olamilepatricioeyasmincordeiro',resave:true, saveUninitialized:false}))
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login sessions
 require('./auth/passport.auth')(passport);

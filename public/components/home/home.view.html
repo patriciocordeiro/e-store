@@ -1,20 +1,70 @@
-<div class="container">
-    <div class="row">
-        <h1 style="margin-top:200px">This is home</h1>
-        
-<!--        <input type="text" ng-model="greeting.message" />-->
+<div>
 
-<!--
-        <div ng-class="greeting.message">
-            {{greeting.message}}
-        </div>
--->
+    <md-data-table-toolbar>
+        <h2 class="md-title">Nutrition</h2>
+    </md-data-table-toolbar>
 
-        <!--
-        <div class="col-md-4" ng-repeat="produto in produtos">
-            <h3>{{produto.caracteristicas}} {{produto.categoria}} {{produto.tamanho_tela}}" {{produto.frequencia}}  {{produto.marca}}                                     </h3>
-            <h1 style="color:red">R$ {{produto.preco}}</h1>
-        </div>
--->
-    </div>
+    <md-data-table-container>
+        <table md-data-table md-row-select="selected" md-progress="deferred">
+            <thead md-order="query.order" md-trigger="onOrderChange">
+                <tr>
+                    <th name="Imagen"></th>
+                    <th numeric name="No. ref. da M&P"></th>
+                    <th numeric name="No ref. do fabricante"></th>
+                    <th name="Descricao"></th>
+                    <th name="Ficha Técnica"></th>
+                    <th numeric name="Disponibilidade"></th>
+                    <th numeric name="Preço Unit"></th>
+                    <th numeric name="Quantidade"></th>
+                    <th name="Acabamento"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr md-auto-select ng-repeat="products in vm.prd">
+                    <td>
+                        <div class="product-image">
+                            <img src="../../assets/img/resistor/resistor.png">
+                        </div>
+                    </td>
+                    <td>
+                        <md-button ui-sref="#">{{products.ref_PM}}</md-button>
+                    </td>
+                    <!--No Referência da M&P-->
+                    <td>
+                        <md-button ui-sref="#">{{products.ref_fabricante}}</md-button>
+                    </td>
+                    <!--No Referência do fabricante-->
+                    <td>Condensadores de tântalo - revestimento sólido de SMD 10uF, 16.0V, +/-20% -55C +125C</td>
+                    <!--Descricao-->
+                    <td>PDF</td>
+                    <!--Ficha Técnica-->
+                    <td>{{products.disponibilidade}}<span style="display:block">Em estoque</span>
+                    </td>
+                    <!--Disponibilidade-->
+                    <td>R$ {{products.preco}}</td>
+                    <!--Preços-->
+                    <!--Quantidade-->
+                    <td>
+                        <form>
+                            <!--                        <md-input-container flex>-->
+                            <input type="text   " value="1" size="4" maxlength="3">
+                            <!--                        </md-input-container>-->
+                            <md-button class="md-warn md-raised">
+                                Comprar</md-button>
+                        </form>
+                    </td>
+                    <td>{{products.acabamento}}</td>
+                    <!--Estilo de acabamento-->
+
+                    <td>{{products.resistencia}} R</td>
+                    <td>{{products.potencia}} W</td>
+                    <td>{{products.toleranncia}} %</td>
+                </tr>
+            </tbody>
+        </table>
+    </md-data-table-container>
+
+    <md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{desserts.total}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+
+
 </div>

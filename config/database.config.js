@@ -1,4 +1,4 @@
 'use strict'
 module.exports={
-    url:'mongodb://localhost/ecommerce'
+    url:'mongodb://localhost/pmeletronicos'
 }

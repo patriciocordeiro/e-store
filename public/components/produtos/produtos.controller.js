@@ -8,7 +8,8 @@
     ]);
 
     function ProdutosCtrl($scope, $rootScope, $cookies, httpService, produtosApi, productCategory, httpServiceAvaliacao, modalService, myFilters, ratingService, localStorageService) {
-        //initialization---------------- 
+        //initialization----------------
+        console.log("Inicializando o produtos controller");
         var vm = this;
         var filterRange; /*Total de filtros*/
         var maxNumOfItens; // Max number of retuned itens from the server
@@ -60,8 +61,10 @@
                 orderBy: vm.products.orderBy
             }
             query.categoria = $scope.productsCategory.category;
-            //This is loaded on page load
+
+            /*=======================**This is loaded on*==============================*/
             produtosApi.getDatabYCatgory([query, display], query.categoria, function(data) {
+                console.log("Entrei");
                 vm.productsByCategory = data;
                 maxNumOfItens = vm.productsByCategory.length;
                 vm.myFiltersMarca = myFilters.revomeDuplicates(vm.productsByCategory)
@@ -79,6 +82,14 @@
             //Salve os parametros nos cookies
             $cookies.put('produtos', [query.categoria, display.maxShowItem, display.orderBy]);
         };
+
+        produtosApi.prdGetAll({}, function(data) {
+            console.log("obj");
+
+            vm.prd = data;
+            console.log(data);
+        });
+        //======================================================================================        
         /*
          ************************************************
           watch for product category change

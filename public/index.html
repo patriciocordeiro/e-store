@@ -77,6 +77,8 @@
     <link rel="stylesheet" href="lib/angular-rateit/dist/ng-rateit.css" />
     <link rel="stylesheet" href="lib/awesome-rating/dist/awesomeRating.css" />
     <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+    <link rel="stylesheet" href="lib/angular-material-data-table/dist/md-data-table.min.css">
+    <script type="text/javascript" src="lib/angular-material-data-table/dist/md-data-table.min.js"></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -94,7 +96,7 @@
     <my-bootstrap-nav-bar>
     </my-bootstrap-nav-bar>
 
-<!--
+    <!--
     <div class="row" style="margin-top:5%">
         <div class="col-lg-6 col-lg-offset-3">
             <div class="input-group">
@@ -112,19 +114,20 @@
         </div>
     </div>
 -->
-<!--    <product-category-nav-bar></product-category-nav-bar>-->
-    <h4 class="md-title">
-<!--         <div ncy-breadcrumb></div>-->
-        <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy"  template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
-
-    </h4>
+    <!--    <product-category-nav-bar></product-category-nav-bar>-->
+    <div id="my-breadcrumb">
+        <!--         <div ncy-breadcrumb></div>-->
+        <div layout="column">
+            <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+        </div>
+    </div>
 
     <ui-view></ui-view>
     <!--    <div ui-view="content"></div>-->
     <div ui-view="products"></div>
     <div ui-view="dashboard"></div>
     <div ui-view="productsDetail"></div>
-<!--
+    <!--
     <div ui-view="email"></div>
     <div ui-view="password"></div>
 -->
