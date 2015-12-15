@@ -25,4 +25,15 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
   background-color: #ffffff; }
 
+/*Product detail*/
+/* line 34, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+.prd-detail-image {
+  text-align: center;
+  vertical-align: middle; }
+  /* line 37, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  .prd-detail-image img {
+    max-width: 25%; }
+
+/*-----------------------------------------------------*/
+
 /*# sourceMappingURL=style.css.map */

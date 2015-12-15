@@ -6,52 +6,27 @@
 
 
         var vm = this;
-        // for open navigation tab on mouseover
-        //        $scope.isTabActive = false;
-
-        //        vm.productNavCategories = [{
-        //            name: 'Celular & Tablet',
-        //            icon:'tablet',
-        //        }, {
-        //            name: 'Tv & Video',
-        //            icon:'tv',
-        //        }, {
-        //            name: 'Audio & Home Theater',
-        //            icon:'theaters',
-        //        }, {
-        //            name: 'Cameras Digitais',
-        //            icon:'photo_camera',
-        //        }, {
-        //            name: 'Cameras de Vídeo',
-        //            icon:'videocam',
-        //        }, {
-        //            name: 'Vídeo Games',
-        //            icon:'games',
-        //        },{ 
-        //            name: 'Informática',
-        //            icon:'laptop_mac'
-        //        }];
-        //        
+ 
         var imgProductNavFolder = '../../assets/img/productNavBarSection/productsNavBarSubsectionImg/';
 
         vm.productNavCategories = [{
-            name: 'Eletrônicos',
+            name: 'Componentes Passivos',
             icon: 'tv',
             subcat: [{
-                name: 'Celulares & Tablets',
+                name: 'Resistores',
                 imgPath: imgProductNavFolder + 'eletronicos/' + 'CelularTablet.png',
                 subsubcat: [{
                     imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navTablet.png',
-                    name: 'tablet'
+                    name: 'Capacitores'
                 }, {
                     imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navCelular.png',
-                    name: 'dual chip'
+                    name: 'Indutores'
                 }, {
                     imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navIphone.png',
                     name: 'iphone'
                 }]
             }, {
-                name: 'Cameras',
+                name: 'Capacitores',
                 imgPath: imgProductNavFolder + 'eletronicos/' + 'CameraFotoVideo.png',
                 subsubcat: [{
                     imgPath: imgProductNavFolder + 'eletronicos/' + 'subsection/' + 'navCam1.png',
@@ -378,80 +353,6 @@
             }]
 
         }];
-        //
-        //        vm.productNavSubcategories = [{
-        //            eletronicos: [
-        //                [{
-        //                    name: 'Tablets',
-        //                    imgPath: imgProductNavFolder + 'celular/' + 'MobilenavTablets.png'
-        //                }, {
-        //                    name: 'Multichip',
-        //                    imgPath: imgProductNavFolder + 'celular/' + 'celular_dual_chip.png'
-        //                }, {
-        //                    name: 'Desbloqueados',
-        //                    imgPath: imgProductNavFolder + 'celular/' + 'snyUSSubNavsoundBars.png'
-        //                }],
-        //                [{
-        //                    name: 'Home Theather',
-        //                    imgPath: imgProductNavFolder + 'celular/' + 'snyUSSubNavhomeTheaterSystems.png'
-        //
-        //                }, {
-        //                    name: 'Home Theather',
-        //                    imgPath: imgProductNavFolder + 'celular/' + 'snyUSSubNavhomeTheaterSystems.png'
-        //
-        //                }, {
-        //                    name: 'Home Theather',
-        //                    imgPath: imgProductNavFolder + 'celular/' + 'snyUSSubNavhomeTheaterSystems.png'
-        //
-        //                }],
-        //
-        //                [{
-        //                    name: 'TV LED',
-        //                    imgPath: imgProductNavFolder + 'tv-video/' + 'TVnavAllTV.png'
-        //
-        //                }, {
-        //                    name: 'TV 3D',
-        //                    imgPath: imgProductNavFolder + 'tv-video/' + 'navtv3d.png'
-        //
-        //                }, {
-        //                    name: 'Smart TV',
-        //                    imgPath: imgProductNavFolder + 'tv-video/' + 'TVnavAllTV.png'
-        //
-        //                }, {
-        //                    name: 'Full HD',
-        //                    imgPath: imgProductNavFolder + 'tv-video/' + 'LEDHDTVs.png'
-        //
-        //                }, {
-        //                    name: 'Ultra HD',
-        //                    imgPath: imgProductNavFolder + 'tv-video/' + 'TVnav4k.png'
-        //
-        //                }, {
-        //                    name: 'TV LCD',
-        //                    imgPath: imgProductNavFolder + 'tv-video/' + 'TVnav4k.png'
-        //
-        //                }, {
-        //                    name: 'TV Plasma',
-        //                    imgPath: imgProductNavFolder + 'tv-video/' + 'TVnav4k.png'
-        //
-        //                }, {
-        //                    name: 'TV Monitor',
-        //                    imgPath: imgProductNavFolder + 'tv-video/' + 'TVnav4k.png'
-        //
-        //                }]
-        //            ]
-        //        }, {
-        //            informatica: [{
-        //                name: 'informatica 1',
-        //                imgPath: imgProductNavFolder + 'celular/' + 'MobilenavTablets.png'
-        //            }, {
-        //                name: 'informatica 2',
-        //                imgPath: imgProductNavFolder + 'celular/' + 'MobilenavTablets.png'
-        //            }, {
-        //                name: 'informatica 3',
-        //                imgPath: imgProductNavFolder + 'celular/' + 'MobilenavTablets.png'
-        //            }]
-        //        }];
-        //
         vm.productNavSubcategories = [{
 
             //            name: 'eletronicos',
@@ -474,27 +375,15 @@
             }]
         }];
 
-        //        $scope.productCategory = productCategory;
-        //        console.log('catgreeting', $scope.productCategory.category)
-        //        var categoria;
-        vm.getSelectedCategory = function(selectedCategory) {
-
-            //            var selected = vm.productNavSubcategories[selectedCategory]
+        vm.getSelectedCategory = function(selecteProductSection, selectedCategory) {
             console.log(selectedCategory)
             productCategory.category = selectedCategory;
-            //            console.log('mudou para', productCategory.category)
+            vm.getSelectedProductSection(selecteProductSection);
         };
         
         vm.getSelectedProductSection = function (selecteProductSection) {
             productCategory.section = selecteProductSection;
             console.log(productCategory.section);
-            
-        }
-
-        vm.getSelectedProductSection = function(selecteProductSection) {
-            productCategory.section = selecteProductSection;
-            console.log(productCategory.section);
-
         }
 
         var productNavCatLength = vm.productNavCategories.length;
@@ -503,7 +392,6 @@
 
         while (i < productNavCatLength) {
             vm.showSubMenu[i++] = '';
-
         }
 
         console.log(vm.showSubMenu);

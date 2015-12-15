@@ -27,3 +27,15 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
     background-color: #ffffff;
 }
+
+
+
+/*Product detail*/
+.prd-detail-image{
+    text-align: center;
+    vertical-align: middle;
+    img{
+        max-width: 25%;
+    }   
+}
+/*-----------------------------------------------------*/

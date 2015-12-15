@@ -1,5 +1,5 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs','md.data.table'])
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs', 'md.data.table'])
     .run(function($rootScope, $state, authentication, $cookies, localStorageService) {
         console.log('My $rootScope', $rootScope)
         //Check if user is loggedin (cookies)
@@ -79,8 +79,11 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         })
         console.log('Hello')
     })
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
+        $mdThemingProvider.theme('default')
+            .primaryPalette('light-blue')
+            .accentPalette('orange');
 
         $stateProvider
             .state('app', {
@@ -88,7 +91,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 views: {
                     "products@": {
                         templateUrl: 'components/home/home.view.html',
-//                        controller: 'HomeCtrl',
+                        //                        controller: 'HomeCtrl',
                         controller: 'ProdutosCtrl as vm', //apagar qdo terminar o teste
                     }
                 },
@@ -157,9 +160,10 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                     templateUrl: 'components/produtos/produtosLista.view.html',
                     controller: 'ProdutosCtrl as vm',
                     authenticate: false,
-                    function($scope, category) {
+                    function($scope, category, section) {
                         //                        $scope.category = category;
                         $scope.category = category;
+                        $scope.section = section;
                         console.log($scope.category);
                     }
                 }
@@ -171,11 +175,14 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 category: function(productCategory) {
                     return productCategory.category;
 
+                },
+                section: function(productCategory) {
+                    return productCategory.section;
                 }
             }
         })
 
-        .state('app.produtos.list.detail', {
+        .state('app.produtos.section.category.detail', {
             url: "/:id",
             views: {
                 'products@': {

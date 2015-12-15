@@ -1,4 +1,4 @@
-<div layout="row" layout-wrap class="my-top-nav-bar">
+<div layout="row" layout-wrap class="my-top-nav-bar" ng-controller="productCatNavBar as vm">
     <md-toolbar class="my-md-menu-top">
         <div class="container">
             <div class="md-toolbar-tools" layout="row">
@@ -15,56 +15,82 @@
             </div>
         </div>
     </md-toolbar>
-    <md-toolbar>
+    <md-toolbar class="md-toolbar-tools">
         <div layout="row" layout-align="center center" layout-wrap>
             <div flex="66">
-                <div class="md-toolbar-tools">
-                    <div flex layout="row" layout-align="start center">
-                        <md-menu-bar>
-                            <md-menu>
-                                <md-button ng-click="$mdOpenMenu()">
-                                    File
-                                </md-button>
-                                <md-menu-content>
-                                    <md-menu-item>
-                                        <md-menu>
-                                            <md-button ng-click="ctrl.sampleAction('share', $event)">
-                                                Componentes Passivos
-                                            </md-button>
-                                            <md-menu-content>
-                                                <md-menu-iten>
-                                                    <md-button>
-                                                        Resistor
+                <div flex layout="row" layout-align="start center">
+                    <md-menu-bar>
+                        <md-menu>
+                            <md-button ng-click="$mdOpenMenu()">
+                                File
+                            </md-button>
+                            <md-menu-content>
+                                <md-menu-item ng-repeat="prdctNavCat in vm.productNavCategories">
+                                    <md-menu>
+                                        <md-button ng-click="$mdOpenMenu()"  style="color:black !important" ng-click="vm.getSelectedProductSection(prdctNavCat.name)">
+                                            {{prdctNavCat.name}}
+                                        </md-button>
+                                        <md-menu-content>
+                                            <md-menu-item ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat">
+                                                <md-button ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getSelectedCategory(prdctNavCat.name, prdctNavSubCat.name)" style="color:black !important">
+                                                    {{prdctNavSubCat.name}}
+                                                </md-button>
+                                            </md-menu-item>
+                                            <!--
+                                            <md-menu-iten ng-repeat="prdctNavCat in vm.productNavCategories">
+                                                <md-menu>
+                                                    <md-button ui-sref="app.produtos.section({section:prdctNavCat.name})" ng-click="vm.getSelectedProductSection(prdctNavCat.name)">
+
+                                                        {{prdctNavCat.name}}
                                                     </md-button>
-                                                </md-menu-iten>
-                                                <md-menu-iten>
-                                                    <md-button>
-                                                        Capacitor
-                                                    </md-button>
-                                                </md-menu-iten>
-                                            </md-menu-content>
-                                        </md-menu>
-                                    </md-menu-item>
-                                    <md-menu-divider></md-menu-divider>
-                                </md-menu-content>
-                            </md-menu>
-                        </md-menu-bar>
-                        <md-button ui-sref="^">
-                            <img src="../../assets/img/logo/sonyLogo2.png">
-                        </md-button>
-                        <md-button ui-sref="app.produtos">Produtos
-                        </md-button>
-                        <md-button ui-sref="app.dashboard">Kits
-                        </md-button>
-                        <md-button ui-sref="app.signup">Universitários
-                        </md-button>
-                        <md-button ui-sref="app.signup">Laboratórios
-                        </md-button>
-                        <md-button ui-sref="app.signup">Cursos
-                        </md-button>
-                    </div>
+                                                    <md-menu-content>
+                                                    </md-menu-content>
+
+                                                </md-menu>
+                                            </md-menu-iten>
+-->
+                                        </md-menu-content>
+                                    </md-menu>
+                                </md-menu-item>
+<!--
+                                <md-menu-item ng-repeat="prdctNavCat in vm.productNavCategories">
+                                    <md-menu >
+                                        <md-button style="color:black !important">
+                                            Kits
+                                        </md-button>
+                                        <md-menu-content>
+                                            <md-menu-item ng-repeat="prdctNavCat in vm.productNavCategories">
+                                                <md-button ui-sref="app.produtos.section({section:prdctNavCat.name})" ng-click="vm.getSelectedProductSection(prdctNavCat.name)" style="color:black !important">
+
+                                                    <h1>{{prdctNavCat.name}}</h1>
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </md-menu-item>
+-->
+                                <md-menu-divider></md-menu-divider>
+                            </md-menu-content>
+                        </md-menu>
+                    </md-menu-bar>
+                    <md-button>
+                        <img src="../../assets/img/logo/sonyLogo2.png">
+                    </md-button>
+                    <md-button ui-sref="app.produtos">Produtos
+                    </md-button>
+                    <md-button ui-sref="app.dashboard">Kits
+                    </md-button>
+                    <md-button ui-sref="app.signup">Universitários
+                    </md-button>
+                    <md-button ui-sref="app.signup">Laboratórios
+                    </md-button>
+                    <md-button ui-sref="app.signup">Cursos
+                    </md-button>
                 </div>
             </div>
         </div>
     </md-toolbar>
+
+
+
 </div>
