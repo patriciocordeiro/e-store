@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
 
-    <title>E-Commerce Web Page</title>
+    <title>PM Eletronica</title>
     <!--Modulos do angular-->
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
@@ -43,6 +43,7 @@
     <script src="services/resource.service.js"></script>
     <script src="services/getCategory.service.js"></script>
     <script src="services/produtosApi.service.js"></script>
+    <script src="services/product.srvc.js"></script>
     <script src="services/modal.service.js"></script>
     <script src="services/search.service.js"></script>
     <script src="services/authentication.service.js"></script>
@@ -51,12 +52,16 @@
     <script src="services/rating.service.js"></script>
 
     <!--controllers-->
-    <script src="components/navbar/navbar.controller.js"></script>
+<!--    <script src="components/navbar/navbar.controller.js"></script>-->
+  
     <script src="components/navbar/productCatNavBar.controller.js"></script>
     <script src="components/navbar/navbar.directive.js"></script>
     <script src="components/home/home.controller.js"></script>
-    <script src="components/produtos/produtos.controller.js"></script>
+<!--    <script src="components/produtos/produtos.controller.js"></script>-->
+        <script src="components/produtos/produtoDetail.ctrl.js"></script>
+    <script src="components/produtos/produtos.ctrl.js"></script>
     <script src="components/produtos/produtoDetail.controller.js"></script>
+
     <script src="components/produtos/minhaCesta.controller.js"></script>
     <script src="components/search/search.controller.js"></script>
     <script src="components/login/login.controller.js"></script>
@@ -64,6 +69,9 @@
     <script src="components/dashboard/dashboard.controller.js"></script>
     <script src="components/dashboard/DashboardPedidos.controller.js"></script>
     <script src="components/rating/rating.controller.js"></script>
+    <script src="components/produtos/meuCarrinhoToast.controller.js"></script>
+    <script src="components/produtos/jaNoCarrinhoDiag.controller.js"></script>
+      <script src="components/navbar/navbar.ctrl.js"></script>
 
 
     <!--custom directives-->
@@ -80,7 +88,7 @@
     <link rel="stylesheet" href="lib/angular-material-data-table/dist/md-data-table.min.css">
     <script type="text/javascript" src="lib/angular-material-data-table/dist/md-data-table.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
 
 </head>
 <!--head-->
@@ -132,48 +140,6 @@
     <div ui-view="password"></div>
 -->
     <!--    </div>-->
-
-
-
-
-
-    <!--
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            alert('hello')
-            $("#img_01").elevateZoom({
-                gallery: 'gal1',
-                cursor: 'pointer',
-                galleryActiveClass: "active",
-                imageCrossfade: true,
-                loadingIcon: "http://www.elevateweb.co.uk/spinner.gif"
-            });
-
-            $("#img_01").bind("click", function(e) {
-                var ez = $('#img_01').data('elevateZoom');
-                ez.closeAll(); //NEW: This function force hides the lens, tint and window	
-                $.fancybox(ez.getGalleryList());
-                return false;
-            });
-
-        });
-    </script>
--->
-
-    <!--
-    <script type="text/javascript">
-        $(document).ready(function() {
-                alert('ola')
-                $('#zoom_01').elevateZoom({
-                    zoomType: "inner",
-                    cursor: "crosshair",
-                    zoomWindowFadeIn: 500,
-                    zoomWindowFadeOut: 750
-                });
-            });
-    </script>
--->
 
 </body>
 

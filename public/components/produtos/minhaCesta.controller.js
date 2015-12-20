@@ -1,7 +1,5 @@
 (function() {
-
     "use strict";
-
     angular.module('myApp').controller('MinhaCestaCtrl', ['$rootScope', '$stateParams', 'produtosApi', 'localStorageService', '$cookies', '$state', 'userService', MinhaCestaCtrl]);
 
     function MinhaCestaCtrl($rootScope, $stateParams, produtosApi, localStorageService, $cookies, $state, userService) {
@@ -18,11 +16,6 @@
         // Se não existir nenhum item no carrinho esta variável será "false"
         // e será exibida na página "Sua cesta está vazia"
         var idsafterRemove = false;
-
-
-
-        //console.log("Carrinho de produtos: ", $rootScope.CarrinhoProdutos);
-        //console.log("EMAIL DO USUARIO: ", $cookies.get('email'));
 
         //query.id = localStorageService.get('carrinho');
         // recuperar ids e armazenar em vetor
@@ -57,34 +50,23 @@
             query.ids = idsProdutos;
         }
 
-        /*for(var i = 0; i < idsProdutos.length; i++){
-        	//console.log(idsProdutos[i]);
-        	query.id = idsProdutos[i];
-        	console.log("Minha query ", query.id);
-        	produtosApi.getProductDetails(query, function(response) {
-	        	console.log(response);
-	            vm.meuCarrinho.push(response[0]);
-	        });
-        }*/
-
-
         vm.finalizarCompra = function() {
             console.log("Finalizando compra");
             var carrinho = localStorageService.get('carrinho').split(',');
             var tamanho = carrinho.length;
             var pedido = {};
             var compras = [];
-            for(var i = 0; i < tamanho; i++){
+            for (var i = 0; i < tamanho; i++) {
                 compras.push({
-                    'id':carrinho[i],
-                    'quantidade':vm.quantidade[i]
+                    'id': carrinho[i],
+                    'quantidade': vm.quantidade[i]
                 });
             }
 
             pedido = {
-                'email':$cookies.get('email'),
-                'data':getCurrentDate(),
-                'compras':compras
+                'email': $cookies.get('email'),
+                'data': getCurrentDate(),
+                'compras': compras
             };
             //console.log("A quantidade atual eh: ", vm.quantidade);
             //console.log("Produtos no carrinho: ", carrinho);
@@ -94,95 +76,50 @@
             $state.go("app.home");
         }
 
-        /* Função de adição de pedidos a conta do usuário
-        * Ele recebe os dados de:
-        * quantidade, ids e data
-        {
-            'data':data
-            [
-                {
-                    'quantidade': q1,
-                    'id': id1
-                },
-                {
-                    'quantidade': q2,
-                    'id': id2
-                }
-                .
-                .
-                .
-            ]
-        }
-        */
-        function adicionaPedido(pedido){
-            console.log("Meu pedido: ", pedido);
-            //console.log("Email", $cookies.get('email'));
-            userService.updateUserData('adicionaPedido', pedido, function(data){
+        function adicionaPedido(pedido) {
+            userService.updateUserData('adicionaPedido', pedido, function(data) {
                 console.log(data);
             });
         }
-
         /*
-        * Função para obter a data atual
-        */
-
-        function getCurrentDate(){
+         * Função para obter a data atual
+         */
+        function getCurrentDate() {
             var today = new Date();
             var dd = today.getDate();
-            var mm = today.getMonth()+1; //January is 0!
+            var mm = today.getMonth() + 1; //January is 0!
 
             var yyyy = today.getFullYear();
-            if(dd<10){
-                dd='0'+dd
-            } 
-            if(mm<10){
-                mm='0'+mm
-            } 
-            var today = dd+'/'+mm+'/'+yyyy;
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            var today = dd + '/' + mm + '/' + yyyy;
 
             return today;
         }
-
-        //console.log('Meu carrinho de produtos: ', vm.meuCarrinho);
-
-        /*produtosApi.getProductDetails(query, function(response) {
-        	console.log(response[0]);
-            vm.meuCarrinho.push(response[0]);
-        });*/
-        //            console.log(vm.quantidade)
-        //        vm.quantidade = [1, 2, 3, 4, ];
         //-----------------------------------------------------
         //Função para obter a quantidade de cada produto
         //-------------------------------------------------------
         var precoSubTotalTemp = 0; // varialvel temporario para guardar o precoSubTotal
         vm.getQuantidade = function(index, value) {
             precoSubTotalTemp = 0;
-            //previna valores de quantidade menores  que zero
-//            if (vm.quantidade[index] == 0) {
-//                vm.quantidade[index] = vm.quantidade[index];
-//            } else {
-                //soma a quantidade com 1 (botao +) ou -1 (botao -)
-                vm.quantidade[index] = vm.quantidade[index] + value;
-                console.log(vm.quantidade[0]);
-                //O valor preco_total do carrinho recebe um novo valor
-                vm.meuCarrinho[index].preco_total = precoUnitario[index] * vm.quantidade[index];
-                //soma o valor de todos os produtos no carrinho
-                for (var i = 0; i < precoUnitario.length; i++) {
-                    precoSubTotalTemp += vm.meuCarrinho[i].preco_total;
-                    vm.precoSubTotal = precoSubTotalTemp;
-                };
-
-                if(vm.quantidade[0] === 0){
-                    vm.removeItendaCesta(index);
-                }
-//            };
+            //O valor preco_total do carrinho recebe um novo valor
+            vm.meuCarrinho[index].preco_total = precoUnitario[index] * vm.quantidade[index];
+            //soma o valor de todos os produtos no carrinho
+            for (var i = 0; i < precoUnitario.length; i++) {
+                precoSubTotalTemp += vm.meuCarrinho[i].preco_total;
+                vm.precoSubTotal = precoSubTotalTemp;
+            };
+            if (vm.quantidade[0] === 0) {
+                vm.removeItendaCesta(index);
+            }
         };
         //------------------------------------------------------------------
-        //------------------------------------------------------------------
-
         //Função para remover item da cesta
         //------------------------------------------------------------------
-
         vm.removeItendaCesta = function(index) {
             precoSubTotalTemp = 0;
             //remove item da cesta
@@ -207,5 +144,7 @@
                 localStorageService.set('carrinho', idsProdutos.toString())
             }
         }
+
+
     }
 }());

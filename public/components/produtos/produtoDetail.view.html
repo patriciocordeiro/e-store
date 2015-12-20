@@ -1,16 +1,17 @@
-<div layout="row" layout-margin layout-align="center start">
-    <div flex="35" flex-offset="25" layout-margin layout="column">
+<div layout="row" layout-margin layout-align="center start" id="main-product-detail-box">
+    <div flex="35" flex-offset="25" layout-margin layout="column" class="product-detail-box-left">
         <div flex layout="row" class="md-whiteframe-z1">
-            <div flex="40" class="prd-detail-image" style="background-color:grey">
-                <div flex layout="column" layout-align="center center" style="background-color:blue">
+            <div flex="40" layout="column" layout-align="center center" class="prd-detail-image">
+                <div flex layout="column" layout-align="center center">
                     <img class="md-card-image" src="../../assets/img/resistor/resistorSmd.jpg">
                 </div>
             </div>
-            <div flex="60">
+            <div flex="60" class="product-info" layout-padding>
                 <md-list>
-                    <md-list-item ng-repeat="prdDetail in vm.prdDetail.atr">
-                        <p><b>{{prdDetail.name}}:</b></p>
-                        <p>{{prdDetail.value}}</p>
+                    <md-list-item ng-repeat="(key, val) in vm.prdData">
+                        <p><b>{{key}}:</b>
+                        </p>
+                        <p>{{val}}</p>
                     </md-list-item>
                 </md-list>
             </div>
@@ -24,7 +25,8 @@
 
                     <md-list>
                         <md-list-item ng-repeat="prdSpecs in vm.prdSpec">
-                            <p><b>{{prdSpecs.name}}:</b></p>
+                            <p><b>{{prdSpecs.name}}:</b>
+                            </p>
                             <p>{{prdSpecs.value}}</p>
                         </md-list-item>
                     </md-list>
@@ -32,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div flex="25" layout-margin>
+    <div flex="25" layout-margin class="product-detail-box-right">
         <div flex class="md-whiteframe-z1">
             <md-toolbar class="md-toolbar-tools md-whiteframe-z2">
                 Disponibilidade</md-toolbar>
@@ -43,7 +45,8 @@
                         <p class="md-title">{{vm.prdDetailDisp[0].estoqueVal}}</p>
                     </md-list-item>
                     <md-list-item>
-                        <p><b>{{vm.prdDetailDisp[1].pedidoMin}}:</b></p>
+                        <p><b>{{vm.prdDetailDisp[1].pedidoMin}}:</b>
+                        </p>
                         <p>{{vm.prdDetailDisp[1].pedidoMinVal}}</p>
                     </md-list-item>
                     <md-list-item>
@@ -64,11 +67,20 @@
                         <p>
                             <md-input-container>
                                 <label>Quantidade</label>
-                                <input type="number">
+                                <input type="number" ng-model="vm.prdQty">
                             </md-input-container>
+                            {{vm.prdQty}}
                         </p>
                         <p>
-                            <md-button class="md-raised md-accent ">Comprar</md-button>
+                            <!--
+                            <select ng-model="vm.dataChange.value">
+                                <option>hello</option>
+                                <option>show</option>
+                            </select>
+-->
+                            <md-button ng-click="vm.prdGetBuy(vm.prdExecBuy.value); vm.showJanoCarrinhoDiag($event)"  class="md-raised md-accent ">Comprar
+                            </md-button>
+<!--                            {{dataChange}}-->
                         </p>
                         <p>Mínimo:1</p>
                         <p>Vários:1</p>

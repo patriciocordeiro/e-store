@@ -92,7 +92,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                     "products@": {
                         templateUrl: 'components/home/home.view.html',
                         //                        controller: 'HomeCtrl',
-                        controller: 'ProdutosCtrl as vm', //apagar qdo terminar o teste
+//                        controller: 'ProdutosCtrl as vm', //apagar qdo terminar o teste
                     }
                 },
                 data: {
@@ -158,7 +158,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             views: {
                 "products@": {
                     templateUrl: 'components/produtos/produtosLista.view.html',
-                    controller: 'ProdutosCtrl as vm',
+                    controller: 'PrdCtrl as vm',
                     authenticate: false,
                     function($scope, category, section) {
                         //                        $scope.category = category;
@@ -187,7 +187,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             views: {
                 'products@': {
                     templateUrl: 'components/produtos/produtoDetail.view.html',
-                    controller: 'produtoDetailCtrl as vm',
+                    controller: 'PrdDetailCtrl as vm',
                     authenticate: false
                 }
             },
@@ -206,11 +206,17 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         .state('app.minhaCesta', {
             url: "/minhaCesta",
-            templateUrl: 'components/produtos/minhaCesta.view.html',
-            controller: 'MinhaCestaCtrl as vm',
-            authenticate: true
-            //            template : '<h1>Funciona</h1>',
-
+            views: {
+                'products@': {
+                    templateUrl: 'components/produtos/meuCarrinho.view.html',
+                    controller: 'MinhaCestaCtrl as vm',
+                    authenticate: true,
+                    //            template : '<h1>Funciona</h1>',
+                    data: {
+                        displayName: 'Meu Carrinho',
+                    }
+                }
+            }
         })
 
         .state('app.search', {

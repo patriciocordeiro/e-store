@@ -6,24 +6,11 @@
     function SignupCtrl(authentication) {
         var vm = this;
         vm.newUser = {
-            //            fullName: '',
             username: '',
             sexo: 'Selecione',
-            //            cpf: '',
-            //            birthDate: '',
-//            telefone: null,
-            //            celular: '',
             email: '',
             password: '',
-            //            retypePassword: '',
             tipoEndereco: 'Selecione',
-            //            cep: '',
-            //            endereco: '',
-            //            numero: '',
-            //            referencia: '',
-            //            bairro: '',
-            //            cidade: '',
-            //            estado: '',
         };
 
         vm.createUser = function(newUser) {

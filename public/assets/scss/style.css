@@ -26,14 +26,21 @@ table tr:nth-child(even) {
   background-color: #ffffff; }
 
 /*Product detail*/
-/* line 34, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
-.prd-detail-image {
-  text-align: center;
-  vertical-align: middle; }
-  /* line 37, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
-  .prd-detail-image img {
-    max-width: 25%; }
+/* line 33, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+#main-product-detail-box md-list-item, #main-product-detail-box md-list-item .md-list-item-inner {
+  min-height: 48px !important; }
 
 /*-----------------------------------------------------*/
+/*Cart*/
+/* line 41, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+.my-cart-table {
+  td: nth-child(2);
+    td-width: 60%;
+    td-text-align: left; }
+
+/* line 48, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+.md-toast {
+  max-height: 100%;
+  z-index: 10000; }
 
 /*# sourceMappingURL=style.css.map */

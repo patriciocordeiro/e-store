@@ -5,14 +5,16 @@ var produtos = {};
 
 //FIND PRODUCTSBY CATEGORY
 exports.category = function(req, res, next) {
-    var query = req.body[0];
-    var display = req.body[1];
-    products.find(query)
-        .sort(display.orderBy)
-        .limit(display.maxShowItem)
+    console.log(req.body);
+    var query = req.body;
+    console.log(query);
+//    var display = req.body[1];
+    products.find(query.prdCatg)
+        .sort(query.prdOrderBy)
+        .limit(query.prdMaxPageItems)
         .exec(function(err, data) {
             if (err) return err;
-//        console.log(data);
+        console.log(data);
             res.json(data);
         });
 };

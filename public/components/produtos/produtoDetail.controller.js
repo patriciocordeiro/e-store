@@ -2,9 +2,9 @@
 
     "use strict";
 
-    angular.module('myApp').controller('produtoDetailCtrl', ['$scope', '$location', '$anchorScroll', '$rootScope', '$stateParams', 'produtosApi', 'localStorageService', '$cookies', produtoDetailCtrl]);
+    angular.module('myApp').controller('produtoDetailCtrl', ['$scope', '$location', '$anchorScroll', '$rootScope', '$stateParams', 'produtosApi', 'localStorageService', '$cookies', '$mdDialog', produtoDetailCtrl]);
 
-    function produtoDetailCtrl($scope, $location, $anchorScroll, $rootScope, $stateParams, produtosApi, localStorageService, $cookies) {
+    function produtoDetailCtrl($scope, $location, $anchorScroll, $rootScope, $stateParams, produtosApi, localStorageService, $cookies, $mdDialog) {
         var vm = this;
         $("#img_01").elevateZoom({
             gallery: 'gal1',
@@ -52,9 +52,14 @@
         //------------------------------------------------------------------------
         //------------------------------------------------------------------------
 
+
+
         //------------------------------------------------------------------------
         //funcçao para obter a compra
         //------------------------------------------------------------------------
+
+ vm.status = ' ';
+
         vm.getCompra = function() {
             //verifique se o ID já existe (Se o produto já está no carrinho) 
             vm.idExists = _.includes($rootScope.CarrinhoItens, vm.productId);
@@ -73,7 +78,22 @@
                 }
                 console.log("Variavel recupera id = ", localStorageService.get('carrinho'));
             } else {
-                console.log('Produto já se encontra no carrinho')
+                console.log('Produto já se encontra no carrinho');
+                //Dialogo para quando o produto já estiver no carrinho
+                vm.showJanoCarrinhoDiag = function(ev) {
+                    $mdDialog.show({
+                        controller: 'jaNoCarrinhoDiag as vm',
+                        templateUrl: 'components/produtos/jaNoCarrinhoDiag.view.html',
+                        parent: angular.element(document.body),
+                        targetEvxent: ev,
+                        clickOutsideToClose: false
+                    }).then(function(answer) {
+                        vm.status = 'You said the information was "' + answer + '".';
+                        console.log(vm.status);
+                    }, function() {
+                        vm.status = 'You cancelled the dialog.';
+                    });
+                };
             }
         }
 
@@ -117,7 +137,7 @@
                 value: 658877
             }, {
                 name: "Fabricante",
-                value: "Resistores de Filme Espesso -SMD 1k 1w 5%"
+                value: "Philips"
             }, {
                 name: "Descrição",
                 value: "Resistores de Filme Espesso -SMD 1k 1w 5%"
@@ -144,10 +164,10 @@
             value: "Resistor"
         }, {
             name: "Resistência",
-            value:"1 k"
+            value: "1 k"
         }, {
             name: "Tolerância",
-            value: "1%"
+            value: "1 %"
         }, {
             name: "Potência",
             value: "1 W"
@@ -155,7 +175,6 @@
             name: "tipo de acabamento",
             value: "SMT/SMD"
         }]
-
 
     }
 }());
