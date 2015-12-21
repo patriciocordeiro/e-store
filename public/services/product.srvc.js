@@ -8,8 +8,9 @@ angular.module('myApp').service('productSrvc', ['httpService', '$mdDialog',
         this.prdCatg = 'HELLO CATG';
         this.prdData = [];
         this.prdKartIds = [];
-        this.prdKartData =[];
-        
+        this.prdKartData = [];
+        this.prdKartPriceSubTotal = 0;
+
         this.prdGetCatg = function(srvcVarTosend, prdCatg) {
             srvcVarTosend = prdCatg;
             return prdCatg;
@@ -74,33 +75,65 @@ angular.module('myApp').service('productSrvc', ['httpService', '$mdDialog',
                 return callback(data);
             });
         };
+
+        this.prdGeneralSum = function(dataArray) {
+            var i = 0
+            var sumResult = 0;
+            for (i = 0; i < dataArray.length; i++) {
+                sumResult += dataArray[i];
+                console.log(sumResult);
+            }
+            return sumResult;
+        }
         /*----------------------------------------------------*/
         /*The following functions are used in the Shopping Kart*/
 
         /*Remove an item in the Shopping Kart */
-        this.prdRemKartItem = function() {
+        this.prdKartRemItem = function() {
 
         }
         /*get quantity of a single product*/
-        this.prdGetQty = function() {
+        this.prdFieldToArray = function(kartData, qtyVarName) {
+            var i = 0;
+            var prdQty = [];
+            for (i = 0; i < kartData.length; i++) {
+                prdQty.push(kartData[i][qtyVarName]);
+            }
             return prdQty;
         }
         /*Get subtotal price of a single product item*/
-        this.prdGetSubPrice = function() {
+        this.prdKartGetSubPrice = function(prdUnitPrice, prdQty) {
+            prdSubPrice = prdUnitPrice * prdQty;
             return prdSubPrice;
         }
         /*get the total price of the cart */
-        this.prdGetKartPrice = function() {
-            return prdKartPrice;
+        this.prdKartGetTotalPrice = function(prdKartDataSubPrices) {
+            var i = 0;
+            var prdKartTotalPrice = 0;
+            for (var i = 0; i < prdKartDataSubPrices.length; i++) {
+                prdKartTotalPrice += prdKartDataSubPrices[i];
+            };
+            return prdKartTotalPrice;
         }
         /*checout the current Kart*/
         this.prdKartCheckout = function() {}
 
         /*Get the total number of items in the Kart*/
-        this.prdGetKartSize = function(kartData) {
+        this.prdKartGetSize = function(kartData) {
             var prdKartSize = kartData.length;
             return prdKartSize;
         }
+        
+        /*recover the kart  on page reload. Recover ids on cookies*/
+        this.prdKartRecover = function(query, callback) {
+            httpService.save({
+                acao: 'myKart',
+                id: 'id'
+            }, query, function(data) {
+                return callback(data);
+            });
+        }
+        
         /*Get product on page load*/
         this.prdOnLoad = function() {}
         /*Get the last saved kart on (cookies or local storage)*/

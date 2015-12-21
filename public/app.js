@@ -208,8 +208,8 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             url: "/minhaCesta",
             views: {
                 'products@': {
-                    templateUrl: 'components/produtos/meuCarrinho.view.html',
-                    controller: 'MinhaCestaCtrl as vm',
+                    templateUrl: 'components/produtos/kart.view.html',
+                    controller: 'KartCtrl as vm',
                     authenticate: true,
                     //            template : '<h1>Funciona</h1>',
                     data: {

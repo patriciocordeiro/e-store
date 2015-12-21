@@ -1,10 +1,10 @@
 (function() {
     "use strict";
-    angular.module('myApp').controller('PrdDetailCtrl', ['$rootScope', '$stateParams', '$mdDialog', 'productSrvc',
+    angular.module('myApp').controller('PrdDetailCtrl', ['$rootScope', '$cookies', '$stateParams', '$mdDialog', 'productSrvc',
         PrdDetailCtrl
     ]);
 
-    function PrdDetailCtrl($rootScope, $stateParams, $mdDialog, productSrvc) {
+    function PrdDetailCtrl($rootScope, $cookies, $stateParams, $mdDialog, productSrvc) {
         var vm = this;
         var prd = productSrvc;
         var prdId = $stateParams.id //product id
@@ -27,15 +27,16 @@
         //-----------------------------------------------------------
 
         //Get Compra
+        vm.prdQty //store the quantity (uses ng-model)
         vm.prdGetBuy = function(prdQty) {
-            prdPutonKart(prd.prdData, prd.prdKartData, prd.prdKartIds, prdId);
+            prdPutonKart(prd.prdData, prd.prdKartData, prd.prdKartIds, prdId, prdQty);
             //Used to trigger the watch in navbar for Kart
             $rootScope.dataChange = !$rootScope.dataChange;
         }
         //-----------------------------------------------------------
-        
+
         /*Function to handle puting product on the kart*/
-        var prdPutonKart = function(prdAllData, prdKartData, prdIdsOnKart, prdId) {
+        var prdPutonKart = function(prdAllData, prdKartData, prdIdsOnKart, prdId, prdQty) {
             var i = 0;
             var idExists = false;
             var isKartEmpty = false;
@@ -46,8 +47,15 @@
                 prdIdsOnKart.push(prdId);
                 //Get the single product data
                 console.log("IDS:", prdIdsOnKart);
-                var dataTemp = prd.prdGetSingle(prdAllData, prdId);
+                var dataTemp = {};
+                dataTemp = prd.prdGetSingle(prdAllData, prdId);
+                //Include the field quantity 
+                dataTemp['buyQty'] = prdQty;
+                dataTemp['priceSubTotal'] = dataTemp.preco * prdQty;
+                // subtotal
+                prd.prdKartPriceSubTotal += dataTemp.preco;
                 //push the data to the array of datas
+                console.log(dataTemp);
                 prdKartData.push(dataTemp); //this is shared in the prdServc
                 console.log(prdKartData);
             } else {
@@ -90,11 +98,22 @@
                 //Kart is not empty and product not in the kart
                 prdIdsOnKart.push(prdId);
                 //Get the single product data
-                var dataTemp = prd.prdGetSingle(prdAllData, prdId);
+                var dataTemp = {};
+                dataTemp = prd.prdGetSingle(prdAllData, prdId);
                 //push the data to the array of datas
+                dataTemp['buyQty'] = prdQty; //include qantity field
+                dataTemp['priceSubTotal'] = dataTemp.preco * prdQty; //include price subtotal field
+                prd.prdKartPriceSubTotal += dataTemp.preco;
                 prdKartData.push(dataTemp);
                 console.log(prdKartData);
             }
+            //TODO: Set cookies
+            console.log(prdIdsOnKart);
+            var prdbuyQtyArray = prd.prdFieldToArray(prdKartData, 'buyQty');
+            $cookies.put('pm-prdIdsOnKart', prdIdsOnKart);
+            $cookies.put('pm-prdKartPriceSubTotal', prd.prdKartPriceSubTotal);
+            $cookies.put('pm-prdbuyQtyArray', prdbuyQtyArray);
+
         }
     }; //End of function PrdDetailCtrl
 }());

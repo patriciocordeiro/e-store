@@ -5,14 +5,14 @@
     angular.module('myApp').controller('NavbarCtrl', ['$scope', 'productSrvc', '$mdToast', '$document', NavbarCtrl]);
 
     function NavbarCtrl($scope, productSrvc, $mdToast, $document) {
+        /*Variables declaration*/
         var vm = this;
-        var prd = productSrvc;
-
-        //Dados dos produtos colocados no carrinho
-        vm.dataChange = productSrvc.prdKartDataChange; //Esta variavel e compartilhado ent. ctrl
-       //Get all kart data
-        vm.kartData = prd.prdKartData
-
+        var prd = productSrvc//productSrvc; pass all product services to variable prd
+        //---------------------------------------------------------
+        /*Get all kart data*/
+        vm.kartData = prd.prdKartData;
+        //---------------------------------------------------------
+        /*Menu Itens*/
         var imgProductNavFolder = '../../assets/img/productNavBarSection/productsNavBarSubsectionImg/';
         vm.productNavCategories = [{
             name: 'Componentes Passivos',
@@ -25,9 +25,8 @@
                 imgPath: imgProductNavFolder + 'eletronicos/' + 'CelularTablet.png',
             }]
         }];
-
         //-------------------------------------------------
-        /*Get clicked product caterory*/
+        /*Get selected product caterory*/
         vm.prdgetSelCatg = function(category) {
             //            vm.getSelectedProductSection(selecteProductSection);
             var prdCatg = prd.prdGetCatg(productSrvc.prdCatg, category);
@@ -35,12 +34,10 @@
             //             console.log($rootScope.dataChange);
         };
         //-------------------------------------------------
-        /*Watch for product by (if user click on buy)*/
+        /*Watch for COMPRA by (if user click on COMPRAR)*/
         $scope.$watch('dataChange', function() {
-            console.log("No navbar Produto adicionado no carrinho");
-            console.log(prd.prdKartData);
-            vm.kartSize = prd.prdGetKartSize(prd.prdKartData);
-            console.log(vm.kartSize);
+            //Calculate the kart size imediatelly after user click on COMPRAR
+            vm.kartSize = prd.prdKartGetSize(prd.prdKartData);
         });
     }
 }());
