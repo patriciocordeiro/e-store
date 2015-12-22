@@ -12,20 +12,79 @@ $indigo:#3F51B5;
 #my-breadcrumb {
     font-size: 12px;
 }
-//Product page
-table,
-th,
-td {
-    //    border: 1px solid grey;
-    //    border-collapse: collapse;
-    //    padding: 5px;
-    text-align: center;
+.my-md-link-btn {
+    // this style applies to all link buttons
+    //We change the some md-button attributes to fit a li>a link
+    margin: 0 !important;
+    line-height: 20px !important;
+    min-height: auto !important;
+    .hover {
+        text-decoration: underline !important;
+        background-color: inherit!important;
+    }
 }
-table tr:nth-child(odd) {
-    background-color: #f1f1f1;
+.my-md-icon-btn {
+    padding: 0px !important;
+    line-height: inherit !important;
+    min-height: auto !important;
+    min-width: inherit !important;
 }
-table tr:nth-child(even) {
-    background-color: #ffffff;
+////Product page
+//table,
+//th,
+//td {
+//    //    border: 1px solid grey;
+//    //    border-collapse: collapse;
+//    //    padding: 5px;
+//    text-align: center;
+//}
+//table tr:nth-child(odd) {
+//    background-color: #f1f1f1;
+//}
+//table tr:nth-child(even) {
+//    background-color: #ffffff;
+//}
+ .prd-list-table {
+    tr:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+    //    table {
+    text-align:center;
+    //        tbody {
+    td {
+//        border: 1px solid grey;
+//        border-collapse: collapse;
+    }
+    tr {
+        height: 250px;
+        //        height: 100px !important;
+        //                    min-height: 80% !important;
+        max-height: 300px;
+        min-height: 100px;
+        text-align: center;
+    }
+    .my-md-ordering-btn {
+        height: auto !important;
+        background-color: aliceblue !important;
+        text-align: center;
+    }
+    //    col:nth-child(3) {
+    //        max-width: 10%;
+    //    }
+    //        }
+    //    }
+    thead {
+        th {
+            text-align: center!important;
+            padding: 1%;
+        }
+        tr {
+            //        padding-right: 1%;
+            height: 10px !important;
+            background-color: white!important;
+            
+        }
+    }
 }
 /*Product detail*/
 
@@ -45,7 +104,8 @@ table tr:nth-child(even) {
         text-align: left;
     }
 }
-.md-toast{
-   max-height: 100%;
+.md-toast {
+    max-height: 100%;
     z-index: 10000;
+    padding: 0 !important;
 }

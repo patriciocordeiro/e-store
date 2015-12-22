@@ -1,15 +1,25 @@
 //(function() {
 //    'use strict';
-angular.module('myApp').service('productSrvc', ['httpService', '$mdDialog',
-    function(httpService, $mdDialog) {
+angular.module('myApp').service('productSrvc', ['httpService', '$cookies', '$mdDialog',
+    function(httpService, $cookies, $mdDialog) {
 
+        console.log('sou lido primeiro, hehehehe');
         ///*get the product categorie name
         //This one uses ng-model and share data bettwen controllers
         this.prdCatg = 'HELLO CATG';
         this.prdData = [];
         this.prdKartIds = [];
+        this.prdKartBuyQty = 1;
         this.prdKartData = [];
         this.prdKartPriceSubTotal = 0;
+
+        this.prdKart = {
+            data: [],
+            ids: [],
+            buyQty: 1,
+            subTotal: 0,
+            Total: 0,
+        }
 
         this.prdGetCatg = function(srvcVarTosend, prdCatg) {
             srvcVarTosend = prdCatg;
@@ -123,7 +133,7 @@ angular.module('myApp').service('productSrvc', ['httpService', '$mdDialog',
             var prdKartSize = kartData.length;
             return prdKartSize;
         }
-        
+
         /*recover the kart  on page reload. Recover ids on cookies*/
         this.prdKartRecover = function(query, callback) {
             httpService.save({
@@ -133,7 +143,32 @@ angular.module('myApp').service('productSrvc', ['httpService', '$mdDialog',
                 return callback(data);
             });
         }
-        
+
+        this.putKartCkies = function() {
+
+        }
+
+        this.showJanoCarrinhoDiag = function(ev) {
+            $mdDialog.show({
+                controller: 'jaNoCarrinhoDiag as vm',
+                templateUrl: 'components/produtos/jaNoCarrinhoDiag.view.html',
+                parent: angular.element(document.body),
+                targetEvxent: ev,
+                clickOutsideToClose: false
+            }).then(function(answer) {
+                if (answer == true) {
+                    //if user choose "Adicionar", inrease the prd qty
+                    //                            console.log(vm.prdQty);
+                    //                            var tmpQty = prdIdsOnKart[i].qty;
+                    //                            tmpQty = tmpQty + vm.prdQty
+                    //                            prdIdsOnKart[i].qty = tmpQty;
+                    console.log("Resposta verdadeira", tmpQty);
+                }
+            }, function() {
+                vm.status = 'You cancelled the dialog.';
+            });
+        };
+
         /*Get product on page load*/
         this.prdOnLoad = function() {}
         /*Get the last saved kart on (cookies or local storage)*/
@@ -145,8 +180,8 @@ angular.module('myApp').service('productSrvc', ['httpService', '$mdDialog',
         //            return callback(data);
         //        });
 
-
-        this.prdPutonKart = function(prdAllData, prdDataOnKart, prdIdsOnKart, prdId, showDiag) {
+        /*Function to handle puting product on the kart*/
+        this.prdPutonKart = function(prdAllData, prdKartData, prdIdsOnKart, prdId, prdQty) {
             var i = 0;
             var idExists = false;
             var isKartEmpty = false;
@@ -157,10 +192,17 @@ angular.module('myApp').service('productSrvc', ['httpService', '$mdDialog',
                 prdIdsOnKart.push(prdId);
                 //Get the single product data
                 console.log("IDS:", prdIdsOnKart);
-                var dataTemp = this.prdGetSingle(prdAllData, prdId);
+                var dataTemp = {};
+                dataTemp = this.prdGetSingle(prdAllData, prdId);
+                //Include the field quantity 
+                dataTemp['buyQty'] = prdQty;
+                dataTemp['priceSubTotal'] = dataTemp.preco * prdQty;
+                // subtotal
+                this.prdKartPriceSubTotal += dataTemp.preco;
                 //push the data to the array of datas
-                prdDataOnKart.push(dataTemp); //this is shared in the prdServc
-                console.log(prdDataOnKart);
+                console.log(dataTemp);
+                prdKartData.push(dataTemp); //this is shared in the prdServc
+                console.log(prdKartData);
             } else {
                 for (i = 0; i < prdIdsOnKart.length; i++) {
 
@@ -176,38 +218,49 @@ angular.module('myApp').service('productSrvc', ['httpService', '$mdDialog',
                 }
             }
             if (idExists == true) {
+                this.showJanoCarrinhoDiag (ev);
                 //Dialogo para quando o produto já estiver no carrinho
-                showDiag = function(ev) {
-                    $mdDialog.show({
-                        controller: 'jaNoCarrinhoDiag as vm',
-                        templateUrl: 'components/produtos/jaNoCarrinhoDiag.view.html',
-                        parent: angular.element(document.body),
-                        targetEvxent: ev,
-                        clickOutsideToClose: false
-                    }).then(function(answer) {
-                        if (answer == true) {
-                            //if user choose "Adicionar", inrease the prd qty
-                            //                            console.log(vm.prdQty);
-                            //                            var tmpQty = prdIdsOnKart[i].qty;
-                            //                            tmpQty = tmpQty + vm.prdQty
-                            //                            prdIdsOnKart[i].qty = tmpQty;
-                            console.log("Resposta verdadeira", tmpQty);
-                        }
-                    }, function() {
-                        vm.status = 'You cancelled the dialog.';
-                    });
-                };
+                //                vm.showJanoCarrinhoDiag = function(ev) {
+                //                    $mdDialog.show({
+                //                        controller: 'jaNoCarrinhoDiag as vm',
+                //                        templateUrl: 'components/produtos/jaNoCarrinhoDiag.view.html',
+                //                        parent: angular.element(document.body),
+                //                        targetEvxent: ev,
+                //                        clickOutsideToClose: false
+                //                    }).then(function(answer) {
+                //                        if (answer == true) {
+                //                            //if user choose "Adicionar", inrease the prd qty
+                //                            //                            console.log(vm.prdQty);
+                //                            //                            var tmpQty = prdIdsOnKart[i].qty;
+                //                            //                            tmpQty = tmpQty + vm.prdQty
+                //                            //                            prdIdsOnKart[i].qty = tmpQty;
+                //                            console.log("Resposta verdadeira", tmpQty);
+                //                        }
+                //                    }, function() {
+                //                        vm.status = 'You cancelled the dialog.';
+                //                    });
+                //                };
             } else if (!isKartEmpty) {
                 //Kart is not empty and product not in the kart
                 prdIdsOnKart.push(prdId);
                 //Get the single product data
-                var dataTemp = this.prdGetSingle(prdAllData, prdId);
+                var dataTemp = {};
+                dataTemp = this.prdGetSingle(prdAllData, prdId);
                 //push the data to the array of datas
-                prdDataOnKart.push(dataTemp);
-                console.log(prdDataOnKart);
+                dataTemp['buyQty'] = prdQty; //include qantity field
+                dataTemp['priceSubTotal'] = dataTemp.preco * prdQty; //include price subtotal field
+                this.prdKartPriceSubTotal += dataTemp.preco;
+                prdKartData.push(dataTemp);
+                console.log(prdKartData);
             }
-        }
+            //TODO: Set cookies
+            console.log(prdIdsOnKart);
+            var prdbuyQtyArray = this.prdFieldToArray(prdKartData, 'buyQty');
+            $cookies.put('pm-prdIdsOnKart', prdIdsOnKart);
+            $cookies.put('pm-prdKartPriceSubTotal', this.prdKartPriceSubTotal);
+            $cookies.put('pm-prdbuyQtyArray', prdbuyQtyArray);
 
+        }
     }
 ])
 //}());

@@ -1,25 +1,53 @@
 <md-toast class="md-toast">
-    <!--    <div flex>-->
-<!--    <md-content>-->
-        <div flex>
-            <md-list>
-                <md-list-item>
-                    <p>Paapa</p>
-                    <p>PApa</p>
-                </md-list-item>
-                <md-list-item>Helfdflo</md-list-item>
-                <md-list-item>Heldfdlo</md-list-item>
-                <md-list-item>Heldfvco</md-list-item>
-                <md-list-item>Helttylo</md-list-item>
-                <md-list-item>Helykkjlo</md-list-item>
-                <md-list-item>Helldsdso</md-list-item>
-            </md-list>
+    <div flex layout="column">
+        <div flex layout="row" layout-align="space-around">
+            <md-toolbar class="md-toolbar-tools">Resumo do Carinho</md-toolbar>
         </div>
-        <div flex>
-            <md-button ng-click="vm.closeToast()">
-                Close
-            </md-button>
+        <div flex layout="column" layout-padding>
+            <table class="table stripped">
+                <thead class="md-accent">
+                    <tr>
+                        <th>
+                            Fabricante
+                        </th>
+                        <th>
+                            No. do Fabricante</md-button>
+                        </th>
+                        <th>Qtde.</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <center>
+                        <tr ng-repeat="products in vm.kartData">
+                            <td>
+                                Philips
+                            </td>
+                            <td>
+                                <md-button class="my-md-link-btn" ui-sref="app.produtos.section.category.detail({id:products._id})" ng-click="vm.storeIdProductDetail(products._id)">{{products.ref_PM}}</md-button>
+                            </td>
+                            <td>
+                                {{products.buyQty}}
+                            </td>
+                            <td>
+                                {{products.ref_fabricante}}
+                            </td>
+                        </tr>
+                    </center>
+                </tbody>
+            </table>
+            <div flex>
+                <md-divider></md-divider>
+                <div flex layout="row" layout-align="end center">
+                    <p><b>Subtotal do carrinho: R$ 160,00</b>
+                    </p>
+                </div>
+                <div flex layout="column" layout-align="center center">
+                    <md-button class="md-raised md-warn" ui-sref="app.minhaCesta" ng-click="vm.closeToast()">
+                        Exibir Carrinho
+                    </md-button>
+                </div>
+            </div>
         </div>
-<!--    </md-content>-->
-    <!--    </div>-->
+    </div>
 </md-toast>

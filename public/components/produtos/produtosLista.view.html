@@ -1,66 +1,113 @@
-<!--
-<div class="produtos-show-area">
-    <div class="row">
-        <div class=" mycol col col-xs-10 col-sm-6 col-md-2 col-lg-3" ng-repeat="products in vm.productsByCategory">
-            <a ng-href="#/app/produtos/categoria/{{productsCategory.category}}/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">
-                <div class="product-image">
-                    <img src="../../assets/img/produtos/tv/pSNYNA-XBR65X850C_main_v217.png">
-
-                </div>
-                <div class="product-description">
-                    <span class="product-title">
-                                        <p>{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}}{{products.frequencia}}{{products.marca}}                </p>                                </span>
-                </div>
-
-                <div class="product-description">
-                    <div awesome-rating="products.media_avaliacoes" awesome-rating-options="vm.options">
-                    </div>
-
-                    <h3 class="md-headline"><strong>R$ {{products.preco}}</strong></h3>
-                    <div class="btn btn-add-basket">Comprar</div>
-                </div>
-            </a>
-
-        </div>
-
-    </div>
-</div>
--->
+<div layout="row" layout-margin layout-align="center start">
+    <div flex="90" flex-offset="50" class="md-whiteframe-z4">
+        <md-toolbar class="md-toolbar-tools md-whiteframe-z4">Resistores</md-toolbar>
+        <table class="prd-list-table">
+            
+            <col span="1" style="width: 10%;">
+                <col span="1" style="width: 8%;">
+                    <col span="1" style="width: 8%;">
+                        
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 5%;">
+                        <col span="1" style="width: 5%;">
+                        <col span="1" style="width: 5%;">
+                        <col span="1" style="width: 5%;">
+                        <col span="1" style="width: 3%;">
+                        <col span="1" style="width: 3%;">
+                        <col span="1" style="width: 1%;">
+                        <col span="1" style="width: 3%;">
+                        <col span="1" style="width: 3%;">
+                        <col span="1" style="width: 3%;">
+                        <col span="1" style="width: 3%;">
 
 
-<div>
-
-    <md-data-table-toolbar>
-        <h2 class="md-title">Nutrition</h2>
-    </md-data-table-toolbar>
-
-    <md-data-table-container ng-cloak>
-        <table md-data-table md-row-select="selected" md-progress="deferred">
-            <thead md-order="query.order" md-trigger="onOrderChange">
+            <thead>
                 <tr>
-                    <th name="Imagen"></th>
-                    <th numeric name="No. ref. da M&P"></th>
-                    <th numeric name="No ref. do fabricante"></th>
-                    <th name="Descricao"></th>
-                    <th name="Ficha Técnica"></th>
-                    <th numeric name="Disponibilidade"></th>
-                    <th numeric name="Preço Unit"></th>
-                    <th numeric name="Quantidade"></th>
-                    <th name="Acabamento"></th>
+                    <th>Imagen</th>
+                    <th>No. ref. da M P</th>
+                    <th>No ref. do fabricante</th>
+                    <th>Descricao</th>
+                    <th>Ficha Técnica</th>
+                    <th>Disp.</th>
+                    <th>Preço Unit.</th>
+                    <th>Qtd.</th>
+                    <th>Acabamento</th>
+                    <th>Acabamento</th>
+                    <th>Acabamento</th>
+                    <th>Acabamento</th>
                 </tr>
             </thead>
+
+
             <tbody>
-                <tr md-auto-select ng-repeat="products in vm.prdData">
+
+                <tr class="my-md-ordering-btn">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td>
-                        <div class="product-image">
-                            <img src="../../assets/img/resistor/resistor.png">
+                        <div layout="row">
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('disponibilidade')"><i class="material-icons">keyboard_arrow_up</i>
+                            </md-button>
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('-disponibilidade')"><i class="material-icons">keyboard_arrow_down</i>
+                            </md-button>
                         </div>
                     </td>
                     <td>
-                        <md-button ui-sref="app.produtos.section.category.detail({id:products._id})" ng-click="vm.storeIdProductDetail(products._id)">{{products.ref_PM}}</md-button>
+                        <div layout="row">
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('preco')"><i class="material-icons">keyboard_arrow_up</i>
+                            </md-button>
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('-preco')"><i class="material-icons">keyboard_arrow_down</i>
+                            </md-button>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div layout="row">
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('acabamento')"><i class="material-icons">keyboard_arrow_up</i>
+                            </md-button>
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('-acabamento')"><i class="material-icons">keyboard_arrow_down</i>
+                            </md-button>
+                        </div>
                     </td>
                     <td>
-                        <md-button ng-href="#/app/produtos/categoria/{{productsCategory.category}}/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">{{products.ref_fabricante}}</md-button>
+                        <div layout="row">
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('resistencia')"><i class="material-icons">keyboard_arrow_up</i>
+                            </md-button>
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('-resistencia')"><i class="material-icons">keyboard_arrow_down</i>
+                            </md-button>
+                        </div>
+                    </td>
+                    <td>
+                        <div layout="row">
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('potencia')"><i class="material-icons">keyboard_arrow_up</i>
+                            </md-button>
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('-potencia')"><i class="material-icons">keyboard_arrow_down</i>
+                            </md-button>
+                        </div>
+                    </td>
+                    <td>
+                        <div layout="row">
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('acabamento')"><i class="material-icons">keyboard_arrow_up</i>
+                            </md-button>
+                            <md-button class="my-md-icon-btn" ng-click="vm.ordering('-acabamento')"><i class="material-icons">keyboard_arrow_down</i>
+                            </md-button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat="products in vm.prdData|orderBy:vm.order">
+                    <td class="product-image">
+                      
+                            <img src="../../assets/img/resistor/resistor.png">
+               
+                    </td>
+                    <td>
+                        <md-button class="md-primary my-md-link-btn" ui-sref="app.produtos.section.category.detail({id:products._id})" ng-click="vm.storeIdProductDetail(products._id)">{{products.ref_PM}}</md-button>
+                    </td>
+                    <td>
+                        <md-button class=" md-primary my-md-link-btn" ng-href="#/app/produtos/categoria/{{productsCategory.category}}/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">{{products.ref_fabricante}}</md-button>
                     </td>
                     <td>Condensadores de tântalo - revestimento sólido de SMD 10uF, 16.0V, +/-20% -55C +125C</td>
                     <td>PDF</td>
@@ -68,22 +115,22 @@
                     </td>
                     <td>R$ {{products.preco}}</td>
                     <td>
-                        <form>
-                            <input type="text   " value="1" size="4" maxlength="3">
-                            <md-button class="md-warn md-raised">
-                                Comprar</md-button>
-                        </form>
+                        <md-input-container>
+                            <input type="number" min="1" value="{{vm.prdQty}}" ng-model="vm.prdQty" aria-label="quantidade">
+                        </md-input-container>
+                        <md-button class="md-warn md-raised" ng-href="#/app/produtos/categoria/{{productsCategory.category}}/{{products._id}} class=">
+                            Comprar
+                        </md-button>
                     </td>
                     <td>{{products.acabamento}}</td>
                     <td>{{products.resistencia}} R</td>
                     <td>{{products.potencia}} W</td>
                     <td>{{products.toleranncia}} %</td>
                 </tr>
+                <md-divider></md-divider>
             </tbody>
         </table>
-    </md-data-table-container>
-
-    <md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{desserts.total}}" md-trigger="onPaginationChange"></md-data-table-pagination>
-
+    </div>
 
 </div>
+

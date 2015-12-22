@@ -40,6 +40,8 @@
                         prd.prdKartData = res;
                         vm.kartData = prd.prdKartData;
                         vm.prdbuyQty = prd.prdFieldToArray(vm.kartData, 'buyQty');
+                        //TODO Calcular quando for incluido
+                        //Calcular no contoller prdDetail
                         vm.prdSubPrice = prd.prdFieldToArray(vm.kartData, 'priceSubTotal');
                         vm.prdKartSubTotalPrice = prd.prdKartPriceSubTotal;
                         prd.prdKartGetTotalPrice['priceTotal']

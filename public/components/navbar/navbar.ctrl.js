@@ -7,7 +7,7 @@
     function NavbarCtrl($scope, productSrvc, $mdToast, $document) {
         /*Variables declaration*/
         var vm = this;
-        var prd = productSrvc//productSrvc; pass all product services to variable prd
+        var prd = productSrvc //productSrvc; pass all product services to variable prd
         //---------------------------------------------------------
         /*Get all kart data*/
         vm.kartData = prd.prdKartData;
@@ -35,9 +35,23 @@
         };
         //-------------------------------------------------
         /*Watch for COMPRA by (if user click on COMPRAR)*/
-        $scope.$watch('dataChange', function() {
+        $scope.$watch('dataChange', function(newValue, oldValues) {
             //Calculate the kart size imediatelly after user click on COMPRAR
             vm.kartSize = prd.prdKartGetSize(prd.prdKartData);
+//            if (newValue > oldValues) {
+                /*Toast para mostrar a introducao de um produto no carrinho*/
+                vm.showPutedInCartToast();
+//            }
         });
+
+        vm.showPutedInCartToast = function() {
+            $mdToast.show({
+                controller: 'myCartToastCtrl as vm',
+                templateUrl: '/components/produtos/meuCarrinhoToast.view.html',
+                parent: $document[0].querySelector('#myCartToast'),
+                hideDelay: 1000000,
+                position: 'top right'
+            });
+        }
     }
 }());
