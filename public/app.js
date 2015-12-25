@@ -82,7 +82,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('light-blue')
+            .primaryPalette('indigo')
             .accentPalette('orange');
 
         $stateProvider

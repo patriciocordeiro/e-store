@@ -9,7 +9,7 @@ angular.module('myApp').service('productSrvc', ['httpService', '$cookies', '$mdD
         this.prdCatg = 'HELLO CATG';
         this.prdData = [];
         this.prdKartIds = [];
-        this.prdKartBuyQty = 1;
+        this.prdKartBuyQty = 5;
         this.prdKartData = [];
         this.prdKartPriceSubTotal = 0;
 
@@ -194,7 +194,9 @@ angular.module('myApp').service('productSrvc', ['httpService', '$cookies', '$mdD
                 console.log("IDS:", prdIdsOnKart);
                 var dataTemp = {};
                 dataTemp = this.prdGetSingle(prdAllData, prdId);
-                //Include the field quantity 
+                //Include the field quantity
+                console.log('prdId', prdId);
+                console.log('prdQty', prdQty);
                 dataTemp['buyQty'] = prdQty;
                 dataTemp['priceSubTotal'] = dataTemp.preco * prdQty;
                 // subtotal

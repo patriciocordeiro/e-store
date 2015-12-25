@@ -52,13 +52,13 @@
     <script src="services/rating.service.js"></script>
 
     <!--controllers-->
-<!--    <script src="components/navbar/navbar.controller.js"></script>-->
-  
+    <!--    <script src="components/navbar/navbar.controller.js"></script>-->
+
     <script src="components/navbar/productCatNavBar.controller.js"></script>
     <script src="components/navbar/navbar.directive.js"></script>
     <script src="components/home/home.controller.js"></script>
-<!--    <script src="components/produtos/produtos.controller.js"></script>-->
-        <script src="components/produtos/produtoDetail.ctrl.js"></script>
+    <!--    <script src="components/produtos/produtos.controller.js"></script>-->
+    <script src="components/produtos/produtoDetail.ctrl.js"></script>
     <script src="components/produtos/products.ctrl.js"></script>
     <script src="components/produtos/produtoDetail.controller.js"></script>
 
@@ -71,7 +71,7 @@
     <script src="components/rating/rating.controller.js"></script>
     <script src="components/produtos/meuCarrinhoToast.controller.js"></script>
     <script src="components/produtos/jaNoCarrinhoDiag.controller.js"></script>
-      <script src="components/navbar/navbar.ctrl.js"></script>
+    <script src="components/navbar/navbar.ctrl.js"></script>
 
 
     <!--custom directives-->
@@ -87,24 +87,25 @@
     <link rel="stylesheet" href="lib/angular-material/angular-material.css">
     <link rel="stylesheet" href="lib/angular-material-data-table/dist/md-data-table.min.css">
     <script type="text/javascript" src="lib/angular-material-data-table/dist/md-data-table.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-</head>
-<!--head-->
-
-<body ng-app=myApp>
-
-    <script src="lib/angular-aria/angular-aria.js"></script>
-    <script src="lib/angular-animate/angular-animate.js"></script>
-    <script src="lib/angular-material/angular-material.js"></script>
+    <link rel="stylesheet" href="lib/angular-material-icon/material-icons.css" />
 
 
-    <!--    <div class="container-fluid">-->
-    <my-bootstrap-nav-bar>
-    </my-bootstrap-nav-bar>
+    <!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+ </head>
+    <!--head-->
 
-    <!--
+    <body ng-app=myApp>
+
+        <script src="lib/angular-aria/angular-aria.js"></script>
+        <script src="lib/angular-animate/angular-animate.js"></script>
+        <script src="lib/angular-material/angular-material.js"></script>
+
+
+        <!--    <div class="container-fluid">-->
+        <my-bootstrap-nav-bar>
+        </my-bootstrap-nav-bar>
+
+        <!--
     <div class="row" style="margin-top:5%">
         <div class="col-lg-6 col-lg-offset-3">
             <div class="input-group">
@@ -122,25 +123,25 @@
         </div>
     </div>
 -->
-    <!--    <product-category-nav-bar></product-category-nav-bar>-->
-    <div id="my-breadcrumb">
-        <!--         <div ncy-breadcrumb></div>-->
-        <div layout="column">
-            <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+        <!--    <product-category-nav-bar></product-category-nav-bar>-->
+        <div id="my-breadcrumb">
+            <!--         <div ncy-breadcrumb></div>-->
+            <div layout="column">
+                <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+            </div>
         </div>
-    </div>
 
-    <ui-view></ui-view>
-    <!--    <div ui-view="content"></div>-->
-    <div ui-view="products"></div>
-    <div ui-view="dashboard"></div>
-    <div ui-view="productsDetail"></div>
-    <!--
+        <ui-view></ui-view>
+        <!--    <div ui-view="content"></div>-->
+        <div ui-view="products"></div>
+        <div ui-view="dashboard"></div>
+        <div ui-view="productsDetail"></div>
+        <!--
     <div ui-view="email"></div>
     <div ui-view="password"></div>
 -->
-    <!--    </div>-->
+        <!--    </div>-->
 
-</body>
+    </body>
 
 </html>

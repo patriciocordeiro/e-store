@@ -1,12 +1,26 @@
-<div layout="row" layout-margin layout-align="center start">
+<div layout="row"  layout-align="center start">
     <div flex="90" flex-offset="50" class="md-whiteframe-z4">
         <md-toolbar class="md-toolbar-tools md-whiteframe-z4">Resistores</md-toolbar>
-        <table class="prd-list-table">
-            
+        <div layout="row" layout-padding layout-align="end center">
+            <div flex  layout="row" layout-align="start center">
+                <md-button class="md-accent md-raised">Comprar selecionados</md-button>
+                <md-button class="md-primary md-raised">Comprarar selecionados</md-button>
+            </div>
+        <div flex layout="row" layout-padding layout-align="end center">
+            <h4 class="md-body-2"><b>Página</b>:</h4>
+            <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i></md-button>
+            <md-button ng-disabled="vm.disablePrevBtn" class="md-accent  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i></md-button>
+            <div ng-repeat="page in vm.pages">
+                <md-button ng-model="vm.currentPage" class="md-accent groupX middle" ng-click="vm.changePage(page)" ng-class="vm.isActive(page)">{{page}}</md-button>
+            </div>
+            <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i></md-button>
+            <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()">Last</md-button>
+        </div>
+            </div>
+         <table class="prd-list-table">
             <col span="1" style="width: 10%;">
                 <col span="1" style="width: 8%;">
                     <col span="1" style="width: 8%;">
-                        
                         <col span="1" style="width: 10%;">
                         <col span="1" style="width: 5%;">
                         <col span="1" style="width: 5%;">
@@ -19,7 +33,6 @@
                         <col span="1" style="width: 3%;">
                         <col span="1" style="width: 3%;">
                         <col span="1" style="width: 3%;">
-
 
             <thead>
                 <tr>
@@ -37,8 +50,6 @@
                     <th>Acabamento</th>
                 </tr>
             </thead>
-
-
             <tbody>
 
                 <tr class="my-md-ordering-btn">
@@ -97,11 +108,11 @@
                         </div>
                     </td>
                 </tr>
-                <tr ng-repeat="products in vm.prdData|orderBy:vm.order">
+                <tr ng-repeat="products in vm.prdData|orderBy:vm.order|limitTo:5:vm.start">
                     <td class="product-image">
-                      
-                            <img src="../../assets/img/resistor/resistor.png">
-               
+
+                        <img src="../../assets/img/resistor/resistor.png">
+
                     </td>
                     <td>
                         <md-button class="md-primary my-md-link-btn" ui-sref="app.produtos.section.category.detail({id:products._id})" ng-click="vm.storeIdProductDetail(products._id)">{{products.ref_PM}}</md-button>
@@ -118,7 +129,7 @@
                         <md-input-container>
                             <input type="number" min="1" value="{{vm.prdQty}}" ng-model="vm.prdQty" aria-label="quantidade">
                         </md-input-container>
-                        <md-button class="md-warn md-raised" ng-href="#/app/produtos/categoria/{{productsCategory.category}}/{{products._id}} class=">
+                        <md-button class="md-warn md-raised" ng-click="vm.prdGetBuy(vm.prdQty, products._id); vm.showJanoCarrinhoDiag($event)">
                             Comprar
                         </md-button>
                     </td>
@@ -129,8 +140,21 @@
                 </tr>
                 <md-divider></md-divider>
             </tbody>
+
         </table>
+    <md-divider></md-divider>
+        <div flex layout="row" layout-padding layout-align="end center">
+            <div><b>Página</b>:</div>
+            <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i></md-button>
+            <md-button ng-disabled="vm.disablePrevBtn" class="md-primary  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i></md-button>
+            <div ng-repeat="page in vm.pages">
+                <md-button ng-model="vm.currentPage" class="md-primary groupX middle" ng-click="vm.changePage(page)" ng-class="vm.isActive(page)">{{page}}</md-button>
+            </div>
+            <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i></md-button>
+            <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()">Last</md-button>
+        </div>
     </div>
+
 
 </div>
 

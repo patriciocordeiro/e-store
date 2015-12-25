@@ -28,46 +28,77 @@
   min-height: auto !important;
   min-width: inherit !important; }
 
-/* line 47, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 32, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+.groupX {
+  font-size: 16px;
+  margin: 20px 0 !important;
+  text-transform: none !important;
+  font-weight: 400 !important;
+  min-width: 10px !important;
+  min-height: 28px !important;
+  line-height: 10px !important; }
+
+/* line 44, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+.md-button.left {
+  border-radius: 10px 0 0 10px;
+  border: 1px solid rgba(230, 230, 230, 0.96); }
+
+/* line 48, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+.md-button.middle {
+  border-radius: 0;
+  border: 1px solid rgba(230, 230, 230, 0.96); }
+
+/* line 54, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+.md-button.right {
+  border-radius: 0 10px 10px 0;
+  border: 1px solid rgba(230, 230, 230, 0.96); }
+
+/* line 58, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+.md-button:not([disabled]):hover {
+  background-color: rgba(193, 193, 193, 0.96);
+  color: rgba(44, 65, 164, 0.96);
+  transition: 0.3s; }
+
+/* line 78, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .prd-list-table {
   text-align: center; }
-  /* line 48, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 79, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .prd-list-table tr:nth-child(odd) {
     background-color: #f1f1f1; }
-  /* line 58, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 90, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .prd-list-table tr {
     height: 250px;
     max-height: 300px;
     min-height: 100px;
     text-align: center; }
-  /* line 66, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 98, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .prd-list-table .my-md-ordering-btn {
     height: auto !important;
     background-color: aliceblue !important;
     text-align: center; }
-  /* line 77, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 109, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .prd-list-table thead th {
     text-align: center !important;
     padding: 1%; }
-  /* line 81, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 113, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .prd-list-table thead tr {
     height: 10px !important;
     background-color: white !important; }
 
 /*Product detail*/
-/* line 92, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 123, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
 #main-product-detail-box md-list-item, #main-product-detail-box md-list-item .md-list-item-inner {
   min-height: 48px !important; }
 
 /*-----------------------------------------------------*/
 /*Cart*/
-/* line 100, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 131, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .my-cart-table {
   td: nth-child(2);
     td-width: 60%;
     td-text-align: left; }
 
-/* line 107, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 138, C:/Home Solutions/projetos/siteCordeiroEletronicos/code/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .md-toast {
   max-height: 100%;
   z-index: 10000;
