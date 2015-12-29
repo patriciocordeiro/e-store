@@ -12,6 +12,8 @@ angular.module('myApp').service('productSrvc', ['httpService', '$cookies', '$mdD
         this.prdKartBuyQty = 5;
         this.prdKartData = [];
         this.prdKartPriceSubTotal = 0;
+        this.category = '';
+        this.section = '';
 
         this.prdKart = {
             data: [],
@@ -220,7 +222,7 @@ angular.module('myApp').service('productSrvc', ['httpService', '$cookies', '$mdD
                 }
             }
             if (idExists == true) {
-                this.showJanoCarrinhoDiag (ev);
+                this.showJanoCarrinhoDiag(ev);
                 //Dialogo para quando o produto já estiver no carrinho
                 //                vm.showJanoCarrinhoDiag = function(ev) {
                 //                    $mdDialog.show({

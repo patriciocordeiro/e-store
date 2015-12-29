@@ -1,22 +1,20 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs', 'md.data.table'])
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs', 'ngMessages', 'md.data.table'])
     .run(function($rootScope, $state, authentication, $cookies, localStorageService) {
-        console.log('My $rootScope', $rootScope)
         //Check if user is loggedin (cookies)
         var lastState = $cookies.get('lastState');
-        // $rootScope.getCategory('tv'); 
-        $rootScope.loggedIn = false;
+
+        //from user service, sinalize that user is logged in or not
+        //this variable is used on navbar to hide/show login/logout  button
+        $rootScope.isloggedIn = false;
+        $rootScope.loggedUserName = '';
+
         authentication.isloggedin(function(response) {
             console.log(!response.user);
             if (response.user !== false) {
                 console.log('resposta', response.local.firstName)
-                $rootScope.loggedIn = true;
+                $rootScope.isloggedIn = true;
 
-                //Ultimo estado visitado antes do refresh
-
-                //            $state.go(lastState || "app.dashboard");
-                //$state.go(lastState || "dashboard");
-                //console.log("MEU ULTIMO ESTADO: ", lastState);
                 if (lastState === "app.produtosDetail" || lastState === "app.avaliacao") {
                     $state.go(lastState || "app.dashboard", {
                         id: localStorageService.get('idProdutoDetalhe')
@@ -24,52 +22,24 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 } else {
                     $state.go(lastState || "app.dashboard");
                 }
-                //            $state.reload();
-                $rootScope.loggedUser = response.local.fullName;
-                //            $rootScope.loggedUser = $cookies.get('usuario');
-                //var test = true;
-                //            if(test==true){
-                // if(toState.name === "app.produtosDetail"){
-                // console.log("ESTOU RODANDO AQUI NO PRODUCT DETAIL ", toState);//55633a204ce147e1f98ec41e
+                $rootScope.loggedUserName = response.local.fullName;
 
-
-                //$state.go("app.produtosDetail",{id:"55633a204ce147e1f98ec41e"});
-                //$state.go(lastState || "app.dashboard");
-
-                //}
             }
         });
 
-        $rootScope.logOut = function() {
-            authentication.logOut(function(data) {
-                console.log(data);
-                //remove all cookies
-                $cookies.remove('usuario');
-                $cookies.remove('produtos');
-                $cookies.remove('lastState');
-                $state.go("app.home");
-                $rootScope.loggedIn = false;
-            });
-        }
-
-
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
             console.log('mudei de estado', toState)
-            var isLoggedIn = $rootScope.loggedIn;
+            var isLoggedIn = $rootScope.isloggedIn;
             if (fromState !== toState) {
                 $cookies.put('lastState', toState.name);
-                console.log('Cookie do estado atual adicionado com sucesso', toState.name);
-
-
             }
-
             //check if client is trying to access a restricted page
             //toState.authenticate = true and is
             if (toState.authenticate && !isLoggedIn) {
                 event.preventDefault();
                 //if toState.authenticate = true and isLoggedIn = false
                 //Redirect to login page
-                $state.go("app.login");
+                $state.go("app.user.login");
             }
 
             if (1) { //toState.name == "app.avaliacao"
@@ -81,8 +51,9 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
     })
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
+        /*Angular theme configuration*/
         $mdThemingProvider.theme('default')
-            .primaryPalette('indigo')
+            .primaryPalette('teal')
             .accentPalette('orange');
 
         $stateProvider
@@ -92,7 +63,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                     "products@": {
                         templateUrl: 'components/home/home.view.html',
                         //                        controller: 'HomeCtrl',
-//                        controller: 'ProdutosCtrl as vm', //apagar qdo terminar o teste
+                        //                        controller: 'ProdutosCtrl as vm', //apagar qdo terminar o teste
                     }
                 },
                 data: {
@@ -110,29 +81,12 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         })
 
-
-
-        //        .state('app.produtos', {
-        //            url: "/produtos",
-        //            views: {
-        //                "products@": {
-        //                    templateUrl: 'components/produtos/produtos.view.html',
-        //                    controller: 'ProdutosCtrl as vm',
-        //                    authenticate: false,
-        //                    data: {
-        //                        displayName: 'Eletronicos'
-        //                    }
-        //                }
-        //            }
-        //
-        //        })
-
         .state('app.produtos.section', {
             url: "/:section",
             views: {
                 "products@": {
-                    template: 'HUHUHUHUhHUH',
-                    //                    controller: 'ProdutosCtrl as vm',
+                    templateUrl: 'components/produtos/productSection.view.html',
+                    controller: 'PrdSectionCtrl as vm',
                     authenticate: false,
                     function($scope, section) {
                         //                        $scope.category = category;
@@ -145,9 +99,9 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 displayName: '{{section}}',
             },
             resolve: {
-                section: function(productCategory) {
-                    return productCategory.section;
-                    //                    return productCategory.category;
+                section: function(productSrvc) {
+                    return productSrvc.section;
+                    //                    return productSrvc.category;
 
                 }
             }
@@ -159,7 +113,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 "products@": {
                     templateUrl: 'components/produtos/produtosLista.view.html',
                     controller: 'PrdCtrl as vm',
-                    authenticate: false,
+                    authenticate: true,
                     function($scope, category, section) {
                         //                        $scope.category = category;
                         $scope.category = category;
@@ -172,12 +126,12 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 displayName: '{{category}}',
             },
             resolve: {
-                category: function(productCategory) {
-                    return productCategory.category;
+                category: function(productSrvc) {
+                    return productSrvc.category;
 
                 },
-                section: function(productCategory) {
-                    return productCategory.section;
+                section: function(productSrvc) {
+                    return productSrvc.section;
                 }
             }
         })
@@ -227,8 +181,8 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         })
 
-        .state('app.signup', {
-            url: "/signup",
+        .state('app.user.signup', {
+            url: "/user/signup",
             views: {
                 'products@': {
                     templateUrl: 'components/signup/signup.view.html',
@@ -241,27 +195,32 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             }
         })
 
-        .state('app.login', {
-            url: "/login",
-            views: {
-                'products@': {
-                    templateUrl: 'components/login/login.view.html',
-                    controller: 'LoginCtrl as vm',
-                    //            template : '<h1>Funciona</h1>',
-                }
-            },
-            data: {
-                displayName: 'Login'
-            }
+        .state('app.user', {
+            abstract: true,
+            url: "/app/user",
+            template: '<ui-view/>',
         })
+            .state('app.user.login', {
+                url: "/login",
+                views: {
+                    'products@': {
+                        templateUrl: 'components/login/login.view.html',
+                        controller: 'usrLoginCtrl as vm',
+                        //            template : '<h1>Funciona</h1>',
+                    }
+                },
+                data: {
+                    displayName: 'Login'
+                }
+            })
 
-        .state('app.dashboard', {
-            url: "/app/dashboard",
+        .state('app.user.dashboard', {
+            url: "/dashboard",
+            authenticate: true,
             views: {
                 'products@': {
                     templateUrl: 'components/dashboard/dashboard.view.html',
-                    controller: 'Dashboard as vm',
-                    authenticate: false,
+                    controller: 'userDashboardCtrl as vm',
                 }
             },
             data: {
@@ -269,36 +228,28 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             }
 
         })
-        //            .state('dashboard.email', {
-        //                url: '/email',
-        //                views: {
-        //                    "user@app": {
-        //                        template: '<h1 style="margin-top:200px">Viwe password</h1>',
-        //                        controller: 'controller as vm',
-        //                    }
-        //                }
-        //            })
-        .state('app.dashboard.email', {
+
+        .state('app.user.dashboard.email', {
             url: "/email",
             templateUrl: 'components/dashboard/userAlterarEmail.view.html',
             //            controller: 'blala as vm',
             //            template : '<h1>Funciona</h1>',
             //                authenticate: true
         })
-            .state('app.dashboard.password', {
+            .state('app.user.dashboard.password', {
                 url: "/password",
                 templateUrl: 'components/dashboard/userAlterarSenha.view.html',
-                controller: 'Dashboard as vm',
+                controller: 'userDashboardCtrl as vm',
                 //                authenticate: true
             })
-            .state('app.dashboard.dados', {
+            .state('app.user.dashboard.dados', {
                 url: "/dados",
                 templateUrl: 'components/dashboard/userAlterarDados.view.html',
-                controller: 'Dashboard as vm'
+                controller: 'userDashboardCtrl as vm'
 
                 //                authenticate: true
             })
-            .state('app.dashboard.endereco', {
+            .state('app.user.dashboard.endereco', {
                 url: "/endereco",
                 templateUrl: 'components/dashboard/userAlterarEndereco.view.html',
                 data: {
@@ -307,40 +258,15 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 //                controller: 'blala as vm',
                 //                authenticate: true
             })
-            .state('app.dashboard.pedidos', {
+            .state('app.user.dashboard.pedidos', {
                 url: "/pedidos",
                 templateUrl: 'components/dashboard/pedidos.view.html',
                 controller: 'DashboardPedidosCtrl as vm',
                 data: {
                     displayName: 'Meus endereços',
                 }
-                //                controller: 'blala as vm',
                 //                authenticate: true
             })
-
-
-
-        //        .state('dashboard', {
-        //            url: "/dashboard",
-        //            views: {
-        //                '': {
-        //                    templateUrl: 'components/dashboard/dashboard.view.html',
-        //                    controller: 'Dashboard as vm'
-        //                },
-        //                "email@": {
-        //                    template: '<h1 style="margin-top:200px">Viwe password</h1>'
-        //                },
-        //                "password@": {
-        //                    template: '<<h1 style="margin-top:200px">view password</h1>>'
-        //
-        //                }
-        //                //                templateUrl: 'components / dashboard / dashboard.view.html ',
-        //                //                controller: 'Dashboard as vm',
-        //                //                //            template : ' < h1 > Funciona < /h1>',
-        //                //                authenticate: true
-        //            }
-        //        })
-        //        console.log('router') $urlRouterProvider.otherwise('home/home');
 
 
     });

@@ -14,20 +14,20 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul id="menu" class="nav navbar-nav navbar-right">
-                    <li ng-hide="loggedIn"><a ui-sref="app.login">Login</a>
+                    <li ng-hide="isloggedIn"><a ui-sref="app.login">Login</a>
                     </li>
                     <li><a ui-sref="app.dashboard">Minha Conta</a>
                     </li>
                     <li><a ui-sref="app.dashboard">Meus Pedidos</a>
                     </li>
-                    <li ng-hide="loggedIn"><a ui-sref="app.signup">Cadastre-se</a>
+                    <li ng-hide="isloggedIn"><a ui-sref="app.signup">Cadastre-se</a>
                     </li>
-                    <li ng-hide="!loggedIn"><a><span style="color:red">Olá {{loggedUser}}</span></a>
+                    <li ng-hide="!isloggedIn"><a><span style="color:red">Olá {{loggedUserName}}</span></a>
                     </li>
 
                     <li><a ui-sref="app.minhaCesta" style="color:blue;" ng-model="vm.numeroProdutosCarrinho"><strong><i class="fa fa-shopping-cart fa-2x" ></i> Meu Carrinho {{vm.numeroProdutosCarrinho}}</strong></a> 
                     </li>
-                    <li ng-hide="!loggedIn"><a href="#" ng-click="logOut()">Sair</a>
+                    <li ng-hide="!isloggedIn"><a href="#" ng-click="logOut()">Sair</a>
                     </li>
                 </ul>
             </div>
@@ -48,15 +48,15 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul id="menu" class="nav navbar-nav navbar-left">
-                    <li ng-hide="loggedIn"><a ui-sref="app.login">Login</a>
+                    <li ng-hide="isloggedIn"><a ui-sref="app.login">Login</a>
                     </li>
                     <li><a ui-sref="app.dashboard">Minha Conta</a>
                     </li>
                     <li><a ui-sref="app.dashboard">Meus Pedidos</a>
                     </li>
-                    <li ng-hide="loggedIn"><a ui-sref="app.signup">Cadastre-se</a>
+                    <li ng-hide="isloggedIn"><a ui-sref="app.signup">Cadastre-se</a>
                     </li>
-                    <li ng-hide="!loggedIn"><a href="#" ng-click="logOut()">Sair</a>
+                    <li ng-hide="!isloggedIn"><a href="#" ng-click="logOut()">Sair</a>
                     </li>
                 </ul>
             </div>

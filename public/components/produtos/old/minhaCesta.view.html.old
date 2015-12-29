@@ -48,7 +48,7 @@
                     </center>
                 </tbody>
             </table>
-            <button ng-hide="!loggedIn" class="btn btn btn-danger" ng-click="vm.finalizarCompra()">Finalizar compra</button>
+            <button ng-hide="!isloggedIn" class="btn btn btn-danger" ng-click="vm.finalizarCompra()">Finalizar compra</button>
         </div>
         <div class="painel-body" ng-show="vm.basketEmpty">
             <center><h1>Sua cesta está Vazia</h1></center>

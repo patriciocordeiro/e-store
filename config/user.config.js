@@ -33,7 +33,6 @@ exports.updateDadosCadastrais = function(req, res, next) {
     // asynchronous
     // User.findOne wont fire unless data is sent back
     var query = req.body
-
     User.update({
         'local.email': req.body.email
     }, {
@@ -43,12 +42,12 @@ exports.updateDadosCadastrais = function(req, res, next) {
     }, function(err, user) {
         if (err) {
             console.log(err)
-            res.send(201);
+            res.json({status:'fail'});
             //            return done(err)
 
         } else {
             console.log('Dados atualizados com sucesso', user)
-            res.send(200);
+            res.json({status:user});
             //            return done(null, user);
         }
 

@@ -12,6 +12,23 @@ $indigo:#3F51B5;
 #my-breadcrumb {
     font-size: 12px;
 }
+// Rules for sizing the icon.
+.material-icons.md-18 {
+    font-size: 18px;
+}
+.material-icons.md-24 {
+    font-size: 24px;
+}
+.material-icons.md-36 {
+    font-size: 36px;
+}
+.material-icons.md-48 {
+    font-size: 48px;
+}.material-icons.md-60 {
+    font-size: 60px;
+}.material-icons.md-72 {
+    font-size: 72px;
+}
 .my-md-link-btn {
     // this style applies to all link buttons
     //We change the some md-button attributes to fit a li>a link
@@ -33,7 +50,7 @@ $indigo:#3F51B5;
     font-size: 16px;
     margin: 20px 0 !important;
     //    padding: 3px 15px 3px 15px !important;
-//    color: rgb(49, 46, 46) !important;
+    //    color: rgb(49, 46, 46) !important;
     //    background-color: rgba(224, 224, 224, 0.96) !important;
     text-transform: none !important;
     font-weight: 400 !important;
@@ -60,6 +77,37 @@ $indigo:#3F51B5;
     color: rgba(44, 65, 164, 0.96);
     transition: 0.3s;
 }
+.animate-show {
+    line-height: 20px;
+    opacity: 1;
+    padding: 10px;
+    background: white;
+}
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+    transition: all linear 0.5s;
+}
+.animate-show.ng-hide {
+    line-height: 0;
+    opacity: 0;
+    padding: 0 10px;
+}
+.subsect-menu {
+    .md-media-md {
+        text-align: center;
+        min-height: 150px !important;
+        //        width: 60% !important;
+        //        padding-top: 33%;
+        img {
+            //        width: inherit !important;
+
+        }
+    }
+}
+.my-md-btn-icon-bellow {
+    //    display: block !important;
+
+}
 ////Product page
 //table,
 //th,
@@ -76,7 +124,7 @@ $indigo:#3F51B5;
 //    background-color: #ffffff;
 //}
  .prd-list-table {
-    tr:nth-child(odd) {
+    tr: nth-child(odd) {
         background-color: #f1f1f1;
     }
     //    table {

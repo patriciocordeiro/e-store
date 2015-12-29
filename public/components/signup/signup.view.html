@@ -1,141 +1,143 @@
-<div class="container" style="margin-top:100px">
-    <h3>Dados Cadastrais</h3>
-    <p class="help-block">* campos obrigatorios</p>
+<div layout="column" class="md-inline-form">
+    <md-content layout="row" layout-align="center center">
+        <div layout="column" flex-gt-md="50">
+            <md-toolbar class="md-toolbar-tools">Faça o seu cadastro</md-toolbar>
+            <form name="signupForm" novalidate>
+                <md-card layout-padding>
+                    <md-card-title>
+                        <h4 class="md-title">Dados pessoais</h4>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout-gt-md="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Nome</label>
+                                <input type="text" name="nome" ng-model="vm.newUser.fullName" required>
+                                <div ng-messages="signupForm.nome.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Sobrenome</label>
+                                <input type="text" name="sobrenome" ng-model="vm.newUser.fullName" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <md-datepicker name="dataNascimento" md-placeholder="Data de Nascimento" ng-model="vm.newUser.birthDate" required></md-datepicker>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Sexo</label>
+                                <md-select name="sexo" ng-model="vm.newUser.sexo" required>
+                                    <md-option value="Masculino">
+                                        Masculino
+                                    </md-option>
+                                    <md-option value="Feminino">
+                                        Feminino
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
 
-    <form name="signupForm" class="form-horizontal" role="form" novalidate>
-        <div class="form-group" ng-class="{'has-error':signupForm.fullName.$invalid}">
-            <label class="col-sm-2 control-label">Nome completo</label>
-            <div class="col-sm-6">
-                <input type="text" name="fullName" ng-model="vm.newUser.fullName" value="" class="form-control" placeholder="Nome completo" maxlength="65" required>
-            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card layout-padding>
+                    <md-card-title>
+                        <h4 class="md-title">Dados de login</h4>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout-gt-md="row">
+                            <md-input-container flex class="md-icon-float md-block">
+                                <md-icon> <i class="material-icons">email</i>
+                                </md-icon>
+                                <label>Email</label>
+                                <input type="email" name="email" ng-model="vm.newUser.email" minlength="6" maxlength="6" ng-pattern="/^.+@.+\..+$/" required>
+                                <div ng-messages="signupForm.email.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Senha</label>
+                                <input type="password" name="senha" ng-model="vm.newUser.password" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Repetir Senha</label>
+                                <input type="password" name="repSenha" ng-model="vm.newUser.confirmPassword" match="vm.newUser.password" required>
+                            </md-input-container>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card layout-padding>
+                    <md-card-title>
+                        <h4 class="md-title">Endereço de entrega</h4>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout-gt-md="row">
+                            <md-input-container>
+                                <label>Tipo de endereco</label>
+                                <md-select name="tipoEnd" ng-model="vm.newUser.tipoEndereco" required>
+                                    <md-option value="Apartamento">Apartamento</md-option>
+                                    <md-option value="Casa">Casa</md-option>
+                                    <md-option value="Comercial">Comercial</md-option>
+                                    <md-option value="Outro">Outro</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>CEP</label>
+                                <input name="cep" ng-model="vm.newUser.cep" ui-mask="99999-999" type="text" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Endereço</label>
+                                <input type="text" name="endereco" ng-model="vm.newUser.endereco" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Número</label>
+                                <input type="text" name="numero" ng-model="vm.newUser.numero" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Complemento</label>
+                                <input type="text" name="complemento" ng-model="vm.newUser.complemento" type="text">
+                            </md-input-container>
 
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.sexo.$invalid}">
-            <label for="inputEmail3" class="col-sm-2 control-label"><span class="asterisk">*</span><span>Sexo</span>
-            </label>
-            <div class="col-sm-2">
-                <select class="form-control" name="sexo" ng-model="vm.newUser.sexo" required>
-                    <option>Selecione</option>
-                    <option value="Feminino">Feminino</option>
-                    <option value="Masculino">Masculino</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.cpf.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>CPF</label>
-            <div class="col-sm-3">
-                <input ng-model="vm.newUser.cpf" ui-mask="999.999.999-99" type="text" name="cpf" class="form-control" required>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.birthDate.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Data de nascimento</label>
-            <div class="col-sm-3">
-                <input type="date" name="birthDate" ng-model="vm.newUser.birthDate" class="form-control" id="inputPassword3" placeholder="Data de nascimento" maxlength="11" required>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.telefone.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Telefone residencial</label>
-            <div class="col-sm-3">
-                <input ng-model="vm.newUser.telefone" ui-mask="(99) 9999-9999" type="text" name="telefone" class="form-control" required/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Telefone celular</label>
-            <div class="col-sm-3">
-                <input ng-model="vm.newUser.celular" ui-mask="(99) 99999-9999" type="text" name="celular" class="form-control">
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.email.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>E-mail</label>
-            <div class="col-sm-6">
-                <input type="email" name="email" ng-model="vm.newUser.email" class="form-control" placeholder="E-mail" maxlength="30" required>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.password.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Senha</label>
-            <div class="col-sm-3">
-                <input ng-model="vm.newUser.password" type="password" name="password" class="form-control" placeholder="Senha" min="6" maxlength="8" required>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.confirmPassword.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Repetir Senha</label>
-            <div class="col-sm-3">
+                        </div>
+                        <div layout-gt-md="row">
+                            <md-input-container class="md-block">
+                                <label>Bairro</label>
+                                <input name="bairro" ng-model="vm.newUser.bairro" type="text" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Cidade</label>
+                                <input name="cidade" ng-model="vm.newUser.cidade" type="text" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Estado</label>
+                                <input name="estado" ng-model="vm.newUser.estado" type="text" required>
+                            </md-input-container>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card layout-padding>
+                    <md-card-title>
+                        <h4 class="md-title">Contato</h4>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout-gt-md="row">
+                            <md-input-container flex class="md-icon-float md-block">
+                                <label>Telefone residencial</label>
+                                <input name="telRes" ng-model="vm.newUser.telefone" ui-mask="(99) 9999-9999" type="text" required>
+                            </md-input-container>
+                            <md-input-container flex class="md-icon-float md-block">
+                                <label>Telefone celular</label>
+                                <input name="telCels" ng-model="vm.user.celular" ui-mask="(99) 9999-9999" type="text" required>
+                            </md-input-container>
 
-                <input ng-model="vm.newUser.confirmPassword" match="vm.newUser.password" type="password" name="confirmPassword" class="form-control" id="inputPassword3" placeholder="Senha" maxlength="30" required>
-            </div>
-            <div ng-show="signupForm.confirmPassword.$error.match">Senhas não conferem!</div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <div layout="row" flex-gt-md="50" layout-margin layout-align="center center">
+                    <md-button layout="column" flex="50" type="submit" class="md-warn md-raised" ng-click=" vm.createUser(vm.newUser)">Cadastrar</md-button>
+                </div>
+                <md-divider></md-divider>
+            </form>
         </div>
-        <h3>Endereço de entrega</h3>
-        <p class="help-block">* campos obrigatorios</p>
-        <div class="form-group" class="form-group" ng-class="{'has-error':signupForm.tipoEndereco.$invalid}">
-            <label for="inputEmail3" class="col-sm-2 control-label"><span class="danger">*</span><span>Tipo de Endereço</span>
-            </label>
-            <div class="col-sm-2">
-                <select class="form-control" name="tipoEndereco" ng-model="vm.newUser.tipoEndereco" required>
-                    <option value="Selecione">Selecione</option>
-                    <option value="Apartamento">Apartamento</option>
-                    <option value="Casa">Casa</option>
-                    <option value="Comercial">Comercial</option>
-                    <option value="Outro">Outro</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.cep.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>CEP</label>
-            <div class="col-sm-3">
-                <input ng-model="vm.newUser.cep" ui-mask="99999-999" type="text" name="cep" class="form-control" required>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.endereco.$invalid}">
-            <label class="col-sm-2 control-label"><span class="asterisk">*</span>Endereço</label>
-            <div class="col-sm-6">
-                <input type="text" name="endereco" ng-model="vm.newUser.endereco" class="form-control" placeholder="Endereço residencial" maxlength="30" required>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.numero.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Número</label>
-            <div class="col-sm-3">
-                <input type="text" name="numero" ng-model="vm.newUser.numero" class="form-control" placeholder="Número da rua, Av, etc." maxlength="30" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Complemento</label>
-            <div class="col-sm-6">
-                <input type="text" name="complemento" ng-model="vm.newUser.complemento" class="form-control" placeholder="Complemento do endereço" maxlength="30">
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':signupForm.referencia.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Referência</label>
-            <div class="col-sm-6">
-                <input type="text" name="referencia" ng-model="vm.newUser.referencia" class="form-control" placeholder="informações de referência residencial" maxlength="30" required>
-            </div>
-        </div>
-
-        <div class="form-group" ng-class="{'has-error':signupForm.bairro.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Bairro</label>
-            <div class="col-sm-4">
-                <input type="text" name="bairro" ng-model="vm.newUser.bairro" class="form-control" placeholder="Bairro" maxlength="30" required>
-            </div>
-        </div>
-
-        <div class="form-group" ng-class="{'has-error':signupForm.cidade.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Cidade</label>
-            <div class="col-sm-4">
-                <input type="text" name="cidade" ng-model="vm.newUser.cidade" class="form-control" placeholder="Cidade" maxlength="30" required>
-            </div>
-        </div>
-
-        <div class="form-group" ng-class="{'has-error':signupForm.estado.$invalid}">
-            <label for="inputPassword3" class="col-sm-2 control-label"><span class="asterisk">*</span>Estado</label>
-            <div class="col-sm-2">
-                <input type="text" name="estado" ng-model="vm.newUser.estado" class="form-control" placeholder="Estado" maxlength="10" required>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success btn-lg" ng-click=" vm.createUser(vm.newUser)">Cadastrar</button>
-            </div>
-        </div>
-    </form>
+    </md-content>
 </div>

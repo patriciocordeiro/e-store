@@ -3,18 +3,20 @@
         <div class="container">
             <div class="md-toolbar-tools" layout="row">
                 <div flex layout="row" layout-align="end center">
-                    <md-button ui-sref="app.login">Login
+                    <md-button ui-sref="app.user.dashboard" ng-hide="!isloggedIn">Olá {{loggedUserName}}</md-button>
+                    <md-button ng-hide="isloggedIn" ui-sref="app.user.login">Login {{isloggedIn}}
                     </md-button>
-                    <md-button ui-sref="app.dashboard">Meus Pedidos
+                    <md-button ui-sref="app.user.dashboard">Meus Pedidos
                     </md-button>
-                    <md-button ui-sref="app.signup">Cadastre-se
-                    </md-button>
-                    <md-button ng-hide="!loggedIn" ui-sref="logOut()">Sair
+                    <md-button ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastre-se
                     </md-button>
                     <md-button ui-sref="app.minhaCesta"><i class="material-icons">shopping_cart</i>
                         <span>{{vm.kartSize}}</span>
                     </md-button>
                     <md-button ng-click=" vm.showPutedInCartToast()">Toast</md-button>
+                    <md-button ng-hide="!isloggedIn" ng-click="vm.logout()">Sair
+                    </md-button>
+
                 </div>
 
             </div>
@@ -22,64 +24,64 @@
         </div>
     </md-toolbar>
     <div class="container">
-<!--        <div flex layout="row" layout-align="space-around">-->
-            <div id="myCartToast"></div>
-    
-<!--        </div>-->
+        <!--        <div flex layout="row" layout-align="space-around">-->
+        <div id="myCartToast"></div>
+
+        <!--        </div>-->
     </div>
 
-    <md-toolbar class="md-toolbar-tools">
-        <div layout="row" layout-align="center center" layout-wrap>
-            <div flex="66">
-                <div flex layout="row" layout-align="start center">
+    <md-toolbar md-scroll-shrink ng-if="true" class="md-toolbar-tools">
+        <!--        <div layout="row" layout-align="center center" layout-wrap>-->
+        <!--            <div flex="66">-->
+        <div flex layout="row" layout-align="center center">
 
-                    <md-button>
-                        <img src="../../assets/img/logo/sonyLogo2.png">
+            <md-button>
+                <img src="../../assets/img/logo/sonyLogo2.png">
+            </md-button>
+            <md-menu-bar>
+                <md-menu>
+                    <md-button ng-click="$mdOpenMenu()">
+                        Produtos
                     </md-button>
-                    <md-menu-bar>
-                        <md-menu>
-                            <md-button ng-click="$mdOpenMenu()">
-                                Produtos
-                            </md-button>
-                            <md-menu-content>
-                                <md-menu-item ng-repeat="prdctNavCat in vm.productNavCategories">
-                                    <md-menu>
-                                        <md-button ng-click="$mdOpenMenu()" style="color:black !important" ng-click="vm.getSelectedProductSection(prdctNavCat.name)">
-                                            {{prdctNavCat.name}}
+                    <md-menu-content>
+                        <md-menu-item ng-repeat="prdctNavCat in vm.productNavCategories">
+                            <md-menu>
+                                <md-button ng-click="$mdOpenMenu()" style="color:black !important" ng-click="vm.prdgetSect(prdctNavCat.name)">
+                                    {{prdctNavCat.name}}
+                                </md-button>
+                                <md-menu-content>
+                                    <md-menu-item ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat">
+                                        <md-button ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.prdgetCatg(prdctNavCat.name, prdctNavSubCat.name)" style="color:black !important">
+                                            {{prdctNavSubCat.name}}
                                         </md-button>
-                                        <md-menu-content>
-                                            <md-menu-item ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat">
-                                                <md-button ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.prdgetSelCatg(prdctNavSubCat.name)" style="color:black !important">
-                                                    {{prdctNavSubCat.name}}
-                                                </md-button>
-                                            </md-menu-item>
+                                    </md-menu-item>
 
-                                        </md-menu-content>
-                                    </md-menu>
-                                </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-item>
 
-                                <md-menu-divider></md-menu-divider>
-                            </md-menu-content>
-                        </md-menu>
-                    </md-menu-bar>
-                    <md-button ui-sref="app.dashboard">Kits
-                    </md-button>
-                    <md-button ui-sref="app.signup">Universitários
-                    </md-button>
-                    <md-button ui-sref="app.signup">Laboratórios
-                    </md-button>
-                    <md-button ui-sref="app.signup">Cursos
-                    </md-button>
-                    <md-input-container>
-                        <label>Busca</label>
-                        <input type="text" />
-                    </md-input-container>
-                    <md-button><i class="material-icons">search</i>
-                    </md-button>
-                </div>
-
-            </div>
+                        <md-menu-divider></md-menu-divider>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
+            <md-button ui-sref="app.dashboard">Kits
+            </md-button>
+            <md-button ui-sref="app.signup">Universitários
+            </md-button>
+            <md-button ui-sref="app.signup">Laboratórios
+            </md-button>
+            <md-button ui-sref="app.signup">Cursos
+            </md-button>
+            <md-input-container>
+                <label>Busca</label>
+                <input type="text" />
+            </md-input-container>
+            <md-button><i class="material-icons">search</i>
+            </md-button>
         </div>
+
+        <!--            </div>-->
+        <!--        </div>-->
     </md-toolbar>
 
 </div>
