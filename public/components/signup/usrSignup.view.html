@@ -1,0 +1,187 @@
+<md-content layout="row" layout-align="center center">
+    <div layout="column" flex-gt-md="50">
+        <md-toolbar class="md-toolbar-tools">Faça o seu cadastro</md-toolbar>
+        <form name="signupForm" novalidate>
+            <md-card layout-padding>
+                <md-card-title>
+
+                    <h4 class="md-title"><md-icon class="material-icons md-36">account_circle</md-icon>Dados pessoais</h4>
+                </md-card-title>
+                <md-card-content>
+                    <div layout-gt-md="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Nome</label>
+                            <input type="text" name="nome" ng-model="vm.newUser.nome" required>
+                            <div ng-messages="signupForm.nome.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Sobrenome</label>
+                            <input type="text" name="sobrenome" ng-model="vm.newUser.sobrenome" required>
+                            <div ng-messages="signupForm.sobrenome.$error">
+                                <div ng-message="required">Entre com o seu sobrenome</div>
+                            </div>
+                        </md-input-container>
+<!--                        <md-input-container class="md-block" flex-gt-sm>-->
+                            <md-datepicker name="dataNascimento" md-placeholder="Data de Nascimento" ng-model="vm.newUser.birthDate" required></md-datepicker>
+<!--                        </md-input-container>-->
+<!--
+                        <div ng-messages="signupForm.dataNascimento.$error">
+                            <div ng-message="required">Entre com a sua data de nascimento</div>
+                        </div>
+-->
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Sexo</label>
+                            <md-select name="sexo" ng-model="vm.newUser.sexo" required>
+                                <md-option value="Masculino">
+                                    Masculino
+                                </md-option>
+                                <md-option value="Feminino">
+                                    Feminino
+                                </md-option>
+                            </md-select>
+                            <div ng-messages="signupForm.sexo.$error">
+                                <div ng-message="required">Selecione o sexo</div>
+                            </div>
+                        </md-input-container>
+
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card layout-padding>
+                <md-card-title>
+                    <h4 class="md-title">Dados de login</h4>
+                </md-card-title>
+                <md-card-content>
+                    <div layout-gt-md="row">
+                        <md-input-container flex class="md-icon-float md-block">
+                            <md-icon> <i class="material-icons">email</i>
+                            </md-icon>
+                            <label>Email</label>
+                            <input type="email" name="email" ng-model="vm.newUser.email"  ng-pattern="/^.+@.+\..+$/" required>
+                            <div ng-messages="signupForm.email.$error" role="alert">
+                                <div ng-message-exp="['required', 'pattern']">
+                                    Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Senha</label>
+                            <input type="password" name="senha" ng-model="vm.newUser.password" minlength="6" maxlength="8" required>
+                            <div ng-messages="signupForm.senha.$error">
+                                <div ng-message="required">Entre com a sua senha</div>
+                                <div flex wrap ng-message="minlength, maxlength">Sua senha deve conter no mín. seis caracteres</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Repetir Senha</label>
+                            <input type="password" name="repSenha" ng-model="vm.newUser.confirmPassword" minlength="6" maxlength="8" match="vm.newUser.password" required>
+                            <div ng-messages="signupForm.repSenha.$error">
+                                <div ng-message="match">As senhas não conferem.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card layout-padding>
+                <md-card-title>
+                    <h4 class="md-title"><md-icon class="material-icons md-36">home</md-icon>Endereço de entrega</h4>
+                </md-card-title>
+                <md-card-content>
+                    <div layout-gt-md="row">
+                        <md-input-container>
+                            <label>Tipo de endereco</label>
+                            <md-select name="tipoEnd" ng-model="vm.newUser.tipoEndereco" required>
+                                <md-option value="Apartamento">Apartamento</md-option>
+                                <md-option value="Casa">Casa</md-option>
+                                <md-option value="Comercial">Comercial</md-option>
+                                <md-option value="Outro">Outro</md-option>
+                            </md-select>
+                            <div ng-messages="signupForm.tipoEnd.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>CEP</label>
+                            <input name="cep" ng-model="vm.newUser.cep" ui-mask="99999-999" type="text" required>
+                            <div ng-messages="signupForm.cep.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Endereço</label>
+                            <input type="text" name="endereco" ng-model="vm.newUser.endereco" required>
+                            <div ng-messages="signupForm.endereco.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Número</label>
+                            <input type="text" name="numero" ng-model="vm.newUser.numero" required>
+                            <div ng-messages="signupForm.numero.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Complemento</label>
+                            <input type="text" name="complemento" ng-model="vm.newUser.complemento" type="text">
+                            <div ng-messages="signupForm.complemento.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+
+                    </div>
+                    <div layout-gt-md="row">
+                        <md-input-container class="md-block">
+                            <label>Bairro</label>
+                            <input name="bairro" ng-model="vm.newUser.bairro" type="text" required>
+                            <div ng-messages="signupForm.bairro.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Cidade</label>
+                            <input name="cidade" ng-model="vm.newUser.cidade" type="text" required>
+                            <div ng-messages="signupForm.cidade.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Estado</label>
+                            <input name="estado" ng-model="vm.newUser.estado" type="text" required>
+                            <div ng-messages="signupForm.estado.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card layout-padding>
+                <md-card-title>
+                    <h4 class="md-title">Contato</h4>
+                </md-card-title>
+                <md-card-content>
+                    <div layout-gt-md="row">
+                        <md-input-container flex class="md-icon-float md-block">
+                            <label>Telefone residencial</label>
+                            <input name="telRes" ng-model="vm.newUser.telefone" ui-mask="(99) 9999-9999" type="text" required>
+                            <div ng-messages="signupForm.telefone.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex class="md-icon-float md-block">
+                            <label>Telefone celular</label>
+                            <input name="telCels" ng-model="vm.user.celular" ui-mask="(99) 9999-9999" type="text" required>
+                        </md-input-container>
+
+                    </div>
+                </md-card-content>
+            </md-card>
+            <div layout="row" flex-gt-md="50" layout-margin layout-align="center center">
+                <md-button layout="column" flex="50" type="submit" class="md-warn md-raised" ng-click=" vm.createUser(vm.newUser)">Cadastrar</md-button>
+            </div>
+            <md-divider></md-divider>
+        </form>
+    </div>
+</md-content>

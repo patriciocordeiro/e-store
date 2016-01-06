@@ -4,13 +4,12 @@
 
     function userSrcv($rootScope, httpUserService, userService, authentication, $state, $cookies, $q, $mdDialog) {
         var _this = this;
-        //        $rootScope.isloggedIn = false,
-
 
         this.usr = {
+            isloggedIn: false,
+            loggedUserName: '',
             login: {
-                isloggedIn: false,
-                loggedUserName: '',
+
                 /*Local type login*/
                 local: function(user, saveSection, callback) {
                     //user: object with login info
@@ -44,7 +43,7 @@
                                             //Set the loggedin to true
                                             $rootScope.isloggedIn = true;
                                             //get the logged user name to display on navbar
-                                            $rootScope.loggedUserName = res.local.fullName;
+                                            $rootScope.loggedUserName = res.local.name;
                                             //                                            console.log(_this.usr.login.loggedUserName);
                                             //Login sucess message
                                             msg = _this.usr.login.successMsg();
@@ -129,6 +128,7 @@
                     });
                 },
                 removeCokies: function() {
+                    $cookies.remove('email');
                     $cookies.remove('usuario');
                     $cookies.remove('produtos');
                     $cookies.remove('lastState');
@@ -136,6 +136,50 @@
                 redirectToHomePage: function() {
                     $state.go('app');
                 }
+            },
+            signup: {
+                createUsr: function(newUser) {
+                    if (newUser) {
+                        authentication.signup({
+                            nome: newUser.nome,
+                            sobrenome: newUser.sobrenome,
+                            username: newUser.email,
+                            sexo: newUser.sexo,
+                            cpf: newUser.cpf,
+                            birthDate: newUser.birthDate,
+                            telefone: newUser.telefone,
+                            celular: newUser.celular,
+                            email: newUser.email,
+                            password: newUser.password,
+                            tipoEndereco: newUser.tipoEndereco,
+                            cep: newUser.cep,
+                            endereco: newUser.endereco,
+                            complemento: newUser.complemento,
+                            numero: newUser.numero,
+                            referencia: newUser.referencia,
+                            bairro: newUser.bairro,
+                            cidade: newUser.cidade,
+                            estado: newUser.estado,
+
+                        }, function(newUser) {
+                            if (newUser) {
+                                var ev;
+                                $mdDialog.show({
+                                    controller: 'SignupCtrl as vm',
+                                    templateUrl: 'components/signup/usrSignupDiag.view.html',
+                                    parent: angular.element(document.body),
+                                    targetEvent: ev,
+                                    clickOutsideToClose: true
+                                })
+                            }
+
+                            console.log('usuário recebido', newUser) //retorno do servidor
+                        });
+
+                    };
+                }
+
+
             },
             update: function(userData) {
                 if (userData) {
@@ -164,14 +208,63 @@
                 var alert = $mdDialog.alert()
                     .title('Olá, ' + _this.usr.login.loggedUserName)
                     .content(msg)
-                    .ok('Fechar');
+                    .ok('Ok');
                 $mdDialog
                     .show(alert)
                     .finally(function() {
                         alert = undefined;
                     });
-            }
+            },
+            addNewAddress: function(ev) {
+                $mdDialog.show({
+                    controller: 'KartCtrl as vm',
+                    templateUrl: 'components/dashboard/userNewAddress.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                })
+                //                    .then(function(answer) {
+                ////                        $scope.status = 'You said the information was "' + answer + '".';
+                //                    }, function() {
+                ////                        $scope.status = 'You cancelled the dialog.';
+                //                    });
+
+            },
+            //recover  already loggedin user    
+            recoverUser: function() {
+                //check if user is already loggedin
+                if ($cookies.get('email')) {
+                    console.log('usuário existe');
+                    authentication.isloggedin(function(res) {
+                        console.log(res.user);
+                        if (res.user !== false) {
+                            console.log('resposta', res.local.fullName)
+                            //set isloggedIn to true
+                            _this.usr.login.data = res;
+                            _this.usr.isloggedIn = true;
+                            $rootScope.isloggedIn = true;
+                            $rootScope.loggedUserName = res.local.fullName;
+                            //
+                            //                            if (lastState === "app.produtosDetail" || lastState === "app.avaliacao") {
+                            //                                $state.go(lastState || "app.dashboard", {
+                            //                                    id: localStorageService.get('idProdutoDetalhe')
+                            //                                });
+                            //                            } else {
+                            //                                $state.go(lastState || "app.dashboard");
+                            //                            }
+
+
+                        } else {
+                            console.log('Usuário não existe');
+                        }
+                    });
+                }
+            },
+            closeDialog:function(){
+            $mdDialog.hide();
+        }
         }
     }
+
 
 })();

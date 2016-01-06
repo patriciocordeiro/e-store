@@ -1,0 +1,95 @@
+<div layout="column" ng-cloak>
+    <div ng-show="!vm.isKartEmpty" flex layout="column" class="md-whiteframe-z4">
+
+        <div flex hide-sm layout="row" layout-padding layout-sm="column" style="background-color:red">
+            <h1> {{vm.teste}} </h1>
+            <div flex="5">
+                <p><b>Item</b>
+                </p>
+            </div>
+
+            <div flex="15">
+                <p><b>No. ref. da MP</b>
+                </p>
+            </div>
+            <div flex="15">
+                <p><b>No. ref. do Fabricante</b>
+                </p>
+            </div>
+            <div flex="28">
+                <p><b>Descrição</b>
+                </p>
+            </div>
+            <div flex="10">
+                <p><b>Qtd. do pedido</b>
+                </p>
+            </div>
+            <div flex="8">
+                <p><b>Preço unit.</b>
+                </p>
+            </div>
+            <div flex="8">
+                <p><b>Subtotal</b>
+                </p>
+            </div>
+            <div flex="10">
+                <p><b>Remover</b>
+                </p>
+            </div>
+
+        </div>
+
+        <div flex layout="row" layout-padding layout-sm="column" ng-repeat="products in vm.kartData track by $index">
+            <div flex="100" flex-gt-sm="5">
+                {{$index+1}}
+            </div>
+
+            <div flex="15">
+                <md-button md-no-ink ng-href="#" class="md-primary ">652-CHV2512JW107ELF</md-button>
+            </div>
+            <div flex="15">
+                CHV2512-JW-107ELF
+            </div>
+            <div flex="28">
+                <p>Resistores de Filme Espesso - SMD 100M 1W 5% TCR200 RES SMD</p>
+            </div>
+            <div flex="10">
+                <md-input-container>
+                    <input style="text-align:center" type="number" maxlength="3" step="1" ng-model="vm.kartData[$index].buyQty" ng-click="vm.prdGetKartUpdate($index,  vm.kartData[$index].buyQty[$index])" min="1" max="100" />
+                </md-input-container>
+            </div>
+            <div flex="8" layout="column" layout-align="center end">
+                <p>R$ {{products.preco}}</p>
+            </div>
+            <div flex="8" layout="column" layout-align="center end">
+                <p>R$ {{products.priceSubTotal}}</p>
+            </div>
+
+            <div flex="100" flex-gt-sm="10" layout-margin>
+                <md-button ng-click="vm.prdKartRemItem($index)">
+                    <md-icon class="md-icon-button"><i class="material-icons">delete</i>
+                    </md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div flex layout="row" layout-padding layout-align="end center">
+            <p class="md-button"></p>Total: {{vm.prdKartSubTotalPrice}}</div>
+        <div flex layout="row" layout-fill layout-align="end center">
+            <md-button ui-sref="app.minhaCesta.checkout" ng-click="vm.finalizarCompra()" class="md-primary md-raised">Finalizar Compra</md-button>
+            <md-button class="md-accent md-raised">Continuar Compras</md-button>
+        </div>
+
+
+        <!--        </md-content>-->
+    </div>
+    <div ng-show="vm.isKartEmpty">
+        <div flex layout="row" layout-align="space-around">
+            <h1>O Carrinho está vazio</h1>
+        </div>
+    </div>
+    <div layout="row" layout-align="space-around">
+        <md-progress-circular md-mode="{{vm.progressCircularMode}}">
+        </md-progress-circular>
+    </div>
+</div>
+

@@ -75,13 +75,13 @@ angular.module('myApp').service('produtosApi', ['httpService',
                 return callback(data);
             });
         };
-        this.getProductsKart = function(query, callback) {
+        this.getProductsKart = function(query) {
             httpService.save({
                 acao: 'myKart',
                 id: 'id'
-            }, query, function(data) {
+            }, query).then(function(data) {
                 //console.log(data);
-                return callback(data);
+                return data;
             });
         }
 

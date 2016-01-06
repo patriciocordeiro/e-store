@@ -1,41 +1,23 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs', 'ngMessages', 'md.data.table'])
-    .run(function($rootScope, $state, authentication, $cookies, localStorageService) {
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs', 'ngMessages'])
+    .run(function($rootScope, $state, authentication, $cookies, userSrcv) {
         //Check if user is loggedin (cookies)
         var lastState = $cookies.get('lastState');
 
-        //from user service, sinalize that user is logged in or not
-        //this variable is used on navbar to hide/show login/logout  button
-        $rootScope.isloggedIn = false;
-        $rootScope.loggedUserName = '';
-
-        authentication.isloggedin(function(response) {
-            console.log(!response.user);
-            if (response.user !== false) {
-                console.log('resposta', response.local.firstName)
-                $rootScope.isloggedIn = true;
-
-                if (lastState === "app.produtosDetail" || lastState === "app.avaliacao") {
-                    $state.go(lastState || "app.dashboard", {
-                        id: localStorageService.get('idProdutoDetalhe')
-                    });
-                } else {
-                    $state.go(lastState || "app.dashboard");
-                }
-                $rootScope.loggedUserName = response.local.fullName;
-
-            }
-        });
-
+        //Recover the user on reload
+        userSrcv.usr.recoverUser();
+        console.log(userSrcv.usr);
+        //---------------------------------------------------------
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
             console.log('mudei de estado', toState)
-            var isLoggedIn = $rootScope.isloggedIn;
+
             if (fromState !== toState) {
                 $cookies.put('lastState', toState.name);
             }
             //check if client is trying to access a restricted page
             //toState.authenticate = true and is
-            if (toState.authenticate && !isLoggedIn) {
+            console.log(userSrcv.usr.isloggedIn);
+            if (toState.authenticate && !$rootScope.isloggedIn) {
                 event.preventDefault();
                 //if toState.authenticate = true and isLoggedIn = false
                 //Redirect to login page
@@ -47,14 +29,16 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 console.log("Esse o estado de onde venho: ", fromState.name);
             }
         })
-        console.log('Hello')
     })
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
         /*Angular theme configuration*/
         $mdThemingProvider.theme('default')
             .primaryPalette('teal')
-            .accentPalette('orange');
+            .accentPalette('deep-orange')
+//            .backgroundPalette('white', {
+//                'default': '50'
+//            });
 
         $stateProvider
             .state('app', {
@@ -78,7 +62,6 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             data: {
                 proxy: 'app.produtos.list'
             }
-
         })
 
         .state('app.produtos.section', {
@@ -89,7 +72,6 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                     controller: 'PrdSectionCtrl as vm',
                     authenticate: false,
                     function($scope, section) {
-                        //                        $scope.category = category;
                         $scope.section = section;
                         console.log($scope.section);
                     }
@@ -101,8 +83,6 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             resolve: {
                 section: function(productSrvc) {
                     return productSrvc.section;
-                    //                    return productSrvc.category;
-
                 }
             }
         })
@@ -111,11 +91,10 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             url: "/:category",
             views: {
                 "products@": {
-                    templateUrl: 'components/produtos/produtosLista.view.html',
+                    templateUrl: 'components/produtos/productLista.view.html',
                     controller: 'PrdCtrl as vm',
                     authenticate: true,
                     function($scope, category, section) {
-                        //                        $scope.category = category;
                         $scope.category = category;
                         $scope.section = section;
                         console.log($scope.category);
@@ -140,7 +119,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             url: "/:id",
             views: {
                 'products@': {
-                    templateUrl: 'components/produtos/produtoDetail.view.html',
+                    templateUrl: 'components/produtos/productDetail.view.html',
                     controller: 'PrdDetailCtrl as vm',
                     authenticate: false
                 }
@@ -162,36 +141,46 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             url: "/minhaCesta",
             views: {
                 'products@': {
-                    templateUrl: 'components/produtos/kart.view.html',
+                    templateUrl: 'components/kart/kart.view.html',
                     controller: 'KartCtrl as vm',
                     authenticate: true,
-                    //            template : '<h1>Funciona</h1>',
                     data: {
                         displayName: 'Meu Carrinho',
                     }
                 }
             }
         })
+            .state('app.minhaCesta.checkout', {
+                url: "/checkout",
+                authenticate: true,
+                views: {
+                    'products@': {
+                        templateUrl: 'components/kart/kartCheckout.view.html',
+                        controller: 'KartCtrl as vm',
+                        authenticate: true,
+                        data: {
+                            displayName: 'Finalizar compra',
+                        }
+                    }
+                }
+            })
 
         .state('app.search', {
             url: "/search",
             templateUrl: 'components/search/search.view.html',
             controller: 'SearchResultsCtrl as vm'
-            //            template : '<h1>Funciona</h1>',
-
         })
 
         .state('app.user.signup', {
-            url: "/user/signup",
+            url: "/signup",
             views: {
                 'products@': {
-                    templateUrl: 'components/signup/signup.view.html',
+                    templateUrl: 'components/signup/usrSignup.view.html',
                     controller: 'SignupCtrl as vm'
-                    //            template : '<h1>Funciona</h1>',
                 }
             },
             data: {
-                displayName: 'Dashboard'
+                displayName: 'Criar conta'
             }
         })
 
@@ -204,7 +193,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 url: "/login",
                 views: {
                     'products@': {
-                        templateUrl: 'components/login/login.view.html',
+                        templateUrl: 'components/login/usrLogin.view.html',
                         controller: 'usrLoginCtrl as vm',
                         //            template : '<h1>Funciona</h1>',
                     }
@@ -234,13 +223,13 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             templateUrl: 'components/dashboard/userAlterarEmail.view.html',
             //            controller: 'blala as vm',
             //            template : '<h1>Funciona</h1>',
-            //                authenticate: true
+            authenticate: true
         })
             .state('app.user.dashboard.password', {
                 url: "/password",
                 templateUrl: 'components/dashboard/userAlterarSenha.view.html',
                 controller: 'userDashboardCtrl as vm',
-                //                authenticate: true
+                authenticate: true
             })
             .state('app.user.dashboard.dados', {
                 url: "/dados",
@@ -252,20 +241,20 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             .state('app.user.dashboard.endereco', {
                 url: "/endereco",
                 templateUrl: 'components/dashboard/userAlterarEndereco.view.html',
+                authenticate: true,
                 data: {
                     displayName: 'Meus endereços'
                 }
-                //                controller: 'blala as vm',
-                //                authenticate: true
             })
             .state('app.user.dashboard.pedidos', {
                 url: "/pedidos",
                 templateUrl: 'components/dashboard/pedidos.view.html',
                 controller: 'DashboardPedidosCtrl as vm',
+                authenticate: true,
                 data: {
                     displayName: 'Meus endereços',
                 }
-                //                authenticate: true
+
             })
 
 

@@ -1,27 +1,25 @@
 <div layout="row" layout-wrap class="my-top-nav-bar" ng-controller="NavbarCtrl as vm">
-    <md-toolbar class="my-md-menu-top">
-        <div class="container">
-            <div class="md-toolbar-tools" layout="row">
+    <md-toolbar class="md-toolbar-tools my-md-menu-top" style="background-color:#FAFAFA
+">
+<!--            <div layout="row">-->
                 <div flex layout="row" layout-align="end center">
-                    <md-button ui-sref="app.user.dashboard" ng-hide="!isloggedIn">Olá {{loggedUserName}}</md-button>
-                    <md-button ng-hide="isloggedIn" ui-sref="app.user.login">Login {{isloggedIn}}
+                    <md-button class="md-primary md-hue-3 my-md-link-btn" ui-sref="app.user.dashboard" ng-hide="!isloggedIn">Olá {{loggedUserName}}</md-button>
+                    <md-button class="md-primary my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.login">Login {{isloggedIn}}
                     </md-button>
-                    <md-button ui-sref="app.user.dashboard">Meus Pedidos
+                    <md-button class="md-primary my-md-link-btn" ui-sref="app.user.dashboard">Meus Pedidos
                     </md-button>
-                    <md-button ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastre-se
+                    <md-button class="md-primary my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastre-se
                     </md-button>
-                    <md-button ui-sref="app.minhaCesta"><i class="material-icons">shopping_cart</i>
+                    <md-button class="md-warn md-raised"  ui-sref="app.minhaCesta"><i class="material-icons">shopping_cart</i>
                         <span>{{vm.kartSize}}</span>
                     </md-button>
-                    <md-button ng-click=" vm.showPutedInCartToast()">Toast</md-button>
-                    <md-button ng-hide="!isloggedIn" ng-click="vm.logout()">Sair
+                    <md-button class="md-primary my-md-link-btn" ng-click=" vm.showPutedInCartToast()">Toast</md-button>
+                    <md-button class="md-primary my-md-link-btn" ng-hide="!isloggedIn" ng-click="vm.logout()">Sair
                     </md-button>
 
                 </div>
 
-            </div>
-
-        </div>
+<!--            </div>-->
     </md-toolbar>
     <div class="container">
         <!--        <div flex layout="row" layout-align="space-around">-->
@@ -29,12 +27,8 @@
 
         <!--        </div>-->
     </div>
-
-    <md-toolbar md-scroll-shrink ng-if="true" class="md-toolbar-tools">
-        <!--        <div layout="row" layout-align="center center" layout-wrap>-->
-        <!--            <div flex="66">-->
-        <div flex layout="row" layout-align="center center">
-
+    <md-toolbar md-scroll-shrink ng-if="true" class="md-toolbar-tools my-nav-bar-menu">
+        <div   flex layout="row" layout-align="center center">
             <md-button>
                 <img src="../../assets/img/logo/sonyLogo2.png">
             </md-button>
@@ -51,15 +45,13 @@
                                 </md-button>
                                 <md-menu-content>
                                     <md-menu-item ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat">
-                                        <md-button ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.prdgetCatg(prdctNavCat.name, prdctNavSubCat.name)" style="color:black !important">
+                                        <md-button ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name)" style="color:black !important">
                                             {{prdctNavSubCat.name}}
                                         </md-button>
                                     </md-menu-item>
-
                                 </md-menu-content>
                             </md-menu>
                         </md-menu-item>
-
                         <md-menu-divider></md-menu-divider>
                     </md-menu-content>
                 </md-menu>
@@ -79,9 +71,5 @@
             <md-button><i class="material-icons">search</i>
             </md-button>
         </div>
-
-        <!--            </div>-->
-        <!--        </div>-->
     </md-toolbar>
-
 </div>

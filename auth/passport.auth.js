@@ -16,9 +16,7 @@ module.exports = function(passport) {
             done(err, user);
         });
     });
-
-    //
-    //    LOCAL SIGNUP
+    /*LOCAL SIGNUP*/
     //     we are using named strategies since we have one for login and one for signup
     //     by default, if there was no name, it would just be called 'local'
     passport.use('local-signup', new LocalStrategy({
@@ -30,10 +28,7 @@ module.exports = function(passport) {
             console.log('chegou do cliente', req.body)
             // asynchronous
             // User.findOne wont fire unless data is sent back
-
             process.nextTick(function() {
-
-
 
                 User.findOne({
                     'local.email': email
@@ -52,14 +47,8 @@ module.exports = function(passport) {
                         // create the user
                         var newUser = new User();
                         // set the user's local credentials
-
-                        //                        newUser.local.password = newUser.generateHash(password);
-                        //                        newUser.local.username = email;
-                        //                        newUser.local.firstName = req.body.firstName;
-                        //                        newUser.local.lastName = req.body.lastName;
-                        //                        newUser.local.email = req.body.email;
-
-                        newUser.local.fullName = req.body.fullName;
+                        newUser.local.nome = req.body.nome;
+                        newUser.local.sobrenome = req.body.sobrenome;
                         newUser.local.email = req.body.email;
                         newUser.local.password = newUser.generateHash(password);
                         newUser.local.sexo = req.body.sexo;
@@ -81,9 +70,9 @@ module.exports = function(passport) {
                             if (err) {
                                 console.log('Error in Saving user: ' + err);
                                 throw err;
+                                 return err;
 
                             }
-                            console.log('Feito')
                             return done(null, newUser);
                         });
 
@@ -93,7 +82,6 @@ module.exports = function(passport) {
 
             //        console.log('Executado com sucesso')
         }));
-
 
     passport.use('local-login', new LocalStrategy({
 
@@ -139,63 +127,6 @@ module.exports = function(passport) {
         });
     }));
 
-    //---------------------------------------------------------------------
-    //----------User Endereco de entrega-----------------------------------
-//    passport.use('local-updateEndereco', new LocalStrategy({
-//            usernameField: 'email',
-//            passwordField: 'password',
-//            passReqToCallback: true,
-//        },
-//        function(req, email, password, done) {
-//            console.log('chegou do cliente', email)
-//            // asynchronous
-//            // User.findOne wont fire unless data is sent back
-//
-//            process.nextTick(function() {
-//
-//                User.findOne({
-//                    'local.email': email
-//                }, function(err, user) {
-//
-//                    if (err) {
-//                        return done(err);
-//                    }
-//
-//                    if (!user) {
-//                        return done(null, false, {
-//                            message: 'user does not exist'
-//                        });
-//                    } else {
-//                        //Se o usuário existe
-//                        //Atualize os dados cadastrais
-//                        //                        var user = new User
-//                        var query = req.body.endereco
-//                        console.log(query)
-//                        User.update({
-//                            'local.email': email
-//                        }, {
-//                            $set: {
-//                                'local.telefone': '818996565'
-//                            }
-//                        }, function(err, user) {
-//                            if (err) {
-//                                console.log(err)
-//                                return done(err)
-//
-//                            } else {
-//                                console.log('Eendereço atualizado com sucesso', user)
-//
-//                                return done(null, user);
-//                            }
-//
-//                        });
-//                    }
-//
-//                });
-//            });
-//        }
-//
-//    ));
     //---------------------------------------------------------------------
     //---------------------------------------------------------------------
 

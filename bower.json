@@ -15,11 +15,10 @@
     "angular-ui-mask": "*",
     "elevatezoom": "*",
     "bootstrap-star-rating": "*",
-    "angular-rateit": "*",
-    "awesome-rating": "*",
-    "angular-material": "*",
-    "angular-breadcrumb": "*",
+    "angular-rateit": "latest",
+    "awesome-rating": "latest",
+    "angular-breadcrumb": "latest",
     "angular-utils-ui-breadcrumbs": "*",
-    "angular-material-data-table": "~0.8.14"
+    "angular-material": "~1.0.1"
   }
 }

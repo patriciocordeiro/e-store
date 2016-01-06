@@ -2,15 +2,26 @@
 $indigo:#3F51B5;
  $light_bue:#03A9F4;
  .my-md-menu-top {
-    max-height: 20px !important;
-    background-color: #fff9f9 !important;
-    .md-button {
-        color: #3F79C2 !important;
-        text-transform: capitalize;
-    }
+    min-height: 100% !important;
+     height: 40px !important;
+//    background-color: #fff9f9 !important;
+    //    min-height: 34px !important;
+    //     font-size: 12px !important;
+//    .md-button {
+//        color: #3F79C2 !important;
+//        text-transform: capitalize;
+//    }
 }
-#my-breadcrumb {
+//.my-nav-bar-menu {
+////    .md-button {
+//        padding: 2.2% inherit!important;
+////    }
+//}
+
+.breadcrumb {
+    margin-bottom: 0px;
     font-size: 12px;
+
 }
 // Rules for sizing the icon.
 .material-icons.md-18 {
@@ -24,27 +35,37 @@ $indigo:#3F51B5;
 }
 .material-icons.md-48 {
     font-size: 48px;
-}.material-icons.md-60 {
+}
+.material-icons.md-60 {
     font-size: 60px;
-}.material-icons.md-72 {
+}
+.material-icons.md-72 {
     font-size: 72px;
 }
 .my-md-link-btn {
     // this style applies to all link buttons
     //We change the some md-button attributes to fit a li>a link
     margin: 0 !important;
+//    padding: 0 !important;
     line-height: 20px !important;
+    color: #00695C !important;
     min-height: auto !important;
-    .hover {
+    text-transform: capitalize !important;
+    min-width: 20px !important;
+    font-size: 12px !important;
+    &:hover {
         text-decoration: underline !important;
-        background-color: inherit!important;
+        background-color: inherit !important;
+      
     }
 }
 .my-md-icon-btn {
     padding: 0px !important;
     line-height: inherit !important;
-    min-height: auto !important;
+    min-height: inherit !important;
     min-width: inherit !important;
+    height: 24px !important;
+    width: 24px !important;
 }
 .groupX {
     font-size: 16px;
@@ -96,49 +117,17 @@ $indigo:#3F51B5;
     .md-media-md {
         text-align: center;
         min-height: 150px !important;
-        //        width: 60% !important;
-        //        padding-top: 33%;
-        img {
-            //        width: inherit !important;
-
-        }
+        img {}
     }
 }
-.my-md-btn-icon-bellow {
-    //    display: block !important;
-
-}
 ////Product page
-//table,
-//th,
-//td {
-//    //    border: 1px solid grey;
-//    //    border-collapse: collapse;
-//    //    padding: 5px;
-//    text-align: center;
-//}
-//table tr:nth-child(odd) {
-//    background-color: #f1f1f1;
-//}
-//table tr:nth-child(even) {
-//    background-color: #ffffff;
-//}
  .prd-list-table {
     tr: nth-child(odd) {
         background-color: #f1f1f1;
     }
-    //    table {
     text-align:center;
-    //        tbody {
-    td {
-        //        border: 1px solid grey;
-        //        border-collapse: collapse;
-
-    }
-    tr {
+    td {} tr {
         height: 250px;
-        //        height: 100px !important;
-        //                    min-height: 80% !important;
         max-height: 300px;
         min-height: 100px;
         text-align: center;
@@ -148,18 +137,12 @@ $indigo:#3F51B5;
         background-color: aliceblue !important;
         text-align: center;
     }
-    //    col:nth-child(3) {
-    //        max-width: 10%;
-    //    }
-    //        }
-    //    }
     thead {
         th {
             text-align: center!important;
             padding: 1%;
         }
         tr {
-            //        padding-right: 1%;
             height: 10px !important;
             background-color: white!important;
         }
@@ -178,7 +161,6 @@ $indigo:#3F51B5;
 
 .my-cart-table {
     td: nth-child(2) {
-        //          background-color: aqua !important;
         width: 60%;
         text-align: left;
     }

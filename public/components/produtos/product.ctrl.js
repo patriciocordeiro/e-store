@@ -5,22 +5,29 @@
     function PrdCtrl($scope, $rootScope, productSrvc) {
         /*Variable declarion*/
         var vm = this;
-        var prd = productSrvc;
-        vm.prdCatg = prd.prdCatg;
-        vm.prdQty = prd.prdKartBuyQty; // initialize quantities with 1
-        vm.prdData = [];;
+        var prdSrvc = productSrvc;
+        vm.category = prdSrvc.category;
+        vm.prdQty = prdSrvc.prd.qty; // products quantities
+        var  x = prdSrvc.prd.qty;
+        vm.prdData = [];
         //Query to send to server
+
         var prdQuery = {
             prdCatg: 'tv',
             prdMaxPageItems: '20', //Max number of display items in the page
         }
-
+        console.log(prdSrvc.prd.http);
         //----- ----------------------------------------------------
         /* watch for product category change and fireup a http request */
-        $scope.$watch("vm.prdCatg", function(newValue, oldValue) {
-            productSrvc.prdGetDataByCatg(prdQuery, vm.prdCatg, function(data) {
+        $scope.$watch("vm.category", function(newValue, oldValue) {
+            prdSrvc.prd.http.getDataByCatg(prdQuery, vm.category, function(data) {
                 vm.prdData = data;
-                productSrvc.prdData = data;
+                productSrvc.prd.data = data;
+                prdSrvc.prd.category = vm.category;
+                console.log('product change watch fired');
+                console.log('newValue: ', newValue);
+                console.log('oldValue: ', oldValue);
+
             })
         });
         //---------------------------------------------------------
@@ -33,9 +40,13 @@
         //Get Compra
         //        vm.prdQty = prd.prdKartBuyQty //store the quantity (uses ng-model)
         vm.prdGetBuy = function(prdQty, prdId) {
-            prd.prdPutonKart(prd.prdData, prd.prdKartData, prd.prdKartIds, prdId, prdQty);
+                        console.log(x);
+            prdSrvc.prd.kart.addItem(prdId, prdQty);
             //Used to trigger the watch in navbar for Kart
             $rootScope.dataChange = !$rootScope.dataChange;
+            //restart quantities
+
+            vm.prdQty = prdSrvc.prd.qty;
         }
 
 
@@ -47,7 +58,7 @@
             var NumOfPages = [];
             var j = 1;
             var i = 0;
-            for (i = 0; i < prd.prdData.length; i++) {
+            for (i = 0; i < prdSrvc.prd.data.length; i++) {
                 if (i == 3 * j) {
                     NumOfPages.push(j);
                     j++;
@@ -58,6 +69,7 @@
             return NumOfPages;
         }
         vm.pages = getNumOfPages();
+        console.log(vm.pages);
         vm.lastPage = vm.pages.length;
         vm.start = 1;
         vm.currentPage = 1;
@@ -66,7 +78,7 @@
         //        vm.isActive = 'md-raised';
         vm.isActive = function(page) {
             if (page == vm.currentPage) {
-                return  'md-raised';
+                return 'md-raised';
             }
 
         }

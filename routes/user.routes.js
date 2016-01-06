@@ -35,10 +35,7 @@ module.exports = function(app, express, passport, User) {
 
         })(req, res, next);
     });
-    router.post('/signup', passport.authenticate('local-signup'), function(req, res) {
-        //     router.post('/users/signup',  function(req, res) {
-
-        console.log('executado')
+    router.post('/signup', passport.authenticate('local-signup'), function(req, res, next) {
         console.log(req.body)
         res.send(req.newUser)
         //      console.log('hello', req.body.email) 

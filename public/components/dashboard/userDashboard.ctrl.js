@@ -12,19 +12,6 @@
                 //TODO: update service function
                 userSrcv.usr.update(userData);
             }
-
-            //        $scope.showAlert = function(ev) {
-            // Appending dialog to document.body to cover sidenav in docs app
-            // Modal dialogs should fully cover application
-            // to prevent interaction outside of dialog
-            //            $mdDialog.show({
-            //                controller: 'userDashboardCtrl as vm',
-            //                template: '<md-dialog><md-dialog-content>Hello</md-dialog></md-dialog-content>',
-            //                parent: angular.element(document.body),
-            //                targetEvxent: ev,
-            //                clickOutsideToClose: false
-            //
-            //            })
         };
     
 })();

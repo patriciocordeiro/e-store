@@ -1,0 +1,176 @@
+<div class="column" ng-cloak>
+    <div layout="row" layout-align="center center">
+        <md-content flex="50">
+            <md-tabs  md-selected="vm.selectedIndex" md-dynamic-height md-border-bottom>
+                <md-tab ng-disabled="vm.isNextTabEnable[0]" label="Endereço">
+                    <md-content class="md-padding">
+                        <md-toolbar class="md-toolbar-tools">Escolha um endereço de entrega</md-toolbar>
+                        <div layout="row" layout-fill>
+                            <md-card flex="60">
+                                <md-card-content>
+                                    <h2 class="md-title">Patrício Elvis Sousa Cordeiro</h2>
+                                    <p class="md-title">{{vm.user.endereco.endereco}}, {{vm.user.endereco.numero}}</p>
+                                    <p>{{vm.user.endereco.complemento}}</p>
+                                    <p>{{vm.user.endereco.bairo}}</p>
+                                    <p>{{vm.user.endereco.cep}}</p>
+                                    <p>{{vm.user.endereco.cidade}}</p>
+                                    <p>{{vm.user.endereco.estado}}</p>
+                                </md-card-content>
+                                <md-card-actions>
+                                    <md-button class="md-raised md-warn" ng-click="vm.enableNextTab(vm.selectedIndex)">Entregar neste endereco</md-button>
+                                </md-card-actions>
+
+                            </md-card>
+                            <md-card flex>
+                                <md-card-content layout="column" layout-align="center center">
+                                    <h2 class="md-title">Cadastrar outro endereço</h2>
+                                    <md-button ng-click="vm.addNewAddressDialog($event)" class="md-raised md-primary">+</md-button>
+                                </md-card-content>
+
+                            </md-card>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab ng-disabled="vm.isNextTabEnable[1]" label="Entrega">
+                    <md-content class="md-padding">
+                        <md-toolbar class="md-toolbar-tools">Escolha as opções de entrega</md-toolbar>
+                        <md-card>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <div flex="60">
+                                        <h4 class="md-title">Para o endereço:</h4>
+                                        <p>{{vm.user.endereco.endereco}}, {{vm.user.endereco.numero}}, {{vm.user.endereco.complemento}}, {{vm.user.endereco.referencia}}, {{vm.user.endereco.bairro}}, {{vm.user.endereco.cep}}, {{vm.user.endereco.cidade}}, {{vm.user.endereco.estado}}
+                                    </div>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <div layout="row">
+                                    <md-card flex="50">
+                                        <md-card-title>
+                                            <md-card-title-text>
+                                                <span class="md-headline">Entrega 1 de 1</span>
+                                            </md-card-title-text>
+                                        </md-card-title>
+                                        <md-card-content layout="column">
+                                            <md-list layout-padding>
+                                                <md-list-item>
+                                                    <p>NuPro Protective Comfort Grip for Kindle - Dark Blue Part 1 of 2 - Kindle for Kids Bundle with the latest Kindle, 2-Year Accident Protection, Kid-Friendly Blue Cover - Quantity: 1</p>
+                                                </md-list-item>
+                                                <md-divider></md-divider>
+                                                <md-list-item>
+                                                    <p>Kindle, 6" Glare-Free Touchscreen Display, Wi-Fi Part 2 of 2 - Kindle for Kids Bundle with the latest Kindle, 2-Year Accident Protection, Kid-Friendly Blue Cover - Quantity: 1</p>
+                                                </md-list-item>
+                                            </md-list>
+                                        </md-card-content>
+                                    </md-card>
+                                    <md-card flex="50">
+                                        <md-card-title>
+                                            <md-card-title-text>
+                                                <h4 class="md-title">Opçoes de entrega</h4>
+                                            </md-card-title-text>
+                                        </md-card-title>
+                                        <md-card-content layout="column">
+                                            <md-list layout-padding>
+                                                <md-list-item layout="row" layout-align="end space-between" ng-repeat="shipOption in vm.deliveryOptions">
+                                                    <div flex="80">
+                                                        <md-radio-group ng-model="vm.selShipOption">
+                                                            <md-radio-button value="{{shipOption.type}}" alue>{{shipOption.text}}</md-radio-button>
+                                                        </md-radio-group>
+
+                                                    </div>
+                                                    <div flex="20">
+                                                        R$ {{shipOption.cost}}
+                                                    </div>
+                                                </md-list-item>
+                                                <md-divider></md-divider>
+
+                                            </md-list>
+                                        </md-card-content>
+                                    </md-card>
+                                </div>
+
+                            </md-card-content>
+                            <md-card-actions>
+                                <div layout="row" layout-align="space-between">
+                                    <md-button class="md-raised md-accent" ng-click="vm.enableNextTab(vm.selectedIndex-2)">Alterar endereço</md-button>
+                                    <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Ir para o pagamento</md-button>
+
+                                </div>
+                            </md-card-actions>
+                        </md-card>
+                    </md-content>
+                </md-tab>
+                <md-tab ng-disabled="vm.isNextTabEnable[2]" label="Pagamento">
+                    <md-content class="md-padding">
+                        <md-toolbar class="md-toolbar-tools">Resumo do pedido</md-toolbar>
+                        <md-card>
+                            <md-card-title layout="row" layout-align="space-between">
+                                <h2 class="md-title">Valor total do pedido:</h2>
+                                <h2 class="md-title">R$ {{vm.prdKartSubTotalPrice}}</h2>
+                            </md-card-title>
+                        </md-card>
+                        <md-card layout="row" layout-align="start center">
+                            <md-card-title layout="row" layout-align="space-between">
+                                <md-card-title-text>
+                                    <div flex="60">
+                                        <h4 class="md-title">Endereço de entrega: <md-button  class="md-primary my-md-icon-btn" style="border:2px solid #F5F5F5 " >
+                                        <md-icon class="material-icons md-18">edit</md-icon>
+                                    </md-button></h4>
+                                        <p>{{vm.user.endereco.endereco}}, {{vm.user.endereco.numero}}, {{vm.user.endereco.complemento}}, {{vm.user.endereco.referencia}}, {{vm.user.endereco.bairro}}, {{vm.user.endereco.cep}}, {{vm.user.endereco.cidade}}, {{vm.user.endereco.estado}}
+                                    </div>
+                                </md-card-title-text>
+
+                            </md-card-title>
+
+                        </md-card>
+                        <md-card>
+                            <md-card-title>
+                                <md-card-title-text layout="row" layout-align="start center">
+                                    <h4 class="md-subhead"><b>Produtos</b>
+                                     <md-button ui-sref="app.minhaCesta" class="md-primary my-md-icon-btn" style="border:2px solid #F5F5F5 " >
+                                        <md-icon class="material-icons md-18">edit</md-icon>
+                                    </md-button>
+                                    </h4>
+
+
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <md-list layout="column" layout-align="center start">
+                                    <!--                                    <md-divider></md-divider>-->
+                                    <md-list-item class="md-3-line">
+                                        <div flex="20">
+                                            <img src="../../assets/img/resistor/resistor.png">
+                                        </div>
+                                        <div flex="80">
+                                            Smart TV LED Curva Ultra HD/4K 48" Samsung UN48JU6700GXZD Processador Quad Core Função Game (Gamefly) Clear Motion Rate 240Hz - SamsungQuantidade: 1</div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item class="md-3-line">
+                                        <div flex="20">
+                                            <img src="../../assets/img/resistor/resistor.png">
+                                        </div>
+                                        <div flex="80">
+                                            Smart TV LED Curva Ultra HD/4K 48" Samsung UN48JU6700GXZD Processador Quad Core Função Game (Gamefly) Clear Motion Rate 240Hz - SamsungQuantidade: 1</div>
+                                    </md-list-item>
+
+                                </md-list>
+                                <md-divider></md-divider>
+                            </md-card-content>
+
+
+                            <md-card-actions layout="row" layout-align="space-between">
+                                <!--                            <div >-->
+                                <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex-2)"><i class="material-icons">keyboard_arrow_left</i>Alterar Tipo de entraga</md-button>
+                                <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Gerar pedido</md-button>
+
+                                <!--                            </div>-->
+                            </md-card-actions>
+                        </md-card>
+
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>

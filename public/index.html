@@ -42,7 +42,7 @@
 
     <!--services-->
     <script src="services/resource.service.js"></script>
-<!--    <script src="services/getCategory.service.js"></script>-->
+    <!--    <script src="services/getCategory.service.js"></script>-->
     <script src="services/user.srvc.js"></script>
     <script src="services/produtosApi.service.js"></script>
     <script src="services/product.srvc.js"></script>
@@ -56,25 +56,25 @@
     <!--controllers-->
     <!--    <script src="components/navbar/navbar.controller.js"></script>-->
 
-    <script src="components/navbar/productCatNavBar.controller.js"></script>
+    <script src="components/navbar/productCatNavBar.ctrl.js"></script>
     <script src="components/navbar/navbar.directive.js"></script>
-    <script src="components/home/home.controller.js"></script>
+    <script src="components/home/home.ctrl.js"></script>
     <!--    <script src="components/produtos/produtos.controller.js"></script>-->
-    <script src="components/produtos/produtoDetail.ctrl.js"></script>
-    <script src="components/produtos/products.ctrl.js"></script>
-<!--    <script src="components/produtos/produtoDetail.controller.js"></script>-->
+    <script src="components/produtos/productDetail.ctrl.js"></script>
+    <script src="components/produtos/product.ctrl.js"></script>
+    <!--    <script src="components/produtos/produtoDetail.controller.js"></script>-->
 
-    <script src="components/produtos/kart.ctrl.js"></script>
+    <script src="components/kart/kart.ctrl.js"></script>
     <script src="components/search/search.controller.js"></script>
-<!--    <script src="components/login/login.controller.js"></script>-->
+    <!--    <script src="components/login/login.controller.js"></script>-->
     <script src="components/login/usrLogin.ctrl.js"></script>
-    <script src="components/signup/signup.controller.js"></script>
-<!--    <script src="components/dashboard/dashboard.controller.js"></script>-->
+    <script src="components/signup/usrSignup.ctrl.js"></script>
+    <!--    <script src="components/dashboard/dashboard.controller.js"></script>-->
     <script src="components/dashboard/userDashboard.ctrl.js"></script>
-    <script src="components/dashboard/DashboardPedidos.controller.js"></script>
+    <script src="components/dashboard/DashboardPedidos.ctrl.js"></script>
     <script src="components/rating/rating.controller.js"></script>
-    <script src="components/produtos/meuCarrinhoToast.controller.js"></script>
-    <script src="components/produtos/jaNoCarrinhoDiag.controller.js"></script>
+    <script src="components/kart/meuCarrinhoToast.ctrl.js"></script>
+    <script src="components/kart/jaNoCarrinhoDiag.ctrl.js"></script>
     <script src="components/navbar/navbar.ctrl.js"></script>
     <script src="components/produtos/productSection.ctrl.js"></script>
 
@@ -90,26 +90,26 @@
     <link rel="stylesheet" href="lib/angular-rateit/dist/ng-rateit.css" />
     <link rel="stylesheet" href="lib/awesome-rating/dist/awesomeRating.css" />
     <link rel="stylesheet" href="lib/angular-material/angular-material.css">
-    <link rel="stylesheet" href="lib/angular-material-data-table/dist/md-data-table.min.css">
-    <script type="text/javascript" src="lib/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <!--    <link rel="stylesheet" href="lib/angular-material-data-table/dist/md-data-table.min.css">-->
+    <!--    <script type="text/javascript" src="lib/angular-material-data-table/dist/md-data-table.min.js"></script>-->
     <link rel="stylesheet" href="lib/angular-material-icon/material-icons.css" />
 
 
     <!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
- </head>
-    <!--head-->
+</head>
+<!--head-->
 
-    <body ng-app=myApp>
+<body ng-app=myApp>
 
-        <script src="lib/angular-aria/angular-aria.js"></script>
-        <script src="lib/angular-animate/angular-animate.js"></script>
-        <script src="lib/angular-material/angular-material.js"></script>
+    <script src="lib/angular-aria/angular-aria.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-material/angular-material.min.js"></script>
 
 
-        <!--    <div class="container-fluid">-->
-        <my-bootstrap-nav-bar>
-        </my-bootstrap-nav-bar>
-
+    <!--    <div class="container-fluid">-->
+    <my-bootstrap-nav-bar>
+    </my-bootstrap-nav-bar>
+    <md-content>
         <!--
     <div class="row" style="margin-top:5%">
         <div class="col-lg-6 col-lg-offset-3">
@@ -129,11 +129,15 @@
     </div>
 -->
         <!--    <product-category-nav-bar></product-category-nav-bar>-->
-        <div id="my-breadcrumb">
-            <!--         <div ncy-breadcrumb></div>-->
-            <div layout="column">
-                <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+        <!--         <div ncy-breadcrumb></div>-->
+        <div layout="column">
+            <!--            <div >-->
+            <div layout="row" layout-align="center center">
+                <div flex="90">
+                    <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+                </div>
             </div>
+            <!--            </div>-->
         </div>
 
         <ui-view></ui-view>
@@ -146,7 +150,7 @@
     <div ui-view="password"></div>
 -->
         <!--    </div>-->
-
-    </body>
+    </md-content>
+</body>
 
 </html>
