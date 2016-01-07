@@ -8,7 +8,12 @@
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
-
+        vm.kartSize = prdSrvc.prd.kart.getSize();
+        console.log(vm.kartSize);
+var getSizePromisse = prdSrvc.prd.kart.getSize();
+        getSizePromisse.then(function(data){
+            console.log(data);
+        })
         //---------------------------------------------------------
         /*Get all kart data*/
         vm.kartData = prdSrvc.prd.kart.data;
@@ -30,20 +35,19 @@
         /*Get selected product caterory*/
         vm.getCatg = function(section, category) {
             prdSrvc.prd.getCatg(section, category)
-            //            prdSrvc.section = section;
-            //            prdSrvc.category = category;
-            //            var prdSrvcCatg = prdSrvc.prdSrvcGetCatg(prdSrvc.prdSrvcCatg, category);
         };
-        vm.prdSrvcgetSect = function(section) {
-            prdSrvc.section = section;
-            console.log(productCategory.section);
-        }
+//        vm.prdSrvcgetSect = function(section) {
+//            prdSrvc.section = section;
+//            console.log(productCategory.section);
+//        }
         //-------------------------------------------------
         /*Watch for COMPRA by (if user click on COMPRAR)*/
         $scope.$watch('dataChange', function(newValue, oldValues) {
+            console.log('navbar watch fired up');
             //Calculate the kart size imediatelly after user click on COMPRAR
-            vm.kartSize = prdSrvc.prd.kart.getSize();
+            vm.kartSize = prdSrvc.prd.kart.ids.length;
             /*Toast para mostrar a introducao de um produto no carrinho*/
+            console.log(vm.kartSize);
             vm.showPutedInCartToast();
         });
 

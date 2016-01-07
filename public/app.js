@@ -36,9 +36,9 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         $mdThemingProvider.theme('default')
             .primaryPalette('teal')
             .accentPalette('deep-orange')
-//            .backgroundPalette('white', {
-//                'default': '50'
-//            });
+        //            .backgroundPalette('white', {
+        //                'default': '50'
+        //            });
 
         $stateProvider
             .state('app', {
@@ -139,15 +139,16 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         .state('app.minhaCesta', {
             url: "/minhaCesta",
+//            authenticate: true,
             views: {
                 'products@': {
                     templateUrl: 'components/kart/kart.view.html',
                     controller: 'KartCtrl as vm',
-                    authenticate: true,
-                    data: {
-                        displayName: 'Meu Carrinho',
-                    }
+
                 }
+            },
+            data: {
+                displayName: 'Meu carrinho',
             }
         })
             .state('app.minhaCesta.checkout', {

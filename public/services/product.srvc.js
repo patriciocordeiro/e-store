@@ -41,7 +41,6 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 var i = 0;
                 var prdSingleData;
                 for (i = 0; i < prdData.length - 1; i++) {
-                    console.log(prdData[i]._id);
                     if (prdData[i]._id == prdId) {
                         return prdSingleData = prdData[i];
                         break;
@@ -83,11 +82,14 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                             data.abc = true;
                             //Pass data to service
                             _this.prd.data = data;
-                            //create the array of quantitys with value 1
+                            //create the array of quantities with value 1
                             var i = 0
                             for (i = 0; i < data.length; i++) {
                                 _this.prd.qty.push(1);
                             }
+                            
+                            //for pagination: get the number of pages
+//                            getNumOfPages()
 
                             return callback(data);
                         },
@@ -130,6 +132,8 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 qtys: [],
                 subtotal: 0,
                 total: 0,
+                isEmpty: false,
+                totalItems: 0,
                 /*Get subtotal price of a single product item*/
                 getSubPrice: function(unitPrice, qty) {
                     subPrice = unitPrice * qty;
@@ -146,28 +150,45 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 },
                 /*recover the kart  on page reload. Recover ids on cookies*/
                 recover: function(callback) {
-                    _this.prd.kart.cookies.get();
-                    _this.prd.kart.qtys = _this.prd.kart.recvQtys;
-                    _this.prd.kart.ids = _this.prd.kart.recvIds;
-                    _this.prd.kart.getSize();
-
-                    var query = {
-                        ids: _this.prd.kart.recvIds
-                    }
-
-                    httpService.save({
-                        acao: 'myKart',
-                        id: 'id'
-                    }, query).$promise.then(function(data) {
-                        _this.prd.kart.data = data;
-                        var i = 0;
-                        for (i = 0; i < data.length; i++) {
-                            _this.prd.kart.data[i]['buyQty'] = _this.prd.kart.qtys[i];
-                            _this.prd.kart.data[i]['priceSubTotal'] = _this.prd.kart.qtys[i] * data[i].preco
-
+                    if ($cookies.get('kartIds')) {
+                        _this.prd.kart.cookies.get();
+                        _this.prd.kart.qtys = _this.prd.kart.recvQtys;
+                        _this.prd.kart.ids = _this.prd.kart.recvIds;
+                        var query = {
+                            ids: _this.prd.kart.recvIds
                         }
-                        return callback(data);
-                    });
+
+                        httpService.save({
+                            acao: 'myKart',
+                            id: 'id'
+                        }, query).$promise.then(function(data) {
+                            _this.prd.kart.data = data;
+                            var i = 0;
+                            for (i = 0; i < data.length; i++) {
+                                _this.prd.kart.data[i]['buyQty'] = _this.prd.kart.qtys[i];
+                                _this.prd.kart.data[i]['priceSubTotal'] = _this.prd.kart.qtys[i] * data[i].preco
+
+                            }
+                            //update number of items in kart
+                            var getSizePromisse = _this.prd.kart.getSize()
+                            getSizePromisse.then(function(data) {
+                                console.log('obj');
+                                console.log('Kartsize', data);
+                                _this.prd.kart.totalItems = data;
+                            })
+
+
+                            //                            });
+
+                            //sinalize kartEmpty
+                            _this.prd.kart.isEmpty = false;
+                            return callback(data);
+                        });
+                    } else {
+                        _this.prd.kart.isEmpty = true;
+                        console.log('Kart is empty', _this.prd.kart.isEmpty);
+                        return callback([]);
+                    }
                 },
                 /*Function to handle puting product on the kart*/
                 addItem: function(id, qty) {
@@ -193,9 +214,37 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                         }
                     })
                 },
+                /*Remove an item from the kart*/
+                remItem: function(index) {
+                    console.log('remove item');
+                    _this.prd.kart.data.splice(index, 1);
+                    _this.prd.kart.ids.splice(index, 1);
+                    if (_this.prd.kart.ids.length == 0) {
+                        _this.prd.kart.isEmpty = true;
+                    }
+                    //Trigger the datachange watch for kart total number of items
+                    $rootScope.dataChange = !$rootScope.dataChange;
+                    //remove the item in the subprice;
+                    //            vm.prdSrvcSubPrice.splice(index, 1);
+                    //update the kart subtotal
+                    //            vm.prdSrvcKartSubTotalPrice = prdSrvc.prdSrvcGeneralSum(vm.prdSrvcSubPrice);
+                    //update the number of item in the Kart
+                    _this.prd.kart.cookies.put();
+                },
+                /*update kart when quantity is change*/
+                update: function(index) {
+
+                },
                 /*Get the total number of items in the Kart*/
                 getSize: function() {
-                    return _this.prd.kart.ids.length;
+                    var defer = $q.defer();
+                    var size = _this.prd.kart.ids.length;
+                    if (size > 0) {
+                        defer.resolve(size);
+                    } else {
+                        defer.reject(0);
+                    }
+                    return defer.promise;
                 },
                 /*Get a single product ID*/
                 getId: function(stateParams) {
@@ -244,6 +293,23 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                     },
                 },
 
+            },
+            pagination: {
+                /*Paginagination of the list table*/
+                getNumOfPages: function(data) {
+                    var NumOfPages = [];
+                    var j = 1;
+                    var i = 0;
+                    for (i = 0; i < data.length; i++) {
+                        if (i == 3 * j) {
+                            NumOfPages.push(j);
+                            j++;
+                            console.log(j);
+                            console.log(NumOfPages);
+                        }
+                    }
+                    return NumOfPages;
+                },
             }
         }
     }

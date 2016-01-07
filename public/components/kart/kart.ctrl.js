@@ -7,113 +7,45 @@
     function KartCtrl($rootScope, $q, $cookies, $mdDialog, productSrvc, userSrcv) {
         /*Variables declaration*/
         var vm = this;
-        var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
+        var prdSrvc = productSrvc //pass all product services to variable prdSrvc
         vm.progressCircularMode = 'indeterminate'; // Progress circular
-        vm.isKartEmpty = false; //set to true if kart is empty
+        vm.isKartEmpty = 'false'; //set to true if kart is empty
+        //------------------------------------------------------------
+        /*Recover data on cookies if any*/
         prdSrvc.prd.kart.recover(function(data) {
+            console.log('fireup recover');
             vm.kartData = data;
             vm.prdbuyQty = prdSrvc.prd.kart.qtys;
-            console.log( vm.kartData);
+            vm.isKartEmpty = prdSrvc.prd.kart.isEmpty; //set to true if kart is empty
+            console.log(vm.isKartEmpty);
+            vm.progressCircularMode = '';
         });
 
-
-        //        var recoverDataPromisse = prdSrvc.prd.kart.recover();
-        ////        recoverDataPromisse.then(function(data) {
-        ////            console.log(data);
-        ////        })
-        //vm.kartData = prdSrvc.prd.kart.data;
-
         //---------------------------------------------------------
-        //        /*Get all kart data using promise*/
-        //        var getIdsFromCkies = function(data) {
-        //            var defer = $q.defer();
-        //            if (data.length > 0) {
-        //                setTimeout(function() {
-        //                    defer.resolve(data);
-        //                }, 0);
-        //            } else {
-        //                defer.reject('Ids não existem')
-        //            }
-        //            return defer.promise;
-        //        }
-        //
-        //        var GetIdsPromise = getIdsFromCkies($cookies.get('pm-prdSrvcIdsOnKart').split(','));
-        //        GetIdsPromise.then(function(data) {
-        //            console.log('sucess', data);
-        //            vm.prdSrvcIdsOnKart = data;
-        //            if (vm.prdSrvcIdsOnKart.length > 0) {
-        //                //if cookies with ids exists
-        //                prdSrvc.prdSrvcKartIds = vm.prdSrvcIdsOnKart;
-        //                console.log(prdSrvc.prdSrvcKartIds);
-        //                //Query to take the ids
-        //                var prdSrvcKartRecoverQuery = {};
-        //                prdSrvcKartRecoverQuery.ids = prdSrvc.prdSrvcKartIds;
-        //                //Recover prdSrvcKartData from the server
-        //                setTimeout(function() {
-        //                    prdSrvc.prdSrvcKartRecover(prdSrvcKartRecoverQuery, function(res) {
-        //                        prdSrvc.prdSrvcKartData = res;
-        //                        vm.kartData = prdSrvc.prdSrvcKartData;
-        //                        vm.prdSrvcbuyQty = prdSrvc.prdSrvcFieldToArray(vm.kartData, 'buyQty');
-        //                        //TODO Calcular quando for incluido
-        //                        //Calcular no contoller prdSrvcDetail
-        //                        vm.prdSrvcSubPrice = prdSrvc.prdSrvcFieldToArray(vm.kartData, 'priceSubTotal');
-        //                        vm.prdSrvcKartSubTotalPrice = prdSrvc.prdSrvcKartPriceSubTotal;
-        //                        prdSrvc.prdSrvcKartGetTotalPrice['priceTotal']
-        //                        vm.progressCircularMode = '';
-        //                        console.log('Server response: ', prdSrvc.prdSrvcKartData);
-        //                    })
-        //                }, 0);
-        //                console.log('ids recuperados do cookie', prdSrvc.prdSrvcKartIds);
-        //               prdSrvc.prdSrvcKartGetSize();
-        //                $rootScope.dataChange = !$rootScope.dataChange;
-        //
-        //            } else {
-        //                //if cookies does not exists
-        //                prdSrvc.prdSrvcKartIds = [];
-        //                vm.isKartEmpty = true;
-        //                console.log('Nao existem produtos');
-        //            }
-        //
-        //
-        //        }, function(error) {
-        //            console.log('error', error);
-        //            vm.teste = error;
-        //        });
-
-
-        //---------------------------------------------------------
-
         //*Update Kar on changes*/
         vm.prdSrvcGetKartUpdate = function(index) {
             vm.prdSrvcSubPrice[index] = vm.kartData[index].preco * vm.prdSrvcbuyQty[index];
             //TODO: rever se preciso atualizar esta variavel ou atualizar
-            prdSrvc.prdSrvcKartData[index].buyQty = vm.prdSrvcbuyQty[index];
-            prdSrvc.prdSrvcKartData[index].priceSubTotal = vm.prdSrvcSubPrice[index];
+            prdSrvc.prd.kart.data[index].buyQty = vm.prdSrvcbuyQty[index];
+            prdSrvc.prd.kart.data[index].priceSubTotal = vm.prdSrvcSubPrice[index];
             vm.prdSrvcKartSubTotalPrice = prdSrvc.prdSrvcGeneralSum(vm.prdSrvcSubPrice);
-            prdSrvc.prdSrvcKartPriceSubTotal = prdSrvc.prdSrvcGeneralSum(vm.prdSrvcSubPrice);
+            prdSrvc.prd.kart.PriceSubTotal = prdSrvc.prdSrvcGeneralSum(vm.prdSrvcSubPrice);
         }
         //---------------------------------------------------------
         /*Remove item from chart*/
-        vm.prdSrvcKartRemItem = function(index) {
-            //remove the item in service variable
-            prdSrvc.prdSrvcKartData.splice(index, 1);
-            prdSrvc.prdSrvcKartIds.splice(index, 1);
-            //Trigger the datachange watch for kart total number of items
-            $rootScope.dataChange = !$rootScope.dataChange;
-            //remove the item in the subprice;
-            vm.prdSrvcSubPrice.splice(index, 1);
-            //update the kart subtotal
-            vm.prdSrvcKartSubTotalPrice = prdSrvc.prdSrvcGeneralSum(vm.prdSrvcSubPrice);
-            //update the number of item in the Kart
+        vm.remItem = function(index) {
+            prdSrvc.prd.kart.remItem(index);
+             vm.isKartEmpty = prdSrvc.prd.kart.isEmpty;
         }
         //---------------------------------------------------------
 
         /*Finalizar compra*/
         //pass the user data to vm
-        vm.user = userSrcv.usr.login.data.local
+        vm.user = userSrcv.usr.login.data.local;
         var prevTab = 0;
         console.log(vm.user);
         vm.selectedIndex = 0;
+        
         vm.isNextTabEnable = [false, true, true];
         vm.enableNextTab = function(currTabIndex) {
             console.log(vm.selectedIndex);
