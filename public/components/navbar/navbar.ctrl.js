@@ -10,8 +10,8 @@
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
         vm.kartSize = prdSrvc.prd.kart.getSize();
         console.log(vm.kartSize);
-var getSizePromisse = prdSrvc.prd.kart.getSize();
-        getSizePromisse.then(function(data){
+        var getSizePromisse = prdSrvc.prd.kart.getSize();
+        getSizePromisse.then(function(data) {
             console.log(data);
         })
         //---------------------------------------------------------
@@ -36,10 +36,10 @@ var getSizePromisse = prdSrvc.prd.kart.getSize();
         vm.getCatg = function(section, category) {
             prdSrvc.prd.getCatg(section, category)
         };
-//        vm.prdSrvcgetSect = function(section) {
-//            prdSrvc.section = section;
-//            console.log(productCategory.section);
-//        }
+        //        vm.prdSrvcgetSect = function(section) {
+        //            prdSrvc.section = section;
+        //            console.log(productCategory.section);
+        //        }
         //-------------------------------------------------
         /*Watch for COMPRA by (if user click on COMPRAR)*/
         $scope.$watch('dataChange', function(newValue, oldValues) {
@@ -50,7 +50,7 @@ var getSizePromisse = prdSrvc.prd.kart.getSize();
             console.log(vm.kartSize);
             vm.showPutedInCartToast();
         });
-
+        //-------------------------------------------------------------------   
         vm.showPutedInCartToast = function() {
             $mdToast.show({
                 controller: 'myCartToastCtrl as vm',
@@ -60,11 +60,21 @@ var getSizePromisse = prdSrvc.prd.kart.getSize();
                 position: 'top right'
             });
         }
-
+        //-------------------------------------------------------------------   
         /*Logout user*/
         vm.logout = function() {
             userSrcv.usr.logout.execLogout();
             console.log('Login out');
+        }
+        //-------------------------------------------------------------------   
+        /*Search*/
+        vm.searchText =''; //variable for ng-model to get search text
+        vm.searchPrd = function(query) {
+            productSrvc.prd.http.getDatabySearch(query, function(data) {
+                vm.productsBySearch = data;
+                console.log(data);
+
+            });
         }
     }
 }());

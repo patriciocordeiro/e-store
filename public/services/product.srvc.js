@@ -8,11 +8,6 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
         //This will allow to use this service function inside of this service
         _this = this;
         //This one uses ng-model and share data bettwen controllers
-        //        this.prdData = [];
-        //        this.prdKartIds = [];
-        //        this.prdKartBuyQty = 5;
-        //        this.prdKartData = [];
-        //        this.prdKartPriceSubTotal = 0;
         this.category = '';
         this.section = '';
         /*initialize product section and category on load*/
@@ -105,11 +100,11 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 getDatabySearch: function(query, callback) {
                     httpService.save({
                         acao: 'search'
-                    }, query).$promise.success(function(data) {
+                    }, query).$promise.then(function(data) {
                         data.abc = true;
                         return callback(data);
                     }, function(error) {
-                        return (error);
+                        return callback(error);
                     });
                 },
                 /*Get filtered data*/

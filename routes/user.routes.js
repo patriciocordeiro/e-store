@@ -26,7 +26,7 @@ module.exports = function(app, express, passport, User) {
                     return next(err);
                 }
                 res.send({
-                    'local':req.user.local,
+                    'local': req.user.local,
                     'pedidos': req.user.pedidos
                 });
             });
@@ -38,29 +38,17 @@ module.exports = function(app, express, passport, User) {
     router.post('/signup', passport.authenticate('local-signup'), function(req, res, next) {
         console.log(req.body)
         res.send(req.newUser)
-        //      console.log('hello', req.body.email) 
     })
-
-    //    router.post('/signup', function(req, res) {
-    //        //     router.post('/users/signup',  function(req, res) {
-    //
-    //        console.log('executado')
-    //        console.log(req.body.newUser)
-    //        res.send(req.newUser)
-    //        //      console.log('hello', req.body.email) 
-    //    })
-
     router.get('/isloggedin', function(req, res, next) {
         res.send(req.isAuthenticated() ? req.user : {
             user: false
         });
     });
 
-    router.get('/logout', function(req, res) {
+    router.get('/logout', function(req, res, next) {
         req.logOut();
         res.send(200)
     })
-
 
     //FACEBOOK
     router.get('/login/facebook', passport.authenticate('facebook', {
@@ -77,16 +65,12 @@ module.exports = function(app, express, passport, User) {
     router.post('/user/updateDadosCadastrais', User.updateDadosCadastrais);
     router.post('/user/adicionaPedido', User.adicionaPedido);
     router.post('/user/recoverUser', User.recoverUser);
+    /*Forgot password*/
+    router.post('/user/forgotPass', User.recoverPass);
+    /*check the token validity for password reset*/
+    router.post('/user/checkResetPassToken', User.checkResetPassToken);
+    /*Reset password*/
+    router.post('/user/resetPass', User.resetPass);
 
     app.use('/', router);
 }
-//module.exports = function(app, express) {
-//    var router = express.Router();
-//    router.get('/users/login', function(req, res, next) {
-//
-//        res.send('exists');
-//
-//    });
-//    
-//    app.use('/', router);
-//}

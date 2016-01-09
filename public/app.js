@@ -139,7 +139,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         .state('app.minhaCesta', {
             url: "/minhaCesta",
-//            authenticate: true,
+            //            authenticate: true,
             views: {
                 'products@': {
                     templateUrl: 'components/kart/kart.view.html',
@@ -201,6 +201,45 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 },
                 data: {
                     displayName: 'Login'
+                }
+            })
+            .state('app.user.forgetPassword', {
+                url: "/forgetPassword",
+                views: {
+                    'products@': {
+                        templateUrl: 'components/login/forgotPassword.view.html',
+                        controller: 'UserCtrl as vm',
+                        //            template : '<h1>Funciona</h1>',
+                    }
+                },
+                data: {
+                    displayName: 'Esqueci minha senha'
+                }
+            })
+            .state('app.user.forgetPassword.token', {
+                url: "/:token",
+                views: {
+                    'products@': {
+                        template: '',
+                        controller: 'UserCtrl as vm',
+                        //            template : '<h1>Funciona</h1>',
+                    }
+                },
+                data: {
+                    displayName: 'Redefinição de senha'
+                }
+            })
+            .state('app.user.resetPassword', {
+                url: "/resetPassword",
+                views: {
+                    'products@': {
+                        templateUrl: 'components/login/resetPassword.view.html',
+                        controller: 'UserCtrl as vm',
+                        //            template : '<h1>Funciona</h1>',
+                    }
+                },
+                data: {
+                    displayName: 'Redefinição de senha'
                 }
             })
 

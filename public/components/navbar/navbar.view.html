@@ -66,9 +66,9 @@
             </md-button>
             <md-input-container>
                 <label>Busca</label>
-                <input type="text" />
+                <input type="text" ng-model="vm.searchText" />
             </md-input-container>
-            <md-button><i class="material-icons">search</i>
+            <md-button ng-click="vm.searchPrd(vm.searchText)" ><i class="material-icons">search</i>
             </md-button>
         </div>
     </md-toolbar>

@@ -8,6 +8,7 @@
         this.usr = {
             isloggedIn: false,
             loggedUserName: '',
+            resetPassToken: undefined, //save the password reset token
             login: {
 
                 /*Local type login*/
@@ -181,6 +182,105 @@
 
 
             },
+            forgotPass: function(email) {
+                var query = {};
+                var msg = {};
+                query.email = email;
+                authentication.forgotPass(query, function(res) {
+                    console.log(res.user);
+                    if (res.user == false) {
+                        msg = {
+                            title: '<md-icon class="material-icons md-48 md-warn">error</md-icon> Operação Falhou!',
+                            text: '<p>Não encontramos o e-mail digitado nos registros</p> <p>Verifique o e-mail digitado e tente novamente ou realize o seu cadastro é fácil e rápido</p> ',
+                            action1: 'Cadastro',
+                            link1: 'ui-sref="app.user.signup"',
+                            action2: 'Tente novamente',
+                            //                            link2: 'ui-sref="app"',
+                        }
+
+                    } else {
+                        msg = {
+
+                            title: '<md-icon class="material-icons md-48 md-primary">done_all</md-icon>Operaçao realizada com sucesso',
+                            text: '<p>Enviamos um email para o e-mail fornecido com as instruçoes para alteração da sua senha</p>' +
+                                '<p>ATENÇAO: O link enviado tem validade de 1 hora</p>',
+                            action1: 'Continuar compras',
+                            link1: 'ui-sref="app.user.signup"',
+                            action2: '',
+                            //                            link2: 'ui-sref="app"',
+                        }
+
+                    }
+                    //Show dialog to user
+                    _this.usr.dialog(msg);
+
+                })
+            },
+            checkResetPassToken: function() {
+                console.log('executado');
+                var query = {};
+                if ($state.params.token) {
+                    query.token = $state.params.token;
+                    _this.usr.resetPassToken = $state.params.token;
+                    authentication.checkResetPassToken(query, function(res) {
+                        var msg = {}
+                        //                        console.log(res.user);
+                        if (res.token == 'ok') {
+                            //for sucess
+                            //redirect to password reset page
+                            $state.go('app.user.resetPassword');
+
+                        } else {
+                            //dialog message: for fail
+                            msg = {
+                                title: '<md-icon class="material-icons md-warn md-48">error</md-icon>O PROCESSO FALHOU!',
+                                text: '<p>O link a qual está tentando acessar é inválido ou expirou<p>' +
+                                    '<p>Click no link para recomeçar o processo de alteração de senha ou para ir para a página principal<p>',
+                                action1: 'Esqueci minha senha',
+                                link1: 'ui-sref="app.user.forgetPassword"',
+                                action2: 'Home',
+                                link2: 'ui-sref="app"',
+                            }
+                            //Show dialog to user
+                            _this.usr.dialog(msg);
+                        }
+                    })
+                }
+            },
+            resetPass: function(newPassword) {
+                var query = {};
+                var msg;
+                query.password = newPassword;
+                query.token = _this.usr.resetPassToken;
+                authentication.resetPass(query, function(res) {
+                    console.log(res);
+                    if (res.user == 'ok') {
+                        msg = {
+                            title: '<md-icon class="material-icons md-48 md-primary">done_all</md-icon>Senha alterada com sucesso',
+                            text: '<p>Realize o seu login e aproveite as nossas ofertas.</p>',
+                            action1: 'Login',
+                            link1: 'ui-sref="app.user.login"',
+                            action2: 'Continuar compras',
+                            link2: 'ui-sref="app.produtos.section"',
+                        }
+
+                    } else {
+                        msg = {
+                            title: '<md-icon class="material-icons md-48">error</md-icon>O PROCESSO FALHOU!',
+                            text: '<p>O link a qual está tentando acessar é inválido ou expirou<p>' +
+                                '<p>Click no link para recomeçar o processo de alteração de senha ou para ir para a página principal<p>',
+                            action1: 'Esqueci minha senha',
+                            link1: 'ui-sref="app.user.forgetPassword"',
+                            action2: 'Home',
+                            link2: 'ui-sref="app"',
+                        }
+
+                    }
+
+                    //Show dialog to user
+                    _this.usr.dialog(msg);
+                })
+            },
             update: function(userData) {
                 if (userData) {
                     console.log(userData);
@@ -260,11 +360,31 @@
                     });
                 }
             },
-            closeDialog:function(){
-            $mdDialog.hide();
-        }
+            closeDialog: function() {
+                console.log('closing dialog');
+                $mdDialog.hide();
+            },
+            dialog: function(message) {
+                var ev;
+                $mdDialog.show({
+                    targetEvent: ev,
+                    clickOutsideToClose: false,
+                    parent: angular.element(document.body),
+                    controller: 'DialogCtrl as vm',
+                    template: '<md-dialog aria-label="alteracao de senha" ng-cloak>' +
+                        '<md-dialog-content>' +
+                        '<div class="md-dialog-content">' +
+                        '<h2 class="md-title" role="alert">' + message.title + '</h2>' +
+                        message.text +
+                        '</md-dialog-content>' +
+                        '<md-dialog-actions>' +
+                        '<md-button class="md-primary" ng-click="vm.closeDialog()" ' + message.link1 + ' >' + message.action1 + '</md-button>' +
+                        '<md-button class="md-primary" ng-click="vm.closeDialog()" ' + message.link2 + ' >' + message.action2 + '</md-button>' +
+                        '</md-dialog-actions>' +
+                        '<div>' +
+                        '</md-dialog>',
+                });
+            },
         }
     }
-
-
 })();
