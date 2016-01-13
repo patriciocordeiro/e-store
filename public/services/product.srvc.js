@@ -2,7 +2,7 @@
 //    'use strict';
 angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService', '$cookies', '$mdDialog',
     function($rootScope, $q, httpService, $cookies, $mdDialog) {
-
+        console.log(httpService);
         console.log('sou lido primeiro, hehehehe');
         //create this variable to pass all functions
         //This will allow to use this service function inside of this service
@@ -19,16 +19,34 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
         this.prd = {
             qty: [],
             data: [],
+            newData: false,
             cookies: {
                 put: function() {
                     $cookies.put('section', _this.section);
                     $cookies.put('category', _this.category);
                 }
             },
-
+            /*update some signaling variables if prd data change
+			search or new category or something else*/
+            update: function() {
+                //change the status to sinalize new incoming data
+                //this will be used in the watch of prd controller
+                _this.prd.newData = !_this.prd.newData;
+                //------------------------------------------------
+                /*True if data is from search, false otherwise
+                            	this is used on prd controller to watch 
+								where data is coming from*/
+                _this.prd.search.isDataFrom = false;
+                //------------------------------------------------
+            },
+            /*Get the clicked section and category */
             getCatg: function(section, category) {
+                //get the category
                 _this.category = category;
+                //get  the section
                 _this.section = section;
+                //-------------------------------------------
+                //save the cookies
                 _this.prd.cookies.put();
             },
             /*Get a single product details */
@@ -64,29 +82,40 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 }
                 return myArray;
             },
-
+            //Services that interact with the server
             http: {
                 /*Get all data of a selected product category*/
                 getDataByCatg: function(query, category, callback) {
-                    httpService.save({
+
+                    httpService.prd.save({
                         //categoria: category
                         categoria: 'tv' //apenas para teste. remover e colocar o acima
                     }, query).$promise.then(
                         /*sucesso*/
-                        function(data) {
-                            data.abc = true;
+                        function(res) {
+                            //                            data.abc = true;
                             //Pass data to service
-                            _this.prd.data = data;
+                            _this.prd.data = res.data;
+                            //sinalize that data has change (execute update operations)
+                            _this.prd.newData = !_this.prd.newData;
+                            //--------------------------------------------
+                            /*True if data is from search, false otherwise
+                            	this is used on prd controller to watch 
+								where data is coming from*/
+                            _this.prd.search.isDataFrom = false;
+                            //--------------------------------------------
+                            console.info('category data', res.data);
                             //create the array of quantities with value 1
                             var i = 0
-                            for (i = 0; i < data.length; i++) {
+                            for (i = 0; i < res.data.length; i++) {
                                 _this.prd.qty.push(1);
                             }
-                            
+                            //------------------------------------------------
                             //for pagination: get the number of pages
-//                            getNumOfPages()
+                            //                            getNumOfPages()
+                            //-------------------------------------------
 
-                            return callback(data);
+                            return callback(res.data);
                         },
                         /*falha*/
                         function(error) {
@@ -98,10 +127,23 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 },
                 /*Get products data by search*/
                 getDatabySearch: function(query, callback) {
-                    httpService.save({
+                    httpService.prd.save({
+                        categoria: 'search',
                         acao: 'search'
                     }, query).$promise.then(function(data) {
                         data.abc = true;
+                        //pass the data to the service variable
+                        _this.prd.search.data = data;
+                        //-------------------------------------------
+                        //sinalize that data has change (execute update operations)
+                        //change the status to sinalize new incoming data
+                        //this will be used in the watch of prd controller
+                        _this.prd.newData = !_this.prd.newData;
+                        /*True if data is from search, false otherwise
+                            	this is used on prd controller to watch 
+								where data is coming from*/
+                        _this.prd.search.isDataFrom = true;
+                        //------------------------------------------------
                         return callback(data);
                     }, function(error) {
                         return callback(error);
@@ -109,7 +151,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 },
                 /*Get filtered data*/
                 getDataByFilter: function(query, tipoFiltro, category, callback) {
-                    httpService.save({
+                    httpService.prd.save({
                         categoria: category,
                         tipo_filtro: tipoFiltro
                     }, query, function(data) {
@@ -153,7 +195,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                             ids: _this.prd.kart.recvIds
                         }
 
-                        httpService.save({
+                        httpService.prd.save({
                             acao: 'myKart',
                             id: 'id'
                         }, query).$promise.then(function(data) {
@@ -305,6 +347,13 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                     }
                     return NumOfPages;
                 },
+            },
+            search: {
+                //stores the searched data
+                data: [],
+                //controlls  if data is from search
+                //true if data is from search
+                isDataFrom: false,
             }
         }
     }

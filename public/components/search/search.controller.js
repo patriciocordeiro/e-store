@@ -1,42 +1,35 @@
 (function() {
     'use strict';
 
-    angular.module('myApp').controller('SearchResultsCtrl', ['$scope', 'SearchProducts', 'produtosApi', SearchResultsCtrl]);
+    angular.module('myApp').controller('SearchResultsCtrl', ['$scope', 'productSrvc', 'SearchProducts', 'produtosApi', SearchResultsCtrl]);
 
-    function SearchResultsCtrl($scope, SearchProducts, produtosApi) {
+    function SearchResultsCtrl($scope, productSrvc, SearchProducts, produtosApi) {
 
         var vm = this;
-        //initialization------------------------------------------------------------------------------------------ 
+        //initialization-----------------------------------------------------------------
+				vm.searchResultsData = productSrvc.prd.search.data;
+
+		
+		console.log('resultado da busca', productSrvc.prd.search.data);
+		
         vm.products = {
             maxShowItem: 20, //itens by page
             orderBy: 'lancamento' //products ordering
         }
-        vm.SearchProducts = SearchProducts;
+        vm.SearchProducts = productSrvc.prd.search;
         //get serached data
         var query = {
             tags: vm.SearchProducts.value
         }
 
-        $scope.$watch('vm.SearchProducts.value', function(newValue, oldValue) {
+		
+//		var defer = q.defer()
+		
+        $scope.$watch(' vm.SearchProducts.data', function(newValue, oldValue) {
             console.log('hold:', oldValue);
             console.log('new:', newValue);
-            //            if (newValue != oldValue) {
-            //                newValue = newValue.toLowerCase();
+			vm.searchResultsData =productSrvc.prd.search.data;
             console.log('ola', newValue)
-            //                
-            //                var Cap = newValue[0].toUpperCase();
-            //                newValue = newValue.replace(newValue[0], Cap)
-            //                console.log(Cap)
-            query.tags = newValue.toLowerCase();
-            
-            console.log("A query procurada", query);
-
-            console.log('search Query', vm.SearchProducts.value);
-            produtosApi.getDatabySearch(query, function(data) {
-                vm.productsBySearch = data;
-                console.log(data);
-
-            });
         });
     }
 })();

@@ -27,6 +27,30 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
     console.log('connected to database')
+/*Elastic seach*/
+    var products = require('./models/products.model');
+    products.createMapping(function(err, mapping) {
+        if (err) {
+            console.log('error creating mapping (you can safely ignore this)');
+            console.log(err);
+        } else {
+            console.log('mapping created!');
+            console.log(mapping);
+        }
+    });
+
+    var stream = products.synchronize()
+    var count = 0;
+
+    stream.on('data', function(err, doc) {
+        count++;
+    });
+    stream.on('close', function() {
+        console.log('indexed ' + count + ' documents!');
+    });
+    stream.on('error', function(err) {
+        console.log(err);
+    });
 });
 //mongoose.connect(database.url)
 
@@ -49,7 +73,11 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Passport set up
-app.use(session({secret: 'olamilepatricioeyasmincordeiro',resave:true, saveUninitialized:false}))
+app.use(session({
+    secret: 'olamilepatricioeyasmincordeiro',
+    resave: true,
+    saveUninitialized: false
+}))
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login sessions
 require('./auth/passport.auth')(passport);
@@ -93,6 +121,5 @@ app.use(function(err, req, res, next) {
 app.listen(port);
 //app.on('error', onError);
 console.log('listening on port:', port);
-
 
 module.exports = app;

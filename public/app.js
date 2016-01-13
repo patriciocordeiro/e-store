@@ -64,6 +64,16 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             }
         })
 
+        .state('app.produtos.search', {
+            url: "/search",
+            views: {
+                "products@": {
+                    templateUrl: 'components/produtos/productLista.view.html',
+                    controller: 'PrdCtrl as vm'
+                }
+            }
+        })
+
         .state('app.produtos.section', {
             url: "/:section",
             views: {
@@ -166,11 +176,6 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 }
             })
 
-        .state('app.search', {
-            url: "/search",
-            templateUrl: 'components/search/search.view.html',
-            controller: 'SearchResultsCtrl as vm'
-        })
 
         .state('app.user.signup', {
             url: "/signup",

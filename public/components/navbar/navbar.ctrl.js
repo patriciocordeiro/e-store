@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', 'productSrvc', 'userSrcv', '$mdToast', '$document', NavbarCtrl]);
+    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', '$state', 'productSrvc', 'userSrcv', '$mdToast', '$document', NavbarCtrl]);
 
-    function NavbarCtrl($scope, $rootScope, productSrvc, userSrcv, $mdToast, $document) {
+    function NavbarCtrl($scope, $rootScope, $state, productSrvc, userSrcv, $mdToast, $document) {
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
@@ -35,6 +35,12 @@
         /*Get selected product caterory*/
         vm.getCatg = function(section, category) {
             prdSrvc.prd.getCatg(section, category)
+            //Query to send to server
+            var prdQuery = {
+                prdCatg: 'tv',
+                prdMaxPageItems: '20', //Max number of display items in the page
+            }
+            prdSrvc.prd.http.getDataByCatg(prdQuery, category, function(){});
         };
         //        vm.prdSrvcgetSect = function(section) {
         //            prdSrvc.section = section;
@@ -67,14 +73,28 @@
             console.log('Login out');
         }
         //-------------------------------------------------------------------   
-        /*Search*/
-        vm.searchText =''; //variable for ng-model to get search text
-        vm.searchPrd = function(query) {
+        /*Search with elastic search*/
+        vm.searchText = ''; //variable for ng-model to get search text
+        var query = {};
+        vm.searchPrd = function(searchText) {
+            //prevent multiple seach request of the same terms
+            if (query.terms && query.terms == searchText) {
+                console.log('novo termo');
+                return;
+            }
+            query.terms = searchText;
+            console.log(query);
             productSrvc.prd.http.getDatabySearch(query, function(data) {
-                vm.productsBySearch = data;
-                console.log(data);
-
+                vm.searchResultsData = data;
+                if (data) {
+                    //go to search results page if not there
+                    console.log($state);
+                    $state.go('app.produtos.search');
+                }
+                //clear the seach oninput
+                vm.searchText = '';
             });
+
         }
     }
 }());

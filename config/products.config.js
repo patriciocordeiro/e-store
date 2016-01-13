@@ -1,41 +1,64 @@
 'use strict'
 var products = require('../models/products.model');
 
-var produtos = {};
+/*Elastic search*/
+exports.es = function(req, res, next) {
+    console.log('elastic query terms', req.params);
+    products.search({
+        query_string: {
+            query: req.body.terms
+        }
+    }, function(err, results) {
+        if (err)
+            console.log(err);
+        console.log('results:', results);
+        var data = {
+            response: results.hits.hits,
+            total: results.hits.total
+        }
+        console.log(data)
+        res.json(data)
+    });
+}
+
 
 //FIND PRODUCTSBY CATEGORY
 exports.category = function(req, res, next) {
+
     console.log(req.body);
     var query = req.body;
     console.log(query);
-//    var display = req.body[1];
-    products.find(query.prdCatg)
-        .sort(query.prdOrderBy)
-        .limit(query.prdMaxPageItems)
+    //    var display = req.body[1];
+    products.find('resistor')
+    //        .sort(query.prdOrderBy)
+    .limit(20)
         .exec(function(err, data) {
-            if (err) return err;
-        console.log(data);
-            res.json(data);
+            if (err) {
+                console.log(err);
+                return err;
+            }
+           
+            res.json({data:data});
         });
 };
 
 
 //FILTER PRODUCTS: CUMULATIVE FILTERING
-exports.filtroComum = function(req, res, next) {
-    var query = req.body[0];
-    var display = req.body[1];
-    console.log(query.filtroComum);
-    products.find(query.filtroComum)
-        .limit(display.maxShowItem)
-        .sort(display.orderBy)
-        .exec(function(err, data) {
-            if (err){
-                console.log('erro', err);
-                return err;
-            } 
-            res.json(data);
-        });
-};
+//exports.filtroComum = function(req, res, next) {
+//    var query = req.body[0];
+//    var display = req.body[1];
+//    console.log(query.filtroComum);
+//    products.find(query.filtroComum)
+//        .limit(display.maxShowItem)
+//        .sort(display.orderBy)
+//        .exec(function(err, data) {
+//            if (err) {
+//                console.log('erro', err);
+//                return err;
+//            }
+//            res.json(data);
+//        });
+//};
 
 //FILTER PRODUCTS BY RANGE OF VALUES
 exports.filtroFaixa = function(req, res, next) {
