@@ -36,11 +36,14 @@
         vm.getCatg = function(section, category) {
             prdSrvc.prd.getCatg(section, category)
             //Query to send to server
-            var prdQuery = {
-                prdCatg: 'tv',
+//			   var reg = new RegExp('^', "i");
+            var query = {
+                subcategoria: category,
+
                 prdMaxPageItems: '20', //Max number of display items in the page
             }
-            prdSrvc.prd.http.getDataByCatg(prdQuery, category, function(){});
+            console.log(query.subcategoria);
+            prdSrvc.prd.http.getDataByCatg(query, category, function() {});
         };
         //        vm.prdSrvcgetSect = function(section) {
         //            prdSrvc.section = section;

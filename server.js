@@ -27,8 +27,13 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
     console.log('connected to database')
-/*Elastic seach*/
+    /*Elastic seach*/
     var products = require('./models/products.model');
+    //clear all indexes
+    products.esTruncate(function(err) {
+
+    });
+    //Create mapping
     products.createMapping(function(err, mapping) {
         if (err) {
             console.log('error creating mapping (you can safely ignore this)');
@@ -38,7 +43,7 @@ db.once('open', function(callback) {
             console.log(mapping);
         }
     });
-
+    /*Index all documents*/
     var stream = products.synchronize()
     var count = 0;
 
@@ -51,6 +56,7 @@ db.once('open', function(callback) {
     stream.on('error', function(err) {
         console.log(err);
     });
+
 });
 //mongoose.connect(database.url)
 

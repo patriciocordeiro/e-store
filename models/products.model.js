@@ -5,24 +5,22 @@ var productsSchema = new mongoose.Schema({
     //    _id:Array,
     categoria: String,
     subcategoria: String,
-    ref_PM: Number,
-    ref_fabricante: Number,
-    resistencia: Number,
-    tolerancia: Number,
-    preco: Number,
-    potencia: Number,
+    ref_PM: String,
+    ref_fabricante: String,
     disponibilidade: {
-        type: Number,
-//        es_indexed: true
+        type: Number
     },
-    acabamento: {
-        type: String,
-//        es_indexed: true
-    },
+    preco: Number,
+    descricao: String,
+    imagens: String,
     tags: {
         type: String,
-//        es_indexed: true
-    }
+        //        es_indexed: true
+    },
+    caracteristicas: [{
+        nome: String,
+        valor: String
+    }, ],
 
 
     //    name: String,

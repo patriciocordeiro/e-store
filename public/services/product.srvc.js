@@ -354,6 +354,13 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 //controlls  if data is from search
                 //true if data is from search
                 isDataFrom: false,
+                sections: function(data) {
+                    var sect = _(data)
+                        .uniqBy('categoria')
+                        .map('categoria')
+                        .value()
+                    return sect;
+                },
             }
         }
     }

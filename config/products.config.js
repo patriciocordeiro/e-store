@@ -24,12 +24,14 @@ exports.es = function(req, res, next) {
 
 //FIND PRODUCTSBY CATEGORY
 exports.category = function(req, res, next) {
-
-    console.log(req.body);
-    var query = req.body;
+    var query = new RegExp(req.body.subcategoria, "i")
+    console.log(req.body.subcategoria);
+    //    var query = req.body.category;
     console.log(query);
     //    var display = req.body[1];
-    products.find('resistor')
+    products.find({
+        subcategoria: query
+    })
     //        .sort(query.prdOrderBy)
     .limit(20)
         .exec(function(err, data) {
@@ -37,8 +39,10 @@ exports.category = function(req, res, next) {
                 console.log(err);
                 return err;
             }
-           
-            res.json({data:data});
+            console.log(data);
+            res.json({
+                data: data
+            });
         });
 };
 
