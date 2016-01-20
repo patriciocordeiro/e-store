@@ -1,0 +1,52 @@
+<div flex layout="row">
+    <div flex layout-padding>
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>No. ref. da M P</th>
+                    <th>No ref. do fabricante</th>
+                    <th>Descricao</th>
+                    <th>Ficha Técnica</th>
+                    <th>Disponibilidade</th>
+                    <th>Preço Unit</th>
+                    <th>Quantidade</th>
+                    <th>Acabamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="products in vm.prdData">
+                    <td>
+                        <div class="product-image">
+                            <img src="../../assets/img/resistor/resistor.png">
+                        </div>
+                    </td>
+                    <td>
+                        <md-button ui-sref="app.produtos.section.category.detail({id:products._id})" ng-click="vm.storeIdProductDetail(products._id)">{{products.ref_PM}}</md-button>
+                    </td>
+                    <td>
+                        <md-button ng-href="#/app/produtos/categoria/{{productsCategory.category}}/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">{{products.ref_fabricante}}</md-button>
+                    </td>
+                    <td>Condensadores de tântalo - revestimento sólido de SMD 10uF, 16.0V, +/-20% -55C +125C</td>
+                    <td>PDF</td>
+                    <td>{{products.disponibilidade}}<span style="display:block">Em estoque</span>
+                    </td>
+                    <td>R$ {{products.preco}}</td>
+                    <td>
+                        <form>
+                            <input type="text   " value="1" size="4" maxlength="3">
+                            <md-button class="md-warn md-raised">
+                                Comprar</md-button>
+                        </form>
+                    </td>
+                    <td>{{products.acabamento}}</td>
+                    <td>{{products.resistencia}} R</td>
+                    <td>{{products.potencia}} W</td>
+                    <td>{{products.toleranncia}} %</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

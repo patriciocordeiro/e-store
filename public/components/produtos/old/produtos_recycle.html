@@ -1,0 +1,222 @@
+<div id="product-page" class="container">
+    <!-- Fixed navbar -->
+
+    <div layout="row" layout-sm="column" layout-margin layout-fill>
+        <div flex="20">
+            <div class="product-filter-area">
+                <!--
+                <h4>Itens por página</h4>
+                <select ng-model="vm.products.maxShowItem" ng-change="vm.getMaxShowItems(vm.products.maxShowItem)">
+                    <option value="20">20</option>
+                    <option value="40">40</option>
+                    <option value="60">60</option>
+                </select>
+                {{products.maxShowItem}}
+
+                <select ng-model="vm.products.orderBy" ng-change="vm.getOrdering(vm.products.orderBy)">
+                    <option value="-preco">Maior preço</option>
+                    <option value="preco">Menor preço</option>
+                    <option value="lancamento">Lançamento</option>
+                </select>
+-->
+                {{products.orderBy}}
+                <h3>Filtrar</h3>
+
+
+                <button class="btn btn-default" ng-init="isCollapsed=false" ng-click="isCollapsed = !isCollapsed">Marca</button>
+                <!--                <hr>-->
+                <div collapse="isCollapsed">
+                    <div>
+                        <!--                <h4>Marca</h4>-->
+                        <form>
+
+                            <!--                            <div class="checkbox">-->
+                            <ul class="list-group">
+
+                                <li class="list-group-item" ng-repeat="filters in vm.myfiltersMarca">
+                                    <!--                                        <label>-->
+                                    <md-checkbox ng-model="vm.filterBy.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.marca)" class="md-primary">
+                                        <!--                                            <input type="checkbox" ng-model="vm.filterBy.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.marca)" />{{filters.marca}}-->
+                                        <!--                                        </label>-->
+                                        {{filters.marca}}
+                                    </md-checkbox>
+                                </li>
+                            </ul>
+
+                            <!--                            </div>-->
+
+                        </form>
+                    </div>
+                </div>
+
+                <!--            <input type="text" ng-model="productCategory.category" />{{productCategory.category}}-->
+
+
+                <h5 class="filter-heading">Tela</h5>
+                <md-checkbox ng-model="vm.filterBy.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="vm.filtroComum(vm.filterBy.tamanho_tela)" class="md-primary" ng-repeat="filters in vm.myfiltersTela">
+                    <!--                    <div class="checkbox" ng-repeat="filters in vm.myfiltersTela">-->
+                    <!--                        <label>-->
+                    <!--                            <input type="checkbox" ng-model="vm.filterBy.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="vm.filtroComum(vm.filterBy.tamanho_tela)" />-->
+                    {{filters.tamanho_tela}}"
+                    <!--                        </label>-->
+                    <!--                    </div>-->
+                </md-checkbox>
+
+                <h4 class="filter-heading">Faixa de Preco</h4>
+                <div class="radio" ng-repeat="faixapreco in vm.faixaPreco">
+                    <label>
+                        <input type="radio" ng-model="vm.filterBy.name" value="num,preco,{{faixapreco}}" ng-click="vm.filtro_faixa(vm.filterBy.name)">{{faixapreco}}
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <div flex="80">
+
+            <div class="produtos-show-area">
+                <div class="row">
+                    <!--                #/app/teams/{{team.id}}"-->
+                    <div class="col col-md-3" ng-repeat="products in vm.productsByCategory">
+                        <a ng-href="#/app/produtos/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">
+                            <div class="product-image">
+                                <img src="../../assets/img/produtos/phone/pSNYNA-MDRZX330BT-B_main_v217.png">
+                            </div>
+                            <div class="product-description">
+                                <h5>{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}}{{products.frequencia}}{{products.marca}}
+                        </h5>
+                            </div>
+                        </a>
+                        <div class="product-description">
+                            <div awesome-rating="products.media_avaliacoes" awesome-rating-options="vm.options"></div>
+
+                            <!--                    <rating ng-model="products.media_avaliacoes" max="5" readonly="vm.isReadonly"></rating>-->
+
+                            <h5>R$ {{products.preco}}</h5>
+                            <div class="btn btn-add-basket">Comprar</div>
+
+                            <!--                    <div class="input-group">-->
+                            <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
+                            <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="vm.getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
+                        <modal-visualizacao></modal-visualizacao> -->
+                            <!--                        <span class="label" ng-class="{'label-warning': 100*(products.media_avaliacoes || 0)/5<30, 'label-info': 100*(products.media_avaliacoes || 0)/5>=30 && 100*(products.media_avaliacoes || 0)/5<70, 'label-success': 100*(products.media_avaliacoes || 0)/5>=70}">{{100*(products.media_avaliacoes || 0)/5 | number:2}}%</span>-->
+                            <!--                    </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="filters col-md-2">
+            <div class="product-filter-area">
+                <!--
+                <h4>Itens por página</h4>
+                <select ng-model="vm.products.maxShowItem" ng-change="vm.getMaxShowItems(vm.products.maxShowItem)">
+                    <option value="20">20</option>
+                    <option value="40">40</option>
+                    <option value="60">60</option>
+                </select>
+                {{products.maxShowItem}}
+
+                <select ng-model="vm.products.orderBy" ng-change="vm.getOrdering(vm.products.orderBy)">
+                    <option value="-preco">Maior preço</option>
+                    <option value="preco">Menor preço</option>
+                    <option value="lancamento">Lançamento</option>
+                </select>
+-->
+                {{products.orderBy}}
+                <h3>Filtrar</h3>
+
+
+                <button class="btn btn-default" ng-init="isCollapsed=false" ng-click="isCollapsed = !isCollapsed">Marca</button>
+                <!--                <hr>-->
+                <div collapse="isCollapsed">
+                    <div>
+                        <!--                <h4>Marca</h4>-->
+                        <form>
+
+                            <!--                            <div class="checkbox">-->
+                            <ul class="list-group">
+
+                                <li class="list-group-item" ng-repeat="filters in vm.myfiltersMarca">
+                                    <!--                                        <label>-->
+                                    <md-checkbox ng-model="vm.filterBy.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.marca)" class="md-primary">
+                                        <!--                                            <input type="checkbox" ng-model="vm.filterBy.marca" ng-true-value="'str,marca,{{filters.marca}}'" ng-false-value="'null,marca,{{filters.marca}}'" ng-click="vm.filtroComum(vm.filterBy.marca)" />{{filters.marca}}-->
+                                        <!--                                        </label>-->
+                                        {{filters.marca}}
+                                    </md-checkbox>
+                                </li>
+                            </ul>
+
+                            <!--                            </div>-->
+
+                        </form>
+                    </div>
+                </div>
+
+                <!--            <input type="text" ng-model="productCategory.category" />{{productCategory.category}}-->
+
+
+                <h5 class="filter-heading">Tela</h5>
+                <md-checkbox ng-model="vm.filterBy.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="vm.filtroComum(vm.filterBy.tamanho_tela)" class="md-primary" ng-repeat="filters in vm.myfiltersTela">
+                    <!--                    <div class="checkbox" ng-repeat="filters in vm.myfiltersTela">-->
+                    <!--                        <label>-->
+                    <!--                            <input type="checkbox" ng-model="vm.filterBy.tamanho_tela" ng-true-value="'num,tamanho_tela,{{filters.tamanho_tela}}'" ng-false-value="'null,tamanho_tela,{{filters.tamanho_tela}}'" ng-click="vm.filtroComum(vm.filterBy.tamanho_tela)" />-->
+                    {{filters.tamanho_tela}}"
+                    <!--                        </label>-->
+                    <!--                    </div>-->
+                </md-checkbox>
+
+                <h4 class="filter-heading">Faixa de Preco</h4>
+                <div class="radio" ng-repeat="faixapreco in vm.faixaPreco">
+                    <label>
+                        <input type="radio" ng-model="vm.filterBy.name" value="num,preco,{{faixapreco}}" ng-click="vm.filtro_faixa(vm.filterBy.name)">{{faixapreco}}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-10 show-area">
+
+            <div class="produtos-show-area">
+                <div class="row">
+                    <!--                #/app/teams/{{team.id}}"-->
+                    <div class="col col-md-3" ng-repeat="products in vm.productsByCategory">
+                        <a ng-href="#/app/produtos/{{products._id}}" ng-click="vm.storeIdProductDetail(products._id)">
+                            <div class="product-image">
+                                <img src="../../assets/img/produtos/phone/pSNYNA-MDRZX330BT-B_main_v217.png">
+                            </div>
+                            <div class="product-description">
+                                <h5>{{products.tamanho_tela}}" {{products.nome}} {{products.caracteristicas}} {{products.categoria}}{{products.frequencia}}{{products.marca}}
+                        </h5>
+                            </div>
+                        </a>
+                        <div class="product-description">
+                            <div awesome-rating="products.media_avaliacoes" awesome-rating-options="vm.options"></div>
+
+                            <!--                    <rating ng-model="products.media_avaliacoes" max="5" readonly="vm.isReadonly"></rating>-->
+
+                            <h5>R$ {{products.preco}}</h5>
+                            <div class="btn btn-add-basket">Comprar</div>
+
+                            <!--                    <div class="input-group">-->
+                            <!-- Quando ele utilizar esse span, será mostrado quantas pessoas avaliaram com cada estrela-->
+                            <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalV" ng-click="vm.getProdutoVisualizacao(products)">{{products.avaliacao.media || "Não avaliado"}} &#9733</button>
+                        <modal-visualizacao></modal-visualizacao> -->
+                            <!--                        <span class="label" ng-class="{'label-warning': 100*(products.media_avaliacoes || 0)/5<30, 'label-info': 100*(products.media_avaliacoes || 0)/5>=30 && 100*(products.media_avaliacoes || 0)/5<70, 'label-success': 100*(products.media_avaliacoes || 0)/5>=70}">{{100*(products.media_avaliacoes || 0)/5 | number:2}}%</span>-->
+                            <!--                    </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--        </div>-->
+
+        </div>
+
+    </div>
+</div>

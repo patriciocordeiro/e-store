@@ -1,8 +1,8 @@
 (function() {
     'use strict';
-    angular.module('myApp').controller('PrdCtrl', ['$scope', '$q', '$rootScope', 'productSrvc', PrdCtrl]);
+    angular.module('myApp').controller('PrdCtrl', ['$scope', '$q', '$filter', '$rootScope', 'productSrvc', PrdCtrl]);
 
-    function PrdCtrl($scope, $q, $rootScope, productSrvc) {
+    function PrdCtrl($scope, $q, $filter, $rootScope, productSrvc) {
         /*Variable declarion*/
         var vm = this;
         var prdSrvc = productSrvc;
@@ -12,33 +12,11 @@
         vm.keysToFilter = ['_id', 'ref_PM', 'ref_fabricante', 'imagens', 'disponibilidade', 'categoria', 'subcategoria'];
 
 
-        var teste = [{
-            name: 'capacitor',
-            value: 10
-        }, {
-            name: 'capacitor',
-            value: 20
-        }, {
-            name: 'indutor',
-            value: 25
-        }];
-		var x = {}
-		var y=[]
-        console.log((_.groupBy(_.flatten(teste), 'name')))
-        _.forEach(teste, function(key, value) {
-            console.log(key);
-            
-            x[key.name] = key.value
-			y.push(x)
-        })
-        console.log(y);
-
-
         function tic() {
             return new Date().getTime();
         }
 
-        vm.prdFixedCols = ['Imagens', 'No P&M', 'No. Fabricante', 'Disp.', 'Preço', 'Qtd.'];
+        vm.prdFixedCols = ['Imagens', 'No P&M', 'No. Fabricante', 'Desc.', 'Disp.', 'Preço', 'Qtd.'];
 
 
         function toc(startTime) {
@@ -47,28 +25,7 @@
             console.log('execution time', execTime, 'ms');
             return execTime;
         }
-        //        /*check if data is comming from search*/
-        //        if (prdSrvc.prd.search.data.total > 0) {
-        //            //create an array taking only the _source field
-        //            vm.prdData = _.pluck(productSrvc.prd.search.data.response, '_source')
-        //            console.log('acao : busca');
-        //            console.log(vm.prdData);
-        //        } else {
-        //            console.log('acao normal');
-        //            vm.prdData = [];
-        //        }
 
-        function qtest() {
-            return $q.when(1 + 2)
-        }
-
-        var pro = qtest();
-        qtest().then(function(data) {
-            return data;
-        }).then(function(data) {
-            'hello'
-        })
-        console.log('Teste q', qtest())
         //Query to send to server
         var prdQuery = {
             prdCatg: 'tv',
@@ -84,29 +41,169 @@
                 vm.searchTotal = productSrvc.prd.search.data.total;
                 //Returned sections on search 
                 vm.searchSections = productSrvc.prd.search.sections(vm.prdData);
+                console.log('searchSubSections', vm.searchSubSections);
+                console.log(vm.prdData);
                 //total results used to show/hide search information on the page
                 vm.isdataFromSearch = productSrvc.prd.search.isDataFrom;
             } else {
                 console.log('Dados categoria');
                 vm.prdData = productSrvc.prd.data;
             }
+            //return subsections on search
+            vm.searchSubSections = _.uniq(_.map(vm.prdData, 'subcategoria'))
             /*Get only the product characteristics*/
             vm.caract = _.map(vm.prdData, 'caracteristicas') //producst caracteristics 
-            console.log(vm.caract);
             /*Build data for filter orderBy*/
-            vm.forFilter = (_.map(vm.caract[0], 'nome'))
-            //			vm.forFilter = _.flatten(vm.forFilter)
-            console.log(((_.reduce(((vm.caract))))));
-
-            var res = _.chain(vm.caract)
-                .flatten()
-                .forEach(function(key, value) {
-                    //					console.log(key);
-                    _.map('nome')
-                    _.uniq(key)
-                }).value()
-            //			console.log(res);
+            vm.filterData = (_.groupBy(_.uniqBy(_.flatten(vm.caract), 'valor'), 'nome'));
+            vm.testeData = vm.prdData; //Apagar
         });
+
+        /*getSubSection*/
+        vm.selected = [];
+        var myobj = {};
+        var a = [{
+            subcategoria: 'resistores'
+        }, {
+            subcategoria: 'capacitores'
+        }]
+        vm.getSubSections = function(item, list) {
+            var query = {}
+            console.log('selected', item);
+            query['subcategoria'] = item;
+
+            var idx = _.findIndex(list, query)
+
+            if (idx > -1) {
+                //Item already in the array
+                console.log('Removing');
+                list.splice(idx, 1);
+            } else {
+
+                console.log('Adding');
+                list.push(query);
+            }
+            prdFilter(list, vm.testeData).then(function(data) {
+                console.log('filter', data);
+                vm.prdData = data;
+            })
+
+        }
+
+        vm.caracArrayToFilt = [];
+
+        vm.temFilterData = vm.testeData;
+        vm.comFilter = function(item, list) {
+            console.log(item);
+            //remove the $$hashKey
+            var query = _.omit(item, '$$hashKey');
+            var idx = _.findIndex(list, query)
+            if (idx > -1) {
+                //Item already in the array
+                console.log('Removing');
+                list.splice(idx, 1);
+            } else {
+                console.log('Adding');
+                list.push(query);
+            }
+            var lisGrouped = _.groupBy(list, 'nome');
+            var queryValues = _.values(lisGrouped);
+
+            var mynewData = vm.testeData;
+            filterExclusive(vm.testeData, queryValues, 'caracteristicas').then(function(filtereData) {
+                vm.prdData = filtereData;
+                console.log(filtereData);
+            })
+        }
+
+        //----------------------------------------------------
+        /*Exclusive filter*/
+        function filterExclusive(dataToFiltArray, filtQueryArray, propertyTofilt) {
+            var filtResult = [];
+            _.forEach(filtQueryArray, function(queryVal) {
+                _.forEach(queryVal, function(querySubVal) {
+                    _.forEach(dataToFiltArray, function(dataToFilt) {
+                        var flt = $filter('filter')(dataToFilt[propertyTofilt], querySubVal, true)
+                        if (!(_.isEmpty(flt))) {
+                            filtResult.push(dataToFilt);
+                        }
+                    });
+                });
+                console.log('cheguei aqui');
+                console.log(filtResult);
+                dataToFiltArray = filtResult
+                filtResult = [];
+            });
+            return $q.when(dataToFiltArray)
+        }
+        //----------------------------------------------------
+        /*Acumulator type filter*/
+        function acumFilter() {
+            var temp2 = [];
+            _.forEach(list, function(query) {
+                var i = 0;
+                var temp1 = [];
+                console.log(query);
+                _.forEach(vm.testeData, function(val) {
+                    var f = $filter('filter')(val.caracteristicas, query, true)
+                    if (f.length > 0) {
+                        console.log(i);
+                        temp1.push(vm.testeData[i])
+                        console.log(temp1);
+                        vm.temFilterData = temp1;
+                        vm.prdData = temp1;
+                    }
+                    i++
+                    console.log(f);
+                });
+
+                temp2.push(temp1);
+                console.log(temp2);
+                console.log('intersec', _.intersectionBy([temp2, temp1[0]], 'disponibilidade'));
+
+                vm.prdData = _.flatten(temp2);
+
+            });
+        }
+        //----------------------------------------------------
+        function prdFilter(query, dataTofilt) {
+            console.log(query);
+            var temp = []
+            var filteredData = [];
+            if (query.length > 0) {
+                _.forEach(query, function(value) {
+                    temp.push($filter('filter')(dataTofilt, value, true))
+                    filteredData = _.flatten(temp);
+                    //                        vm.totalLeft = vm.prdData.length;
+                })
+            } else {
+                //return all data (no filter)
+                filteredData = _.flatten(dataTofilt);
+                //get the total components left
+                //                    vm.totalLeft = vm.prdData.length;
+            }
+        }
+
+        function prdCaractFilter(query, dataTofilt) {
+            console.log(query);
+            var temp = []
+            var filteredData = [];
+            console.log(query.length);
+            if (query.length > 0) {
+                _.forEach(query, function(value) {
+                    temp.push($filter('filter')(dataTofilt.caracteristicas, value, true))
+                    console.log(temp);
+                    filteredData = _.flatten(temp);
+                    //                        vm.totalLeft = vm.prdData.length;
+                })
+            } else {
+                //return all data (no filter)
+                filteredData = _.flatten(dataTofilt);
+                //get the total components left
+                //                    vm.totalLeft = vm.prdData.length;
+            }
+            console.log('filteredData', filteredData);
+            return $q.when(filteredData);
+        }
         //---------------------------------------------------------
         vm.order = 'preco'
         vm.ordering = function(toOrderTo) {

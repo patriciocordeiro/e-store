@@ -1,0 +1,65 @@
+<div id="nav-bar-menu" ng-controller="NavbarCtrl as vm">
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../../assets/img/logo/sonyLogo2.png">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul id="menu" class="nav navbar-nav navbar-right">
+                    <li ng-hide="isloggedIn"><a ui-sref="app.login">Login</a>
+                    </li>
+                    <li><a ui-sref="app.dashboard">Minha Conta</a>
+                    </li>
+                    <li><a ui-sref="app.dashboard">Meus Pedidos</a>
+                    </li>
+                    <li ng-hide="isloggedIn"><a ui-sref="app.signup">Cadastre-se</a>
+                    </li>
+                    <li ng-hide="!isloggedIn"><a><span style="color:red">Olá {{loggedUserName}}</span></a>
+                    </li>
+
+                    <li><a ui-sref="app.minhaCesta" style="color:blue;" ng-model="vm.numeroProdutosCarrinho"><strong><i class="fa fa-shopping-cart fa-2x" ></i> Meu Carrinho {{vm.numeroProdutosCarrinho}}</strong></a> 
+                    </li>
+                    <li ng-hide="!isloggedIn"><a href="#" ng-click="logOut()">Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../../assets/img/logo/sonyLogo2.png">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul id="menu" class="nav navbar-nav navbar-left">
+                    <li ng-hide="isloggedIn"><a ui-sref="app.login">Login</a>
+                    </li>
+                    <li><a ui-sref="app.dashboard">Minha Conta</a>
+                    </li>
+                    <li><a ui-sref="app.dashboard">Meus Pedidos</a>
+                    </li>
+                    <li ng-hide="isloggedIn"><a ui-sref="app.signup">Cadastre-se</a>
+                    </li>
+                    <li ng-hide="!isloggedIn"><a href="#" ng-click="logOut()">Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

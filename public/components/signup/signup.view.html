@@ -1,0 +1,143 @@
+<div layout="column" class="md-inline-form">
+    <md-content layout="row" layout-align="center center">
+        <div layout="column" flex-gt-md="50">
+            <md-toolbar class="md-toolbar-tools">Faça o seu cadastro</md-toolbar>
+            <form name="signupForm" novalidate>
+                <md-card layout-padding>
+                    <md-card-title>
+                        <h4 class="md-title">Dados pessoais</h4>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout-gt-md="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Nome</label>
+                                <input type="text" name="nome" ng-model="vm.newUser.fullName" required>
+                                <div ng-messages="signupForm.nome.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Sobrenome</label>
+                                <input type="text" name="sobrenome" ng-model="vm.newUser.fullName" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <md-datepicker name="dataNascimento" md-placeholder="Data de Nascimento" ng-model="vm.newUser.birthDate" required></md-datepicker>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Sexo</label>
+                                <md-select name="sexo" ng-model="vm.newUser.sexo" required>
+                                    <md-option value="Masculino">
+                                        Masculino
+                                    </md-option>
+                                    <md-option value="Feminino">
+                                        Feminino
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card layout-padding>
+                    <md-card-title>
+                        <h4 class="md-title">Dados de login</h4>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout-gt-md="row">
+                            <md-input-container flex class="md-icon-float md-block">
+                                <md-icon> <i class="material-icons">email</i>
+                                </md-icon>
+                                <label>Email</label>
+                                <input type="email" name="email" ng-model="vm.newUser.email" minlength="6" maxlength="6" ng-pattern="/^.+@.+\..+$/" required>
+                                <div ng-messages="signupForm.email.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Senha</label>
+                                <input type="password" name="senha" ng-model="vm.newUser.password" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Repetir Senha</label>
+                                <input type="password" name="repSenha" ng-model="vm.newUser.confirmPassword" match="vm.newUser.password" required>
+                            </md-input-container>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card layout-padding>
+                    <md-card-title>
+                        <h4 class="md-title">Endereço de entrega</h4>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout-gt-md="row">
+                            <md-input-container>
+                                <label>Tipo de endereco</label>
+                                <md-select name="tipoEnd" ng-model="vm.newUser.tipoEndereco" required>
+                                    <md-option value="Apartamento">Apartamento</md-option>
+                                    <md-option value="Casa">Casa</md-option>
+                                    <md-option value="Comercial">Comercial</md-option>
+                                    <md-option value="Outro">Outro</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>CEP</label>
+                                <input name="cep" ng-model="vm.newUser.cep" ui-mask="99999-999" type="text" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Endereço</label>
+                                <input type="text" name="endereco" ng-model="vm.newUser.endereco" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Número</label>
+                                <input type="text" name="numero" ng-model="vm.newUser.numero" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Complemento</label>
+                                <input type="text" name="complemento" ng-model="vm.newUser.complemento" type="text">
+                            </md-input-container>
+
+                        </div>
+                        <div layout-gt-md="row">
+                            <md-input-container class="md-block">
+                                <label>Bairro</label>
+                                <input name="bairro" ng-model="vm.newUser.bairro" type="text" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Cidade</label>
+                                <input name="cidade" ng-model="vm.newUser.cidade" type="text" required>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Estado</label>
+                                <input name="estado" ng-model="vm.newUser.estado" type="text" required>
+                            </md-input-container>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <md-card layout-padding>
+                    <md-card-title>
+                        <h4 class="md-title">Contato</h4>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout-gt-md="row">
+                            <md-input-container flex class="md-icon-float md-block">
+                                <label>Telefone residencial</label>
+                                <input name="telRes" ng-model="vm.newUser.telefone" ui-mask="(99) 9999-9999" type="text" required>
+                            </md-input-container>
+                            <md-input-container flex class="md-icon-float md-block">
+                                <label>Telefone celular</label>
+                                <input name="telCels" ng-model="vm.user.celular" ui-mask="(99) 9999-9999" type="text" required>
+                            </md-input-container>
+
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <div layout="row" flex-gt-md="50" layout-margin layout-align="center center">
+                    <md-button layout="column" flex="50" type="submit" class="md-warn md-raised" ng-click=" vm.createUser(vm.newUser)">Cadastrar</md-button>
+                </div>
+                <md-divider></md-divider>
+            </form>
+        </div>
+    </md-content>
+</div>
