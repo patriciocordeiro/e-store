@@ -83,7 +83,7 @@
             <table class="prd-list-table">
                 <thead>
                     <tr>
-                        <th flex layout-padding="center center" ng-repeat="fixedCols in vm.prdFixedCols">
+                        <th flex layout-padding="center center" ng-repeat="fixedCols in vm.prdFixedCols|limitTo:vm.itemPerPage:vm.start">
                             <h4 class="md-subhead">{{fixedCols}}</h4>
 
                         </th>
@@ -123,7 +123,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="prd in vm.prdData | orderBy:vm.order">
+                    <tr ng-repeat="prd in vm.prdData | orderBy:vm.order|limitTo:vm.itemPerPage: vm.start">
 
                         <td class="product-image">
                             <img ng-src={{prd.imagens}}>

@@ -48,6 +48,7 @@
             } else {
                 console.log('Dados categoria');
                 vm.prdData = productSrvc.prd.data;
+
             }
             //return subsections on search
             vm.searchSubSections = _.uniq(_.map(vm.prdData, 'subcategoria'))
@@ -56,6 +57,9 @@
             /*Build data for filter orderBy*/
             vm.filterData = (_.groupBy(_.uniqBy(_.flatten(vm.caract), 'valor'), 'nome'));
             vm.testeData = vm.prdData; //Apagar
+            //For pagination: get the total number of pages
+            vm.pages = getNumOfPages(vm.prdData);
+
         });
 
         /*getSubSection*/
@@ -224,87 +228,75 @@
 
         //-------------------------------------------------------
         /*Paginagination of the list table*/
-        var getNumOfPages = function() {
+        var getNumOfPages = function(data) {
             var NumOfPages = [];
-            var j = 1;
             var i = 0;
-            for (i = 0; i < prdSrvc.prd.data.length; i++) {
-                if (i == 3 * j) {
-                    NumOfPages.push(j);
-                    j++;
-                    console.log(j);
-                    console.log(NumOfPages);
-                }
+            for (i = 0; i < Math.ceil(data.length / 5) + 1; i++) {
+                NumOfPages.push(i);
+                console.log(NumOfPages);
             }
             return NumOfPages;
         }
-        //        vm.pages = getNumOfPages();
-        var getNum = function(data) {
-            var defer = $q.defer();
-            if (data > 0) {
-                defer.resolve(11)
-            } else {
-                defer.resolve(10)
+
+        vm.itemPerPage = 5;
+        vm.start = 0;
+        vm.currentPage = 0;
+        vm.disablePrevBtn = true;
+        vm.disableNextBtn = false;
+        //        vm.isActive = 'md-raised';
+        vm.isActive = function(page) {
+            if (page == vm.currentPage) {
+                return 'md-raised';
             }
-            return defer.promise;
+
         }
-        console.log(prdSrvc.prd.qty.length);
-        var getNumPromise = getNum(prdSrvc.prd.qty.length);
-        getNumPromise.then(function(data) {
-            console.log(data);
-        });
-        //        vm.pages = prdSrvc.prd.qty;
-        //        console.log(vm.pages);
-        //        vm.lastPage = vm.pages.length;
-        //        vm.start = 1;
-        //        vm.currentPage = 1;
-        //        vm.disablePrevBtn = true;
-        //        vm.disableNextBtn = false;
-        //        //        vm.isActive = 'md-raised';
-        //        vm.isActive = function(page) {
-        //            if (page == vm.currentPage) {
-        //                return 'md-raised';
-        //            }
-        //
-        //        }
-        //        vm.changePage = function(page) {
-        //            vm.currentPage = page;
-        //            vm.start = (vm.currentPage - 1) * 5;
-        //
-        //            console.log('hello', vm.start);
-        //            if (vm.currentPage > 1) {
-        //                vm.disablePrevBtn = false;
-        //            } else {
-        //                vm.disablePrevBtn = true;
-        //            }
-        //            if (vm.currentPage == vm.lastPage) {
-        //                vm.disableNextBtn = true;
-        //            } else {
-        //                vm.disableNextBtn = false;
-        //            }
-        //            vm.isActive(page);
-        //        }
-        //        vm.prevPage = function() {
-        //            if (vm.currentPage > 1) {
-        //                vm.currentPage--;
-        //                vm.changePage(vm.currentPage);
-        //            }
-        //        }
-        //        vm.nextPage = function() {
-        //            console.log(vm.lastPage);
-        //            if (vm.currentPage != vm.lastPage) {
-        //                vm.currentPage++;
-        //                vm.changePage(vm.currentPage);
-        //            }
-        //        }
-        //        vm.goTolastPage = function() {
-        //            vm.currentPage = vm.lastPage;
-        //            vm.changePage(vm.currentPage)
-        //        }
-        //        vm.gotoFirstPage = function() {
-        //            vm.currentPage = 1;
-        //            vm.changePage(vm.currentPage)
-        //        }
+        vm.changePage = function(page) {
+
+            vm.lastPage = vm.pages.length-1;
+
+            if (isNaN(page)==false) {
+                vm.currentPage = page;
+            }else{
+				console.log('nopage', _.size(isNaN(page)));
+				 vm.currentPage = vm.lastPage;
+			}
+            console.log('vm.currentPage', vm.currentPage);
+            vm.start = (vm.currentPage - 1) * 5;
+
+            console.log('hello', vm.start);
+            if (vm.currentPage > 0) {
+                vm.disablePrevBtn = false;
+            } else {
+                vm.disablePrevBtn = true;
+            }
+            if (vm.currentPage == vm.lastPage) {
+                vm.disableNextBtn = true;
+            } else {
+                vm.disableNextBtn = false;
+            }
+            vm.isActive(page);
+        }
+        vm.prevPage = function() {
+            if (vm.currentPage > 0) {
+                vm.currentPage--;
+                vm.changePage(vm.currentPage);
+            }
+        }
+        vm.nextPage = function() {
+            console.log(vm.lastPage);
+            if (vm.currentPage != vm.lastPage) {
+                vm.currentPage++;
+                vm.changePage(vm.currentPage);
+            }
+        }
+        vm.goTolastPage = function() {
+            vm.currentPage = vm.lastPage;
+            vm.changePage(vm.currentPage)
+        }
+        vm.gotoFirstPage = function() {
+            vm.currentPage = 0;
+            vm.changePage(vm.currentPage)
+        }
         //-------------------------------------------------------
     }
 }());

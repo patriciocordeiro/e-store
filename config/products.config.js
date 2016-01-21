@@ -33,7 +33,7 @@ exports.category = function(req, res, next) {
         subcategoria: query
     })
     //        .sort(query.prdOrderBy)
-    .limit(20)
+    .limit(43)
         .exec(function(err, data) {
             if (err) {
                 console.log(err);
