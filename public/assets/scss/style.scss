@@ -3,14 +3,15 @@ $indigo:#3F51B5;
  $light_bue:#03A9F4;
  .my-md-menu-top {
     min-height: 100% !important;
-     height: 40px !important;
-//    background-color: #fff9f9 !important;
+    height: 40px !important;
+    //    background-color: #fff9f9 !important;
     //    min-height: 34px !important;
     //     font-size: 12px !important;
-//    .md-button {
-//        color: #3F79C2 !important;
-//        text-transform: capitalize;
-//    }
+    //    .md-button {
+    //        color: #3F79C2 !important;
+    //        text-transform: capitalize;
+    //    }
+
 }
 //.my-nav-bar-menu {
 ////    .md-button {
@@ -18,10 +19,39 @@ $indigo:#3F51B5;
 ////    }
 //}
 
+/*Customize the menu bar to fit toolbar hight*/
+
+//    position: relative;
+ md-menu-bar {
+    background-color: blueviolet !important;
+    //            height: 100% !important;
+    //            position: absolute !important;
+    //         top: 0;
+    //            right: 0;
+    md-menu {
+        //        height: 100% !important;
+        //        width: 100% !important;
+        //         position: absolute !important;
+
+    }
+    button {
+        height: 100% !important;
+        width: !important;
+    }
+}
+.md-open-menu-container {
+    position: fixed;
+    left: 0% !important;
+    top: 0;
+    right: 0% !important;
+    z-index: 100;
+    opacity: 0;
+    border-radius: 2px;
+}
+
 .breadcrumb {
     margin-bottom: 0px;
     font-size: 12px;
-
 }
 // Rules for sizing the icon.
 .material-icons.md-18 {
@@ -46,7 +76,7 @@ $indigo:#3F51B5;
     // this style applies to all link buttons
     //We change the some md-button attributes to fit a li>a link
     margin: 0 !important;
-//    padding: 0 !important;
+    //    padding: 0 !important;
     line-height: 20px !important;
     color: #00695C !important;
     min-height: auto !important;
@@ -56,7 +86,6 @@ $indigo:#3F51B5;
     &:hover {
         text-decoration: underline !important;
         background-color: inherit !important;
-      
     }
 }
 .my-md-icon-btn {
@@ -165,8 +194,7 @@ $indigo:#3F51B5;
         text-align: left;
     }
 }
-.md-toast {
-    max-height: 100%;
-    z-index: 10000;
-    padding: 0 !important;
+md-toast .md-toast-content{
+	height: 100% !important;
+	max-height: 100%!important;
 }

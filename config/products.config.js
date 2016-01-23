@@ -24,8 +24,8 @@ exports.es = function(req, res, next) {
 
 //FIND PRODUCTSBY CATEGORY
 exports.category = function(req, res, next) {
-    var query = new RegExp(req.body.subcategoria, "i")
-    console.log(req.body.subcategoria);
+    var query = new RegExp(req.body.category, "i")
+    console.log(req.body);
     //    var query = req.body.category;
     console.log(query);
     //    var display = req.body[1];
@@ -39,7 +39,7 @@ exports.category = function(req, res, next) {
                 console.log(err);
                 return err;
             }
-            console.log(data);
+//            console.log(data);
             res.json({
                 data: data
             });
@@ -111,7 +111,7 @@ exports.myKart = function(req, res, next) {
             //     { field: { $in: [<value1>, <value2>, ... <valueN> ] } }
             if (err) throw err;
             console.log('Produtos retornados', data);
-            res.json(data)
+            res.json({data:data})
 
         });
 

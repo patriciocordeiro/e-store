@@ -1,5 +1,5 @@
 <div layout="row" layout-align="center start">
-    <div flex="90" md-padding layout=column class="md-whiteframe-z4" style="background-color:white" layout-padding>
+    <div flex="90" layout=column class="md-whiteframe-z4" style="background-color:white">
 
         <!--        <md-toolbar class="md-toolbar-tools md-whiteframe-z4">Resistores</md-toolbar>-->
         <div id="search-info" ng-show="vm.searchTotal">
@@ -8,7 +8,7 @@
             AASAD {{vm.subsec}}
             <md-card>
                 <md-card-title>
-                    <h4 class="md-title">Categorias</h4>
+                    <span class="md-title">Categorias</span>
                 </md-card-title>
                 <md-card-content layout="row">
                     <div ng-repeat="sections in vm.searchSections">
@@ -32,22 +32,25 @@
             </md-card>
         </div>
         <md-card>
-            <md-card-content>
+
+            <div flex layout="column">
+                <md-button ng-click="vm.showHideFilters()">{{vm.buttonText}}<span style="display:block"><md-icon class="material-icons">{{vm.showFilterIcon}}</md-icon></span>
+                </md-button>
+            </div>
+            <md-card-content ng-show="vm.showFilters">
                 <div layout="column" layout-align="center center">
                     <md-list layout="row">
                         <md-list-item ng-repeat="(key, val) in vm.filterData">
                             <md-card>
                                 <md-card-title>
-                                    <h5 class='md-subhead'>{{key}}</h5>
+                                    <span class='md-subhead'>{{key}}</span>
                                 </md-card-title>
                                 <md-content style="height:200px">
-
                                     <md-card-content>
-
                                         <md-list>
                                             <md-list-item ng-repeat="values in val">
-                                                <md-checkbox ng-model="vm.caractFilter[values.$$hashKey]" ng-click="vm.comFilter(values, vm.caracArrayToFilt)"></md-checkbox>
-                                                <p class="md-subheader">{{values.valor}}</p>
+                                                <md-checkbox aria-label="caract filter" ng-model="vm.caractFilter[values.$$hashKey]" ng-click="vm.comFilter(values, vm.caracArrayToFilt)"></md-checkbox>
+                                                {{values.valor}}
                                             </md-list-item>
                                         </md-list>
 
@@ -60,12 +63,12 @@
             </md-card-content>
         </md-card>
 
-        <div layout="row" layout-padding layout-align="end center">
+        <div layout="row" layout-align="end center">
             <div flex layout="row" layout-align="start center">
                 <md-button class="md-accent md-raised">Comprar selecionados</md-button>
                 <md-button class="md-primary md-raised">Comprarar selecionados</md-button>
             </div>
-            <div flex layout="row" layout-padding layout-align="end center">
+            <div flex layout="row" layout-align="end center">
                 <h4 class="md-body-2"><b>Página</b>:</h4>
                 <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
                 </md-button>
@@ -80,18 +83,24 @@
             </div>
         </div>
         <div layout="column" layout-align="center center">
+            <md-input-container class="md-block">
+                <label>Buscar propriedades
+                    <md-icon>ic_youtube_searched</md-icon>
+                </label>
+                <input type="text" ng-model="search">
+            </md-input-container>
             <table class="prd-list-table">
                 <thead>
                     <tr>
-                        <th flex layout-padding="center center" ng-repeat="fixedCols in vm.prdFixedCols|limitTo:vm.itemPerPage:vm.start">
-                            <h4 class="md-subhead">{{fixedCols}}</h4>
-
+                        <th flex ng-repeat="fixedCols in vm.prdFixedCols">
+                            <span class="md-subhead">{{fixedCols}}</span>
                         </th>
-                        <th flex layout-padding="center center" ng-repeat="caractName in vm.caract[0]">
+                        <th flex ng-repeat="caractName in vm.caract[0]">
                             <h4 class="md-subhead" style="text-transform: capitalize">{{caractName.nome}}</h4>
                         </th>
                     </tr>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -123,7 +132,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="prd in vm.prdData | orderBy:vm.order|limitTo:vm.itemPerPage: vm.start">
+                    <tr ng-repeat="prd in vm.prdData | orderBy:vm.order|limitTo:vm.itemPerPage:vm.start|filter:search">
 
                         <td class="product-image">
                             <img ng-src={{prd.imagens}}>
@@ -136,7 +145,7 @@
                         <td>
                             <md-input-container class="md-block">
                                 <input type="number" min="1" max="{{prd.disponibilidade}}" value="{{vm.prdQty[$index]}}" ng-model="vm.prdQty[$index]" aria-label="quantidade">
-                                <md-button class="md-warn md-raised" ng-click="vm.prdGetBuy(vm.prdQty[$index], products._id); vm.showJanoCarrinhoDiag($event)">
+                                <md-button class="md-warn md-raised" ng-click="vm.prdGetBuy(vm.prdQty[$index], prd._id); vm.showJanoCarrinhoDiag($event)">
                                     Comprar
                                 </md-button>
                             </md-input-container>
@@ -151,7 +160,7 @@
             </table>
         </div>
         <md-divider></md-divider>
-        <div flex layout="row" layout-padding layout-align="end center">
+        <div flex layout="row" layout-align="end center">
             <div><b>Página</b>:</div>
             <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
             </md-button>

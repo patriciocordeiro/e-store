@@ -10,16 +10,19 @@
         var prdSrvc = productSrvc //pass all product services to variable prdSrvc
         vm.progressCircularMode = 'indeterminate'; // Progress circular
         vm.isKartEmpty = 'false'; //set to true if kart is empty
+        vm.kartData = prdSrvc.prd.kart.data;
+//        console.log(vm.kartData);
         //------------------------------------------------------------
+
         /*Recover data on cookies if any*/
-        prdSrvc.prd.kart.recover(function(data) {
-            console.log('fireup recover');
-            vm.kartData = data;
-            vm.prdbuyQty = prdSrvc.prd.kart.qtys;
-            vm.isKartEmpty = prdSrvc.prd.kart.isEmpty; //set to true if kart is empty
-            console.log(vm.isKartEmpty);
-            vm.progressCircularMode = '';
-        });
+        //        prdSrvc.prd.kart.recover(function(data) {
+        //            console.log('fireup recover');
+        //            vm.kartData = data;
+        //            vm.prdbuyQty = prdSrvc.prd.kart.qtys;
+        //            vm.isKartEmpty = prdSrvc.prd.kart.isEmpty; //set to true if kart is empty
+        //            console.log(vm.isKartEmpty);
+        //            vm.progressCircularMode = '';
+        //        });
 
         //---------------------------------------------------------
         //*Update Kar on changes*/
@@ -35,7 +38,7 @@
         /*Remove item from chart*/
         vm.remItem = function(index) {
             prdSrvc.prd.kart.remItem(index);
-             vm.isKartEmpty = prdSrvc.prd.kart.isEmpty;
+            vm.isKartEmpty = prdSrvc.prd.kart.isEmpty;
         }
         //---------------------------------------------------------
 
@@ -45,7 +48,7 @@
         var prevTab = 0;
         console.log(vm.user);
         vm.selectedIndex = 0;
-        
+
         vm.isNextTabEnable = [false, true, true];
         vm.enableNextTab = function(currTabIndex) {
             console.log(vm.selectedIndex);
@@ -80,6 +83,7 @@
         vm.cancelDialog = function() {
             $mdDialog.cancel();
         };
+        console.log(vm.isKartEmpty);
 
     }
 }());

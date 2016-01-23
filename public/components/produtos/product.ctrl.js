@@ -6,6 +6,12 @@
         /*Variable declarion*/
         var vm = this;
         var prdSrvc = productSrvc;
+
+        /*Recover data if no any*/
+        prdSrvc.prd.recoverData();
+        /*recover kart*/
+        prdSrvc.prd.kart.recover();
+
         vm.prdQty = prdSrvc.prd.qty; // products quantities
         vm.newData = prdSrvc.prd; //sinalization of new incoming data
         vm.caracLimit = 2 //Numbers of caracteristics to show (products)
@@ -31,7 +37,7 @@
             prdCatg: 'tv',
             prdMaxPageItems: '20', //Max number of display items in the page
         }
-        console.log(prdSrvc.prd.http);
+        console.log(prdSrvc.prd.search);
         //----- ----------------------------------------------------
         /* watch for product category change and fireup a http request */
         $scope.$watch("vm.newData.newData", function(newValue, oldValue) {
@@ -55,6 +61,22 @@
             /*Get only the product characteristics*/
             vm.caract = _.map(vm.prdData, 'caracteristicas') //producst caracteristics 
             /*Build data for filter orderBy*/
+            vm.forFilter = (_.map(vm.caract[0], 'nome'))
+            //-            //			vm.forFilter = _.flatten(vm.forFilter)
+            //-            console.log(((_.reduce(((vm.caract))))));
+            //-
+            //-            var res = _.chain(vm.caract)
+            //-                .flatten()
+            //-                .forEach(function(key, value) {
+            //-                    //					console.log(key);
+            //-                    _.map('nome')
+            //-                    _.uniq(key)
+            //-                }).value()
+            //-            //			console.log(res);
+            //+            vm.filterData = (_.groupBy(_.uniqBy(_.flatten(vm.caract), 'valor'), 'nome'));
+            //+            vm.testeData = vm.prdData; //Apagar
+            //         });
+            //			
             vm.filterData = (_.groupBy(_.uniqBy(_.flatten(vm.caract), 'valor'), 'nome'));
             vm.testeData = vm.prdData; //Apagar
             //For pagination: get the total number of pages
@@ -116,6 +138,8 @@
             filterExclusive(vm.testeData, queryValues, 'caracteristicas').then(function(filtereData) {
                 vm.prdData = filtereData;
                 console.log(filtereData);
+                //For pagination: get the total number of pages
+                vm.pages = getNumOfPages(vm.prdData);
             })
         }
 
@@ -218,12 +242,12 @@
         //-------------------------------------------------------
         /* Get Compra*/
         vm.prdGetBuy = function(prdQty, prdId) {
+            console.log(prdId);
             prdSrvc.prd.kart.addItem(prdId, prdQty);
             //Used to trigger the watch in navbar for Kart
             $rootScope.dataChange = !$rootScope.dataChange;
             //restart quantities
             vm.prdQty = prdSrvc.prd.qty;
-            console.log(obj);
         }
 
         //-------------------------------------------------------
@@ -252,14 +276,14 @@
         }
         vm.changePage = function(page) {
 
-            vm.lastPage = vm.pages.length-1;
+            vm.lastPage = vm.pages.length - 1;
 
-            if (isNaN(page)==false) {
+            if (isNaN(page) == false) {
                 vm.currentPage = page;
-            }else{
-				console.log('nopage', _.size(isNaN(page)));
-				 vm.currentPage = vm.lastPage;
-			}
+            } else {
+                console.log('nopage', _.size(isNaN(page)));
+                vm.currentPage = vm.lastPage;
+            }
             console.log('vm.currentPage', vm.currentPage);
             vm.start = (vm.currentPage - 1) * 5;
 
@@ -298,5 +322,20 @@
             vm.changePage(vm.currentPage)
         }
         //-------------------------------------------------------
+        /*Show hide product filters*/
+        vm.buttonText = 'Ocultar Filtros'
+		vm.showFilters = true,
+		vm.showFilterIcon = 'expand_more'
+        vm.showHideFilters = function() {
+			vm.showFilters = !vm.showFilters
+			console.log(vm.showFilters);
+            if (vm.showFilters) {
+                vm.buttonText = 'Ocultar Filtros';
+				vm.showFilterIcon = 'expand_less'
+            } else {
+                vm.buttonText = 'Mostrar Filtros';
+				vm.showFilterIcon = 'expand_more'
+            }
+        }
     }
 }());

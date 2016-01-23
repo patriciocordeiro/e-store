@@ -1,5 +1,5 @@
 <div layout="column" ng-cloak>
-    <div ng-show="!vm.isKartEmpty" flex layout="column" class="md-whiteframe-z4">
+    <div ng-show="!{{vm.isKartEmpty}}" flex layout="column" class="md-whiteframe-z4">
 
         <div flex hide-sm layout="row" layout-padding layout-sm="column" style="background-color:red">
             <h1> {{vm.teste}} </h1>
@@ -82,7 +82,7 @@
 
         <!--        </md-content>-->
     </div>
-    <div ng-show="vm.isKartEmpty">
+    <div ng-show="{{vm.isKartEmpty}}">
         <div flex layout="row" layout-align="space-around">
             <h1>O Carrinho está vazio</h1>
         </div>

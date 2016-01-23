@@ -1,38 +1,47 @@
-/* line 4, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 4, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .my-md-menu-top {
   min-height: 100% !important;
   height: 40px !important; }
 
-/* line 21, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/*Customize the menu bar to fit toolbar hight*/
+/* line 25, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
+md-menu-bar {
+  background-color: blueviolet !important; }
+  /* line 37, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  md-menu-bar button {
+    height: 100% !important;
+    width: !important; }
+
+/* line 42, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .breadcrumb {
   margin-bottom: 0px;
   font-size: 12px; }
 
-/* line 27, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 47, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .material-icons.md-18 {
   font-size: 18px; }
 
-/* line 30, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 50, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .material-icons.md-24 {
   font-size: 24px; }
 
-/* line 33, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 53, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .material-icons.md-36 {
   font-size: 36px; }
 
-/* line 36, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 56, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .material-icons.md-48 {
   font-size: 48px; }
 
-/* line 39, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 59, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .material-icons.md-60 {
   font-size: 60px; }
 
-/* line 42, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 62, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .material-icons.md-72 {
   font-size: 72px; }
 
-/* line 45, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 65, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .my-md-link-btn {
   margin: 0 !important;
   line-height: 20px !important;
@@ -41,12 +50,12 @@
   text-transform: capitalize !important;
   min-width: 20px !important;
   font-size: 12px !important; }
-  /* line 56, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 76, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .my-md-link-btn:hover {
     text-decoration: underline !important;
     background-color: inherit !important; }
 
-/* line 62, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 81, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .my-md-icon-btn {
   padding: 0px !important;
   line-height: inherit !important;
@@ -55,7 +64,7 @@
   height: 24px !important;
   width: 24px !important; }
 
-/* line 70, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 89, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .groupX {
   font-size: 16px;
   margin: 20px 0 !important;
@@ -65,92 +74,91 @@
   min-height: 28px !important;
   line-height: 10px !important; }
 
-/* line 82, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 101, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .md-button.left {
   border-radius: 10px 0 0 10px;
   border: 1px solid rgba(230, 230, 230, 0.96); }
 
-/* line 86, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 105, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .md-button.middle {
   border-radius: 0;
   border: 1px solid rgba(230, 230, 230, 0.96); }
 
-/* line 92, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 111, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .md-button.right {
   border-radius: 0 10px 10px 0;
   border: 1px solid rgba(230, 230, 230, 0.96); }
 
-/* line 96, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 115, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .md-button:not([disabled]):hover {
   background-color: rgba(193, 193, 193, 0.96);
   color: rgba(44, 65, 164, 0.96);
   transition: 0.3s; }
 
-/* line 101, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 120, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .animate-show {
   line-height: 20px;
   opacity: 1;
   padding: 10px;
   background: white; }
 
-/* line 108, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 127, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .animate-show.ng-hide-add,
 .animate-show.ng-hide-remove {
   transition: all linear 0.5s; }
 
-/* line 111, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 130, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .animate-show.ng-hide {
   line-height: 0;
   opacity: 0;
   padding: 0 10px; }
 
-/* line 117, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 136, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .subsect-menu .md-media-md {
   text-align: center;
   min-height: 150px !important; }
 
-/* line 124, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 143, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .prd-list-table {
   tr: nth-child(odd);
     tr-background-color: #f1f1f1;
   text-align: center; }
-  /* line 129, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 148, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .prd-list-table tr {
     height: 50px;
     max-height: 300px;
     min-height: 100px;
     text-align: center; }
-  /* line 135, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 154, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .prd-list-table .my-md-ordering-btn {
     height: auto !important;
     background-color: aliceblue !important;
     text-align: center; }
-  /* line 141, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 160, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .prd-list-table thead th {
     text-align: center !important;
     padding: 1%; }
-  /* line 145, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+  /* line 164, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
   .prd-list-table thead tr {
     height: 5px !important;
     background-color: white !important; }
 
 /*Product detail*/
-/* line 154, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 173, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 #main-product-detail-box md-list-item, #main-product-detail-box md-list-item .md-list-item-inner {
   min-height: 48px !important; }
 
 /*-----------------------------------------------------*/
 /*Cart*/
-/* line 162, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
+/* line 181, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
 .my-cart-table {
   td: nth-child(2);
     td-width: 60%;
     td-text-align: left; }
 
-/* line 168, F:/cordeiroEletronicosApp/public/assets/scss/style.scss */
-.md-toast {
-  max-height: 100%;
-  z-index: 10000;
-  padding: 0 !important; }
+/* line 187, F:/cordeiroEletronicosApp21012015/cordeiroEletronicosApp/public/assets/scss/style.scss */
+md-toast .md-toast-content {
+  height: 100% !important;
+  max-height: 100% !important; }
 
 /*# sourceMappingURL=style.css.map */

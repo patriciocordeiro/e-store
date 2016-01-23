@@ -8,12 +8,22 @@
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
-        vm.kartSize = prdSrvc.prd.kart.getSize();
+//        vm.kartSize = prdSrvc.prd.kart.getSize().then(function(kartSize) {
+//            console.log(kartSize);
+//        });
         console.log(vm.kartSize);
-        var getSizePromisse = prdSrvc.prd.kart.getSize();
-        getSizePromisse.then(function(data) {
+        /*recover kart*/
+        prdSrvc.prd.kart.recover(function(data) {
             console.log(data);
-        })
+            vm.kartData = data;
+             vm.kartSize = data.length;
+        });
+        //        var getSizePromisse = prdSrvc.prd.kart.getSize();
+        //        getSizePromisse.then(function(data) {
+        //            console.log(data);
+        //        })
+
+
         //---------------------------------------------------------
         /*Get all kart data*/
         vm.kartData = prdSrvc.prd.kart.data;
@@ -36,9 +46,9 @@
         vm.getCatg = function(section, category) {
             prdSrvc.prd.getCatg(section, category)
             //Query to send to server
-//			   var reg = new RegExp('^', "i");
+            //			   var reg = new RegExp('^', "i");
             var query = {
-                subcategoria: category,
+                category: category,
 
                 prdMaxPageItems: '20', //Max number of display items in the page
             }
@@ -61,12 +71,13 @@
         });
         //-------------------------------------------------------------------   
         vm.showPutedInCartToast = function() {
+            console.log('Toast executado');
             $mdToast.show({
                 controller: 'myCartToastCtrl as vm',
-                templateUrl: '/components/kart/meuCarrinhoToast.view.html',
-                parent: $document[0].querySelector('#myCartToast'),
+                templateUrl: '/components/kart/kartPutToast.view.html',
+                //                parent: $document[0].querySelector('#myCartToast'),
                 hideDelay: 1000,
-                position: 'top right'
+                position: 'top'
             });
         }
         //-------------------------------------------------------------------   

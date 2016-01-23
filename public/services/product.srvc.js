@@ -16,6 +16,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
             this.section = $cookies.get('section');
         }
 
+
         this.prd = {
             qty: [],
             data: [],
@@ -24,7 +25,35 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 put: function() {
                     $cookies.put('section', _this.section);
                     $cookies.put('category', _this.category);
+                },
+                get: function() {
+                    this.category = $cookies.get('category');
+                    this.section = $cookies.get('section');
+                    var cookiesExist;
+                    if (!(_.isEmpty(this.category && this.section))) {
+                        cookiesExist = true;
+
+                    } else {
+                        cookiesExist = false;
+                    }
+                    return $q.when(cookiesExist);
                 }
+
+            },
+            /*Rcover data on page reload*/
+            recoverData: function() {
+                if (_.isEmpty(_this.prd.data)) {
+                    console.log('Nenhum dado');
+                    _this.prd.cookies.get().then(function(isCookiesExist) {
+                        if (isCookiesExist) {
+                            var query = {};
+                            query.category = _this.category;
+                            console.log(_this.category);
+                            _this.prd.http.getDataByCatg(query, this.category, function() {})
+                        }
+                    });
+                }
+
             },
             /*update some signaling variables if prd data change
 			search or new category or something else*/
@@ -59,7 +88,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                         break;
                     }
                 }
-                return prdSingleData;
+                return $q.when(prdSingleData)
             },
 
             checkForIdExist: function(data, id) {
@@ -187,45 +216,47 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 },
                 /*recover the kart  on page reload. Recover ids on cookies*/
                 recover: function(callback) {
-                    if ($cookies.get('kartIds')) {
-                        _this.prd.kart.cookies.get();
-                        _this.prd.kart.qtys = _this.prd.kart.recvQtys;
-                        _this.prd.kart.ids = _this.prd.kart.recvIds;
-                        var query = {
-                            ids: _this.prd.kart.recvIds
-                        }
-
-                        httpService.prd.save({
-                            acao: 'myKart',
-                            id: 'id'
-                        }, query).$promise.then(function(data) {
-                            _this.prd.kart.data = data;
-                            var i = 0;
-                            for (i = 0; i < data.length; i++) {
-                                _this.prd.kart.data[i]['buyQty'] = _this.prd.kart.qtys[i];
-                                _this.prd.kart.data[i]['priceSubTotal'] = _this.prd.kart.qtys[i] * data[i].preco
-
+                    _this.prd.kart.cookies.get().then(function(res) {
+                        console.log(res);
+                        if (res) {
+                            var query = {
+                                ids: _this.prd.kart.ids
                             }
-                            //update number of items in kart
-                            var getSizePromisse = _this.prd.kart.getSize()
-                            getSizePromisse.then(function(data) {
-                                console.log('obj');
-                                console.log('Kartsize', data);
-                                _this.prd.kart.totalItems = data;
+
+                            httpService.prd.save({
+                                acao: 'myKart',
+                                id: 'id'
+                            }, query).$promise.then(function(res) {
+                                _this.prd.kart.data = res.data;
+                                var i = 0;
+                                for (i = 0; i < res.data.length; i++) {
+                                    _this.prd.kart.data[i]['buyQty'] = _this.prd.kart.qtys[i];
+                                    _this.prd.kart.data[i]['priceSubTotal'] = _this.prd.kart.qtys[i] * res.data[i].preco
+
+                                }
+                                //update number of items in kart
+                                _this.prd.kart.getSize().then(function(data) {
+                                    console.log('obj');
+                                    console.log('Kartsize', data);
+                                    _this.prd.kart.totalItems = data;
+                                    //sinalize kartEmpty
+                                    _this.prd.kart.isEmpty = false;
+                                    return callback(res.data)
+                                })
+                                //                                getSizePromisse.then(function(data) {
+                                //                                        console.log('obj');
+                                //                                        console.log('Kartsize', data);
+                                //                                        _this.prd.kart.totalItems = data;
                             })
 
-
-                            //                            });
-
-                            //sinalize kartEmpty
-                            _this.prd.kart.isEmpty = false;
-                            return callback(data);
-                        });
-                    } else {
-                        _this.prd.kart.isEmpty = true;
-                        console.log('Kart is empty', _this.prd.kart.isEmpty);
-                        return callback([]);
-                    }
+                            //                                    return callback(res.data);
+                            //                                });
+                        } else {
+                            _this.prd.kart.isEmpty = true;
+                            console.log('Kart is empty', _this.prd.kart.isEmpty);
+                            return callback([]);
+                        }
+                    })
                 },
                 /*Function to handle puting product on the kart*/
                 addItem: function(id, qty) {
@@ -235,7 +266,9 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                         if (idExists == true) {
                             _this.prd.kart.idExistsDialg();
                         } else {
-                            var dataTemp = _this.prd.getDetails(_this.prd.data, id);
+                            console.log(id);
+                            var dataTemp = _this.prd.getDetails(_this.prd.data, id)
+
                             //Include the field quantity
                             dataTemp['buyQty'] = qty;
                             //Include the field priceSubTotal
@@ -274,14 +307,8 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 },
                 /*Get the total number of items in the Kart*/
                 getSize: function() {
-                    var defer = $q.defer();
-                    var size = _this.prd.kart.ids.length;
-                    if (size > 0) {
-                        defer.resolve(size);
-                    } else {
-                        defer.reject(0);
-                    }
-                    return defer.promise;
+                    console.log(_this.prd.kart.ids.length);
+                    return $q.when(_this.prd.kart.ids.length);
                 },
                 /*Get a single product ID*/
                 getId: function(stateParams) {
@@ -318,19 +345,32 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                         $cookies.put('kartqtys', _this.prd.kart.qtys);
                     },
                     get: function() {
-                        _this.prd.kart.recvIds = $cookies.get('kartIds').split(',');
-                        var temp = $cookies.get('kartqtys').split(',');
-                        // convert the qtys to Number
-                        var i = 0;
-                        for (i = 0; i < temp.length; i++) {
-                            _this.prd.kart.recvQtys.push(Number(temp[i]))
-                            console.log(_this.prd.kart.recvQtys);
+                        var isCookiesExist;
+                        this.category = $cookies.get('category');
+                        this.section = $cookies.get('section');
+                        var kartIds = $cookies.get('kartIds');
+                        var kartqtys = $cookies.get('kartqtys');
+                        if (!_.isEmpty(kartIds && kartqtys)) {;
+                            _this.prd.kart.recvIds = kartIds.split(',');
+                            var temp = kartqtys.split(',');
+                            console.log(kartqtys);
+                            // convert the qtys to Number
+                            var i = 0;
+                            for (i = 0; i < temp.length; i++) {
+                                _this.prd.kart.recvQtys.push(Number(temp[i]))
+                                console.log(_this.prd.kart.recvQtys);
+                            }
+                            //return that cookies exists
+                            _this.prd.kart.qtys = _this.prd.kart.recvQtys;
+                            _this.prd.kart.ids = _this.prd.kart.recvIds;
+                            return $q.when(true);
                         }
-
+                        //return that cookies does not exists
+                        return $q.when(false);
                     },
                 },
-
             },
+
             pagination: {
                 /*Paginagination of the list table*/
                 getNumOfPages: function(data) {
@@ -365,47 +405,3 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
         }
     }
 ])
-
-//
-//             var i = 0;
-//                    var idExists = false;
-//                    var isKartEmpty = false;
-//                    if (prdIdsOnKart.length == 0) {
-//                        //Se o carrinho está vazio adicione o primeiro
-//                        isKartEmpty = true;
-//                        prdIdsOnKart.push(prdId);
-//                        //Get the single product data
-//                        var dataTemp = {};
-//                        dataTemp = _this.prd.getDetails(prdAllData, prdId);
-//                        //Include the field quantity
-//                        dataTemp['buyQty'] = qty;
-//                        dataTemp['priceSubTotal'] = dataTemp.preco * qty;
-//                        // subtotal
-//                        _this.prd.kart.getSubPrice += dataTemp.preco;
-//                        //push the data to the array of datas
-//                        prdKartData.push(dataTemp); //this is shared in the prdServc
-//                    } else {
-//                        idExists = _this.prd.checkForIdExist(prdKartData, prdId);
-//                    }
-//                    if (idExists == true) {
-//                        _this.prd.kart.idExists();
-//                    } else if (!isKartEmpty) {
-//                        //Kart is not empty and product not in the kart
-//                        prdIdsOnKart.push(prdId);
-//                        //Get the single product data
-//                        var dataTemp = {};
-//                        dataTemp = this.prdGetSingle(prdAllData, prdId);
-//                        //push the data to the array of datas
-//                        dataTemp['buyQty'] = qty; //include qantity field
-//                        dataTemp['priceSubTotal'] = dataTemp.preco * qty; //include price subtotal field
-//                        this.prdKartPriceSubTotal += dataTemp.preco;
-//                        prdKartData.push(dataTemp);
-//                    }
-//                    //TODO: Set cookies
-//                    console.log(prdIdsOnKart);
-//                    var prdbuyQtyArray = this.prdFieldToArray(prdKartData, 'buyQty');
-//                    $cookies.put('pm-prdIdsOnKart', prdIdsOnKart);
-//                    $cookies.put('pm-prdKartPriceSubTotal', this.prdKartPriceSubTotal);
-//                    $cookies.put('pm-prdbuyQtyArray', prdbuyQtyArray);
-//
-//                },
