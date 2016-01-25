@@ -1,3 +1,16 @@
-<div>
-<md-toolbar>Home</md-toolbar>
+<div layout="column" layout-align="center center">
+    <img alt="welcome" src="../../assets/img/produtos/welcome/hp-welcome.jpg">
+    <!--    <md-toolbar>Home</md-toolbar>-->
+    <div layout="column" flex-gt-sm="80">
+        <md-content layout="row" layout-wrap class="md-whiteframe-24dp">
+            <md-card ng-repeat="products in vm.productsShow">
+                <md-card-content layout="column">
+                    <img alt="raspery" ng-src="{{products.imgPath}}">
+                    </im>
+                    <h4 class="md-title">{{products.name}}</h4>
+                    <md-button class="md-warn md-raised">Comprar agora</md-button>
+                </md-card-content>
+            </md-card>
+        </md-content>
+    </div>
 </div>

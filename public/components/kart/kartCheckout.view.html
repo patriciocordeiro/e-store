@@ -1,7 +1,7 @@
 <div class="column" ng-cloak>
     <div layout="row" layout-align="center center">
-        <md-content flex="50">
-            <md-tabs  md-selected="vm.selectedIndex" md-dynamic-height md-border-bottom>
+        <md-content flex="60">
+            <md-tabs md-selected="vm.selectedIndex" md-dynamic-height md-border-bottom>
                 <md-tab ng-disabled="vm.isNextTabEnable[0]" label="Endereço">
                     <md-content class="md-padding">
                         <md-toolbar class="md-toolbar-tools">Escolha um endereço de entrega</md-toolbar>
@@ -38,7 +38,7 @@
                             <md-card-title>
                                 <md-card-title-text>
                                     <div flex="60">
-                                        <h4 class="md-title">Para o endereço:</h4>
+                                        <h4 class="md-title">Será entregue no endereço:</h4>
                                         <p>{{vm.user.endereco.endereco}}, {{vm.user.endereco.numero}}, {{vm.user.endereco.complemento}}, {{vm.user.endereco.referencia}}, {{vm.user.endereco.bairro}}, {{vm.user.endereco.cep}}, {{vm.user.endereco.cidade}}, {{vm.user.endereco.estado}}
                                     </div>
                                 </md-card-title-text>
@@ -53,21 +53,28 @@
                                         </md-card-title>
                                         <md-card-content layout="column">
                                             <md-list layout-padding>
-                                                <md-list-item>
-                                                    <p>NuPro Protective Comfort Grip for Kindle - Dark Blue Part 1 of 2 - Kindle for Kids Bundle with the latest Kindle, 2-Year Accident Protection, Kid-Friendly Blue Cover - Quantity: 1</p>
+                                                <md-list-item flex>
+                                                    <p>Item</p>
+                                                    <p>Descricao</p>
+                                                    <span flex></span>
+                                                    <p>Quantidade</p>
                                                 </md-list-item>
-                                                <md-divider></md-divider>
-                                                <md-list-item>
-                                                    <p>Kindle, 6" Glare-Free Touchscreen Display, Wi-Fi Part 2 of 2 - Kindle for Kids Bundle with the latest Kindle, 2-Year Accident Protection, Kid-Friendly Blue Cover - Quantity: 1</p>
+                                                <md-list-item flex ng-repeat="prd in vm.kartData">
+                                                    <p>{{$index}}</p>
+                                                    <p>{{prd.descricao}}</p>
+                                                    <span flex></span>
+                                                    <p>{{prd.buyQty}}</p>
+                                                    <md-divider></md-divider>
                                                 </md-list-item>
+
                                             </md-list>
                                         </md-card-content>
                                     </md-card>
                                     <md-card flex="50">
                                         <md-card-title>
-                                            <md-card-title-text>
-                                                <h4 class="md-title">Opçoes de entrega</h4>
-                                            </md-card-title-text>
+                                            <!--                                            <md-card-title-text>-->
+                                            <h4 class="md-title">Opçoes de entrega</h4>
+                                            <!--                                            </md-card-title-text>-->
                                         </md-card-title>
                                         <md-card-content layout="column">
                                             <md-list layout-padding>
@@ -76,7 +83,6 @@
                                                         <md-radio-group ng-model="vm.selShipOption">
                                                             <md-radio-button value="{{shipOption.type}}" alue>{{shipOption.text}}</md-radio-button>
                                                         </md-radio-group>
-
                                                     </div>
                                                     <div flex="20">
                                                         R$ {{shipOption.cost}}
@@ -88,7 +94,6 @@
                                         </md-card-content>
                                     </md-card>
                                 </div>
-
                             </md-card-content>
                             <md-card-actions>
                                 <div layout="row" layout-align="space-between">
@@ -106,19 +111,33 @@
                         <md-card>
                             <md-card-title layout="row" layout-align="space-between">
                                 <h2 class="md-title">Valor total do pedido:</h2>
-                                <h2 class="md-title">R$ {{vm.prdKartSubTotalPrice}}</h2>
+                                <h2 class="md-title">{{vm.kartTotal | currency:"R$ "}}</h2>
                             </md-card-title>
+                        </md-card>
+                        <md-card>
+                            <md-card-title>
+                                <span>Escolha a forma de pagamento</span>
+                            </md-card-title>
+                            <md-card-content>
+                                <md-list>
+                                    <md-list-item ng-repeat="payOption in vm.payOption">
+                                        <md-radio-group ng-model="vm.payOption">
+                                            <md-radio-button value="{{payOption}}" ng-click="vm.getPayOption(vm.payOption)">{{payOption}}</md-radio-button>
+                                        </md-radio-group>
+                                    </md-list-item>
+                                </md-list>
+                            </md-card-content>
                         </md-card>
                         <md-card layout="row" layout-align="start center">
                             <md-card-title layout="row" layout-align="space-between">
-                                <md-card-title-text>
-                                    <div flex="60">
-                                        <h4 class="md-title">Endereço de entrega: <md-button  class="md-primary my-md-icon-btn" style="border:2px solid #F5F5F5 " >
+                                <!--                                <md-card-title-text>-->
+                                <div flex="60">
+                                    <h4 class="md-title">Endereço de entrega: <md-button  class="md-primary my-md-icon-btn" style="border:2px solid #F5F5F5 " >
                                         <md-icon class="material-icons md-18">edit</md-icon>
                                     </md-button></h4>
-                                        <p>{{vm.user.endereco.endereco}}, {{vm.user.endereco.numero}}, {{vm.user.endereco.complemento}}, {{vm.user.endereco.referencia}}, {{vm.user.endereco.bairro}}, {{vm.user.endereco.cep}}, {{vm.user.endereco.cidade}}, {{vm.user.endereco.estado}}
-                                    </div>
-                                </md-card-title-text>
+                                    <p>{{vm.user.endereco.endereco}}, {{vm.user.endereco.numero}}, {{vm.user.endereco.complemento}}, {{vm.user.endereco.referencia}}, {{vm.user.endereco.bairro}}, {{vm.user.endereco.cep}}, {{vm.user.endereco.cidade}}, {{vm.user.endereco.estado}}
+                                </div>
+                                <!--                                </md-card-title-text>-->
 
                             </md-card-title>
 

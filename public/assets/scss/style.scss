@@ -13,6 +13,11 @@ $indigo:#3F51B5;
     //    }
 
 }
+.my-list-item {
+	.md-list-item-inner{
+		height: 25px !important; 
+	}
+}
 //.my-nav-bar-menu {
 ////    .md-button {
 //        padding: 2.2% inherit!important;
@@ -48,7 +53,6 @@ $indigo:#3F51B5;
     opacity: 0;
     border-radius: 2px;
 }
-
 .breadcrumb {
     margin-bottom: 0px;
     font-size: 12px;
@@ -194,7 +198,8 @@ $indigo:#3F51B5;
         text-align: left;
     }
 }
-md-toast .md-toast-content{
-	height: 100% !important;
-	max-height: 100%!important;
+md-toast .md-toast-content {
+    height: 100% !important;
+    max-height: 100%!important;
 }
+/*css anmations*/

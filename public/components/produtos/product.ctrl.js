@@ -6,13 +6,17 @@
         /*Variable declarion*/
         var vm = this;
         var prdSrvc = productSrvc;
-
-        /*Recover data if no any*/
+		/*fixed columns in product listing*/
+		vm.prdFixedCols = prdSrvc.prd.fixedCols;
+//		    fixedCols: ['Imagens', 'No P&M', 'No. Fabricante', 'Desc.', 'Disp.', 'Preço', 'Qtd.'],
+		vm.columnsSizes = [10, 10, 10, 25, 10, 10 ,10]
+		/*Recover data if no any*/
         prdSrvc.prd.recoverData();
         /*recover kart*/
         prdSrvc.prd.kart.recover();
 
         vm.prdQty = prdSrvc.prd.qty; // products quantities
+		console.error(vm.prdQty);
         vm.newData = prdSrvc.prd; //sinalization of new incoming data
         vm.caracLimit = 2 //Numbers of caracteristics to show (products)
         vm.keysToFilter = ['_id', 'ref_PM', 'ref_fabricante', 'imagens', 'disponibilidade', 'categoria', 'subcategoria'];
@@ -21,9 +25,6 @@
         function tic() {
             return new Date().getTime();
         }
-
-        vm.prdFixedCols = ['Imagens', 'No P&M', 'No. Fabricante', 'Desc.', 'Disp.', 'Preço', 'Qtd.'];
-
 
         function toc(startTime) {
             var now = new Date().getTime()
@@ -299,6 +300,7 @@
                 vm.disableNextBtn = false;
             }
             vm.isActive(page);
+			 console.log(vm.prdQty);
         }
         vm.prevPage = function() {
             if (vm.currentPage > 0) {

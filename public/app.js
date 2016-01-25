@@ -46,7 +46,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 views: {
                     "products@": {
                         templateUrl: 'components/home/home.view.html',
-                        //                        controller: 'HomeCtrl',
+                        controller: 'HomeCtrl as vm',
                         //                        controller: 'ProdutosCtrl as vm', //apagar qdo terminar o teste
                     }
                 },
@@ -163,7 +163,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         })
             .state('app.minhaCesta.checkout', {
                 url: "/checkout",
-                authenticate: true,
+                //                authenticate: true,
                 views: {
                     'products@': {
                         templateUrl: 'components/kart/kartCheckout.view.html',
@@ -302,5 +302,6 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
             })
 
+        $urlRouterProvider.otherwise("app")
 
     });

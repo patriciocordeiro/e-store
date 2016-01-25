@@ -11,7 +11,7 @@
             </md-button>
             <md-button class="md-primary my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastre-se
             </md-button>
-            <md-button class="md-warn md-raised" ui-sref="app.minhaCesta"><i class="material-icons">shopping_cart</i>
+            <md-button class="md-warn md-raised" ui-sref="app.minhaCesta" ng-mouseover="vm.showPutedInCartToast()"><i class="material-icons">shopping_cart</i>
                 <span>{{vm.kartSize}}</span>
             </md-button>
             <md-button class="md-primary my-md-link-btn" ng-click=" vm.showPutedInCartToast()">Toast</md-button>

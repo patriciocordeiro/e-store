@@ -2,8 +2,6 @@
 //    'use strict';
 angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService', '$cookies', '$mdDialog',
     function($rootScope, $q, httpService, $cookies, $mdDialog) {
-        console.log(httpService);
-        console.log('sou lido primeiro, hehehehe');
         //create this variable to pass all functions
         //This will allow to use this service function inside of this service
         _this = this;
@@ -18,6 +16,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
 
 
         this.prd = {
+            fixedCols: ['Imagens', 'No P&M', 'No. Fabricante', 'Descrição', 'Disp.', 'Preço', 'Qtd.'],
             qty: [],
             data: [],
             newData: false,
@@ -135,6 +134,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                             //--------------------------------------------
                             console.info('category data', res.data);
                             //create the array of quantities with value 1
+							
                             var i = 0
                             for (i = 0; i < res.data.length; i++) {
                                 _this.prd.qty.push(1);
@@ -268,11 +268,15 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                         } else {
                             console.log(id);
                             var dataTemp = _this.prd.getDetails(_this.prd.data, id)
-
                             //Include the field quantity
                             dataTemp['buyQty'] = qty;
                             //Include the field priceSubTotal
                             dataTemp['priceSubTotal'] = dataTemp.preco * qty;
+                            //calculate the kart total price
+                            console.info(_this.prd.kart.total);
+                            _this.prd.kart.total
+                            _this.prd.kart.total = _this.prd.kart.total + dataTemp.preco * qty;
+                            console.info(_this.prd.kart.total);
                             //push the data to the array of datas
                             _this.prd.kart.data.push(dataTemp);
                             //push the id
@@ -294,16 +298,27 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                     }
                     //Trigger the datachange watch for kart total number of items
                     $rootScope.dataChange = !$rootScope.dataChange;
-                    //remove the item in the subprice;
-                    //            vm.prdSrvcSubPrice.splice(index, 1);
-                    //update the kart subtotal
-                    //            vm.prdSrvcKartSubTotalPrice = prdSrvc.prdSrvcGeneralSum(vm.prdSrvcSubPrice);
-                    //update the number of item in the Kart
+                    //update the kart total
+                    _this.prd.kart.total = _.sum(_.map(_this.prd.kart.data, 'priceSubTotal'));
+
+                    //update the number of items in the Kart
+                    //Save the cookies
                     _this.prd.kart.cookies.put();
                 },
                 /*update kart when quantity is change*/
-                update: function(index) {
-
+                updateItem: function(index, qty) {
+                    //update the quantyity in the array of qtys
+                    _this.prd.kart.qtys[index] = qty;
+                    //update the product buy qty
+                    _this.prd.kart.data[index].buyQty = qty;
+                    //update the product subtotal
+                    _this.prd.kart.data[index].priceSubTotal = _this.prd.kart.data[index].preco * qty;
+                    //update the kart total
+                    _this.prd.kart.total = _.sum(_.map(_this.prd.kart.data, 'priceSubTotal'));
+                    //Save the cookies
+                    _this.prd.kart.cookies.put();
+					//return a promisse
+                    return $q.when(true);
                 },
                 /*Get the total number of items in the Kart*/
                 getSize: function() {
@@ -343,6 +358,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                     put: function() {
                         $cookies.put('kartIds', _this.prd.kart.ids);
                         $cookies.put('kartqtys', _this.prd.kart.qtys);
+                        $cookies.put('kartTotal', _this.prd.kart.total);
                     },
                     get: function() {
                         var isCookiesExist;
@@ -350,11 +366,16 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                         this.section = $cookies.get('section');
                         var kartIds = $cookies.get('kartIds');
                         var kartqtys = $cookies.get('kartqtys');
-                        if (!_.isEmpty(kartIds && kartqtys)) {;
+                        var katTotal = $cookies.get('kartTotal')
+
+                        if (!_.isEmpty(kartIds && kartqtys)) {
                             _this.prd.kart.recvIds = kartIds.split(',');
-                            var temp = kartqtys.split(',');
-                            console.log(kartqtys);
+                            _this.prd.kart.ids = _this.prd.kart.recvIds;
+                            _this.prd.kart.total = katTotal;
+
                             // convert the qtys to Number
+                            var temp = kartqtys.split(',');
+
                             var i = 0;
                             for (i = 0; i < temp.length; i++) {
                                 _this.prd.kart.recvQtys.push(Number(temp[i]))
@@ -362,7 +383,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                             }
                             //return that cookies exists
                             _this.prd.kart.qtys = _this.prd.kart.recvQtys;
-                            _this.prd.kart.ids = _this.prd.kart.recvIds;
+
                             return $q.when(true);
                         }
                         //return that cookies does not exists
