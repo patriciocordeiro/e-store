@@ -1,27 +1,33 @@
 <div class="column" ng-cloak>
     <div layout="row" layout-align="center center">
-        <md-content flex="60">
+        <md-content flex="80">
             <md-tabs md-selected="vm.selectedIndex" md-dynamic-height md-border-bottom>
                 <md-tab ng-disabled="vm.isNextTabEnable[0]" label="Endereço">
                     <md-content class="md-padding">
                         <md-toolbar class="md-toolbar-tools">Escolha um endereço de entrega</md-toolbar>
-                        <div layout="row" layout-fill>
-                            <md-card flex="60">
-                                <md-card-content>
-                                    <h2 class="md-title">Patrício Elvis Sousa Cordeiro</h2>
-                                    <p class="md-title">{{vm.user.endereco.endereco}}, {{vm.user.endereco.numero}}</p>
-                                    <p>{{vm.user.endereco.complemento}}</p>
-                                    <p>{{vm.user.endereco.bairo}}</p>
-                                    <p>{{vm.user.endereco.cep}}</p>
-                                    <p>{{vm.user.endereco.cidade}}</p>
-                                    <p>{{vm.user.endereco.estado}}</p>
-                                </md-card-content>
-                                <md-card-actions>
-                                    <md-button class="md-raised md-warn" ng-click="vm.enableNextTab(vm.selectedIndex)">Entregar neste endereco</md-button>
-                                </md-card-actions>
+                        <div layout="row">
+                            <div layout="row" flex="75" layout-wrap>
 
-                            </md-card>
-                            <md-card flex>
+                                <md-card flex="30" ng-repeat="shipAddress in vm.userData.endereco track by $index">
+                                    <md-card-content>
+                                        <h2 class="md-title">{{shipAddress.destinatario}}</h2>
+                                        <p class="md-title">{{vm.userData.endereco.endereco}}, {{shipAddress.numero}}</p>
+
+                                        <p>{{shipAddress.complemento}}</p>
+                                        <p>{{shipAddress.bairo}}</p>
+                                        <p>{{shipAddress.cep}}</p>
+                                        <p>{{shipAddress.cidade}}</p>
+                                        <p>{{shipAddress.estado}}</p>
+                                    </md-card-content>
+                                    <div layout="column" layout-align="space-between start">
+                                        <md-card-actions>
+                                            <md-button class="md-raised md-warn" ng-click="vm.enableNextTab(vm.selectedIndex); vm.selShipAddress($index)">Entregar neste endereco</md-button>
+                                        </md-card-actions>
+                                    </div>
+
+                                </md-card>
+                            </div>
+                            <md-card flex="25">
                                 <md-card-content layout="column" layout-align="center center">
                                     <h2 class="md-title">Cadastrar outro endereço</h2>
                                     <md-button ng-click="vm.addNewAddressDialog($event)" class="md-raised md-primary">+</md-button>
@@ -39,7 +45,7 @@
                                 <md-card-title-text>
                                     <div flex="60">
                                         <h4 class="md-title">Será entregue no endereço:</h4>
-                                        <p>{{vm.user.endereco.endereco}}, {{vm.user.endereco.numero}}, {{vm.user.endereco.complemento}}, {{vm.user.endereco.referencia}}, {{vm.user.endereco.bairro}}, {{vm.user.endereco.cep}}, {{vm.user.endereco.cidade}}, {{vm.user.endereco.estado}}
+                                        <p>{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.userData.endereco.bairro}}, {{vm.shipAddress.cep}}, {{vm.shipAddress.cidade}}, {{vm.shipAddress.estado}}
                                     </div>
                                 </md-card-title-text>
                             </md-card-title>
@@ -135,7 +141,7 @@
                                     <h4 class="md-title">Endereço de entrega: <md-button  class="md-primary my-md-icon-btn" style="border:2px solid #F5F5F5 " >
                                         <md-icon class="material-icons md-18">edit</md-icon>
                                     </md-button></h4>
-                                    <p>{{vm.user.endereco.endereco}}, {{vm.user.endereco.numero}}, {{vm.user.endereco.complemento}}, {{vm.user.endereco.referencia}}, {{vm.user.endereco.bairro}}, {{vm.user.endereco.cep}}, {{vm.user.endereco.cidade}}, {{vm.user.endereco.estado}}
+                                    <p>{{vm.userData.endereco.endereco}}, {{vm.userData.endereco.numero}}, {{vm.userData.endereco.complemento}}, {{vm.userData.endereco.referencia}}, {{vm.userData.endereco.bairro}}, {{vm.userData.endereco.cep}}, {{vm.userData.endereco.cidade}}, {{vm.userData.endereco.estado}}
                                 </div>
                                 <!--                                </md-card-title-text>-->
 

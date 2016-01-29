@@ -61,6 +61,7 @@ module.exports = function(app, express, passport, User) {
         //        successRedirect : '/home',
     });
 
+	router.post('/user/addNewAddress', User.newAddress)
     router.post('/user/updateAddress', User.updateUserEndereco);
     router.post('/user/updateDadosCadastrais', User.updateDadosCadastrais);
     router.post('/user/adicionaPedido', User.adicionaPedido);

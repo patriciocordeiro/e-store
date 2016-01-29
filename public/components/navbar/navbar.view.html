@@ -1,8 +1,6 @@
 <div layout="row" layout-wrap class="my-top-nav-bar" ng-controller="NavbarCtrl as vm">
-    <md-toolbar class="md-toolbar-tools my-md-menu-top" style="background-color:#FAFAFA
-">
-		  
-        <!--            <div layout="row">-->
+    <md-toolbar class="md-toolbar-tools my-md-menu-top" style="background-color:#FAFAFA">
+
         <div flex layout="row" layout-align="end center">
             <md-button class="md-primary md-hue-3 my-md-link-btn" ui-sref="app.user.dashboard" ng-hide="!isloggedIn">Olá {{loggedUserName}}</md-button>
             <md-button class="md-primary my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.login">Login {{isloggedIn}}
@@ -20,24 +18,23 @@
 
         </div>
 
-        <!--            </div>-->
     </md-toolbar>
-	
+
     <div class="container">
         <!--        <div flex layout="row" layout-align="space-around">-->
-     
+
 
         <!--        </div>-->
     </div>
     <!--    <md-toolbar md-scroll-shrink ng-if="true" class="md-toolbar-tools my-nav-bar-menu">-->
     <md-toolbar class="md-toolbar-tools my-nav-bar-menu">
         <div flex layout="row" class="md-menu-toolbar" layout-align="center center">
-			 <div id="myCartToast"></div>
+            <div id="myCartToast"></div>
             <md-button>
                 <img src="../../assets/img/logo/sonyLogo2.png">
             </md-button>
             <md-menu-bar>
-                <md-menu >
+                <md-menu>
                     <md-button ng-click="$mdOpenMenu()">
                         Produtos
                         <!--                        <md-icon class="md-icon"></md-icon>-->
@@ -48,7 +45,7 @@
                                 <md-button ng-click="$mdOpenMenu()" style="color:black !important" ng-click="vm.prdgetSect(prdctNavCat.name)">
                                     {{prdctNavCat.name}}
                                 </md-button>
-<!--
+                                <!--
                                 <md-button ng-click="$mdOpenMenu()" style="color:black !important" ng-click="vm.prdgetSect(prdctNavCat.name)">
                                     {{prdctNavCat.name}}
                                 </md-button>
@@ -65,14 +62,14 @@
                         <md-menu-divider></md-menu-divider>
                     </md-menu-content>
                 </md-menu>
-<!--
+                <!--
                <md-menu>
                 <md-button ui-sref="app.dashboard">Kits
                 </md-button>
                 </md-menu>
 -->
-              </md-menu-bar>
-<!--
+            </md-menu-bar>
+            <!--
             <md-button ui-sref="app.dashboard">Kits
             </md-button>
             <md-button ui-sref="app.signup">Universitários

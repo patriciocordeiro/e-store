@@ -77,7 +77,7 @@
                 templateUrl: '/components/kart/kartPutToast.view.html',
                 //                parent: $document[0].querySelector('#myCartToast'),
                 hideDelay: 1000,
-                position: 'top'
+                position: 'top left'
             });
         }
         //-------------------------------------------------------------------   

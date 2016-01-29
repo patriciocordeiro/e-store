@@ -106,11 +106,33 @@
     <script src="lib/angular-aria/angular-aria.js"></script>
     <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/angular-material/angular-material.min.js"></script>
+    <!--    <md-toolbar class="md-toolbar-tools" style="background-color:#FAFAFA; position:fixed">
+        <div layout="row">
+            <div flex layout="row" layout-align="end center" ng-controller="NavbarCtrl as vm">
+                <md-button class="md-primary md-hue-3 my-md-link-btn" ui-sref="app.user.dashboard" ng-hide="!isloggedIn">Olá {{loggedUserName}}</md-button>
+                <md-button class="md-primary my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.login">Login {{isloggedIn}}
+                </md-button>
+                <md-button class="md-primary my-md-link-btn" ui-sref="app.user.dashboard">Meus Pedidos
+                </md-button>
+                <md-button class="md-primary my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastre-se
+                </md-button>
+                <md-button class="md-warn md-raised" ui-sref="app.minhaCesta" ng-mouseover="vm.showPutedInCartToast()"><i class="material-icons">shopping_cart</i>
+                    <span>{{vm.kartSize}}</span>
+                </md-button>
+                <md-button class="md-primary my-md-link-btn" ng-click=" vm.showPutedInCartToast()">Toast</md-button>
+                <md-button class="md-primary my-md-link-btn" ng-hide="!isloggedIn" ng-click="vm.logout()">Sair
+                </md-button>
 
+            </div>
+    </md-toolbar>-->
+
+    <!--            </div>-->
 
     <!--    <div class="container-fluid">-->
+
     <my-bootstrap-nav-bar>
     </my-bootstrap-nav-bar>
+
     <md-content>
         <!--
     <div class="row" style="margin-top:5%">

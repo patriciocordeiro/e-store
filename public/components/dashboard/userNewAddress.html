@@ -20,13 +20,13 @@
                             </md-input-container>
                             <md-input-container>
                                 <label>Tipo de endereco</label>
-                                <md-select name="tipoEnd" ng-model="vm.newAddress.tipoEnd" required>
+                                <md-select name="tipoEndereco" ng-model="vm.newAddress.tipoEndereco" required>
                                     <md-option value="Apartamento">Apartamento</md-option>
                                     <md-option value="Casa">Casa</md-option>
                                     <md-option value="Comercial">Comercial</md-option>
                                     <md-option value="Outro">Outro</md-option>
                                 </md-select>
-                                <div ng-messages="addNewAddressForm.tipoEnd.$error">
+                                <div ng-messages="addNewAddressForm.tipoEndereco.$error">
                                     <div ng-message="required">Escolha o tipo de endereço</div>
                                 </div>
                             </md-input-container>
@@ -86,7 +86,7 @@
                         </div>
                         <div layout-gt-md="row">
                             <md-input-container class="md-block">
-                                <md-checkbox checked="vm.newAddress.mainAddr=true" ng-model="vm.newAddress.mainAddr">Tornar meu endereço principal</md-checkbox>
+                                <md-checkbox checked="vm.newAddress.tag=true" ng-model="vm.newAddress.tag">Tornar meu endereço principal</md-checkbox>
                             </md-input-container>
                         </div>
                     </md-card-content>

@@ -4,6 +4,21 @@ var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 
+exports.newAddress = function(req, res) {
+    console.log('requestt', req.body);
+    User.findOneAndUpdate({
+        'local.email': req.body.email
+    }, {
+        $push: {
+            'local.endereco': req.body.addNewAddress
+        }
+    }, function(err, data) {
+        if (err)
+            console.log(err);
+        console.log(data);
+        res.json(data)
+    })
+},
 exports.updateUserEndereco = function(req, res, next) {
     console.log('chegou do cliente')
     // asynchronous
@@ -224,7 +239,7 @@ exports.resetPass = function(req, res, next) {
                         user: 'ok'
                     })
                 });
-//                done(err, user);
+                //                done(err, user);
             });
         },
         function(user, done) {

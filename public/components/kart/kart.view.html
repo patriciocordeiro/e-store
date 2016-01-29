@@ -41,112 +41,116 @@
     </md-card>
 -->
     <div layout="column" flex-gt-sm="80">
-        <md-card>
-            <md-card-actions layout="row" layout-padding layout-align="space-between center">
-                <md-button class="md-warn md-raised">Continuar Compras</md-button>
-                <md-button ui-sref="app.minhaCesta.checkout" ng-click="vm.finalizarCompra()" class="md-primary md-raised">Finalizar Compra</md-button>
-            </md-card-actions>
-        </md-card>
+        <div ng-show="!vm.isKartEmpty">
+            <md-card>
+                <md-card-actions layout="row" layout-padding layout-align="space-between center">
+                    <md-button class="md-warn md-raised">Continuar Compras</md-button>
+                    <md-button ui-sref="app.minhaCesta.checkout" ng-click="vm.finalizarCompra()" class="md-primary md-raised">Finalizar Compra</md-button>
+                </md-card-actions>
+            </md-card>
 
-        <md-card hide-sm hide-xs style="background-color:#E0F2F1">
-            <md-card-content>
-                <md-list layout-gt-sm="row">
-                    <md-list-item ng-repeat="fixedCols in vm.prdFixedCols" flex-gt-sm="{{vm.columnsSizes[$index]}}">
-                        <b>{{fixedCols}}</b>
-                    </md-list-item>
-                </md-list>
-            </md-card-content>
-        </md-card>
+            <md-card hide-sm hide-xs style="background-color:#E0F2F1">
+                <md-card-content>
+                    <md-list layout-gt-sm="row">
+                        <md-list-item ng-repeat="fixedCols in vm.prdFixedCols" flex-gt-sm="{{vm.columnsSizes[$index]}}">
+                            <b>{{fixedCols}}</b>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
 
 
-        <md-card class="kart-list" ng-repeat="prd in vm.kartData">
-            <md-card-content>
-                <md-list layout-gt-sm="row">
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[0]}}">
-                        {{$index}}
-                    </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[1]}}">
-                        <md-list flex layout="column">
-                            <md-list-item>
-                                <p><b>Ref do fabricante:</b>
-                                </p>
-                                <p>
-                                    <md-button class="md-primary">{{prd.ref_fabricante}}</md-button>
-                                </p>
-                            </md-list-item>
-                            <md-list-item>
-                                <p><b>Ref da PM:</b>
-                                </p>
-                                <p>
-                                    <md-button class="md-primary">{{prd.ref_PM}}</md-button>
-                                </p>
-                            </md-list-item>
-                            <md-list-item>
-                                <p><b>Fabricante:</b>
-                                </p>
-                                <p><b>{{prd.ref_PM}}</b>
-                                </p>
-                            </md-list-item>
-                            <md-list-item>
-                                <p><b>Descrição:</b>
-                                </p>
-                                <p>
-                                    <md-button ui-sref="#" class="md-primary">{{prd.descricao}}</md-button>
-                                </p>
-                            </md-list-item>
+            <md-card class="kart-list" ng-repeat="prd in vm.kartData">
+                <md-card-content>
+                    <md-list layout-gt-sm="row">
+                        <md-list-item flex-gt-sm="{{vm.columnsSizes[0]}}">
+                            {{$index}}
+                        </md-list-item>
+                        <md-list-item flex-gt-sm="{{vm.columnsSizes[1]}}">
+                            <md-list flex layout="column">
+                                <md-list-item>
+                                    <p><b>Ref do fabricante:</b>
+                                    </p>
+                                    <p>
+                                        <md-button class="md-primary">{{prd.ref_fabricante}}</md-button>
+                                    </p>
+                                </md-list-item>
+                                <md-list-item>
+                                    <p><b>Ref da PM:</b>
+                                    </p>
+                                    <p>
+                                        <md-button class="md-primary">{{prd.ref_PM}}</md-button>
+                                    </p>
+                                </md-list-item>
+                                <md-list-item>
+                                    <p><b>Fabricante:</b>
+                                    </p>
+                                    <p><b>{{prd.ref_PM}}</b>
+                                    </p>
+                                </md-list-item>
+                                <md-list-item>
+                                    <p><b>Descrição:</b>
+                                    </p>
+                                    <p>
+                                        <md-button ui-sref="#" class="md-primary">{{prd.descricao}}</md-button>
+                                    </p>
+                                </md-list-item>
 
-                        </md-list>
-                    </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}">
-                        <p hide-gt-sm>Quantidade:</p>
-                        <p class="md-title">
-                            <md-input-container>
-                                <input style="text-align:center" type="number" maxlength="3" step="1" ng-model="vm.kartData[$index].buyQty" ng-click="vm.getKartUpdate($index, vm.kartData[$index].buyQty)" min="1" max="100" />
-                            </md-input-container>
-                        </p>
-                    </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[3]}}">
-                        <p hide-gt-sm>Preço unit.</p>
-                        <p class="md-title">{{prd.preco| currency:"R$ "}}</p>
-                    </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[4]}}">
-                        <p hide-gt-sm>Subtotal:</p>
-                        <p class="md-title">{{prd.priceSubTotal| currency:"R$ "}}</p>
-                    </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[5]}}">
-                        <p>
-                            <md-button ng-click="vm.remItem($index)">
-                                <md-icon class="material-icons" style="color:#FF5722">delete</md-icon>
-                            </md-button>
-                        </p>
-                    </md-list-item>
-                </md-list>
-            </md-card-content>
-        </md-card>
-        <md-card>
-            <md-card-content layout="row" layout-align-gt-sm="end center">
-                <md-list>
-                    <md-list-item layout-padding>
-                        <h4 class="md-title">Total da Compra:</h4>
-                        <p class="md-title">{{vm.kartTotal | currency:"R$ "}}</p>
-                    </md-list-item>
-                </md-list>
-            </md-card-content>
-        </md-card>
-        <md-card>
-            <md-card-actions layout="row" layout-padding layout-align="space-between center">
-                <!--                <div flex layout="row" layout-fill layout-align="end center">-->
+                            </md-list>
+                        </md-list-item>
+                        <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}">
+                            <p hide-gt-sm>Quantidade:</p>
+                            <p class="md-title">
+                                <md-input-container>
+                                    <input style="text-align:center" type="number" maxlength="3" step="1" ng-model="vm.kartData[$index].buyQty" ng-click="vm.getKartUpdate($index, vm.kartData[$index].buyQty)" min="1" max="100" />
+                                </md-input-container>
+                            </p>
+                        </md-list-item>
+                        <md-list-item flex-gt-sm="{{vm.columnsSizes[3]}}">
+                            <p hide-gt-sm>Preço unit.</p>
+                            <p class="md-title">{{prd.preco| currency:"R$ "}}</p>
+                        </md-list-item>
+                        <md-list-item flex-gt-sm="{{vm.columnsSizes[4]}}">
+                            <p hide-gt-sm>Subtotal:</p>
+                            <p class="md-title">{{prd.priceSubTotal| currency:"R$ "}}</p>
+                        </md-list-item>
+                        <md-list-item flex-gt-sm="{{vm.columnsSizes[5]}}">
+                            <p>
+                                <md-button ng-click="vm.remItem($index)">
+                                    <md-icon class="material-icons" style="color:#FF5722">delete</md-icon>
+                                </md-button>
+                            </p>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+            <md-card>
+                <md-card-content layout="row" layout-align-gt-sm="end center">
+                    <md-list>
+                        <md-list-item layout-padding>
+                            <h4 class="md-title">Total da Compra:</h4>
+                            <p class="md-title">{{vm.kartTotal | currency:"R$ "}}</p>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+            <md-card>
+                <md-card-actions layout="row" layout-padding layout-align="space-between center">
+                    <!--                <div flex layout="row" layout-fill layout-align="end center">-->
 
-                <md-button class="md-warn md-raised">Continuar Compras</md-button>
-                <!--                </div>-->
+                    <md-button class="md-warn md-raised">Continuar Compras</md-button>
+                    <!--                </div>-->
 
-                <md-button ui-sref="app.minhaCesta.checkout" ng-click="vm.finalizarCompra()" class="md-primary md-raised">Finalizar Compra</md-button>
-            </md-card-actions>
-        </md-card>
-        <div ng-show="{{vm.isKartEmpty}}">
+                    <md-button ui-sref="app.minhaCesta.checkout" ng-click="vm.finalizarCompra()" class="md-primary md-raised">Finalizar Compra</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+
+        <div ng-show="vm.isKartEmpty">
             <div flex layout="row" layout-align="space-around">
                 <h1>O seu carrinho está vazio</h1>
             </div>
+            <md-button class="md-warn md-raised">Continuar Compras</md-button>
         </div>
     </div>
 </div>

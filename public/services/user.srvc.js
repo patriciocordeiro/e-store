@@ -11,6 +11,8 @@
             resetPassToken: undefined, //save the password reset token
             login: {
 
+                /*All user returned data*/
+                data: [],
                 /*Local type login*/
                 local: function(user, saveSection, callback) {
                     //user: object with login info
@@ -113,8 +115,6 @@
                     return callback(myObject);
                 },
 
-                /*All user returned data*/
-                data: [],
             },
             logout: {
                 execLogout: function() {
@@ -315,20 +315,65 @@
                         alert = undefined;
                     });
             },
-            addNewAddress: function(ev) {
-                $mdDialog.show({
-                    controller: 'KartCtrl as vm',
-                    templateUrl: 'components/dashboard/userNewAddress.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true
-                })
-                //                    .then(function(answer) {
-                ////                        $scope.status = 'You said the information was "' + answer + '".';
-                //                    }, function() {
-                ////                        $scope.status = 'You cancelled the dialog.';
-                //                    });
+            httpCom: function(acao, query) {
+                var defer = $q.defer();
+                httpUserService.save({
+                    acao: acao
+                }, query).$promise.then(
+                    function(data) {
+                        data.abc = true;
+                        defer.resolve(data);
+                    },
+                    function(error) {
+                        console.log(error);
+                        defer.reject(error);
+                    });
+                return defer.promise;
+            },
 
+            addNewAddress: {
+                creteNew: function(newAddress) {
+                    var message = {};
+                    var query = {};
+                    query.email = _this.usr.login.data.local.email;
+                    query.addNewAddress = newAddress;
+                    _this.usr.httpCom('addNewAddress', query).then(
+                        function(data) {
+                            if (data.local) {
+                                console.log(data);
+                                //pass the received data to service data
+                                _this.usr.login.data = data;
+                                console.log(_this.usr.login.data);
+                                //TODO exibir um alert message
+                                //Operação realizada
+                                message.text = 'Endereço cadastrado com sucesso!'
+                                console.log(message);
+                                _this.usr.dialog(message)
+                            } else {
+                                //TODO: dialog. Operacao nao realizada
+                            }
+
+                        }, function(err) {
+                            console.log('falhou', err);
+                        });
+
+                    _this.usr.dialog(message)
+
+                },
+                dialog: function(ev) {
+                    $mdDialog.show({
+                        controller: 'UserCtrl as vm',
+                        templateUrl: 'components/dashboard/userNewAddress.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true
+                    })
+                    //                    .then(function(answer) {
+                    ////                        $scope.status = 'You said the information was "' + answer + '".';
+                    //                    }, function() {
+                    ////                        $scope.status = 'You cancelled the dialog.';
+                    //                    });
+                }
             },
             //recover  already loggedin user    
             recoverUser: function() {

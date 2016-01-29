@@ -134,7 +134,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                             //--------------------------------------------
                             console.info('category data', res.data);
                             //create the array of quantities with value 1
-							
+
                             var i = 0
                             for (i = 0; i < res.data.length; i++) {
                                 _this.prd.qty.push(1);
@@ -235,18 +235,23 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
 
                                 }
                                 //update number of items in kart
-                                _this.prd.kart.getSize().then(function(data) {
+                                _this.prd.kart.getSize().then(function(kartSize, callback) {
                                     console.log('obj');
-                                    console.log('Kartsize', data);
-                                    _this.prd.kart.totalItems = data;
+                                    console.log('Kartsize', kartSize);
+                                    _this.prd.kart.totalItems = kartSize;
                                     //sinalize kartEmpty
-                                    _this.prd.kart.isEmpty = false;
-                                    return callback(res.data)
+                                    if (kartSize > 0) {
+                                        _this.prd.kart.isEmpty = false;
+                                    } else {
+                                        _this.prd.kart.isEmpty = true;
+                                    }
+                                    console.log(_this.prd.kart.isEmpty);
                                 })
                                 //                                getSizePromisse.then(function(data) {
                                 //                                        console.log('obj');
                                 //                                        console.log('Kartsize', data);
                                 //                                        _this.prd.kart.totalItems = data;
+                                return callback(res.data)
                             })
 
                             //                                    return callback(res.data);
@@ -274,7 +279,6 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                             dataTemp['priceSubTotal'] = dataTemp.preco * qty;
                             //calculate the kart total price
                             console.info(_this.prd.kart.total);
-                            _this.prd.kart.total
                             _this.prd.kart.total = _this.prd.kart.total + dataTemp.preco * qty;
                             console.info(_this.prd.kart.total);
                             //push the data to the array of datas
@@ -285,6 +289,9 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                             _this.prd.kart.qtys.push(qty)
                             //store cookies
                             _this.prd.kart.cookies.put();
+                            
+							_this.prd.kart.isEmpty = false;
+
                         }
                     })
                 },
@@ -295,6 +302,8 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                     _this.prd.kart.ids.splice(index, 1);
                     if (_this.prd.kart.ids.length == 0) {
                         _this.prd.kart.isEmpty = true;
+                    } else {
+                        _this.prd.kart.isEmpty = false;
                     }
                     //Trigger the datachange watch for kart total number of items
                     $rootScope.dataChange = !$rootScope.dataChange;
@@ -317,7 +326,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                     _this.prd.kart.total = _.sum(_.map(_this.prd.kart.data, 'priceSubTotal'));
                     //Save the cookies
                     _this.prd.kart.cookies.put();
-					//return a promisse
+                    //return a promisse
                     return $q.when(true);
                 },
                 /*Get the total number of items in the Kart*/

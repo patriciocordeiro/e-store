@@ -16,7 +16,9 @@ var userSchema = mongoose.Schema({
         birthDate: Date,
         telefone: String,
         celular: String,
-        endereco: {
+        endereco: [{
+			principal:Boolean,
+			destinatario: String,
             tipoEndereco: String,
             cep: String,
             endereco: String,
@@ -26,7 +28,7 @@ var userSchema = mongoose.Schema({
             bairro: String,
             cidade: String,
             estado: String
-        },
+        }],
         //        pedidos:{
         //            _id:ObjectId
         //        }

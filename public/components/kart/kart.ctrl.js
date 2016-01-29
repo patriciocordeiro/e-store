@@ -1,10 +1,10 @@
 (function() {
     "use strict";
     angular.module('myApp').controller('KartCtrl', ['$rootScope', '$q', '$cookies',
-        '$mdDialog', 'productSrvc', 'userSrcv', KartCtrl
+        '$mdDialog', 'productSrvc', 'httpUserService', 'userSrcv', KartCtrl
     ]);
 
-    function KartCtrl($rootScope, $q, $cookies, $mdDialog, productSrvc, userSrcv) {
+    function KartCtrl($rootScope, $q, $cookies, $mdDialog, productSrvc, httpUserService, userSrcv) {
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //pass all product services to variable prdSrvc
@@ -12,7 +12,9 @@
         vm.prdFixedCols = ['Item', 'Informaçoes do produto', 'Qtd. pedido', 'Preço unit.', 'Subtotal', 'Remover'];
         vm.columnsSizes = [10, 30, 15, 15, 15, 15]
         vm.progressCircularMode = 'indeterminate'; // Progress circular
-        vm.isKartEmpty = 'false'; //set to true if kart is empty
+        vm.isKartEmpty = prdSrvc.prd.kart.isEmpty;
+        vm.shipAddress = ''; //Ship address
+        console.log(vm.isKartEmpty);
         vm.kartData = prdSrvc.prd.kart.data;
         //        console.log(vm.kartData);
         //------------------------------------------------------------
@@ -59,12 +61,14 @@
             //update the local kart Total
             vm.kartTotal = prdSrvc.prd.kart.total;
             vm.isKartEmpty = prdSrvc.prd.kart.isEmpty;
+            console.log(vm.isKartEmpty);
         }
         //---------------------------------------------------------
 
         /*Finalizar compra*/
         //pass the user data to vm
-        vm.user = userSrcv.usr.login.data.local;
+        vm.userData = userSrcv.usr.login.data.local;
+        console.log(vm.userData);
         var prevTab = 0;
         console.log(vm.user);
         vm.selectedIndex = 0;
@@ -88,28 +92,20 @@
             cost: 25
         }]
 
-        /*New Address*/
+        /*New Address dialog*/
         vm.addNewAddressDialog = function(ev) {
-            userSrcv.usr.addNewAddress(ev)
-
+            userSrcv.usr.addNewAddress.dialog(ev)
         }
-        vm.addNewAddress = function(newAddress) {
-            console.log(newAddress);
-        }
-        vm.closeDialog = function(answer) {
-            $mdDialog.hide(answer)
-            console.log(answer);
-        };
 
-        vm.cancelDialog = function() {
-            $mdDialog.cancel();
-        };
-        console.log(vm.isKartEmpty);
+        vm.selShipAddress = function(index) {
+            vm.shipAddress = vm.userData.endereco[index];
+            console.log(index);
+        }
 
         vm.payOption = ["Cartao de Crédito", "Transferência", "Boleto Bancário"];
         vm.creditCardType = ["Master Card", "Visa"];
         vm.getPayOption = function(selected) {
-			console.log(selected);
-		}
+            console.log(selected);
+        }
     }
 }());
