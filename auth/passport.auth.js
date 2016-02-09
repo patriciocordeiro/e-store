@@ -46,6 +46,7 @@ module.exports = function(passport) {
                         // if there is no user with that email
                         // create the user
                         var newUser = new User();
+                        var endereco = {};
                         // set the user's local credentials
                         newUser.local.nome = req.body.nome;
                         newUser.local.sobrenome = req.body.sobrenome;
@@ -55,22 +56,29 @@ module.exports = function(passport) {
                         newUser.local.birthDate = req.body.birthDate;
                         newUser.local.telefone = req.body.telefone;
                         newUser.local.celular = req.body.celular;
-                        newUser.local.endereco.tipoEndereco = req.body.tipoEndereco;
-                        newUser.local.endereco.cep = req.body.cep;
-                        newUser.local.endereco.endereco = req.body.endereco;
-                        newUser.local.endereco.complemento = req.body.complemento;
-                        newUser.local.endereco.numero = req.body.numero;
-                        newUser.local.endereco.referencia = req.body.referencia;
-                        newUser.local.endereco.bairro = req.body.bairro;
-                        newUser.local.endereco.cidade = req.body.cidade;
-                        newUser.local.endereco.estado = req.body.estado;
+
+                        //Endereco
+                        endereco.destinatario = req.body.destinatario;
+                        endereco.tipoEndereco = req.body.tipoEndereco;
+                        endereco.cep = req.body.cep;
+                        endereco.endereco = req.body.endereco;
+                        endereco.complemento = req.body.complemento;
+                        endereco.numero = req.body.numero;
+                        // endereco.referencia = req.body.referencia;
+                        endereco.bairro = req.body.bairro;
+                        endereco.cidade = req.body.cidade;
+                        endereco.estado = req.body.estado;
+                        endereco.principal = req.body.principal;
+
+                        //Push to endereco Array
+                        newUser.local.endereco.push(endereco);
 
                         //Save the user in the database
                         newUser.save(function(err) {
                             if (err) {
                                 console.log('Error in Saving user: ' + err);
                                 throw err;
-                                 return err;
+                                return err;
 
                             }
                             return done(null, newUser);

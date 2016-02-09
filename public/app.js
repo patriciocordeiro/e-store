@@ -5,29 +5,56 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         var lastState = $cookies.get('lastState');
 
         //Recover the user on reload
-        userSrcv.usr.recoverUser();
-        console.log(userSrcv.usr);
+        //        var isLoggedIn;
+
         //---------------------------------------------------------
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
-            console.log('mudei de estado', toState)
-
+            console.log('mudei de estado', toState);
+            console.log("Esse eh o meu estado atual: ", toState.name);
+            console.log("Esse o estado de onde venho: ", fromState.name);
+			
             if (fromState !== toState) {
                 $cookies.put('lastState', toState.name);
-            }
-            //check if client is trying to access a restricted page
-            //toState.authenticate = true and is
-            console.log(userSrcv.usr.isloggedIn);
-            if (toState.authenticate && !$rootScope.isloggedIn) {
-                event.preventDefault();
-                //if toState.authenticate = true and isLoggedIn = false
-                //Redirect to login page
-                $state.go("app.user.login");
+
             }
 
-            if (1) { //toState.name == "app.avaliacao"
-                console.log("Esse eh o meu estado atual: ", toState.name);
-                console.log("Esse o estado de onde venho: ", fromState.name);
+            console.log(fromState.name.length);
+            if (fromState.name.length === 0 && fromState.views === null) {
+                userSrcv.usr.recoverUser().then(function(isLoggedIn) {
+                    console.log(isLoggedIn);
+                    if (toState.authenticate && !isLoggedIn) {
+                        event.preventDefault();
+                        //if toState.authenticate = true and isLoggedIn = false
+                        //Redirect to login page
+                        $state.go("app.user.login");
+                    }
+                })
+            } else {
+                if (toState.authenticate && !userSrcv.usr.isloggedIn) {
+                    event.preventDefault();
+                    //if toState.authenticate = true and isLoggedIn = false
+                    //Redirect to login page
+					$rootScope.toState = toState.name;
+					console.log($rootScope.toState);
+                    $state.go("app.user.login");
+                }
             }
+
+            //                if (toState.authenticate && !isLoggedIn) {
+            //                    event.preventDefault();
+            //                    //if toState.authenticate = true and isLoggedIn = false
+            //                    //Redirect to login page
+            //                    $state.go("app.user.login");
+            //                }
+            //check if client is trying to access a restricted page
+            //toState.authenticate = true and is
+            //            console.log(isLoggedIn);
+            //            if (toState.authenticate && !$rootScope.isloggedIn) {
+
+
+            //            if (1) { //toState.name == "app.avaliacao"
+
+            //            }
         })
     })
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
@@ -163,7 +190,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         })
             .state('app.minhaCesta.checkout', {
                 url: "/checkout",
-                //                authenticate: true,
+                authenticate: true,
                 views: {
                     'products@': {
                         templateUrl: 'components/kart/kartCheckout.view.html',

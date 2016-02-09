@@ -25,44 +25,38 @@
                             password: user.password
                         }, function(res) {
                             //TODO: server unreached
-                            console.log(res);
+                            //                            console.log(res);
                             if (res.local) {
                                 console.log(res.local);
                                 if (res.local.email === user.email) {
-                                    //if entered emai equals the returned email. Reduntant? I know.
-                                    $q.when()
-                                        .then(function() {
-                                            //pass all data to service variable
-                                            var defer = $q.defer();
-                                            setTimeout(function() {
-                                                defer.resolve(
-                                                    _this.usr.login.data = res
-                                                );
-                                                console.log(_this.usr.login.data);
-                                            }, 0);
-                                            return defer.promise;
-                                        }).then(function(data) {
-                                            console.log(data);
+                                    return $q.when(_this.usr.login.data = res)
+                                        .then(function(data) {
                                             //Set the loggedin to true
+                                            _this.usr.isloggedIn = true;
                                             $rootScope.isloggedIn = true;
                                             //get the logged user name to display on navbar
-                                            $rootScope.loggedUserName = res.local.name;
-                                            //                                            console.log(_this.usr.login.loggedUserName);
+                                            $rootScope.loggedUserName = data.local.nome;
                                             //Login sucess message
                                             msg = _this.usr.login.successMsg();
+
+                                            //                                                console.log(_this.usr.login.isloggedIn)
+                                            return $q.when($rootScope.isloggedIn = true);
+                                        }).then(function(data) {
+                                            console.log(data);
+                                            if (data)
                                             //Redirect to user page
-                                            _this.usr.login.redirToUsrPage();
-                                            console.log(_this.usr.login.isloggedIn)
-                                        });
+                                                _this.usr.login.redirToUsrPage();
 
-                                    //Save cookies to keep user logged in if box checked
-                                    setTimeout(function() {
-                                        if (saveSection == true) {
-                                            _this.usr.login.cookies.put(res);
-                                        }
-                                    }, 0)
+                                        })
+                                };
+                                //Save cookies to keep user logged in if box checked
+                                setTimeout(function() {
+                                    if (saveSection == true) {
+                                        _this.usr.login.cookies.put(res);
+                                    }
+                                }, 0)
 
-                                }
+
                             } else if ((typeof res.user) != undefined) {
                                 console.log(res.user);
                                 if (res.user === false) {
@@ -83,7 +77,7 @@
                 facebook: function() {},
                 googlePlus: function() {},
                 redirToUsrPage: function() {
-                    $state.go('app.user.dashboard.endereco');
+                    $state.go($rootScope.toState ||'app.user.dashboard.dados');
                 },
                 faillMsg: function() {
                     return 'Sua tentativa de login não foi bem sucedida. Verifique os dados e tente novamente.';
@@ -152,6 +146,8 @@
                             celular: newUser.celular,
                             email: newUser.email,
                             password: newUser.password,
+                            destinatario: newUser.destinatario,
+                            principal: true, //endereco principal
                             tipoEndereco: newUser.tipoEndereco,
                             cep: newUser.cep,
                             endereco: newUser.endereco,
@@ -377,33 +373,48 @@
             },
             //recover  already loggedin user    
             recoverUser: function() {
+                console.info('RECOVERING USER');
+                var defer = $q.defer();
                 //check if user is already loggedin
-                if ($cookies.get('email')) {
-                    console.log('usuário existe');
-                    authentication.isloggedin(function(res) {
-                        console.log(res.user);
-                        if (res.user !== false) {
-                            console.log('resposta', res.local.fullName)
-                            //set isloggedIn to true
-                            _this.usr.login.data = res;
-                            _this.usr.isloggedIn = true;
-                            $rootScope.isloggedIn = true;
-                            $rootScope.loggedUserName = res.local.fullName;
-                            //
-                            //                            if (lastState === "app.produtosDetail" || lastState === "app.avaliacao") {
-                            //                                $state.go(lastState || "app.dashboard", {
-                            //                                    id: localStorageService.get('idProdutoDetalhe')
-                            //                                });
-                            //                            } else {
-                            //                                $state.go(lastState || "app.dashboard");
-                            //                            }
+                //                if ($cookies.get('email')) {
+                //                    console.log('usuário existe');
+                authentication.isloggedin(function(res) {
+                    console.log(res);
+
+                    if (res.local.email) {
+                        console.info('USER EXISTS');
+                        console.log('resposta', res.local.nome)
+                        //set isloggedIn to true
+                        _this.usr.login.data = res;
+                        _this.usr.isloggedIn = true;
+                        $rootScope.isloggedIn = true;
+                        $rootScope.loggedUserName = res.local.nome;
+                        defer.resolve(true)
+                        //                        var lastState = $cookies.get('lastState');
+
+                        //                        $state.go(lastState || "app.dashboard");
+                        //
+                        //                            if (lastState === "app.produtosDetail" || lastState === "app.avaliacao") {
+                        //                                    $state.go(lastState || "app.dashboard");
+                        //										, {
+                        //                                    id: localStorageService.get('idProdutoDetalhe')
+                        //                                });
+                        //                            } else {
+                        //                                $state.go(lastState || "app.dashboard");
+                        //                            }
 
 
-                        } else {
-                            console.log('Usuário não existe');
-                        }
-                    });
-                }
+                    } else {
+                        console.log('Usuário não existe');
+                        _this.usr.isloggedIn = false;
+                        defer.resolve(false)
+
+                    }
+
+                });
+                return defer.promise;
+
+                //                }
             },
             closeDialog: function() {
                 console.log('closing dialog');

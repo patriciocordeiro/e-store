@@ -44,6 +44,16 @@ $indigo:#3F51B5;
         width: !important;
     }
 }
+
+md-menu-item{
+	height: 100% !important;
+}
+
+md-menu-content{
+	max-height: 100% !important;
+}
+
+
 .md-open-menu-container {
     position: fixed;
     left: 0% !important;

@@ -8,15 +8,15 @@
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
-//        vm.kartSize = prdSrvc.prd.kart.getSize().then(function(kartSize) {
-//            console.log(kartSize);
-//        });
+        //        vm.kartSize = prdSrvc.prd.kart.getSize().then(function(kartSize) {
+        //            console.log(kartSize);
+        //        });
         console.log(vm.kartSize);
         /*recover kart*/
         prdSrvc.prd.kart.recover(function(data) {
             console.log(data);
             vm.kartData = data;
-             vm.kartSize = data.length;
+            vm.kartSize = data.length;
         });
         //        var getSizePromisse = prdSrvc.prd.kart.getSize();
         //        getSizePromisse.then(function(data) {
@@ -29,16 +29,26 @@
         vm.kartData = prdSrvc.prd.kart.data;
         //---------------------------------------------------------
         /*Menu Itens*/
-        var imgProductNavFolder = '../../assets/img/productNavBarSection/productsNavBarSubsectionImg/';
+        var imgProductNavFolder = '../../assets/img/produtos/';
         vm.productNavCategories = [{
             name: 'Componentes Passivos',
             icon: 'tv',
             subcat: [{
                 name: 'Resistores',
-                imgPath: imgProductNavFolder + 'eletronicos/' + 'CelularTablet.png',
+                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
             }, {
                 name: 'Capacitor',
-                imgPath: imgProductNavFolder + 'eletronicos/' + 'CelularTablet.png',
+                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+            }]
+        }, {
+            name: 'Arduino',
+            icon: 'tv',
+            subcat: [{
+                name: 'Arduino Uno',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino_uno.jpg',
+            }, {
+                name: 'Arduino Mega',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
             }]
         }];
         //-------------------------------------------------

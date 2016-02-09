@@ -8,16 +8,13 @@
                         <div layout="row">
                             <div layout="row" flex="75" layout-wrap>
 
-                                <md-card flex="30" ng-repeat="shipAddress in vm.userData.endereco track by $index">
+                                <md-card flex="50" ng-repeat="shipAddress in vm.userData.endereco track by $index">
                                     <md-card-content>
                                         <h2 class="md-title">{{shipAddress.destinatario}}</h2>
-                                        <p class="md-title">{{vm.userData.endereco.endereco}}, {{shipAddress.numero}}</p>
-
-                                        <p>{{shipAddress.complemento}}</p>
-                                        <p>{{shipAddress.bairo}}</p>
-                                        <p>{{shipAddress.cep}}</p>
-                                        <p>{{shipAddress.cidade}}</p>
-                                        <p>{{shipAddress.estado}}</p>
+                                        <p>{{shipAddress.endereco}}, No. {{shipAddress.numero}}, {{shipAddress.complemento}}, {{shipAddress.bairro}},
+                                        </p>
+                                        <p>CEP: {{shipAddress.cep}}</p>
+                                        <p>{{shipAddress.cidade}} - {{shipAddress.estado}}
                                     </md-card-content>
                                     <div layout="column" layout-align="space-between start">
                                         <md-card-actions>

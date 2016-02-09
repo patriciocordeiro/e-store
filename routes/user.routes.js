@@ -45,9 +45,18 @@ module.exports = function(app, express, passport, User) {
         });
     });
 
-    router.get('/logout', function(req, res, next) {
-        req.logOut();
-        res.send(200)
+    router.get('/logout', function(req, res) {
+        req.session.destroy(function(err) {
+            if (err)
+                console.log(err);
+            req.logOut();
+//            res.redirect('/')
+
+            res.send(200)
+
+
+        })
+        //        req.logOut();
     })
 
     //FACEBOOK
@@ -61,7 +70,7 @@ module.exports = function(app, express, passport, User) {
         //        successRedirect : '/home',
     });
 
-	router.post('/user/addNewAddress', User.newAddress)
+    router.post('/user/addNewAddress', User.newAddress)
     router.post('/user/updateAddress', User.updateUserEndereco);
     router.post('/user/updateDadosCadastrais', User.updateDadosCadastrais);
     router.post('/user/adicionaPedido', User.adicionaPedido);

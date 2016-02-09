@@ -13,7 +13,7 @@
                             <label>Nome</label>
                             <input type="text" name="nome" ng-model="vm.newUser.nome" required>
                             <div ng-messages="signupForm.nome.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-sm>
@@ -23,10 +23,10 @@
                                 <div ng-message="required">Entre com o seu sobrenome</div>
                             </div>
                         </md-input-container>
-<!--                        <md-input-container class="md-block" flex-gt-sm>-->
-                            <md-datepicker name="dataNascimento" md-placeholder="Data de Nascimento" ng-model="vm.newUser.birthDate" required></md-datepicker>
-<!--                        </md-input-container>-->
-<!--
+                        <!--                        <md-input-container class="md-block" flex-gt-sm>-->
+                        <md-datepicker name="dataNascimento" md-placeholder="Data de Nascimento" ng-model="vm.newUser.birthDate" required></md-datepicker>
+                        <!--                        </md-input-container>-->
+                        <!--
                         <div ng-messages="signupForm.dataNascimento.$error">
                             <div ng-message="required">Entre com a sua data de nascimento</div>
                         </div>
@@ -59,7 +59,7 @@
                             <md-icon> <i class="material-icons">email</i>
                             </md-icon>
                             <label>Email</label>
-                            <input type="email" name="email" ng-model="vm.newUser.email"  ng-pattern="/^.+@.+\..+$/" required>
+                            <input type="email" name="email" ng-model="vm.newUser.email" ng-pattern="/^.+@.+\..+$/" required>
                             <div ng-messages="signupForm.email.$error" role="alert">
                                 <div ng-message-exp="['required', 'pattern']">
                                     Your email must be between 10 and 100 characters long and look like an e-mail address.
@@ -89,6 +89,13 @@
                     <span class="md-title"><md-icon class="material-icons md-36">home</md-icon>Endereço de entrega</span>
                 </md-card-title>
                 <md-card-content>
+                    <md-input-container class="md-block">
+                        <label>Destinatario</label>
+                        <input type="text" name="destinatario" ng-model="vm.newUser.destinatario" required>
+                        <div ng-messages="signupForm.destinatario.$error">
+                            <div ng-message="required">Campo obrigatório</div>
+                        </div>
+                    </md-input-container>
                     <div layout-gt-md="row">
                         <md-input-container>
                             <label>Tipo de endereco</label>
@@ -99,35 +106,35 @@
                                 <md-option value="Outro">Outro</md-option>
                             </md-select>
                             <div ng-messages="signupForm.tipoEnd.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>CEP</label>
                             <input name="cep" ng-model="vm.newUser.cep" ui-mask="99999-999" type="text" required>
                             <div ng-messages="signupForm.cep.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Endereço</label>
                             <input type="text" name="endereco" ng-model="vm.newUser.endereco" required>
                             <div ng-messages="signupForm.endereco.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Número</label>
                             <input type="text" name="numero" ng-model="vm.newUser.numero" required>
                             <div ng-messages="signupForm.numero.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Complemento</label>
                             <input type="text" name="complemento" ng-model="vm.newUser.complemento" type="text">
                             <div ng-messages="signupForm.complemento.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
 
@@ -137,21 +144,21 @@
                             <label>Bairro</label>
                             <input name="bairro" ng-model="vm.newUser.bairro" type="text" required>
                             <div ng-messages="signupForm.bairro.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Cidade</label>
                             <input name="cidade" ng-model="vm.newUser.cidade" type="text" required>
                             <div ng-messages="signupForm.cidade.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Estado</label>
                             <input name="estado" ng-model="vm.newUser.estado" type="text" required>
                             <div ng-messages="signupForm.estado.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
                     </div>
@@ -167,12 +174,15 @@
                             <label>Telefone residencial</label>
                             <input name="telRes" ng-model="vm.newUser.telefone" ui-mask="(99) 9999-9999" type="text" required>
                             <div ng-messages="signupForm.telefone.$error">
-                                <div ng-message="required">This is required.</div>
+                                <div ng-message="required">Campo obrigatório</div>
                             </div>
                         </md-input-container>
                         <md-input-container flex class="md-icon-float md-block">
                             <label>Telefone celular</label>
-                            <input name="telCels" ng-model="vm.user.celular" ui-mask="(99) 9999-9999" type="text" required>
+                            <input name="celular" ng-model="vm.user.celular" ui-mask="(99) 9999-9999" type="text" required>
+                            <div ng-messages="signupForm.celular.$error">
+                                <div ng-message="required">Campo obrigatório</div>
+                            </div>
                         </md-input-container>
 
                     </div>
