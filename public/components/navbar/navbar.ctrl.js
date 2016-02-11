@@ -29,25 +29,92 @@
         vm.kartData = prdSrvc.prd.kart.data;
         //---------------------------------------------------------
         /*Menu Itens*/
-        var imgProductNavFolder = '../../assets/img/produtos/';
+        var imgProductNavFolder = '../../assets/img/navbar/';
         vm.productNavCategories = [{
-            name: 'Componentes Passivos',
+            name: 'Componentes Eletrônicos',
             icon: 'tv',
+            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+
             subcat: [{
-                name: 'Resistores',
+                name: 'Resistor',
                 imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
             }, {
                 name: 'Capacitor',
+                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+            }, {
+                name: 'Transistor',
+                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+            }, {
+                name: 'LED',
+                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+            }, {
+                name: 'Displays',
+                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+            }, {
+                name: 'CI',
                 imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
             }]
         }, {
             name: 'Arduino',
             icon: 'tv',
+            imgPath: imgProductNavFolder + 'arduino_sect.jpg',
+
             subcat: [{
-                name: 'Arduino Uno',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino_uno.jpg',
+                name: 'Placas',
+                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
             }, {
-                name: 'Arduino Mega',
+                name: 'Shields',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+            }, {
+                name: 'Kits',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+            }, {
+                name: 'Acessórios',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+            }]
+        }, {
+            name: 'Raspbery',
+            icon: 'tv',
+            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+
+            subcat: [{
+                name: 'Placas',
+                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
+            }, {
+                name: 'Kits',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+            }, {
+                name: 'Acessórios',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+            }]
+        }, {
+            name: 'Conexão',
+            icon: 'tv',
+            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+
+            subcat: [{
+                name: 'Conectores',
+                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
+            }, {
+                name: 'Cabos',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+            }, {
+                name: 'Fios',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+            }]
+        }, {
+            name: 'Kits Didáticos',
+            icon: 'tv',
+            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+
+            subcat: [{
+                name: 'Conectores',
+                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
+            }, {
+                name: 'Cabos',
+                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+            }, {
+                name: 'Fios',
                 imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
             }]
         }];
@@ -119,6 +186,20 @@
                 vm.searchText = '';
             });
 
+        }
+
+        /*Navbar menu*/
+        vm.showMenu = false;
+        vm.showSubMenu = [false, false];
+        vm.OpenMenu = function() {
+            vm.showSubMenu = [false, false];
+            vm.showMenu = !vm.showMenu;
+        }
+        vm.OpenSubMenu = function(idx) {
+            console.log(idx);
+            vm.showSubMenu = [false, false];
+            vm.showSubMenu[idx] = !vm.showSubMenu[idx];
+            console.log(vm.showSubMenu);
         }
     }
 }());
