@@ -39,12 +39,12 @@
                     Produtos
                     <md-icon class="material-icons my-md-rotate-90">chevron_right</md-icon>
                 </md-button>
-                <div layout="column" layout-padding ng-show="true" ng-mouseleave="vm.OpenMenu()" class="full-menu md-whiteframe-3dp" role="menu">
+                <div layout="column" layout-padding ng-show="false" ng-mouseleave="vm.OpenMenu()" class="full-menu md-whiteframe-3dp" role="menu">
                     <!--                <div layout="column" layout-padding ng-show="vm.showMenu" ng-mouseleave="vm.OpenMenu()" class="full-menu md-whiteframe-3dp" role="menu">-->
                     <div layout="row" flex="80" layout-align="center center">
                         <div ng-repeat="prdctNavCat in vm.productNavCategories">
                             <div layout-padding class="md-menu-item">
-                                <md-button ui-sref="" ng-mouseenter="vm.OpenSubMenu($index)" ng-mouseleave="vm.OpenSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">
+                                <md-button ng-mouseenter="vm.OpenSubMenu($index)" ng-mouseleave="vm.OpenSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">
                                     <md-card>
                                         <md-card-content>
                                             <img ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
@@ -88,12 +88,12 @@
                     Tutoriais
                     <md-icon class="material-icons my-md-rotate-90">chevron_right</md-icon>
                 </md-button>
-                <div layout="column" layout-padding ng-show="vm.showMenu" ng-mouseleave="vm.OpenMenu()" class="full-menu md-whiteframe-3dp" role="menu">
-                    <div layout="row" flex="80" layout-align="center center">
-                        <div ng-repeat="prdctNavCat in vm.productNavCategories">
-                            <div layout-padding class="md-menu-item">
-                                <md-button ng-mouseenter="vm.OpenSubMenu($index)" ng-mouseleave="vm.OpenSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">
-                                    <!--
+                <div layout-padding ng-show="true" ng-mouseleave="vm.OpenMenu()" class="full-menu md-whiteframe-3dp" role="menu">
+                    <!--                    <div>-->
+<!--                                            <div ng-repeat="prdctNavCat in vm.productNavCategories">-->
+                    <!--                            <div  layout-padding class="md-menu-item">-->
+                    <!--                                <md-button ng-mouseenter="vm.OpenSubMenu($index)" ng-mouseleave="vm.OpenSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">-->
+                    <!--
                                     <md-card>
                                         <md-card-content>
                                             <img alt="raspery" src="../../assets/img/navbar/passive_components.jpg" />
@@ -105,20 +105,37 @@
                                     </md-card>
 -->
 
-                                    <md-grid-list md-cols="5" md-row-height="fit"  style="height: 400px;" md-gutter="2em" md-row-height="4:3">
-                                        <md-grid-tile>
-                                            <p style="color:black">
-                                                <img alt="raspery" src="../../assets/img/navbar/passive_components.jpg" />{{prdctNavCat.name}}
-                                            </p>
-                                        </md-grid-tile>
-                                    </md-grid-list>
+                    <md-grid-list  md-cols="5" md-gutter="10px" md-row-height="1:1" layout="row">
+                        <md-grid-tile ng-repeat="prdctNavCat in vm.productNavCategories"   md-rowspan="1" md-colspan="1">
+                            <img alt="raspery" src="../../assets/img/navbar/arduino_sect.jpg">
 
-                                </md-button>
+                            <md-grid-tile-footer>
+                                <h3>first tile</h3>
+                            </md-grid-tile-footer>
+                        </md-grid-tile>
 
-                            </div>
-                        </div>
+<!--
+                        <md-grid-tile style="background-color:blue">
+                            <md-grid-tile-footer>
+                                <h3>second tile</h3>
+                            </md-grid-tile-footer>
+                        </md-grid-tile>
+-->
 
-                    </div>
+                        <!--
+            <md-grid-tile style="background-color:red">
+                <md-grid-tile-footer>
+                    <h3>third tile</h3>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+-->
+                    </md-grid-list>
+                    <!--                                </md-button>-->
+
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+
+<!--                                        </div>-->
                     <div ng-repeat="prdctNavSubCat in vm.productNavCategories track by $index">
                         <div layout="row" class="submenu cssSlideUp" layout-align="center center" ng-show="vm.showSubMenu[$index] && vm.showMenu">
                             <div class="submenu-content" ng-repeat="prdctNavSubCat in prdctNavSubCat.subcat">
