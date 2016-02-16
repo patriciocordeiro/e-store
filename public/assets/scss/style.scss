@@ -14,8 +14,17 @@ $indigo:#3F51B5;
 
 }
 
-.my-md-list-item img{
-    max-width: 100%;
+.my-md-list-item {
+	img{
+		   max-width: 100%;
+		align-content: center;
+	}
+ 
+	p{
+		text-align: center !important;
+		font-size: 14px;
+		font-weight: bolder;
+	}
 //    width: 100%;
 //    height: 100%;
 }

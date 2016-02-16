@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', '$state', 'productSrvc', 'userSrcv', '$mdToast', '$document', NavbarCtrl]);
+    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', '$state', 'productSrvc', 'userSrcv', '$mdToast', '$document', '$q', NavbarCtrl]);
 
-    function NavbarCtrl($scope, $rootScope, $state, productSrvc, userSrcv, $mdToast, $document) {
+    function NavbarCtrl($scope, $rootScope, $state, productSrvc, userSrcv, $mdToast, $document, $q) {
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
@@ -190,16 +190,32 @@
 
         /*Navbar menu*/
         vm.showMenu = false;
-        vm.showSubMenu = [false, false];
+        var closeAll = function(length) {
+            var temp = _.range(length).map(function() {
+                return false
+            })
+            return $q.when(temp);
+        }
+        vm.showSubMenu = closeAll(vm.productNavCategories.length);
+
         vm.OpenMenu = function() {
-            vm.showSubMenu = [false, false];
             vm.showMenu = !vm.showMenu;
         }
-        vm.OpenSubMenu = function(idx) {
+
+        vm.openSubMenu = function(idx) {
             console.log(idx);
-            vm.showSubMenu = [false, false];
-            vm.showSubMenu[idx] = !vm.showSubMenu[idx];
-            console.log(vm.showSubMenu);
+            closeAll(vm.productNavCategories.length).then(function(data) {
+                vm.showSubMenu = data;
+                vm.showSubMenu[idx] = !vm.show 
+                console.log(vm.showSubMenu);
+            })
         }
-    }
+
+        vm.closeMenus = function() {
+            vm.showMenu = false;
+            closeAll(vm.productNavCategories.length).then(function(data) {
+                vm.showSubMenu = data;
+            });
+        }
+    }		
 }());

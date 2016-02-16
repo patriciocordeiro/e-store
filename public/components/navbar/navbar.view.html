@@ -67,9 +67,9 @@
                             <div class="submenu-content" ng-repeat="prdctNavSubCat in prdctNavSubCat.subcat">
                                 <md-button class="md-raised" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name)">
                                     <md-card>
-
+                                        <img class="md-card-image" alt="prdctNavSubCat.name" ng-src="{{prdctNavSubCat.imgPath}}" />
                                         <md-card-content>
-                                            <img class="md-card-image" alt="prdctNavSubCat.name" ng-src="{{prdctNavSubCat.imgPath}}">
+
                                         </md-card-content>
                                         <md-card-actions>
                                             <p>{{prdctNavSubCat.name}}</p>
@@ -83,76 +83,45 @@
             </div>
 
 
-            <div class="menu-bar" layout="column">
+            <div class="menu-bar" layout="column" ng-mouseleave="vm.showMenu = false">
                 <md-button ng-click="vm.OpenMenu()">
                     Tutoriais
                     <md-icon class="material-icons my-md-rotate-90">chevron_right</md-icon>
                 </md-button>
-                <div layout-padding ng-show="true" ng-mouseleave="vm.OpenMenu()" class="full-menu md-whiteframe-3dp" role="menu">
+                <div layout-padding ng-show="vm.showMenu"  class="full-menu md-whiteframe-3dp" role="menu">
                     <!--                    <div>-->
                     <!--                                            <div ng-repeat="prdctNavCat in vm.productNavCategories">-->
-                    <div layout="row" layout-padding class="md-menu-item">
+                    <div layout="row" flex="80" class="md-menu-item" layout-align="center fit">
                         <!--                                <md-button ng-mouseenter="vm.OpenSubMenu($index)" ng-mouseleave="vm.OpenSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">-->
 
-                        <md-card class="my-md-list-item"  ng-repeat="prdctNavCat in vm.productNavCategories" ng-mouseenter="vm.OpenSubMenu($index)"  ng-mouseleave="vm.OpenSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">
+                        <md-card flex="10" class="my-md-list-item" ng-repeat="prdctNavCat in vm.productNavCategories" ng-mouseover="vm.openSubMenu($index)"  ng-click="vm.prdgetSect(prdctNavCat.name)">
+
                             <md-card-content>
-                                   <img ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
+                                <img class="md-card-image" ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
                             </md-card-content>
                             <md-card-actions>
-                                <p style="color:black">{{prdctNavCat.name}}</p>
-
+                                <p style="color:black">{{prdctNavCat.name}}
+                                    <md-icon style="color:black" class="material-icons">expand_more</md-icon>
+                                </p>
                             </md-card-actions>
                         </md-card>
 
-                        <!--
-
-                    <md-grid-list class="my-md-list-item"  md-cols="10" md-gutter="10px" md-row-height="1:1" layout="row">
-                        <md-grid-tile ng-repeat="prdctNavCat in vm.productNavCategories"   md-rowspan="10" md-colspan="1">
-                            <img alt="raspery" src="../../assets/img/navbar/arduino_sect.jpg">
-
-                            <md-grid-tile-footer>
-                                <h3>first tile</h3>
-                            </md-grid-tile-footer>
-                        </md-grid-tile>
--->
-
-                        <!--
-                        <md-grid-tile style="background-color:blue">
-                            <md-grid-tile-footer>
-                                <h3>second tile</h3>
-                            </md-grid-tile-footer>
-                        </md-grid-tile>
--->
-
-                        <!--
-            <md-grid-tile style="background-color:red">
-                <md-grid-tile-footer>
-                    <h3>third tile</h3>
-                </md-grid-tile-footer>
-            </md-grid-tile>
--->
-                        <!--                    </md-grid-list>-->
-                        <!--                                </md-button>-->
-
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-
                     </div>
-                    <div ng-repeat="prdctNavSubCat in vm.productNavCategories track by $index">
+                    <div ng-repeat="prdctNavSubCat in vm.productNavCategories">
                         <div layout="row" layout-wrap class="submenu cssSlideUp" layout-align="center center" ng-show="vm.showSubMenu[$index] && vm.showMenu">
-<!--                            <div class="submenu-content" ng-repeat="prdctNavSubCat in prdctNavSubCat.subcat">-->
-<!--                                <md-button class="md-raised" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name)">-->
-                                    <md-card flex="25" ng-repeat="prdctNavSubCat in prdctNavSubCat.subcat" class="my-md-list-item" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name)">
+                            <!--                            <div class="submenu-content" ng-repeat="prdctNavSubCat in prdctNavSubCat.subcat">-->
+                            <!--                                <md-button class="md-raised" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name)">-->
+                            <md-card flex="10" ng-repeat="prdctNavSubCat in prdctNavSubCat.subcat" class="my-md-list-item" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name); vm.closeMenus()">
 
-                                        <md-card-content>
-                                            <img class="md-card-image" alt="raspery" src="../../assets/img/navbar/passive_components.jpg">
-                                        </md-card-content>
-                                        <md-card-actions>
-                                            <p>{{prdctNavSubCat.name}}</p>
-                                        </md-card-actions>
-                                    </md-card>
-<!--                                </md-button>-->
-<!--                            </div>-->
+                                <md-card-content>
+                                    <img class="md-card-image" alt="raspery" src="../../assets/img/navbar/passive_components.jpg">
+                                </md-card-content>
+                                <md-card-actions>
+                                    <p style="color:black">{{prdctNavSubCat.name}}</p>
+                                </md-card-actions>
+                            </md-card>
+                            <!--                                </md-button>-->
+                            <!--                            </div>-->
                         </div>
                     </div>
                 </div>
