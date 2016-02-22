@@ -4,6 +4,14 @@ $indigo:#3F51B5;
  .my-md-menu-top {
     min-height: 100% !important;
     height: 40px !important;
+
+	 
+	 .md-button{
+		 height: 100% !important;
+		 border-radius: 0px;
+		 line-height: auto !important;
+			 
+	 }
     //    background-color: #fff9f9 !important;
     //    min-height: 34px !important;
     //     font-size: 12px !important;
@@ -13,20 +21,63 @@ $indigo:#3F51B5;
     //    }
 
 }
+.my-top-nav-bar{
+	z-index: 222 !important;
 
+}
+
+//.my-md-full-heigth{
+////	height: 100% !important;
+//	background-color: red !important;
+//	min-height: 64px !important
+//}
+.my-md-list-item.active-menu{
+    &:after{
+        content: '';
+        display: block;
+        height: 6px;
+        width: 0;
+        background: transparent;
+//        transition: width .5s ease, background-color .5s ease;
+    }
+//	    &{
+//		width: 100%;
+        background-color: rgba(0, 128, 128, 0.21);
+			 transition: border-width 0.3s linear;
+//    }
+//	width: 6px;
+	border-width:  100%;
+	border-bottom:solid 6px teal
+}
+.my-md-icon-fit{
+	padding: 0 !important;
+	margin: 0 !important;
+}
 .my-md-list-item {
-	img{
-		   max-width: 100%;
-		align-content: center;
-	}
- 
-	p{
-		text-align: center !important;
-		font-size: 14px;
-		font-weight: bolder;
-	}
-//    width: 100%;
-//    height: 100%;
+//    &:after{
+//        content: '';
+//        display: block;
+//        height: 6px;
+//        width: 0;
+//        background: transparent;
+//        transition: width .5s ease, background-color .5s ease;
+//    }
+    img {
+        max-width: 100%;
+        align-content: center;
+    }
+    p {
+        text-align: center !important;
+        font-size: 14px;
+        font-weight: bolder;
+		margin-bottom: 0;
+		color: #dde3e8;
+    }
+//    &:hover:after{
+//		width: 100%;
+//        background: teal;
+//    }
+
 }
 .my-list-item {
     .md-list-item-inner {
@@ -42,36 +93,44 @@ $indigo:#3F51B5;
 /*Customize the menu bar to fit toolbar hight*/
 
 //    position: relative;
-.my-md-rotate-90{
-    -ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+.my-md-rotate-90 {
+    -ms-transform: rotate(90deg);
+    /* IE 9 */
+    -webkit-transform: rotate(90deg);
+    /* Chrome, Safari, Opera */
     transform: rotate(90deg);
 }
-
- .cssSlideUp {
+.cssSlideUp {
     transition: .5s linear all;
-    height:300px;
+    height: 300px;
     overflow: hidden;
 }
 .cssSlideUp.ng-hide {
     height: 0;
 }
-
 .full-menu {
     display: block;
     position: absolute;
     background-color: white;
     left: 0;
     right: 0;
+	z-index: -10;
+	top: 64px;
+	overflow: hidden;
+	transition: top 0.5s ease-in 0.1s,left 0s linear 0.25s;
 }
+
+.full-menu.ng-hide{
+		top: -560px;
+}
+
+
+
 //.full-menu.ng-hide {
 //    height: 0;
 //}
-.my-md-menu-bar{
-	
-}
-.submenu {
-        background-color: cornflowerblue;
+.my-md-menu-bar {} .submenu {
+    background-color: cornflowerblue;
     //    height: 0px;
     //    -webkit-transition: height 2s;
 
@@ -100,8 +159,8 @@ md-menu-bar {
         width: !important;
     }
 }
-md-menu-item {
-    height: 100% !important;
+.my-md-menu-item {
+z-index: 3;
 }
 md-menu-content {
     max-height: 100% !important;
@@ -115,10 +174,15 @@ md-menu-content {
     opacity: 0;
     border-radius: 2px;
 }
+.breadcrumbs-area{
+	background-color: #f5f5f5 !important;
 .breadcrumb {
     margin-bottom: 0px;
     font-size: 12px;
+	background-color: transparent
+}	
 }
+
 // Rules for sizing the icon.
 .material-icons.md-18 {
     font-size: 18px;
@@ -141,18 +205,18 @@ md-menu-content {
 .my-md-link-btn {
     // this style applies to all link buttons
     //We change the some md-button attributes to fit a li>a link
-    margin: 0 !important;
-    //    padding: 0 !important;
-    line-height: 20px !important;
-    color: #00695C !important;
-    min-height: auto !important;
-    text-transform: capitalize !important;
-    min-width: 20px !important;
-    font-size: 12px !important;
     &:hover {
         text-decoration: underline !important;
         background-color: inherit !important;
     }
+    margin:0 !important;
+    //    padding: 0 !important;
+//    line-height:20px !important;
+    color:#00695C !important;
+    min-height:auto !important;
+    text-transform:capitalize !important;
+    min-width:20px !important;
+    font-size:12px !important;
 }
 .my-md-icon-btn {
     padding: 0px !important;
@@ -192,6 +256,15 @@ md-menu-content {
     background-color: rgba(193, 193, 193, 0.96);
     color: rgba(44, 65, 164, 0.96);
     transition: 0.3s;
+}
+
+.menu-button{
+min-height: 64px !important;
+	border: none !important;
+	 text-transform:uppercase!important;
+	font-size: 16px !important;
+	padding: 0px 16px !important;
+	    margin: 0px !important;
 }
 .animate-show {
     line-height: 20px;

@@ -317,7 +317,7 @@
             <md-button ng-disabled="vm.disablePrevBtn" class="md-primary  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i>
             </md-button>
             <div ng-repeat="page in vm.pages">
-                <md-button ng-model="vm.currentPage" class="md-primary groupX middle" ng-click="vm.changePage(page)" ng-class="vm.isActive(page)">{{page}}</md-button>
+                <md-button ng-model="vm.currentPage" class="md-primary groupX middle"  ng-class="vm.isActive(page)" ng-click="vm.changePage(page)" >{{page}}</md-button>
             </div>
             <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
             </md-button>

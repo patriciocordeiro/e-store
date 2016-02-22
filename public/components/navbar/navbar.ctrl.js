@@ -30,6 +30,8 @@
         //---------------------------------------------------------
         /*Menu Itens*/
         var imgProductNavFolder = '../../assets/img/navbar/';
+		vm.navBar = ['Produtos', 'Tutoriais', ]
+		
         vm.productNavCategories = [{
             name: 'Componentes Eletrônicos',
             icon: 'tv',
@@ -204,9 +206,10 @@
 
         vm.openSubMenu = function(idx) {
             console.log(idx);
+			vm.activeMenuIdx = idx;
             closeAll(vm.productNavCategories.length).then(function(data) {
                 vm.showSubMenu = data;
-                vm.showSubMenu[idx] = !vm.show 
+                vm.showSubMenu[idx] = !vm.show
                 console.log(vm.showSubMenu);
             })
         }
@@ -217,5 +220,11 @@
                 vm.showSubMenu = data;
             });
         }
-    }		
+
+        vm.isActive = function(menuItem) {
+            if (menuItem == vm.currentMenuItem) {
+                return 'active-menu';
+            }
+        }
+    }
 }());
