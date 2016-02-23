@@ -219,6 +219,7 @@
             closeAll(vm.productNavCategories.length).then(function(data) {
                 vm.showSubMenu = data;
             });
+			console.log('clossing all menus and submenus');
         }
 
         vm.isActive = function(menuItem) {

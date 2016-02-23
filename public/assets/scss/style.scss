@@ -102,14 +102,14 @@ $indigo:#3F51B5;
 }
 .cssSlideUp {
     transition: .5s linear all;
-    height: 300px;
+    height: 250px;
     overflow: hidden;
+	display: block;
 }
 .cssSlideUp.ng-hide {
     height: 0;
 }
 .full-menu {
-    display: block;
     position: absolute;
     background-color: white;
     left: 0;
@@ -129,8 +129,14 @@ $indigo:#3F51B5;
 //.full-menu.ng-hide {
 //    height: 0;
 //}
-.my-md-menu-bar {} .submenu {
-    background-color: cornflowerblue;
+.my-md-menu-bar {} 
+.submenu {
+//    background-color: white;
+	position: fixed;
+	width: 100%;
+	 left: 0;
+    right: 0;
+//	height: 220PX;
     //    height: 0px;
     //    -webkit-transition: height 2s;
 
