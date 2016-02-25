@@ -86,14 +86,14 @@
                         Tutoriais
                         <md-icon class="material-icons my-md-rotate-90">chevron_right</md-icon>
                     </md-button>
-                    <div layout="column" layout-padding layout-align="center center" ng-show="vm.showMenu" class="full-menu md-whiteframe-3dp" role="menu">
+                    <div layout="column"  layout-align="center center" ng-show="vm.showMenu" class="full-menu md-whiteframe-3dp" role="menu">
                         <!--                    <div>-->
                         <!--                                            <div ng-repeat="prdctNavCat in vm.productNavCategories">-->
-                        <div layout="row" class="my-md-menu-item" style="background-color:blue">
+                        <div layout="row" layout-padding class="my-md-menu-item" >
                             <!--                                <md-button ng
 -mouseenter="vm.OpenSubMenu($index)" ng-mouseleave="vm.OpenSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">-->
 
-                            <md-card layout="column" layout-align="space-between center" flex="25" class="my-md-list-item" ng-class="{'active-menu':vm.activeMenuIdx==$index}" ng-repeat="prdctNavCat in vm.productNavCategories" ng-mouseover="vm.openSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">
+                            <md-card layout="column" layout-align="space-between center" flex="15" class="my-md-list-item" ng-class="{'active-menu':vm.activeMenuIdx==$index}" ng-repeat="prdctNavCat in vm.productNavCategories" ng-mouseover="vm.openSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">
 
                                 <md-card-content>
                                     <img class="md-card-image" ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
@@ -107,8 +107,8 @@
                             </md-card>
 
                         </div>
-                        <div  layout="row"  ng-repeat="prdctNavSubCat in vm.productNavCategories">
-                            <md-content  layout="column"  class="md-whiteframe-24dp submenu cssSlideUp" ng-show="vm.showSubMenu[$index] && vm.showMenu">
+                        <div  layout="row"  ng-repeat="prdctNavSubCat in vm.productNavCategories" >
+                            <md-content  style="background-color:#F1F5F9" layout="column"  class="md-whiteframe-24dp submenu cssSlideUp" ng-show="vm.showSubMenu[$index] && vm.showMenu">
                                 <!--                            <div class="submenu-content" ng-repeat="prdctNavSubCat in prdctNavSubCat.subcat">-->
                                 <!--                                <md-button class="md-raised" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name)">-->
                                 <div  layout="row" layout-align="center">

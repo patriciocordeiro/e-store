@@ -211,7 +211,7 @@
         </md-card>
 
 
-        <md-card>
+        <md-card layout="column">
             <md-card-title>
                 <div flex layout="column">
                     <md-button ng-click="vm.showHideFilters()">{{vm.buttonText}}<span style="display:block"><md-icon class="material-icons">{{vm.showFilterIcon}}</md-icon></span>
@@ -219,15 +219,17 @@
                 </div>
             </md-card-title>
             <md-card-content ng-show="vm.showFilters" class="slideInDown">
-                <div layout="column" layout-align="center center">
-                    <md-list layout="row">
-                        <md-list-item ng-repeat="(key, val) in vm.filterData">
-                            <md-card>
+                <div layout="row" class="prd-filter-list" layout-fill layout-align="start center">
+<!--                    <md-list layout="row">-->
+                        <div ng-repeat="(key, val) in vm.filterData" >
+                            <md-card  layout="column">
+<!--
                                 <md-card-title>
                                     <span class='md-subhead'>{{key}}</span>
                                 </md-card-title>
+-->
                                 <md-content style="height:200px">
-                                    <md-card-content>
+                                    <md-card-content >
                                         <md-list>
                                             <md-list-item class="my-list-item" ng-repeat="values in val">
                                                 <md-checkbox aria-label="caract filter" ng-model="vm.caractFilter[values.$$hashKey]" ng-click="vm.comFilter(values, vm.caracArrayToFilt)"></md-checkbox>
@@ -238,8 +240,8 @@
                                     </md-card-content>
                                 </md-content>
                             </md-card>
-                        </md-list-item>
-                    </md-list>
+					</div>
+<!--                    </md-list>-->
                 </div>
             </md-card-content>
         </md-card>
