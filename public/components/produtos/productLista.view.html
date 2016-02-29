@@ -1,181 +1,5 @@
-<div layout="row" layout-align="center start">
-    <div flex="90" layout=column class="md-whiteframe-z4" style="background-color:white">
-        <!--
-
-                <md-toolbar class="md-toolbar-tools md-whiteframe-z4">Resistores</md-toolbar>
-        <div id="search-info" ng-show="vm.searchTotal">
-                        <div id="search-info" ng-show="true">
-            <h3 class="md-headline">Sua busca retorno {{vm.searchTotal}} resultados</h3>
-            AASAD {{vm.subsec}}
-            <md-card>
-                <md-card-title>
-                    <span class="md-title">Categorias</span>
-                </md-card-title>
-                <md-card-content layout="row">
-                    <div ng-repeat="sections in vm.searchSections">
-                        <md-list ng-repeat="sections in vm.searchSections">
-                            <md-list-item>
-                                <md-checkbox ng-model="message.selected" class="md-primary"></md-checkbox>
-                                <p>{{sections}}</p>
-                            </md-list-item>
-                            <md-list ng-repeat="subsections in vm.searchSubSections">
-                                <md-list-item>
-                                    <md-checkbox ng-click="vm.getSubSections(subsections, vm.selected)" ng-model="vm.subsec[$index]" class="md-primary"></md-checkbox>
-                                    <p>{{subsections}}</p>
-                                </md-list-item>
-                            </md-list>
-                            <p>Total de itens:{{vm.totalLeft}}</p>
-                    </div>
-
-
-
-                </md-card-content>
-            </md-card>
-        </div>
-        <md-card>
-
-            <div flex layout="column">
-                <md-button ng-click="vm.showHideFilters()">{{vm.buttonText}}<span style="display:block"><md-icon class="material-icons">{{vm.showFilterIcon}}</md-icon></span>
-                </md-button>
-            </div>
-            <md-card-content ng-show="vm.showFilters" class="slideInDown">
-                <div layout="column" layout-align="center center">
-                    <md-list layout="row">
-                        <md-list-item ng-repeat="(key, val) in vm.filterData">
-                            <md-card>
-                                <md-card-title>
-                                    <span class='md-subhead'>{{key}}</span>
-                                </md-card-title>
-                                <md-content style="height:200px">
-                                    <md-card-content>
-                                        <md-list>
-                                            <md-list-item ng-repeat="values in val">
-                                                <md-checkbox aria-label="caract filter" ng-model="vm.caractFilter[values.$$hashKey]" ng-click="vm.comFilter(values, vm.caracArrayToFilt)"></md-checkbox>
-                                                {{values.valor}}
-                                            </md-list-item>
-                                        </md-list>
-
-                                    </md-card-content>
-                                </md-content>
-                            </md-card>
-                        </md-list-item>
-                    </md-list>
-                </div>
-            </md-card-content>
-        </md-card>
-
-        <div layout="row" layout-align="end center">
-            <div flex layout="row" layout-align="start center">
-                <md-button class="md-accent md-raised">Comprar selecionados</md-button>
-                <md-button class="md-primary md-raised">Comprarar selecionados</md-button>
-            </div>
-            <div flex layout="row" layout-align="end center">
-                <h4 class="md-body-2"><b>Página</b>:</h4>
-                <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
-                </md-button>
-                <md-button ng-disabled="vm.disablePrevBtn" class="md-accent  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i>
-                </md-button>
-                <div ng-repeat="page in vm.pages">
-                    <md-button ng-model="vm.currentPage" class="md-accent groupX middle" ng-click="vm.changePage(page)" ng-class="vm.isActive(page)">{{page}}</md-button>
-                </div>
-                <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
-                </md-button>
-                <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()">Last</md-button>
-            </div>
-        </div>
-        <div layout="column" layout-align="center center">
-            <md-input-container class="md-block">
-                <label>Buscar propriedades
-                    <md-icon>ic_youtube_searched</md-icon>
-                </label>
-                <input type="text" ng-model="search">
-            </md-input-container>
-            <table class="prd-list-table">
-                <thead>
-                    <tr>
-                        <th flex ng-repeat="fixedCols in vm.prdFixedCols">
-                            <span class="md-subhead">{{fixedCols}}</span>
-                        </th>
-                        <th flex ng-repeat="caractName in vm.caract[0]">
-                            <h4 class="md-subhead" style="text-transform: capitalize">{{caractName.nome}}</h4>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div layout="row">
-                                <md-button class="my-md-icon-btn" ng-click="vm.ordering('disponibilidade')"><i class="material-icons">keyboard_arrow_up</i>
-                                </md-button>
-                                <md-button class="my-md-icon-btn" ng-click="vm.ordering('-disponibilidade')"><i class="material-icons">keyboard_arrow_down</i>
-                                </md-button>
-                            </div>
-                        </td>
-                        <td>
-                            <div layout="row">
-                                <md-button class="my-md-icon-btn" ng-click="vm.ordering('preco')"><i class="material-icons">keyboard_arrow_up</i>
-                                </md-button>
-                                <md-button class="my-md-icon-btn" ng-click="vm.ordering('-preco')"><i class="material-icons">keyboard_arrow_down</i>
-                                </md-button>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td ng-repeat="caractName in vm.caract[0]">
-                            <div layout="row">
-                                <md-button class="my-md-icon-btn" ng-click="vm.ordering(vm.forFilter[$index])"><i class="material-icons">keyboard_arrow_up</i>
-                                </md-button>
-                                <md-button class="my-md-icon-btn" ng-click="vm.ordering('-'+vm.forFilter[$index])"><i class="material-icons">keyboard_arrow_down</i>
-                                </md-button>
-                            </div>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="prd in vm.prdData | orderBy:vm.order|limitTo:vm.itemPerPage:vm.start|filter:search">
-
-                        <td class="product-image">
-                            <img ng-src={{prd.imagens}}>
-                        </td>
-                        <td>{{prd.ref_PM}}</td>
-                        <td>{{prd.ref_fabricante}}</td>
-                        <td>{{prd.descricao}}</td>
-                        <td>{{prd.disponibilidade}}</td>
-                        <td>{{prd.preco}}</td>
-                        <td>
-                            <md-input-container class="md-block">
-                                <input aria-label="quantity" type="number" min="1" max="{{prd.disponibilidade}}" value="{{vm.prdQty[$index+vm.start]}}" ng-model="vm.prdQty[$index+vm.start]" aria-label="quantidade">
-                                <md-button class="md-warn md-raised" ng-click="vm.prdGetBuy(vm.prdQty[$index], prd._id); vm.showJanoCarrinhoDiag($event)">
-                                    Comprar {{vm.prdQty[$index+vm.start]}}
-                                </md-button>
-                            </md-input-container>
-
-                        </td>
-                        <td ng-repeat="val in prd.caracteristicas">
-                            {{val.valor}}
-                        </td>
-                        <md-divider></md-divider>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <md-divider></md-divider>
-        <div flex layout="row" layout-align="end center">
-            <div><b>Página</b>:</div>
-            <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
-            </md-button>
-            <md-button ng-disabled="vm.disablePrevBtn" class="md-primary  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i>
-            </md-button>
-            <div ng-repeat="page in vm.pages">
-                <md-button ng-model="vm.currentPage" class="md-primary groupX middle" ng-click="vm.changePage(page)" ng-class="vm.isActive(page)">{{page}}</md-button>
-            </div>
-            <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
-            </md-button>
-            <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()">Last</md-button>
-        </div>
-    </div>
--->
+<div layout="row" layout-align="center start" >
+    <div flex="90" layout=column class="md-whiteframe-z4" style="background-color:#f5f5f5">
         <md-card id="search-info" ng-show="vm.searchTotal">
             <md-card-title>
                 <h3 class="md-headline">Sua busca retorno {{vm.searchTotal}} resultados</h3>
@@ -190,58 +14,61 @@
                         <div ng-repeat="sections in vm.searchSections">
                             <md-list ng-repeat="sections in vm.searchSections">
                                 <md-list-item>
-                                    <md-checkbox ng-model="message.selected" class="md-primary"></md-checkbox>
+                                    <md-checkbox ng-model="message.selected" class="md-primary">
+                                    </md-checkbox>
                                     <p>{{sections}}</p>
                                 </md-list-item>
                                 <md-list ng-repeat="subsections in vm.searchSubSections">
                                     <md-list-item>
-                                        <md-checkbox ng-click="vm.getSubSections(subsections, vm.selected)" ng-model="vm.subsec[$index]" class="md-primary"></md-checkbox>
+                                        <md-checkbox ng-click="vm.getSubSections(subsections, vm.selected)" ng-model="vm.subsec[$index]" class="md-primary">
+                                        </md-checkbox>
                                         <p>{{subsections}}</p>
                                     </md-list-item>
                                 </md-list>
                                 <p>Total de itens:{{vm.totalLeft}}</p>
+                            </md-list>
                         </div>
-
-
-
                     </md-card-content>
                 </md-card>
             </md-card-content>
 
         </md-card>
 
-
-        <md-card layout="column">
+        <md-button class="md-primary md-raised" flex="15" style="max-width:15%" ng-click="vm.showHideFilters()">{{vm.buttonText}}
+            						<md-icon class="material-icons">{{vm.showFilterIcon}}</md-icon>
+        </md-button>
+        <md-card ng-show="vm.showFilters" class="my-md-filter-area cssSlideUp my-md-no-shadow" layout="column" style="background-color:#f5f5f5" >
+            <!--
             <md-card-title>
                 <div flex layout="column">
-                    <md-button ng-click="vm.showHideFilters()">{{vm.buttonText}}<span style="display:block"><md-icon class="material-icons">{{vm.showFilterIcon}}</md-icon></span>
-                    </md-button>
+
                 </div>
             </md-card-title>
-            <md-card-content ng-show="vm.showFilters" class="slideInDown">
-                <div layout="row" class="prd-filter-list" layout-fill layout-align="start center">
-<!--                    <md-list layout="row">-->
-                        <div ng-repeat="(key, val) in vm.filterData" >
-                            <md-card  layout="column">
-<!--
-                                <md-card-title>
-                                    <span class='md-subhead'>{{key}}</span>
-                                </md-card-title>
 -->
-                                <md-content style="height:200px">
-                                    <md-card-content >
-                                        <md-list>
-                                            <md-list-item class="my-list-item" ng-repeat="values in val">
-                                                <md-checkbox aria-label="caract filter" ng-model="vm.caractFilter[values.$$hashKey]" ng-click="vm.comFilter(values, vm.caracArrayToFilt)"></md-checkbox>
-                                                {{values.valor}}
-                                            </md-list-item>
-                                        </md-list>
+            <md-card-content>
+                <div layout="row" class="prd-filter-list" layout-align="start center">
+                    <!--                    <md-list layout="row">-->
+                    <!--                    <div flex="100" layout ="row" >-->
+                    <md-card flex="25" ng-repeat="(key, val) in vm.filterData" layout="column">
 
-                                    </md-card-content>
-                                </md-content>
-                            </md-card>
-					</div>
-<!--                    </md-list>-->
+                        <md-card-title>
+                            <h4 class='md-subhead my-md-capital'>{{key}}</h4>
+                        </md-card-title>
+                        <md-divider></md-divider>
+                        <md-content layout="column" style="height:200px">
+                            <md-card-content>
+                                <md-list>
+                                    <md-list-item class="my-list-item" ng-repeat="values in val">
+                                        <md-checkbox aria-label="caract filter" ng-model="vm.caractFilter[values.$$hashKey]" ng-click="vm.comFilter(values, vm.caracArrayToFilt)"></md-checkbox>
+                                        {{values.valor}}
+                                    </md-list-item>
+                                </md-list>
+
+                            </md-card-content>
+                        </md-content>
+                    </md-card>
+                    <!--                    </div>-->
+                    <!--                    </md-list>-->
                 </div>
             </md-card-content>
         </md-card>
@@ -267,10 +94,10 @@
             <md-card-content>
                 <md-list layout-gt-sm="row">
                     <md-list-item flex ng-repeat="fixedCols in vm.prdFixedCols" flex-gt-sm="{{vm.columnsSizes[$index]}}">
-                        {{fixedCols}}
+						<span class="md-subhead my-md-capital my-md-bold">{{fixedCols}}</span>
                     </md-list-item>
                     <md-list-item flex ng-repeat="caractName in vm.caract[0]" flex-gt-sm="{{vm.columnsSizes[1]}}">
-                        <h4 class="md-subhead" style="text-transform: capitalize">{{caractName.nome}}</h4>
+						<span class="md-subhead my-md-capital my-md-bold">{{caractName.nome}}</span>
                     </md-list-item>
 
                 </md-list>
@@ -285,7 +112,7 @@
                         <img ng-src={{prd.imagens}}>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[1]}}">
-                        {{prd.ref_PM}}
+                       <md-button class="md-primary"> {{prd.ref_PM}}</md-button>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}">{{prd.ref_fabricante}}
                     </md-list-item>
@@ -319,7 +146,7 @@
             <md-button ng-disabled="vm.disablePrevBtn" class="md-primary  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i>
             </md-button>
             <div ng-repeat="page in vm.pages">
-                <md-button ng-model="vm.currentPage" class="md-primary groupX middle"  ng-class="vm.isActive(page)" ng-click="vm.changePage(page)" >{{page}}</md-button>
+                <md-button ng-model="vm.currentPage" class="md-primary groupX middle" ng-class="vm.isActive(page)" ng-click="vm.changePage(page)">{{page}}</md-button>
             </div>
             <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
             </md-button>

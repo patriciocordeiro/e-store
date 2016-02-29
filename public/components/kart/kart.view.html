@@ -67,33 +67,37 @@
                             {{$index}}
                         </md-list-item>
                         <md-list-item flex-gt-sm="{{vm.columnsSizes[1]}}">
-                            <md-list flex layout="column">
-                                <md-list-item>
-                                    <p><b>Ref do fabricante:</b>
-                                    </p>
-                                    <p>
-                                        <md-button class="md-primary">{{prd.ref_fabricante}}</md-button>
-                                    </p>
+                            <md-list class="prd-info-list" flex layout="column">
+                                <md-list-item layout="row">
+                                    <div flex><b>Ref do fabricante:</b>
+                                    </div>
+									 <span flex></span>
+                                    <div flex class="link-btn">
+                                        <md-button href="#" class="my-md-link-btn md-primary">{{prd.ref_fabricante}}</md-button>
+                                    </div>
                                 </md-list-item>
-                                <md-list-item>
-                                    <p><b>Ref da PM:</b>
-                                    </p>
-                                    <p>
-                                        <md-button class="md-primary">{{prd.ref_PM}}</md-button>
-                                    </p>
+                                <md-list-item layout="row">
+                                    <div flex><b>Ref da PM:</b>
+                                    </div>
+									 <span flex></span>
+                                    <div class="link-btn" flex>
+                                        <md-button href="#" class="my-md-link-btn md-primary">{{prd.ref_PM}}</md-button>
+                                    </div>
                                 </md-list-item>
-                                <md-list-item>
-                                    <p><b>Fabricante:</b>
-                                    </p>
-                                    <p><b>{{prd.ref_PM}}</b>
-                                    </p>
+                                <md-list-item layout="row">
+                                    <div flex><b>Fabricante:</b>
+                                    </div>
+                                    <span flex></span>
+                                    <div flex><b>{{prd.ref_PM}}</b>
+                                    </div>
                                 </md-list-item>
-                                <md-list-item>
-                                    <p><b>Descrição:</b>
-                                    </p>
-                                    <p>
-                                        <md-button ui-sref="#" class="md-primary">{{prd.descricao}}</md-button>
-                                    </p>
+                                <md-list-item layout="row">
+                                    <div flex><b>Descrição:</b>
+                                    </div>
+                                    <span flex></span>
+                                    <div flex>
+                                        {{prd.descricao}}
+                                    </div>
                                 </md-list-item>
 
                             </md-list>

@@ -18,6 +18,20 @@ $indigo:#3F51B5;
     //    }
 
 }
+
+// For text and titles
+.my-md-capital{
+text-transform: capitalize;	
+}
+
+.my-md-no-shadow{
+	box-shadow:none;
+}
+
+.my-md-bold{
+	font-weight: bold !important;
+}
+
 .my-top-nav-bar {
     z-index: 222 !important;
 }
@@ -106,7 +120,7 @@ $indigo:#3F51B5;
     overflow: hidden;
     display: block;
     margin-top: 0;
-    padding: 3% 0;
+//    padding: 3% 0;
 }
 .cssSlideUp.ng-hide {
     height: 0;
@@ -339,21 +353,42 @@ md-toast .md-toast-content {
     max-height: 100%!important;
 }
 
+.my-md-filter-area{
+//	height: 400px !important;
+}
 
 .prd-filter-list {
 	md-list{
-		border: solid 1px red;
+//		border: solid 1px red;
 	}
 	md-card md-card-content {
     display: block;
 //    padding: 0px 6px 0px 0px;
 }
+	md-card-title{
+		padding: 0px 14px;
+	}
 md-list-item, md-list-item .md-list-item-inner {
 	 min-height: 0px !important;
 	md-checkbox{
 		margin-right: 6px !important;
 	}
 }
+	
 
+
+}
+
+.link-btn{
+		width: 100%;
+		a{
+				padding: 0px !important;
+	
+		}
+}
+.prd-info-list{
+	md-list-item{
+		padding: 0px !important;
+	}
 }
 /*css anmations*/
