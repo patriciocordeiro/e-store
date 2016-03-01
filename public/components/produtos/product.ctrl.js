@@ -253,17 +253,19 @@
 
         //-------------------------------------------------------
         /*Paginagination of the list table*/
+		 vm.itemPerPage = 5;
+		vm.itemPerPageArr = [5, 10, 25];
         var getNumOfPages = function(data) {
             var NumOfPages = [];
             var i = 0;
-            for (i = 0; i < Math.ceil(data.length / 5) + 1; i++) {
+            for (i = 0; i < Math.ceil(data.length / vm.itemPerPage) + 1; i++) {
                 NumOfPages.push(i);
                 console.log(NumOfPages);
             }
             return NumOfPages;
         }
 
-        vm.itemPerPage = 5;
+       
         vm.start = 0;
         vm.currentPage = 0;
         vm.disablePrevBtn = true;
@@ -286,7 +288,7 @@
                 vm.currentPage = vm.lastPage;
             }
             console.log('vm.currentPage', vm.currentPage);
-            vm.start = (vm.currentPage - 1) * 5;
+            vm.start = (vm.currentPage - 1) * vm.itemPerPage
 
             console.log('hello', vm.start);
             if (vm.currentPage > 0) {
