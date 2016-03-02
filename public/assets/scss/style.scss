@@ -18,6 +18,30 @@ $indigo:#3F51B5;
     //    }
 
 }
+//=====================================================
+//rules bellow are for my list tables with md-card
+.even{
+    background-color: white;
+}
+.odd{
+    background-color: aliceblue;
+}
+
+.my-md-no-margin{
+	margin: 0 !important;
+}
+
+.my-md-noround-border{
+	border-radius: 0 !important;
+}
+
+.my-md-btn-icon-below{
+	line-height: inherit !important;
+}
+.my-md-float-btn{
+	position: absolute !important;
+}
+//====================================================
 
 // For text and titles
 .my-md-capital{
@@ -260,7 +284,7 @@ md-menu-content {
 }
 .md-button.middle {
     border-radius: 0;
-    border: 1px solid rgba(230, 230, 230, 0.96);
+    border: 1px solid rgba(230, 230, 230, 0.96) ;
     //    border-right: 1px solid rgba(230, 230, 230, 0.96);
 
 }
@@ -354,7 +378,7 @@ md-toast .md-toast-content {
 }
 
 .my-md-filter-area{
-//	height: 400px !important;
+margin-top: 3% !important;
 }
 
 .prd-filter-list {

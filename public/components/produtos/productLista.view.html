@@ -1,4 +1,4 @@
-<div layout="row" layout-align="center start" >
+<div layout="row" layout-align="center start">
     <div flex-gt-md="90" layout=column class="md-whiteframe-z4" style="background-color:#f5f5f5">
         <md-card id="search-info" ng-show="vm.searchTotal">
             <md-card-title>
@@ -34,10 +34,20 @@
 
         </md-card>
 
+        <!--
         <md-button class="md-primary md-raised" flex="15" style="max-width:15%" ng-click="vm.showHideFilters()">{{vm.buttonText}}
-            						<md-icon class="material-icons">{{vm.showFilterIcon}}</md-icon>
-        </md-button>
-        <md-card ng-show="vm.showFilters" class="my-md-filter-area cssSlideUp my-md-no-shadow" layout="column" style="background-color:#f5f5f5" >
+            <md-icon class="material-icons">{{vm.showFilterIcon}}</md-icon>
+        </md-button> 
+-->
+        <div flex layout="colum" layout-align="center center">
+            <md-button layout="column" class="my-md-btn-icon-below my-md-float-btn md-warn md-raised" style="max-width:15%" ng-click="vm.showHideFilters()">
+                <div flex>Filtros</div>
+                <div flex>
+                    <md-icon class="md-button-icon material-icons">{{vm.showFilterIcon}}</md-icon>
+                </div>
+            </md-button>
+        </div>
+        <md-card ng-show="vm.showFilters" class="my-md-filter-area cssSlideUp my-md-no-shadow" layout="column" style="background-color:#f5f5f5">
             <!--
             <md-card-title>
                 <div flex layout="column">
@@ -52,7 +62,7 @@
                     <md-card flex="25" ng-repeat="(key, val) in vm.filterData" layout="column">
 
                         <md-card-title>
-                            <h4 class='md-subhead my-md-capital'>{{key}}</h4>
+                            <h4 class='md-subhead my-md-capital'><b>{{key}}</b></h4>
                         </md-card-title>
                         <md-divider></md-divider>
                         <md-content layout="column" style="height:200px">
@@ -74,42 +84,51 @@
         </md-card>
 
 
-        <md-card flex layout="row" layout-align="end center">
-			<div flex>
-				<md-select ng-model="vm.itemPerPage">
-					<md-option ng-value="opt" ng-repeat="opt in vm.itemPerPageArr">{{opt}}</md-option>
-				</md-select>
-			</div>
-            <!--            <div flex layout="row" layout-align="end center">-->
-            <div><b>Página</b>:</div>
-            <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
-            </md-button>
-            <md-button ng-disabled="vm.disablePrevBtn" class="md-primary  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i>
-            </md-button>
-            <div ng-repeat="page in vm.pages">
-                <md-button ng-model="vm.currentPage" class="md-primary groupX middle" ng-click="vm.changePage(page)" ng-class="vm.isActive(page)">{{page}}</md-button>
+        <md-card class="my-md-no-margin" layout="row" layout-align="space-between center" layout-padding>
+            <div flex="10">
+                <md-input-container class="md-block">
+                    <label>Itens por página</label>
+                    <md-select ng-model="vm.itemPerPage">
+                        <md-option ng-value="opt" ng-repeat="opt in vm.itemPerPageArr">{{opt}}</md-option>
+                    </md-select>
+                </md-input-container>
             </div>
-            <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
-            </md-button>
-            <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()">Last</md-button>
+            <!--            <div flex layout="row" layout-align="end center">-->
+            <div flex="50">
+
+                <section class="navigate-group-btn" layout="row" layout-align="end center">
+                    <span layout="row" layout-margin><h4 class="md-subhead"><b>Página</b>:</h4></span>
+                    <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
+                    </md-button>
+                    <md-button ng-disabled="vm.disablePrevBtn" class="md-primary  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i>
+                    </md-button>
+                    <div ng-repeat="page in vm.pages">
+                        <md-button ng-model="vm.currentPage" class="md-primary groupX middle" ng-click="vm.changePage(page)" ng-class="vm.isActive(page)">{{page}}</md-button>
+                    </div>
+                    <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
+                    </md-button>
+                    <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()">Last</md-button>
+                </section>
+            </div>
             <!--            </div>-->
         </md-card>
+        <md-toolbar>
+            <md-card style="background-color:transparent">
+                <md-card-content>
+                    <md-list layout-gt-sm="row">
+                        <md-list-item flex ng-repeat="fixedCols in vm.prdFixedCols" flex-gt-sm="{{vm.columnsSizes[$index]}}">
+                            <span class="my-md-capital my-md-bold">{{fixedCols}}</span>
+                        </md-list-item>
+                        <md-list-item flex ng-repeat="caractName in vm.caract[0]" flex-gt-sm="{{vm.columnsSizes[1]}}">
+                            <span class="my-md-capital my-md-bold">{{caractName.nome}}</span>
+                        </md-list-item>
 
-        <md-card>
-            <md-card-content>
-                <md-list layout-gt-sm="row">
-                    <md-list-item flex ng-repeat="fixedCols in vm.prdFixedCols" flex-gt-sm="{{vm.columnsSizes[$index]}}">
-						<span class="my-md-capital my-md-bold">{{fixedCols}}</span>
-                    </md-list-item>
-                    <md-list-item flex ng-repeat="caractName in vm.caract[0]" flex-gt-sm="{{vm.columnsSizes[1]}}">
-						<span class="my-md-capital my-md-bold">{{caractName.nome}}</span>
-                    </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+        </md-toolbar>
 
-                </md-list>
-            </md-card-content>
-        </md-card>
-
-        <md-card ng-repeat="prd in vm.prdData | orderBy:vm.order|limitTo:vm.itemPerPage:vm.start|filter:search">
+        <md-card class="my-md-no-margin my-md-noround-border" ng-repeat="prd in vm.prdData | orderBy:vm.order|limitTo:vm.itemPerPage:vm.start|filter:search" ng-class="{even:$even, odd:$odd}">
             <md-card-content>
                 <md-list layout-gt-sm="row">
 
@@ -117,15 +136,15 @@
                         <img ng-src={{prd.imagens}}>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[1]}}">
-                       <md-button class="md-primary"> {{prd.ref_PM}}</md-button>
+                        <md-button class="md-primary">{{prd.ref_PM}}</md-button>
                     </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}">{{prd.ref_fabricante}}
+                    <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}"><span class="md-subhead">{{prd.ref_fabricante}}</span>
                     </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[3]}}">{{prd.descricao}}
+                    <md-list-item flex-gt-sm="{{vm.columnsSizes[3]}}"><span class="my-md-capital md-subhead"><b>{{prd.descricao}}</b></span>
                     </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}">{{prd.disponibilidade}}
+                    <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}"><span class="md-subhead">{{prd.disponibilidade}}</span>
                     </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[5]}}">{{prd.preco}}
+                    <md-list-item flex-gt-sm="{{vm.columnsSizes[5]}}"><span class="md-subhead">{{prd.preco}}</span>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[4]}}">
                         <md-input-container class="md-block">
@@ -137,12 +156,13 @@
                     </md-list-item>
 
                     <md-list-item ng-repeat="val in prd.caracteristicas" flex-gt-sm="{{vm.columnsSizes[5]}}">
-                        {{val.valor}}
+                        <span class="md-subhead">{{val.valor}}</span>
                     </md-list-item>
 
                 </md-list>
             </md-card-content>
         </md-card>
+        <md-divider></md-divider>
         <md-card flex layout="row" layout-align="end center">
             <!--            <div flex layout="row" layout-align="end center">-->
             <div><b>Página</b>:</div>
