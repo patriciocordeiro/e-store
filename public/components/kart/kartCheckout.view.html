@@ -5,10 +5,9 @@
                 <md-tab ng-disabled="vm.isNextTabEnable[0]" label="Endereço">
                     <md-content class="md-padding">
                         <md-toolbar class="md-toolbar-tools">Escolha um endereço de entrega</md-toolbar>
-                        <div layout="row">
+                        <div layout="column">
                             <div layout="row" flex="75" layout-wrap>
-
-                                <md-card flex="50" ng-repeat="shipAddress in vm.userData.endereco track by $index">
+                                <md-card flex-gt-md="25" ng-repeat="shipAddress in vm.userData.endereco track by $index">
                                     <md-card-content>
                                         <h2 class="md-title">{{shipAddress.destinatario}}</h2>
                                         <p>{{shipAddress.endereco}}, No. {{shipAddress.numero}}, {{shipAddress.complemento}}, {{shipAddress.bairro}},
@@ -24,13 +23,15 @@
 
                                 </md-card>
                             </div>
-                            <md-card flex="25">
-                                <md-card-content layout="column" layout-align="center center">
-                                    <h2 class="md-title">Cadastrar outro endereço</h2>
-                                    <md-button ng-click="vm.addNewAddressDialog($event)" class="md-raised md-primary">+</md-button>
-                                </md-card-content>
+                            <!--                            <md-card flex="25">-->
+                            <!--                                <md-card-content layout="column" layout-align="center center">-->
+                            <!--                                    <h2 class="md-title"></h2>-->
+                            <div layout="row" layout-margin flex="25" layout-align="center center">
+                                <md-button ng-click="vm.addNewAddressDialog($event)" class="md-raised md-primary">Cadastrar outro endereço +</md-button>
+                            </div>
+                            <!--                                </md-card-content>-->
 
-                            </md-card>
+                            <!--                            </md-card>-->
                         </div>
                     </md-content>
                 </md-tab>
@@ -55,6 +56,11 @@
                                             </md-card-title-text>
                                         </md-card-title>
                                         <md-card-content layout="column">
+                                            <h4 class="md-subhead">Produtos
+                                            <md-button ui-sref="app.minhaCesta" class="md-primary md-icon-button" style="border:2px solid #F5F5F5 ">
+                                                <md-icon class="material-icons md-18">edit</md-icon>
+                                            </md-button>
+											</h4>
                                             <md-list layout-padding>
                                                 <md-list-item flex>
                                                     <p>Item</p>

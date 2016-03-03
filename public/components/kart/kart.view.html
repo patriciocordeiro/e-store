@@ -42,25 +42,26 @@
 -->
     <div layout="column" flex-gt-sm="80">
         <div ng-show="!vm.isKartEmpty">
-            <md-card>
+            <md-card >
                 <md-card-actions layout="row" layout-padding layout-align="space-between center">
                     <md-button class="md-warn md-raised">Continuar Compras</md-button>
                     <md-button ui-sref="app.minhaCesta.checkout" ng-click="vm.finalizarCompra()" class="md-primary md-raised">Finalizar Compra</md-button>
                 </md-card-actions>
             </md-card>
+            <md-toolbar class="my-md-toolbar-header">
+                <md-card class="my-md-no-padding my-md-no-margin" style="background-color:transparent" hide-sm hide-xs>
+                    <md-card-content class="my-md-no-padding my-md-no-margin">
+                        <md-list layout-gt-sm="row">
+                            <md-list-item ng-repeat="fixedCols in vm.prdFixedCols" flex-gt-sm="{{vm.columnsSizes[$index]}}">
+                                <b>{{fixedCols}}</b>
+                            </md-list-item>
+                        </md-list>
+                    </md-card-content>
+                </md-card>
+            </md-toolbar>
 
-            <md-card hide-sm hide-xs style="background-color:#E0F2F1">
-                <md-card-content>
-                    <md-list layout-gt-sm="row">
-                        <md-list-item ng-repeat="fixedCols in vm.prdFixedCols" flex-gt-sm="{{vm.columnsSizes[$index]}}">
-                            <b>{{fixedCols}}</b>
-                        </md-list-item>
-                    </md-list>
-                </md-card-content>
-            </md-card>
 
-
-            <md-card class="kart-list" ng-repeat="prd in vm.kartData">
+            <md-card class="kart-list my-md-no-margin my-md-noround-border" ng-class="{even:$even, odd:$odd}" ng-repeat="prd in vm.kartData">
                 <md-card-content>
                     <md-list layout-gt-sm="row">
                         <md-list-item flex-gt-sm="{{vm.columnsSizes[0]}}">
@@ -71,7 +72,7 @@
                                 <md-list-item layout="row">
                                     <div flex><b>Ref do fabricante:</b>
                                     </div>
-									 <span flex></span>
+                                    <span flex></span>
                                     <div flex class="link-btn">
                                         <md-button href="#" class="my-md-link-btn md-primary">{{prd.ref_fabricante}}</md-button>
                                     </div>
@@ -79,7 +80,7 @@
                                 <md-list-item layout="row">
                                     <div flex><b>Ref da PM:</b>
                                     </div>
-									 <span flex></span>
+                                    <span flex></span>
                                     <div class="link-btn" flex>
                                         <md-button href="#" class="my-md-link-btn md-primary">{{prd.ref_PM}}</md-button>
                                     </div>
