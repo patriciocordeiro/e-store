@@ -1,18 +1,20 @@
 <div id="login" class="container">
 
     <!--    <div layout="row" layout-align="space-around center" layout-sm="column" layout-align-sm="space-around center">-->
-    <md-content layout-padding layout-gt-md="column" layout-align-sm="space-around center">
-        <md-toolbar class="md-toolbar-tools">Bem vindo, faça seu login ou cadastre-se</md-toolbar>
+    <md-content layout-padding layout-gt-md="column" layout-align="center center">
+<!--        <md-toolbar class="md-toolbar-tools">Bem vindo, faça seu login ou cadastre-se</md-toolbar>-->
+        
+        <h2 class="md-title">Faça o seu login para aproveitar as vantagens</h2>
 
-        <div layout="row" layou-margin layout-align="space-around start">
+        <div layout="column" layou-margin layout-align="center center">
 
-            <md-card flex-gt-md="50" layout-padding>
+            <md-card layout="column" flex-gt-md="50" layout-align="center center">
                 <md-card-title>
-                    <h4 class="md-title">Login</h4>
+<!--                    <h4 class="md-title">Login</h4>-->
                     <div style="color:red">{{vm.loginMsg}}</div>
-                    <div layout="row" layout-aling="center center">
+<!--                    <div layout="row" layout-aling="center center">-->
                         <md-icon class="material-icons md-72">account_circle</md-icon>
-                    </div>
+<!--                    </div>-->
                 </md-card-title>
                 <md-card-content>
                     <form name="vm.loginForm" ng-submit="vm.submitForm(vm.loginForm.$valid)" novalidate>
@@ -41,13 +43,14 @@
 -->
                             </div>
                         </md-input-container>
-                        <div layout="row" layout-align="space-between end">
-                            <md-checkbox>Permanecer conectado</md-checkbox>
-                            <md-button ui-sref="app.user.forgetPassword" class="md-primary">Esqueci mina senha</md-button>
-                        </div>
                         <div layout="row" layout-align="center center"> 
                             <md-button flex="100" class="md-raised md-primary" type="submit" ng-click="vm.loginLocal(vm.user, true)">Entrar</md-button>
                         </div>
+<!--                        <div layout="row" layout-align="space-between end">-->
+                            <md-checkbox>Permanecer conectado</md-checkbox>
+                            <md-button style="text-transform:lowercase" ui-sref="app.user.forgetPassword" class="md-primary">Esqueci mina senha</md-button>
+<!--                        </div>-->
+
                     </form>
                 </md-card-content>
             </md-card>

@@ -5,7 +5,7 @@
     </md-checkbox>
     <md-input-container style="width:25%">
         <label>Tipo de residência</label>
-        <md-select ng-model="vm.user.endereco.tipoEndereco" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
+        <md-select ng-model="vm.user.endereco[0].tipoEndereco" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
             <md-option value="Apartamento">Apartamento</md-option>
             <md-option value="Casa">Casa</md-option>
             <md-option value="Comercial">Comercial</md-option>
@@ -16,7 +16,7 @@
         <div layout layout-sm="column">
             <md-input-container style="width:70%">
                 <label>Nome do destinatário</label>
-                <input ng-model="vm.user.fullName" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
+                <input ng-model="vm.user.nome" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
             </md-input-container>
             <md-input-container flex>
                 <label>CEP</label>
@@ -26,31 +26,31 @@
         <div layout layout-sm="column">
             <md-input-container style="width:70%">
                 <label>Endereço</label>
-                <input ng-model="vm.user.endereco.endereco" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
+                <input ng-model="vm.user.endereco[0].endereco" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
             </md-input-container>
             <md-input-container flex>
                 <label>Número</label>
-                <input ng-model="vm.user.endereco.numero" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
+                <input ng-model="vm.user.endereco[0].numero" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
             </md-input-container>
         </div>
         <div layout layout-sm="column">
             <md-input-container flex>
                 <label>Complemento</label>
-                <input ng-model="vm.user.endereco.complemento" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
+                <input ng-model="vm.user.endereco[0].complemento" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
             </md-input-container>
             <md-input-container flex>
                 <label>Referência</label>
-                <input ng-model="vm.user.endereco.referencia" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
+                <input ng-model="vm.user.endereco[0].referencia" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
             </md-input-container>
         </div>
         <div layout layout-sm="column">
             <md-input-container flex>
                 <label>Bairro</label>
-                <input ng-model="vm.user.endereco.bairro" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
+                <input ng-model="vm.user.endereco[0].bairro" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
             </md-input-container>
             <md-input-container flex>
                 <label>Cidade</label>
-                <input ng-model="vm.user.endereco.cidade" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
+                <input ng-model="vm.user.endereco[0].cidade" ng-disabled="!vm.permicaoAlteracaoDados.enderecoEntrega">
             </md-input-container>
         </div>
         <div layout="column" layout-align="center center">
