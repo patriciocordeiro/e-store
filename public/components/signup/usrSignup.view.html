@@ -1,11 +1,11 @@
-<md-content layout="row" layout-align="center center" style="background-color:#FAFAFA">
-    <div layout="column" flex-gt-md="60" class="md-whiteframe-24dp">
-        <md-toolbar class="md-toolbar-tools md-whiteframe-8dp">Faça o seu cadastro</md-toolbar>
+<div layout="row" layout-align="center center">
+    <div layout="column" flex-gt-md="70">
+        <md-toolbar class="md-toolbar-tools md-whiteframe-8dp">Cadastro de usuário</md-toolbar>
         <form name="signupForm" novalidate>
             <md-card>
                 <md-card-title>
 
-                    <span class="md-title"><md-icon class="material-icons md-36">account_circle</md-icon>Dados pessoais</span>
+                    <span class="md-title"><md-icon class="material-icons md-36">person</md-icon>Dados pessoais</span>
                 </md-card-title>
                 <md-card-content>
                     <div layout-gt-md="row">
@@ -48,10 +48,12 @@
 
                     </div>
                 </md-card-content>
+				
+<md-divider></md-divider>
             </md-card>
             <md-card layout-padding>
                 <md-card-title>
-                    <span class="md-title">Dados de login</span>
+                    <span class="md-title"><md-icon class="material-icons md-36">input</md-icon>Dados de login</span>
                 </md-card-title>
                 <md-card-content>
                     <div layout-gt-md="row">
@@ -86,7 +88,7 @@
             </md-card>
             <md-card layout-padding>
                 <md-card-title>
-                    <span class="md-title"><md-icon class="material-icons md-36">home</md-icon>Endereço de entrega</span>
+                    <span class="md-title"><md-icon class="material-icons md-36">location_on</md-icon>Endereço de entrega</span>
                 </md-card-title>
                 <md-card-content>
                     <md-input-container class="md-block">
@@ -166,7 +168,7 @@
             </md-card>
             <md-card layout-padding>
                 <md-card-title>
-                    <span class="md-title">Contato</span>
+                    <span class="md-title"><md-icon class="material-icons md-36">phone</md-icon>Contato</span>
                 </md-card-title>
                 <md-card-content>
                     <div layout-gt-md="row">
@@ -188,10 +190,14 @@
                     </div>
                 </md-card-content>
             </md-card>
-            <div layout="row" flex-gt-md="50" layout-margin layout-align="center center">
-                <md-button layout="column" flex="50" type="submit" class="md-warn md-raised" ng-click=" vm.createUser(vm.newUser)">Cadastrar</md-button>
-            </div>
+            <md-card>
+                <md-card-actions layout="row" layout-align="center center">
+                    <div layout="row" flex="100" flex-lg="50"  >
+                        <md-button flex type="submit" class="md-primary md-raised" ng-click=" vm.createUser(vm.newUser)">Cadastrar</md-button>
+                    </div>
+                </md-card-actions>
+            </md-card>
             <md-divider></md-divider>
         </form>
     </div>
-</md-content>
+</div>

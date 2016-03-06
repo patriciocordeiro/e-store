@@ -66,6 +66,13 @@ text-transform: capitalize;
     z-index: 222 !important;
 }
 
+.my-md-lowercase{
+text-transform: lowercase !important;	
+}
+
+.my-md-displayInline{
+	display: inline !important;
+}
 
 //.my-md-full-heigth{
 ////	height: 100% !important;
@@ -172,9 +179,10 @@ z-index: 4;
 //.full-menu.ng-hide {
 //    height: 0;
 //}
-.my-md-menu-bar {} .submenu {
+.my-md-menu-bar {} 
+.submenu {
     //    background-color: white;
-    position: fixed;
+//    position: fixed;
     width: 100%;
     left: 0;
     right: 0;
@@ -261,7 +269,7 @@ md-menu-content {
     //    line-height:20px !important;
     color:#00695C !important;
     min-height:auto !important;
-    text-transform:capitalize !important;
+    text-transform:none !important;
     min-width:20px !important;
     font-size:12px !important;
 }

@@ -97,7 +97,7 @@
     <link rel="stylesheet" href="lib/angular-material-icon/material-icons.css" />
 
 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <!--head-->
 
@@ -132,49 +132,31 @@
 
     <my-bootstrap-nav-bar>
     </my-bootstrap-nav-bar>
-
-    <md-content>
-        <!--
-    <div class="row" style="margin-top:5%">
-        <div class="col-lg-6 col-lg-offset-3">
-            <div class="input-group">
-                <input type="text" placeholder="Entre com a sua busca ... " ng-model="vm.selected" typeahead="state for state in vm.states.marca[0].samsung | filter:$viewValue | limitTo:8" class="form-control">
-
-                <span class="input-group-btn">
-                        <a ui-sref="app.search" ng-click="vm.getSearchValue(vm.searchProducts.value)">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                </button>
-                </a>
-                </span>
-
-            </div>
-        </div>
-    </div>
--->
-        <!--    <product-category-nav-bar></product-category-nav-bar>-->
-        <!--         <div ncy-breadcrumb></div>-->
-        <div layout="column" class="breadcrumbs-area">
+    <div layout="row" layout-align="center center">
+        <div layout="column" flex="100" flex-lg="90" style="background-color:blue">
+            <!--            <div layout="row" class="breadcrumbs-area">-->
             <!--            <div >-->
-            <div layout="row" layout-align="center center">
-                <div flex="70">
-                    <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+            <div hide-xs layout="row" class="breadcrumbs-area" layout-align="center center">
+                <div flex>
+                    <ui-breadcrumbs flex displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
                 </div>
+                <!--                </div>-->
             </div>
-            <!--            </div>-->
-        </div>
+            <md-content layout="column"  style="background-color:#f5f5f5">
 
-        <ui-view></ui-view>
-        <!--    <div ui-view="content"></div>-->
-        <div ui-view="products"></div>
-        <div ui-view="dashboard"></div>
-        <div ui-view="productsDetail"></div>
-        <!--
+                <ui-view></ui-view>
+                <!--    <div ui-view="content"></div>-->
+                <div ui-view="products"></div>
+                <div ui-view="dashboard"></div>
+                <div ui-view="productsDetail"></div>
+                <!--
     <div ui-view="email"></div>
     <div ui-view="password"></div>
 -->
-        <!--    </div>-->
-    </md-content>
+                <!--    </div>-->
+            </md-content>
+        </div>
+    </div>
 </body>
 
 </html>
