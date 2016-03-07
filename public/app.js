@@ -277,7 +277,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         .state('app.user.dashboard', {
             url: "/dashboard",
-            authenticate: true,
+            authenticate: false,
             views: {
                 'products@': {
                     templateUrl: 'components/dashboard/dashboard.view.html',
