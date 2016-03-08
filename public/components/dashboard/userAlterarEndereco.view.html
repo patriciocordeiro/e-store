@@ -15,7 +15,7 @@
 </md-input-container>
 -->
 <!---->
-<form>
+<!--<form>-->
     <!--
     <div layout layout-sm="column">
         <md-input-container style="width:70%">
@@ -68,9 +68,9 @@
 -->
     <h4 class="md-title"><md-icon class="material-icons">place</md-icon>
 Endereços de entrega</h4>
-    <md-card flex-gt-md="50" ng-repeat="userAddress in vm.user.endereco track by $index">
-        <div ng-show="vm.userIsEditAddress[$index]">
-            <md-card-content>
+    <div flex-gt-md="50" ng-repeat="userAddress in vm.user.endereco track by $index">
+        <md-card class="userAddress" ng-show="vm.userIsEditAddress[$index]">
+            <md-card-content >
                 <h2 class="md-title my-md-capital">{{userAddress.destinatario}}
 				<span>
 					<md-button ng-click="vm.userEditAddress($index)" class="md-raised md-primary md-icon-button">
@@ -89,9 +89,9 @@ Endereços de entrega</h4>
                     <md-icon class="material-icons">delete</md-icon>
                 </md-button>
             </md-card-actions>
-        </div>
+        </md-card>
 
-        <!--        <md-card>-->
+                <md-card>
         <md-card-content class="dashboard-edit" ng-show="!vm.userIsEditAddress[$index]">
             <form name="udpateAddressForm" ng-submit=" udpateAddressForm.$valid && vm.userUpdateAddress(vm.user)" novalidate>
                 <!--                    <md-card layout-padding>-->
@@ -178,17 +178,17 @@ Endereços de entrega</h4>
                 <!--            </md-card-content>-->
                 <!--        </md-card>-->
                 <div layout-gt-md="row" flex-gt-md="50" layout-align="center center">
-                    <md-button type="submit" class="md-primary md-raised" >Salvar</md-button>
+                    <md-button ng-click="vm.userUpdateAddress()" type="submit" class="md-primary md-raised" >Salvar</md-button>
                     Ou
                     <md-button  class="md-primary">Cancelar</md-button>
                 </div>
                 <md-divider></md-divider>
             </form>
         </md-card-content>
-        <!--        </md-card>-->
-    </md-card>
+                </md-card>
+    </div>
 
 
 
-</form>
+<!--</form>-->
 <!--</div>-->

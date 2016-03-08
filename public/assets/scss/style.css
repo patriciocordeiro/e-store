@@ -1,95 +1,100 @@
-/* line 4, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 4, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-menu-top {
   min-height: 100% !important;
   height: 40px !important; }
-  /* line 7, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 7, D:/myApps/e-store/public/assets/scss/style.scss */
   .my-md-menu-top .md-button {
     height: 100% !important;
     border-radius: 0px;
     line-height: auto !important; }
 
-/* line 22, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 22, D:/myApps/e-store/public/assets/scss/style.scss */
 .dashboard-edit {
-  transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  top: 64px;
-  overflow: hidden;
-  z-index: 10; }
+  transition: bottom 0.3s linear;
+  position: relative;
+  bottom: 0px; }
 
-/* line 34, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 32, D:/myApps/e-store/public/assets/scss/style.scss */
 .dashboard-edit.ng-hide {
+  bottom: -544px; }
+
+/* line 36, D:/myApps/e-store/public/assets/scss/style.scss */
+.userAddress {
+  transition: top 0.4s linear;
+  position: relative;
+  top: 0px; }
+
+/* line 42, D:/myApps/e-store/public/assets/scss/style.scss */
+.userAddress.ng-hide {
   top: -544px; }
 
-/* line 39, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 47, D:/myApps/e-store/public/assets/scss/style.scss */
 .even {
   background-color: white; }
 
-/* line 42, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 50, D:/myApps/e-store/public/assets/scss/style.scss */
 .odd {
   background-color: aliceblue; }
 
-/* line 46, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 54, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-no-margin {
   margin: 0 !important; }
 
-/* line 50, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 58, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-no-padding {
   padding: 0px; }
 
-/* line 53, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 61, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-noround-border {
   border-radius: 0 !important; }
 
-/* line 57, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 65, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-btn-icon-below {
   line-height: inherit !important; }
 
-/* line 60, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 68, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-float-btn {
   position: absolute !important; }
 
-/* line 65, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 73, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-toolbar-header {
   font-size: 14px !important; }
 
-/* line 69, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 77, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-capital {
   text-transform: capitalize; }
 
-/* line 73, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 81, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-no-shadow {
   box-shadow: none; }
 
-/* line 76, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 84, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-notextTransform {
   text-transform: none !important; }
 
-/* line 81, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 89, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-bold {
   font-weight: bold !important; }
 
-/* line 85, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 93, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-top-nav-bar {
   z-index: 222 !important; }
 
-/* line 89, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 97, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-lowercase {
   text-transform: lowercase !important; }
 
-/* line 93, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 101, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-displayInline {
   display: inline !important; }
 
-/* line 104, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 112, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-list-item.active-menu {
   background-color: rgba(0, 128, 128, 0.21);
   transition: border-width 0.3s linear;
   border-width: 100%;
   border-bottom: solid 6px teal; }
-  /* line 105, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 113, D:/myApps/e-store/public/assets/scss/style.scss */
   .my-md-list-item.active-menu:after {
     content: '';
     display: block;
@@ -97,17 +102,17 @@
     width: 0;
     background: transparent; }
 
-/* line 126, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 134, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-icon-fit {
   padding: 0 !important;
   margin: 0 !important; }
 
-/* line 139, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 147, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-list-item img {
   max-width: 100%;
   align-content: center; }
 
-/* line 143, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 151, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-list-item p {
   text-align: center !important;
   font-size: 14px;
@@ -115,16 +120,16 @@
   margin-bottom: 0;
   color: #dde3e8; }
 
-/* line 157, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 165, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-list-item .md-list-item-inner {
   height: 25px !important; }
 
-/* line 162, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 170, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-nav-bar-menu {
   z-index: 4; }
 
 /*Customize the menu bar to fit toolbar hight*/
-/* line 169, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 177, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-rotate-90 {
   -ms-transform: rotate(90deg);
   /* IE 9 */
@@ -132,7 +137,7 @@
   /* Chrome, Safari, Opera */
   transform: rotate(90deg); }
 
-/* line 176, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 184, D:/myApps/e-store/public/assets/scss/style.scss */
 .cssSlideUp {
   transition: .5s linear all;
   height: 300px;
@@ -140,11 +145,11 @@
   display: block;
   margin-top: 0; }
 
-/* line 185, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 193, D:/myApps/e-store/public/assets/scss/style.scss */
 .cssSlideUp.ng-hide {
   height: 0; }
 
-/* line 188, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 196, D:/myApps/e-store/public/assets/scss/style.scss */
 .full-menu {
   position: absolute;
   background-color: white;
@@ -155,34 +160,34 @@
   overflow: hidden;
   transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s; }
 
-/* line 198, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 206, D:/myApps/e-store/public/assets/scss/style.scss */
 .full-menu.ng-hide {
   top: -560px; }
 
-/* line 205, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 213, D:/myApps/e-store/public/assets/scss/style.scss */
 .submenu {
   width: 100%;
   left: 0;
   right: 0;
   /* For Safari 3.1 to 6.0 */ }
 
-/* line 223, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 231, D:/myApps/e-store/public/assets/scss/style.scss */
 md-menu-bar {
   background-color: blueviolet !important; }
-  /* line 235, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 243, D:/myApps/e-store/public/assets/scss/style.scss */
   md-menu-bar button {
     height: 100% !important;
     width: !important; }
 
-/* line 240, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 248, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-menu-item {
   z-index: 3; }
 
-/* line 243, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 251, D:/myApps/e-store/public/assets/scss/style.scss */
 md-menu-content {
   max-height: 100% !important; }
 
-/* line 246, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 254, D:/myApps/e-store/public/assets/scss/style.scss */
 .md-open-menu-container {
   position: fixed;
   left: 0% !important;
@@ -192,40 +197,40 @@ md-menu-content {
   opacity: 0;
   border-radius: 2px; }
 
-/* line 255, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 263, D:/myApps/e-store/public/assets/scss/style.scss */
 .breadcrumbs-area {
   background-color: #f5f5f5 !important; }
-  /* line 257, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 265, D:/myApps/e-store/public/assets/scss/style.scss */
   .breadcrumbs-area .breadcrumb {
     margin-bottom: 0px;
     font-size: 12px;
     background-color: transparent; }
 
-/* line 264, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 272, D:/myApps/e-store/public/assets/scss/style.scss */
 .material-icons.md-18 {
   font-size: 18px; }
 
-/* line 267, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 275, D:/myApps/e-store/public/assets/scss/style.scss */
 .material-icons.md-24 {
   font-size: 24px; }
 
-/* line 270, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 278, D:/myApps/e-store/public/assets/scss/style.scss */
 .material-icons.md-36 {
   font-size: 36px; }
 
-/* line 273, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 281, D:/myApps/e-store/public/assets/scss/style.scss */
 .material-icons.md-48 {
   font-size: 48px; }
 
-/* line 276, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 284, D:/myApps/e-store/public/assets/scss/style.scss */
 .material-icons.md-60 {
   font-size: 60px; }
 
-/* line 279, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 287, D:/myApps/e-store/public/assets/scss/style.scss */
 .material-icons.md-72 {
   font-size: 72px; }
 
-/* line 282, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 290, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-link-btn {
   margin: 0 !important;
   color: #00695C !important;
@@ -233,12 +238,12 @@ md-menu-content {
   text-transform: none !important;
   min-width: 20px !important;
   font-size: 12px !important; }
-  /* line 285, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 293, D:/myApps/e-store/public/assets/scss/style.scss */
   .my-md-link-btn:hover {
     text-decoration: underline !important;
     background-color: inherit !important; }
 
-/* line 298, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 306, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-icon-btn {
   padding: 0px !important;
   line-height: inherit !important;
@@ -247,7 +252,7 @@ md-menu-content {
   height: 24px !important;
   width: 24px !important; }
 
-/* line 306, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 314, D:/myApps/e-store/public/assets/scss/style.scss */
 .groupX {
   font-size: 16px;
   margin: 20px 0 !important;
@@ -257,28 +262,28 @@ md-menu-content {
   min-height: 28px !important;
   line-height: 10px !important; }
 
-/* line 318, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 326, D:/myApps/e-store/public/assets/scss/style.scss */
 .md-button.left {
   border-radius: 10px 0 0 10px;
   border: 1px solid rgba(230, 230, 230, 0.96); }
 
-/* line 322, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 330, D:/myApps/e-store/public/assets/scss/style.scss */
 .md-button.middle {
   border-radius: 0;
   border: 1px solid rgba(230, 230, 230, 0.96); }
 
-/* line 328, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 336, D:/myApps/e-store/public/assets/scss/style.scss */
 .md-button.right {
   border-radius: 0 10px 10px 0;
   border: 1px solid rgba(230, 230, 230, 0.96); }
 
-/* line 332, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 340, D:/myApps/e-store/public/assets/scss/style.scss */
 .md-button:not([disabled]):hover {
   background-color: rgba(193, 193, 193, 0.96);
   color: rgba(44, 65, 164, 0.96);
   transition: 0.3s; }
 
-/* line 337, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 345, D:/myApps/e-store/public/assets/scss/style.scss */
 .menu-button {
   min-height: 64px !important;
   border: none !important;
@@ -287,99 +292,99 @@ md-menu-content {
   padding: 0px 16px !important;
   margin: 0px !important; }
 
-/* line 345, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 353, D:/myApps/e-store/public/assets/scss/style.scss */
 .animate-show {
   line-height: 20px;
   opacity: 1;
   padding: 10px;
   background: white; }
 
-/* line 352, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 360, D:/myApps/e-store/public/assets/scss/style.scss */
 .animate-show.ng-hide-add,
 .animate-show.ng-hide-remove {
   transition: all linear 0.5s; }
 
-/* line 355, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 363, D:/myApps/e-store/public/assets/scss/style.scss */
 .animate-show.ng-hide {
   line-height: 0;
   opacity: 0;
   padding: 0 10px; }
 
-/* line 361, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 369, D:/myApps/e-store/public/assets/scss/style.scss */
 .subsect-menu .md-media-md {
   text-align: center;
   min-height: 150px !important; }
 
-/* line 368, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 376, D:/myApps/e-store/public/assets/scss/style.scss */
 .prd-list-table {
   tr: nth-child(odd);
     tr-background-color: #f1f1f1;
   text-align: center; }
-  /* line 373, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 381, D:/myApps/e-store/public/assets/scss/style.scss */
   .prd-list-table tr {
     height: 50px;
     max-height: 300px;
     min-height: 100px;
     text-align: center; }
-  /* line 379, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 387, D:/myApps/e-store/public/assets/scss/style.scss */
   .prd-list-table .my-md-ordering-btn {
     height: auto !important;
     background-color: aliceblue !important;
     text-align: center; }
-  /* line 385, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 393, D:/myApps/e-store/public/assets/scss/style.scss */
   .prd-list-table thead th {
     text-align: center !important;
     padding: 1%; }
-  /* line 389, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 397, D:/myApps/e-store/public/assets/scss/style.scss */
   .prd-list-table thead tr {
     height: 5px !important;
     background-color: white !important; }
 
 /*Product detail*/
-/* line 398, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 406, D:/myApps/e-store/public/assets/scss/style.scss */
 #main-product-detail-box md-list-item, #main-product-detail-box md-list-item .md-list-item-inner {
   min-height: 48px !important; }
 
 /*-----------------------------------------------------*/
 /*Cart*/
-/* line 406, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 414, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-cart-table {
   td: nth-child(2);
     td-width: 60%;
     td-text-align: left; }
 
-/* line 412, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 420, D:/myApps/e-store/public/assets/scss/style.scss */
 md-toast .md-toast-content {
   height: 100% !important;
   max-height: 100% !important; }
 
-/* line 417, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 425, D:/myApps/e-store/public/assets/scss/style.scss */
 .my-md-filter-area {
   margin-top: 3% !important; }
 
-/* line 425, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 433, D:/myApps/e-store/public/assets/scss/style.scss */
 .prd-filter-list md-card md-card-content {
   display: block; }
 
-/* line 429, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 437, D:/myApps/e-store/public/assets/scss/style.scss */
 .prd-filter-list md-card-title {
   padding: 0px 14px; }
 
-/* line 432, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 440, D:/myApps/e-store/public/assets/scss/style.scss */
 .prd-filter-list md-list-item, .prd-filter-list md-list-item .md-list-item-inner {
   min-height: 0px !important; }
-  /* line 434, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 442, D:/myApps/e-store/public/assets/scss/style.scss */
   .prd-filter-list md-list-item md-checkbox, .prd-filter-list md-list-item .md-list-item-inner md-checkbox {
     margin-right: 6px !important; }
 
-/* line 443, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 451, D:/myApps/e-store/public/assets/scss/style.scss */
 .link-btn {
   width: 100%; }
-  /* line 445, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+  /* line 453, D:/myApps/e-store/public/assets/scss/style.scss */
   .link-btn a {
     padding: 0px !important; }
 
-/* line 451, C:/Users/Patricio/Documents/myApps/e-store/public/assets/scss/style.scss */
+/* line 459, D:/myApps/e-store/public/assets/scss/style.scss */
 .prd-info-list md-list-item {
   padding: 0px !important; }
 
