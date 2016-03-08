@@ -20,24 +20,15 @@
             vm.show[index] = true;
             console.log(vm.show);
         }
-
-        vm.userChangeName = function(userNewName) {
-			console.log(userNewName);
-            vm.show = false;
-			console.log(vm.show);
-        }
-
-        vm.userChangePass = function(userNewPass) {
-			console.log(userNewPass);
-        }
 		
-		vm.userChangeCellPhone = function(userNewCellPhone){
-			console.log(userNewCellPhone);
+		vm.userEditAddress = function(index){
+			console.log(userAddress);
 		}
-		vm.userChangePhone = function(userNewPhone){
-			console.log(userNewPhone);
+		vm.userUpdateAddress = function(userAddress){
+			console.log(userAddress);
 		}
 
+console.log(vm.user.endereco[0]);
     };
 
 })();
