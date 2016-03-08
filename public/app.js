@@ -61,7 +61,8 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         /*Angular theme configuration*/
         $mdThemingProvider.theme('default')
-            .primaryPalette('teal')
+//            .primaryPalette('teal')
+            .primaryPalette('indigo')
             .accentPalette('deep-orange')
         //            .backgroundPalette('white', {
         //                'default': '50'
