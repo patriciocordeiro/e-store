@@ -41,11 +41,12 @@
             });
         }
         vm.userUpdateAddress = function(userAddress) {
+            console.log(userAddress);
+
             generalSrvc.openAll(nAddress).then(function(data) {
                 vm.userIsEditAddress = data;
                 console.log(vm.userIsEditAddress);
             });
-            console.log(userAddress);
         }
 
         console.log(vm.user.endereco[0]);

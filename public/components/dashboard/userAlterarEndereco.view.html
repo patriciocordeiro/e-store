@@ -92,34 +92,34 @@ Endereços de entrega</h4>
         </div>
 
         <!--        <md-card>-->
-        <md-card-content ng-show="!vm.userIsEditAddress[$index]">
-            <form name="addNewAddressForm" novalidate>
+        <md-card-content class="dashboard-edit" ng-show="!vm.userIsEditAddress[$index]">
+            <form name="udpateAddressForm" ng-submit=" udpateAddressForm.$valid && vm.userUpdateAddress(vm.user)" novalidate>
                 <!--                    <md-card layout-padding>-->
                 <!--                        <md-card-content>-->
                 <div layout-gt-md="column">
                     <md-input-container class="md-block">
                         <label>Nome do destinatário</label>
-                        <input name="destinatario" ng-model="vm.user.endereco[$index].destinatario" type="text" required>
-                        <div ng-messages="addNewAddressForm.destinatario.$error">
+                        <input name="destinatario" ng-model="vm.user.endereco[$index].destinatario" name="destinatario" type="text" required>
+                        <div ng-messages="udpateAddressForm.destinatario.$error">
                             <div ng-message="required">Entre com o nome do destinatário</div>
                         </div>
                     </md-input-container>
                     <md-input-container>
                         <label>Tipo de endereco</label>
-                        <md-select name="tipoEndereco" ng-model="vm.user.endereco[$index].tipoEndereco" required>
+                        <md-select name="tipoEndereco" ng-model="vm.user.endereco[$index].tipoEndereco" name="tipoEndereco" required>
                             <md-option value="Apartamento">Apartamento</md-option>
                             <md-option value="Casa">Casa</md-option>
                             <md-option value="Comercial">Comercial</md-option>
                             <md-option value="Outro">Outro</md-option>
                         </md-select>
-                        <div ng-messages="addNewAddressForm.tipoEndereco.$error">
+                        <div ng-messages="udpateAddressForm.tipoEndereco.$error">
                             <div ng-message="required">Escolha o tipo de endereço</div>
                         </div>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>CEP</label>
                         <input name="cep" ng-model="vm.user.endereco[$index].cep" ui-mask="99999-999" type="text" required>
-                        <div ng-messages="addNewAddressForm.cep.$error">
+                        <div ng-messages="udpateAddressForm.cep.$error">
                             <div ng-message="required">Entre com o seu CEP</div>
                         </div>
                     </md-input-container>
@@ -127,14 +127,14 @@ Endereços de entrega</h4>
                         <md-input-container class="md-block">
                             <label>Endereço</label>
                             <input type="text" name="endereco" ng-model="vm.user.endereco[$index].endereco" required>
-                            <div ng-messages="addNewAddressForm.endereco.$error">
+                            <div ng-messages="udpateAddressForm.endereco.$error">
                                 <div ng-message="required">Entre com o seu endereço</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Número</label>
                             <input type="text" name="numero" ng-model="vm.user.endereco[$index].numero" required>
-                            <div ng-messages="addNewAddressForm.numero.$error">
+                            <div ng-messages="udpateAddressForm.numero.$error">
                                 <div ng-message="required">Entre com o número</div>
                             </div>
                         </md-input-container>
@@ -150,21 +150,21 @@ Endereços de entrega</h4>
                     <md-input-container class="md-block">
                         <label>Bairro</label>
                         <input name="bairro" ng-model="vm.user.endereco[$index].bairro" type="text" required>
-                        <div ng-messages="addNewAddressForm.bairro.$error">
+                        <div ng-messages="udpateAddressForm.bairro.$error">
                             <div ng-message="required">Entre com o bairro</div>
                         </div>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Cidade</label>
                         <input name="cidade" ng-model="vm.user.endereco[$index].cidade" type="text" required>
-                        <div ng-messages="addNewAddressForm.cidade.$error">
+                        <div ng-messages="udpateAddressForm.cidade.$error">
                             <div ng-message="required">Entre com a cidade</div>
                         </div>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Estado</label>
                         <input name="estado" ng-model="vm.user.endereco[$index].estado" type="text" required>
-                        <div ng-messages="addNewAddressForm.estado.$error">
+                        <div ng-messages="udpateAddressForm.estado.$error">
                             <div ng-message="required">Escolha o estado</div>
                         </div>
                     </md-input-container>
@@ -178,9 +178,9 @@ Endereços de entrega</h4>
                 <!--            </md-card-content>-->
                 <!--        </md-card>-->
                 <div layout-gt-md="row" flex-gt-md="50" layout-align="center center">
-                    <md-button type="submit" class="md-primary md-raised" ng-click=" vm.addNewAddress(vm.newAddress)">Salvar</md-button>
+                    <md-button type="submit" class="md-primary md-raised" >Salvar</md-button>
                     Ou
-                    <md-button type="submit" ng-submit="vm.addNewAddress(addNewAddressForm.$valid)" class="md-primary" ng-click=" vm.userUpdateAddress()">Cancelar</md-button>
+                    <md-button  class="md-primary">Cancelar</md-button>
                 </div>
                 <md-divider></md-divider>
             </form>

@@ -18,6 +18,22 @@ $indigo:#3F51B5;
      //   }
 
 }
+
+.dashboard-edit{
+  transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
+  position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top:64px;
+    overflow: hidden;
+    z-index: 10;
+ 
+}
+
+.dashboard-edit.ng-hide{
+    top:-544px;
+}
 //=====================================================
 //rules bellow are for my list tables with md-card
 .even{
@@ -174,7 +190,7 @@ z-index: 4;
     background-color: white;
     left: 0;
     right: 0;
-    z-index: -10;
+    z-index: 10;
     top: 64px;
     overflow: hidden;
     transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
