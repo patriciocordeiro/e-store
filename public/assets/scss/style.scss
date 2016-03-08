@@ -57,6 +57,10 @@ text-transform: capitalize;
 .my-md-no-shadow{
 	box-shadow:none;
 }
+.my-md-notextTransform{
+   text-transform:none !important;
+  
+}
 
 .my-md-bold{
 	font-weight: bold !important;
@@ -73,6 +77,8 @@ text-transform: lowercase !important;
 .my-md-displayInline{
 	display: inline !important;
 }
+
+
 
 //.my-md-full-heigth{
 ////	height: 100% !important;

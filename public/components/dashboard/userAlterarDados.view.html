@@ -163,7 +163,7 @@
                                 </md-input-container>
                             </p>
                         </md-list-item>
-                        <md-button ng-click="vm.userUpdate(vm.user)">Alterar</md-button>
+                        <md-button ng-click="vm.userUpdateData (vm.user)">Alterar</md-button>
                     </md-card-content>
                 </md-card>
             </md-list-item>
@@ -185,7 +185,7 @@
                     <md-card-content>
                         <p>Use o formulário abaixo para alterar o seu email. Use o novo email na próxima vez que acessar a nossa página.
                         </p>
-                        <h5 class="md-subhead"><b>Email antigo:</b></h5>
+                        <h5 class="md-subhead"><b>Email atual:</b></h5>
                         <h6 class="md-subheader">{{vm.user.email}}</h6>
                         <h6 class="md-subheader">paponcio6@gmail.com</h6>
 
@@ -224,7 +224,7 @@
 -->
                             </div>
                         </md-input-container>
-                        <md-button class="md-raised md-warn" ng-click="vm.userUpdate(vm.user)">Confirmar Alteração</md-button>
+                        <md-button class="md-raised md-warn" ng-click="vm.(vm.user)">Confirmar Alteração</md-button>
                     </md-card-content>
                 </md-card>
             </md-list-item>
@@ -264,18 +264,18 @@
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block">
-                            <label>Repetir Senha</label>
+                            <label>Repetir nova senha</label>
                             <input type="password" name="repSenha" ng-model="vm.newUser.confirmPassword" minlength="6" maxlength="8" match="vm.newUser.password" required>
                             <div ng-messages="signupForm.repSenha.$error">
                                 <div ng-message="match">As senhas não conferem.</div>
                             </div>
                         </md-input-container>
-                        <md-button class="md-raised md-warn" ng-click="vm.userUpdate(vm.user)">Confirmar Alteração</md-button>
+                        <md-button class="md-raised md-warn" ng-click="vm. vm. vm. vm.userUpdateData(vm.user)">Confirmar Alteração</md-button>
                     </md-card-content>
                 </md-card>
             </md-list-item>
             <md-list-item>
-                <p><b>Tel. Celular</b>
+                <p><b>Tel. celular</b>
                 </p>
                 <p class="md-subheader"><b>981004212</b>
                 </p>
@@ -285,27 +285,40 @@
             </md-list-item>
             <md-list-item ng-show="vm.show[3]">
                 <md-card flex>
+                    <md-card-title>
+                        <h4 class="md-title">Alterar telefones de contato</h4>
+                    </md-card-title>
                     <md-card-content>
-                        Hello
-                        <md-button ng-click="vm.userUpdate(vm.user)">Confirmar</md-button>
+                        <p>Use o formulário abaixo para alterar o seu telefone de contato.
+                        </p>
+                        <h5 class="md-subhead"><b>Telefone atual:</b></h5>
+                        <h6 class="md-subheader"><b>{{vm.user.celular}}</b></h6>
+                        <h6 class="md-subheader"><b>981004212</b></h6>
+                        <md-input-container flex class="md-icon-float md-block">
+                            <label>Novo telefone celular</label>
+                            <input name="celular" ng-model="vm.user.celular" ui-mask="(99) 9999-9999" type="text" required>
+                            <div ng-messages="signupForm.celular.$error">
+                                <div ng-message="required">Campo obrigatório</div>
+                            </div>
+                        </md-input-container>
+                        <md-button class="md-raised md-warn" ng-click="vm. vm. vm. vm.userUpdateData(vm.user)">Confirmar Alteração</md-button>
                     </md-card-content>
                 </md-card>
             </md-list-item>
             <md-list-item>
-                <p><b>Tel. Residencial</b>
+                <p><b>Tel. residencial</b>
                 </p>
                 <p class="md-subheader"><b>932017674</b>
                 </p>
                 <p>
-                    <md-button ng-click="vm.userEdit(4)">Editar</md-button>
+                    <md-button class="my-md-notextTransform" ng-click="vm.userEdit(3)" class="md-icon-button md-primary" style="border:2px solid #F5F5F5 ">
+                        <md-icon class="material-icons md-18">edit</md-icon>
+                    </md-button>
                 </p>
             </md-list-item>
             <md-list-item ng-show="vm.show[4]">
                 <md-card flex>
-                    <md-card-content>
-                        Hello
-                        <md-button ng-click="vm.userUpdate(vm.user)">Confirmar</md-button>
-                    </md-card-content>
+
                 </md-card>
             </md-list-item>
         </md-list>
