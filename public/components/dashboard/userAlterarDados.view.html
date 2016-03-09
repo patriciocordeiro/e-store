@@ -121,6 +121,21 @@
 -->
 <md-card flex>
     <md-card-content>
+        <md-card>
+            <md-card-content>
+                <md-list>
+                    <md-list-item ng-show="!vm.show[0]">
+                        <p><b>Nome</b>
+                        </p>
+                        <p class="md-subheader"><b>Patricio Cordeiro</b>
+                        </p>
+                        <p>
+                            <md-button ng-click="vm.userEdit(0)">Editar</md-button>
+                        </p>
+                    </md-list-item>
+                </md-list>
+            </md-card-content>
+        </md-card>
         <md-list>
             <md-list-item ng-show="!vm.show[0]">
                 <p><b>Nome</b>

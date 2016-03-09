@@ -32,7 +32,7 @@
         vm.userEditAddress = function(index) {
             console.log(index);
             //first close all edit area
-            vm.userIsEditAddress = generalSrvc.closeAll(nAddress).then(function(data) {
+            vm.userIsEditAddress = generalSrvc.openAll(nAddress).then(function(data) {
                 //close all
                 vm.userIsEditAddress = data;
                 //open the clicked address edit area

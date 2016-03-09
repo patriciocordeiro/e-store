@@ -20,18 +20,26 @@ $indigo:#3F51B5;
 }
 
 .dashboard-edit{
-  transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
-  position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top:64px;
-    overflow: hidden;
-    z-index: 10;
- 
+  transition: bottom 0.3s linear;
+  position: relative;
+//    left: 0px;
+//    right: 0px;
+//    bottom: 0px;
+    bottom:0px;
+//    overflow: hidden;
+//    z-index: 10;
+}
+.dashboard-edit.ng-hide{
+    bottom:-544px;
 }
 
-.dashboard-edit.ng-hide{
+.userAddress{
+     transition: top 0.3s linear;
+      position: relative;
+    top:0px;
+}
+
+.userAddress.ng-hide{
     top:-544px;
 }
 //=====================================================
