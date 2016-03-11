@@ -302,7 +302,7 @@
             },
             updateDialog: function(msg) {
                 var alert = $mdDialog.alert()
-                    .title('Olá, ' + _this.usr.login.loggedUserName)
+                    .title('Olá, ' + _this.usr.login.data.local.nome)
                     .content(msg)
                     .ok('Ok');
                 $mdDialog
