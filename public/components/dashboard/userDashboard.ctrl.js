@@ -13,16 +13,48 @@
             userSrcv.usr.update(userData);
         }
 
+        //---------user general settings update--------------------------- 
+        var nSettings = 5; // number of settings
+        generalSrvc.closeAll(nSettings).then(function(data) {
+            vm.userIsEditSettings = data; //set all to false
+            console.log(vm.userIsEditAddress);
+        });
 
-        vm.show = [false, false, false, false, false];
-        console.log(vm.show);
-        vm.userEdit = function(index) {
-            vm.show = [false, false, false, false, false];
-            vm.show[index] = true;
-            console.log(vm.show);
+        vm.userEditSettings = function(index) {
+            //first close all edit area
+            generalSrvc.closeAll(nSettings).then(function(data) {
+                //close all
+                vm.userIsEditSettings = data;
+                //open the clicked address edit area
+                vm.userIsEditSettings[index] = true;
+                console.log(vm.userIsEditSettings);
+            });
         }
 
-        //Address update handle
+        vm.userUpdateSettings = function(user) {
+			console.log(user);
+            if (user == 'cancell')
+            //close all 
+                generalSrvc.closeAll(nSettings).then(function(data) {
+                    //close all
+                    vm.userIsEditSettings = data;
+                    console.log(vm.userIsEditSettings);
+                });
+            else {
+                //update user settings
+            }
+        }
+        vm.userEditSettingsCancell = function() {
+            generalSrvc.closeAll(nAddress).then(function(data) {
+                //close all
+                vm.userIsEditAddress = data;
+                console.log(vm.userIsEditAddress);
+            });
+        }
+
+        //---------------------------------------------------------------
+
+        //Address update handle------------------------------------------
         var nAddress = vm.user.endereco.length; // number of addresses
         generalSrvc.openAll(nAddress).then(function(data) {
             vm.userIsEditAddress = data;
@@ -32,7 +64,7 @@
         vm.userEditAddress = function(index) {
             console.log(index);
             //first close all edit area
-            vm.userIsEditAddress = generalSrvc.openAll(nAddress).then(function(data) {
+            generalSrvc.openAll(nAddress).then(function(data) {
                 //close all
                 vm.userIsEditAddress = data;
                 //open the clicked address edit area
@@ -48,8 +80,9 @@
                 console.log(vm.userIsEditAddress);
             });
         }
+        //-----------------------------------------------------------------------------
 
-        console.log(vm.user.endereco[0]);
+
     };
 
 })();
