@@ -47,35 +47,68 @@ exports.updateUserEndereco = function(req, res, next) {
 };
 
 exports.updateDadosCadastrais = function(req, res, next) {
-    console.log('chegou do cliente')
+    console.log('chegou do cliente', req.body)
     // asynchronous
     // User.findOne wont fire unless data is sent back
-    var query = req.body
-    User.update({
+    var query = req.body.data
+    console.log(query);
+    User.findOne({
         'local.email': req.body.email
-    }, {
-        $set: {
-            'local': query
-        }
     }, function(err, user) {
-        if (err) {
-            console.log(err)
-            res.json({
-                status: 'fail'
-            });
-            //            return done(err)
-
+        console.log('usuário', user)
+        if (!user) {
+            console.log(user)
+            //            res.json({status: 'fail'});
+            //return done(err)
         } else {
-            console.log('Dados atualizados com sucesso', user)
-            res.json({
-                status: user
-            });
-            //            return done(null, user);
-        }
+            //if the user is found but the password is wrong
+            if (!user.validPassword(req.body.password)) {
+                //            if (user.password != password) {
+                console.log('invalid password')
+                res.json({
+                    status: 'wrong password'
+                });
+            } else {
+                User.update({
+                    'local.email': req.body.email
+                }, {
+                    $set: query
+                }, function(err, user) {
+                    console.log('TUDO CERTO');
+                    res.json({status: user});
+                    //            return done(null, user);	 
+                });
+            }
 
+        }
     });
 };
 
+//exports.updateDadosCadastrais = function(req, res, next) {
+//    console.log('chegou do cliente')
+//    // asynchronous
+//    // User.findOne wont fire unless data is sent back
+//    var query = req.body
+//    User.update({'local.email': req.body.email}, {$set: {'local': query}}, function(err, user) {
+//        if (err) {
+//            console.log(err)
+//            res.json({status: 'fail'});
+//            //return done(err)
+//        } else {
+//			//if the user is found but the password is wrong
+//            if (!user.validPassword(password)) {
+//                //            if (user.password != password) {
+//                console.log('invalid password')
+//               res.json({status: 'wrong password'});
+//            }
+//            console.log('Dados atualizados com sucesso', user)
+//            res.json({
+//                status: user
+//            });
+//            //            return done(null, user);
+//        }
+//    });
+//};
 exports.adicionaPedido = function(req, res, next) {
     var pedido = {
         'data': req.body.data,
@@ -96,6 +129,7 @@ exports.adicionaPedido = function(req, res, next) {
         res.send("OKAY");
     });
 };
+
 
 exports.recoverUser = function(req, res, next) {
     console.log("Olha o que chegou aqui LOGGED USER: ", req.body);
@@ -146,7 +180,6 @@ exports.recoverPass = function(req, res, next) {
                     });
                 };
             });
-
         },
         function(token, user, done) {
             var smtpTransport = nodemailer.createTransport({

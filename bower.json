@@ -18,7 +18,7 @@
     "awesome-rating": "latest",
     "angular-breadcrumb": "latest",
     "angular-utils-ui-breadcrumbs": "*",
-    "angular-material": "~1.0.1",
+    "angular-material": "latest",
     "lodash": "~4.0.0"
   }
 }

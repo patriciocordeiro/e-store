@@ -420,6 +420,9 @@
                 console.log('closing dialog');
                 $mdDialog.hide();
             },
+			cancelDialog: function(){
+				$mdDialog.cancel();
+			},
             dialog: function(message) {
                 var ev;
                 $mdDialog.show({

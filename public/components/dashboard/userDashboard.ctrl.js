@@ -15,12 +15,23 @@
 
         //---------user general settings update--------------------------- 
         vm.userUpdate = {};
+        //Pass the user email. Will be used for authentication
+
+        var claearForm = function() {
+            vm.userUpdateForm.$setUntouched();
+            vm.userUpdateForm[1].$setValidity();
+            vm.userUpdateForm[1].$setPristine();
+            vm.userUpdate.data = {};
+        }
+
         var nSettings = 5; // number of settings
+
         generalSrvc.closeAll(nSettings).then(function(data) {
             vm.userIsEditSettings = data; //set all to false
             console.log(vm.userIsEditAddress);
         });
 
+        //function to open the editing settings area 
         vm.userEditSettings = function(index) {
             //first close all edit area
             generalSrvc.closeAll(nSettings).then(function(data) {
@@ -32,20 +43,94 @@
             });
         }
 
-        vm.userUpdateSettings = function(user) {
+        //Get password for update confirmation
+        vm.userGetPassword = function(userPassword) {
+            console.log(userPassword);
+            $mdDialog.hide(userPassword);
+        }
+        //Close dialogs
+        vm.closeDiag = function() {
+            userSrcv.usr.cancelDialog();
+
+        }
+        //Function to update user settings
+        vm.userUpdateSettings = function(user, ev) {
             console.log(user);
-            if (user == 'cancell')
-            //close all 
+            if (user == 'cancel') {
+                //clear the form
+
+                console.log('cancel');
+                console.log(vm.userUpdate);
+                vm.userUpdateFormName.$setUntouched();
+                vm.userUpdateFormName.$setValidity();
+                vm.userUpdateFormName.$setPristine();                
+				
+				vm.userUpdateFormPhones.$setUntouched();
+                vm.userUpdateFormPhones.$setValidity();
+                vm.userUpdateFormPhones.$setPristine();                
+				
+				vm.userUpdateFormPassword.$setUntouched();
+                vm.userUpdateFormPassword.$setValidity();
+                vm.userUpdateFormPassword.$setPristine();                
+				
+				vm.userUpdateFormEmail.$setUntouched();
+                vm.userUpdateFormEmail.$setValidity();
+                vm.userUpdateFormEmail.$setPristine();
+                vm.userUpdate = {};
+
+
+
+                //close all 
                 generalSrvc.closeAll(nSettings).then(function(data) {
                     //close all
                     vm.userIsEditSettings = data;
                     console.log(vm.userIsEditSettings);
                 });
-            else {
+            } else {
                 //update user settings
                 console.log(user);
-                userSrcv.usr.update(user);
-            }
+                $mdDialog.show({
+                    controller: 'userDashboardCtrl as vm',
+                    templateUrl: 'components/dashboard/userUpdateDiag.view.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: false
+                })
+                    .then(function(answer) {
+                        $scope.status = 'You said the information was "' + answer + '".';
+                        var query = {
+                            email: vm.user.email,
+                            password: answer,
+                            data: {}
+                        };
+                        //The bellow construct a entire query with the field
+                        // and the value for update
+
+                        //Get all keys that will be updated
+                        var myUpdateKeys = Object.keys(vm.userUpdate.data);
+                        //For each key, set a new key called local.{key}
+                        _(myUpdateKeys).forEach(function(value) {
+                            query.data['local.' + value] = vm.userUpdate.data[value];
+                        });
+
+                        //clear the form
+                        vm.userUpdate = {};
+                        //closeediting
+                        generalSrvc.closeAll(nSettings).then(function(data) {
+                            //close all
+                            vm.userIsEditSettings = data;
+                            console.log(vm.userIsEditSettings);
+                        });
+
+                        //run the update
+                        userSrcv.usr.update(query);
+
+                    }, function() {
+                        $scope.status = 'You cancelled the dialog.';
+                    });
+            };
+
+
         }
         vm.userEditSettingsCancell = function() {
             generalSrvc.closeAll(nAddress).then(function(data) {

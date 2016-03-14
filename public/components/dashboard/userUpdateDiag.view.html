@@ -1,0 +1,30 @@
+<md-dialog aria-label="userUpdateDialog" ng-cloak>
+    <form name="userUpdateForm" ng-submit="userUpdateForm.$valid && vm.userGetPassword(vm.userUpdate.password)" novalidate>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h3 class="md-tilte">Confirmação de alteração de dados</h3>
+                Por favor, entre com a sua senha para proseguir
+
+                <md-input-container class="md-block">
+                    <md-icon class="material-icons">lock</md-icon>
+                    <input type="password" name="userPassword" placeholder="Senha" ng-model="vm.userUpdate.password" required>
+                    <div ng-messages="userUpdateForm.userPassword.$error" role="alert">
+                        <div ng-message="required">
+                            Você deve entrar com a sua senha
+                        </div>
+                        <!--
+                                <div ng-message-exp="['minlength', 'maxlength']">
+                                    Sua senha deve conter 6 dígitos.
+                                </div>
+-->
+                    </div>
+                </md-input-container>
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button type="submit" class="md-primary md-raised">Salvar Alterações</md-button>
+            <md-button ng-click="vm.closeDiag()" class="md-primary">Cancelar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
