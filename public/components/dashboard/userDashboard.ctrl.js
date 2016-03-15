@@ -63,17 +63,17 @@
                 console.log(vm.userUpdate);
                 vm.userUpdateFormName.$setUntouched();
                 vm.userUpdateFormName.$setValidity();
-                vm.userUpdateFormName.$setPristine();                
-				
-				vm.userUpdateFormPhones.$setUntouched();
+                vm.userUpdateFormName.$setPristine();
+
+                vm.userUpdateFormPhones.$setUntouched();
                 vm.userUpdateFormPhones.$setValidity();
-                vm.userUpdateFormPhones.$setPristine();                
-				
-				vm.userUpdateFormPassword.$setUntouched();
+                vm.userUpdateFormPhones.$setPristine();
+
+                vm.userUpdateFormPassword.$setUntouched();
                 vm.userUpdateFormPassword.$setValidity();
-                vm.userUpdateFormPassword.$setPristine();                
-				
-				vm.userUpdateFormEmail.$setUntouched();
+                vm.userUpdateFormPassword.$setPristine();
+
+                vm.userUpdateFormEmail.$setUntouched();
                 vm.userUpdateFormEmail.$setValidity();
                 vm.userUpdateFormEmail.$setPristine();
                 vm.userUpdate = {};
@@ -170,7 +170,30 @@
         }
         //-----------------------------------------------------------------------------
 
+        //Handle the left navbar-----------------------
+        vm.settingsList = [{
+            name: 'Minha conta',
+            icon: 'account_circle',
+            link: 'app.user.dashboard.dados',
+			sectionTitle: 'Configurações gerais da conta'
+        }, {
+            name: 'Endereços',
+            icon: 'home',
+            link: 'app.user.dashboard.endereco',
+			sectionTitle: 'Endereços de entrega'
+        }, {
+            name: 'Pedidos',
+            icon: 'view_list',
+            link: 'app.user.dashboard.pedidos',
+			sectionTitle: 'Pedidos'
+        }];
 
+        //set the first item active at page-load
+        vm.active = 0;
+        vm.settingsListActive = function(index) {
+            vm.active = index;
+        }
+		//----------------------------------------------
     };
 
 })();

@@ -95,10 +95,10 @@
     <link rel="stylesheet" href="lib/angular-material/angular-material.css">
     <!--    <link rel="stylesheet" href="lib/angular-material-data-table/dist/md-data-table.min.css">-->
     <!--    <script type="text/javascript" src="lib/angular-material-data-table/dist/md-data-table.min.js"></script>-->
-<!--    <link rel="stylesheet" href="lib/angular-material-icon/material-icons.css" />-->
+        <link rel="stylesheet" href="lib/angular-material-icon/material-icons.css" />
 
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
 </head>
 <!--head-->
 
@@ -134,27 +134,20 @@
     <my-bootstrap-nav-bar>
     </my-bootstrap-nav-bar>
     <div layout="row" layout-align="center center">
-        <div layout="column" flex="100" flex-lg="90" style="background-color:blue">
-            <!--            <div layout="row" class="breadcrumbs-area">-->
-            <!--            <div >-->
+        <div layout="column" flex="100" flex-gt-md="90" style="background-color:blue">
             <div hide-xs layout="row" class="breadcrumbs-area" layout-align="center center">
                 <div flex>
                     <ui-breadcrumbs flex displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
                 </div>
-                <!--                </div>-->
             </div>
-            <md-content layout="column"  style="background-color:#f5f5f5">
+
+            <md-content layout="column" style="background-color:#f5f5f5">
 
                 <ui-view></ui-view>
-                <!--    <div ui-view="content"></div>-->
                 <div ui-view="products"></div>
                 <div ui-view="dashboard"></div>
                 <div ui-view="productsDetail"></div>
-                <!--
-    <div ui-view="email"></div>
-    <div ui-view="password"></div>
--->
-                <!--    </div>-->
+
             </md-content>
         </div>
     </div>
