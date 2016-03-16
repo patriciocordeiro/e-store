@@ -48,17 +48,31 @@
                        
 -->
                     <md-card-title>
-                        <h4 class="md-title">Escolha as opções de entrega</h4>
+                        <h4 class="md-title">Escolha as opções de entrega para o endereço:</h4>
                     </md-card-title>
+                    <md-card>
+                        <md-card-title>
+                            <h4 class="md-title">Será entregue no endereço:</h4>
+                        </md-card-title>
+                        <md-card-content>
+                            <!--                            <div layout="row" layout-padding>-->
+                            <p class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.userData.endereco.bairro}}, {{vm.shipAddress.cep}}, {{vm.shipAddress.cidade}}, {{vm.shipAddress.estado}}</p>
+                        </md-card-content>
+                        <!--                            </div>-->
+
+                    </md-card>
                     <md-divider></md-divider>
                     <md-divider></md-divider>
                     <!--                        <md-card>-->
                     <!--                            <md-card-title>-->
-                    <h4 class="md-title md-subheader">Será entregue no endereço:</h4>
+
                     <!--                                <md-card-title-text>-->
-                    <div flex>
+                    <!--
+                    <md-card-title-text>
+                        <h4 class="md-title">Será entregue no endereço:</h4>
                         <p class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.userData.endereco.bairro}}, {{vm.shipAddress.cep}}, {{vm.shipAddress.cidade}}, {{vm.shipAddress.estado}}</p>
-                    </div>
+                    </md-card-title-text>
+-->
                     <!--                                </md-card-title-text>-->
                     <!--                            </md-card-title>-->
                     <!--                            <md-card-content>-->
@@ -88,7 +102,7 @@
                         <md-card class="my-md-no-shadow">
                             <md-card-title>
                                 <md-card-title-text>
-									<h4 class="md-title">Entrega 1 de 1</h4>
+                                    <h4 class="md-title">Entrega 1 de 1</h4>
                                 </md-card-title-text>
                             </md-card-title>
                             <md-card-content layout="column">
@@ -98,7 +112,7 @@
                                             </md-button>
 											</h4>
                                 <md-list layout-padding>
-                                    <md-list-item  flex>
+                                    <md-list-item flex>
                                         <p class="md-subheader">Item</p>
                                         <p class="md-subheader">Descricao</p>
                                         <span flex></span>
@@ -115,8 +129,8 @@
                             </md-card-content>
                         </md-card>
                     </div>
-					<md-divider></md-divider>
-					<md-divider></md-divider>
+                    <md-divider></md-divider>
+                    <md-divider></md-divider>
                     <div layout="row" layout-align="space-between" layout-margin>
                         <md-button class="md-raised md-warn" ng-click="vm.enableNextTab(vm.selectedIndex-2)">Alterar endereço</md-button>
                         <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Ir para o pagamento</md-button>
