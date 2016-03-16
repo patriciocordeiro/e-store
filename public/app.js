@@ -12,7 +12,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             console.log('mudei de estado', toState);
             console.log("Esse eh o meu estado atual: ", toState.name);
             console.log("Esse o estado de onde venho: ", fromState.name);
-			
+
             if (fromState !== toState) {
                 $cookies.put('lastState', toState.name);
 
@@ -34,8 +34,8 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                     event.preventDefault();
                     //if toState.authenticate = true and isLoggedIn = false
                     //Redirect to login page
-					$rootScope.toState = toState.name;
-					console.log($rootScope.toState);
+                    $rootScope.toState = toState.name;
+                    console.log($rootScope.toState);
                     $state.go("app.user.login");
                 }
             }
@@ -61,8 +61,9 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
 
         /*Angular theme configuration*/
         $mdThemingProvider.theme('default')
-//            .primaryPalette('teal')
-            .primaryPalette('indigo')
+        //            .primaryPalette('teal')
+                    .primaryPalette('blue')
+//        .primaryPalette('indigo')
             .accentPalette('deep-orange')
         //            .backgroundPalette('white', {
         //                'default': '50'
@@ -307,7 +308,10 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             .state('app.user.dashboard.dados', {
                 url: "/dados",
                 templateUrl: 'components/dashboard/userAlterarDados.view.html',
-                controller: 'userDashboardCtrl as vm'
+                controller: 'userDashboardCtrl as vm',
+                data: {
+                    displayName: 'Dados da conta',
+                }
 
                 //                authenticate: true
             })
@@ -325,7 +329,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 controller: 'DashboardPedidosCtrl as vm',
                 authenticate: true,
                 data: {
-                    displayName: 'Meus endereços',
+                    displayName: 'Meus Pedidos',
                 }
 
             })

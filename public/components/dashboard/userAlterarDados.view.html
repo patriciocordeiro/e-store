@@ -1,362 +1,245 @@
-<!--
-<form>
-
-    <label>Permitir alteração de dados:
-        <input type="checkbox" ng-model="vm.permicaoAlteracaoDados.dadosCadastrais" ng-true-value="false" ng-false-value="true">
-    </label>
-    <br/>
-
-    <div class="form-group">
-        <label for="InputFullName">Nome Completo</label>
-        <input ng-model="vm.user.fullName" type="text" class="form-control" id="nomeCompleto" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
-    </div>
-    <div class="form-group">
-        <label for="InputBirthDate">Data de nascimento</label>
-        <input ng-model="vm.user.birthDate" type="date" class="form-control" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
-    </div>
-
-    <div class="form-group">
-        <label for="InputTelefone">Telefone residencial</label>
-        <input ng-model="vm.user.telefone" ui-mask="(99) 9999-9999" type="text" class="form-control" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
-    </div>
-
-    <div class="form-group">
-        <label for="Inputcelular">Telefone resicelular</label>
-        <input ng-model="vm.user.celular" ui-mask="(99) 9999-9999" type="text" class="form-control" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais" required>
-    </div>
-    <button type="submit" class="btn btn-success" ng-click="vm.updateDadosCadastrais(vm.user)" ng-disabled="vm.permicaoAlteracaoDados.dadosCadastrais">Salvar alterações</button>
-
-</form>
--->
-
-<!--
-<md-card flex-gt-sm="90" flex-gt-md="80">
-    <md-card-content>
-        <h2>Informações de Usuário</h2>
-            <md-checkbox ng-model="vm.permicaoAlteracaoDados.dadosCadastrais">
-                Habilite a alteração de informações pessoais.
-            </md-checkbox>
-        <form>
-            <div layout layout-sm="column">
-                <md-datepicker ng-model="vm.user.birthDate" md-placeholder="Enter date" ng-disabled="!vm.permicaoAlteracaoDados.dadosCadastrais"></md-datepicker>
-                <md-input-container flex>
-                    <md-icon class="material-icons">perm_identity</md-icon>
-                    <input ng-model="vm.user.nome" placeholder="Nome Completo" ng-disabled="!vm.permicaoAlteracaoDados.dadosCadastrais">
-                </md-input-container>
-            </div>
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <md-icon class="material-icons">phone</md-icon>
-                    <input ng-model="vm.user.telefone" ui-mask="(99) 9999-9999" ng-disabled="!vm.permicaoAlteracaoDados.dadosCadastrais">
-                </md-input-container>
-                <md-input-container flex>
-                    <md-icon class="material-icons">phonelink_ring</md-icon>
-                    <input ng-model="vm.user.celular" ui-mask="(99) 9999-9999" ng-disabled="!vm.permicaoAlteracaoDados.dadosCadastrais">
-                </md-input-container>
-            </div>
-            <div layout="column" layout-align="center center">
-                <md-input-container>
-                    <md-button class="md-primary confirmButton" disabled="{{info_user}}" ng-disabled="!vm.permicaoAlteracaoDados.dadosCadastrais" ng-click="vm.updateDadosCadastrais(vm.user)">
-                        <i class="material-icons md-36" style="color:black;">done_all</i>
-                    </md-button>
-                </md-input-container>
-            </div>
-        </form>
+<md-card class="my-md-no-margin my-md-noround-border my-md-no-shadow" ng-show="!vm.userIsEditSettings[0]">
+    <!--            <md-button>-->
+    <md-card-content class="md-button my-md-no-margin my-md-noround-border" ng-click="vm.userEditSettings(0)" layout="row" layout-align="start center">
+        <div flex layout="row" layout-align="start" class="my-md-capital">
+            <b>Nome</b>
+        </div>
+        <div flex layout="row" layout-align="start" class="md-subheader my-md-capital" style="background-color:inherit"><b>{{vm.user.nome}}</b>
+        </div>
+        <div flex layout="row" layout-align="end">
+            <md-button class="md-primary">
+                <md-icon class="material-icons  md-primary">edit</md-icon>
+                Editar
+            </md-button>
+        </div>
     </md-card-content>
+    <!--            </md-button>-->
 </md-card>
-<md-card flex-gt-sm="90" flex-gt-md="80">
-    <md-card-content>
-        <h2>Informações de Email</h2>
-        <md-checkbox ng-model="vm.permicaoAlteracaoDados.email">
-            Habilite a alteração de email.
-        </md-checkbox>
-        <form>
-            <md-input-container flex>
-                <md-icon class="material-icons">email</md-icon>
-                <input type="email" placeholder="Email Atual" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.email">
-            </md-input-container>
-            <md-input-container flex>
-                <md-icon class="material-icons">autorenew</md-icon>
-                <input type="email" placeholder="Novo Email" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.email">
-            </md-input-container>
-            <div layout="column" layout-align="center center">
+<md-card class="my-md-no-margin my-md-noround-border dashboard-edit my-md-no-shadow" flex ng-show="vm.userIsEditSettings[0]">
+    <form name="vm.userUpdateFormName" ng-submit="vm.userUpdateFormName.$valid && vm.userUpdateSettings(vm.userUpdate.data.nome) " novalidate>
+        <md-card-content>
+            <div layout="column" flex="50">
                 <md-input-container>
-                    <md-button class="md-primary confirmButton" ng-disabled="!vm.permicaoAlteracaoDados.email">
-                        <i class="material-icons md-36" style="color:black;">done_all</i>
-                    </md-button>
+                    <label>Primeiro Nome</label>
+                    <input ng-model="vm.userUpdate.data.nome" name="nome" type="text" required>
+                    <div ng-messages="vm.userUpdateFormName.nome.$error" role="alert">
+                        <div ng-message="required">
+                            Você deve entrar com um nome
+                        </div>
+                    </div>
                 </md-input-container>
             </div>
-        </form>
-    </md-card-content>
-</md-card>
-<md-card flex-gt-sm="90" flex-gt-md="80">
-    <md-card-content>
-        <h2>Informações de Senha</h2>
-        <md-checkbox ng-model="vm.permicaoAlteracaoDados.senha">
-            Habilite a alteração de senha.
-        </md-checkbox>
-        <form>
-            <md-input-container flex>
-                <md-icon class="material-icons">verified_user</md-icon>
-                <input ng-model="vm.user.oldPassword" type="password" placeholder="Senha Atual" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.senha">
-            </md-input-container>
-            <md-input-container flex>
-                <md-icon class="material-icons">autorenew</md-icon>
-                <input ng-model="vm.user.newPassword" type="password" placeholder="Nova Senha" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.senha">
-            </md-input-container>
-            <md-input-container flex>
-                <md-icon class="material-icons">autorenew</md-icon>
-                <input ng-model="vm.user.passwordConfirm" type="password" placeholder="Repitir Nova Senha" ng-required="true" ng-disabled="!vm.permicaoAlteracaoDados.senha">
-            </md-input-container>
-            <div layout="column" layout-align="center center">
+            <div layout="column" flex="50">
                 <md-input-container>
-                    <md-button class="md-primary confirmButton" ng-disabled="!vm.permicaoAlteracaoDados.senha" ng-click="vm.updatePassword(vm.user)">
-                        <i class="material-icons md-36" style="color:black;">done_all</i>
-                    </md-button>
+                    <label>Meio (Opcional)</label>
+                    <input ng-model="vm.userUpdate.nomeMeio" name="nomeMeio">
                 </md-input-container>
             </div>
-        </form>
-    </md-card-content>
-</md-card>
--->
-<!--<div >-->
-
-        <md-card class="my-md-no-margin my-md-noround-border my-md-no-shadow" ng-show="!vm.userIsEditSettings[0]">
-            <!--            <md-button>-->
-            <md-card-content class="md-button my-md-no-margin" ng-click="vm.userEditSettings(0)" layout="row" layout-align="start center">
-                <div flex layout="row" layout-align="start" class="my-md-capital">
-                    <b>Nome</b>
-                </div>
-                <div flex layout="row" layout-align="start" class="md-subheader my-md-capital" style="background-color:inherit"><b>{{vm.user.nome}}</b>
-                </div>
-                <div flex layout="row" layout-align="end">
-                    <md-button class="md-primary">
-                        <!--                            <md-icon class="material-icons  md-primary">edit</md-icon>-->
-                        Editar
-                    </md-button>
-                </div>
-            </md-card-content>
-            <!--            </md-button>-->
-        </md-card>
-        <md-card class="my-md-no-margin my-md-noround-border dashboard-edit my-md-no-shadow" flex ng-show="vm.userIsEditSettings[0]">
-            <form name="vm.userUpdateFormName" ng-submit="vm.userUpdateFormName.$valid && vm.userUpdateSettings(vm.userUpdate.data.nome) " novalidate>
-                <md-card-content>
-                    <div layout="column" flex="50">
-                        <md-input-container>
-                            <label>Primeiro Nome</label>
-                            <input ng-model="vm.userUpdate.data.nome" name="nome" type="text" required>
-                            <div ng-messages="vm.userUpdateFormName.nome.$error" role="alert">
-                                <div ng-message="required">
-                                    Você deve entrar com um nome
-                                </div>
-                            </div>
-                        </md-input-container>
+            <div layout="column" flex="50">
+                <md-input-container>
+                    <label>Sobrenome</label>
+                    <input ng-model="vm.userUpdate.data.sobrenome" type="text" name="sobrenome" required>
+                    <div ng-messages="vm.userUpdateFormName.sobrenome.$error" role="alert">
+                        <div ng-message="required">
+                            Você deve entrar com o seu sobrenome
+                        </div>
                     </div>
-                    <div layout="column" flex="50">
-                        <md-input-container>
-                            <label>Meio (Opcional)</label>
-                            <input ng-model="vm.userUpdate.nomeMeio" name="nomeMeio">
-                        </md-input-container>
-                    </div>
-                    <div layout="column" flex="50">
-                        <md-input-container>
-                            <label>Sobrenome</label>
-                            <input ng-model="vm.userUpdate.data.sobrenome" type="text" name="sobrenome" required>
-                            <div ng-messages="vm.userUpdateFormName.sobrenome.$error" role="alert">
-                                <div ng-message="required">
-                                    Você deve entrar com o seu sobrenome
-                                </div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                </md-card-content>
-                <md-divider></md-divider>
-                <div layout="row" layout-margin>
-                    <md-button class="md-primary md-raised" type="submit">Salvar Alterações</md-button>
-                    <md-button class="md-raised" ng-click=" vm.userUpdateSettings('cancel')">Cancelar</md-button>
-                </div>
-            </form>
-        </md-card>
+                </md-input-container>
+            </div>
+        </md-card-content>
         <md-divider></md-divider>
+        <div layout="row" layout-margin>
+            <md-button class="md-primary md-raised" type="submit">Salvar Alterações</md-button>
+            <md-button class="md-raised" ng-click=" vm.userUpdateSettings('cancel')">Cancelar</md-button>
+        </div>
+    </form>
+</md-card>
+<md-divider></md-divider>
 
-        <md-card class="my-md-no-margin my-md-noround-border my-md-no-shadow" ng-show="!vm.userIsEditSettings[1]">
-            <md-card-content ng-click="vm.userEditSettings(1)" class="md-button my-md-no-margin" layout="row" layout-align="space-between center">
-                <div flex layout="row" layout-align="start"><b>Email</b>
-                </div>
-                <div flex layout="row" layout-align="start" class="md-subheader" style="background-color:inherit"><b>paponcio6@gmail.com</b>
-                </div>
-                <div flex layout="row" layout-align="end">
-                    <md-button class="md-primary">Editar</md-button>
-                </div>
-            </md-card-content>
-        </md-card>
+<md-card class="my-md-no-margin my-md-noround-border my-md-no-shadow" ng-show="!vm.userIsEditSettings[1]">
+    <md-card-content ng-click="vm.userEditSettings(1)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="space-between center">
+        <div flex layout="row" layout-align="start"><b>Email</b>
+        </div>
+        <div flex layout="row" layout-align="start" class="md-subheader" style="background-color:inherit"><b>paponcio6@gmail.com</b>
+        </div>
+        <div flex layout="row" layout-align="end">
+            <md-button class="md-primary">
+                <md-icon class="material-icons  md-primary">edit</md-icon>
+                Editar</md-button>
+        </div>
+    </md-card-content>
+</md-card>
 
-        <md-card class="my-md-no-margin my-md-noround-border dashboard-edit my-md-no-shadow" flex ng-show="vm.userIsEditSettings[1]">
-            <form name="vm.userUpdateFormEmail" ng-submit="vm.userUpdateFormEmail.$valid && vm.userUpdateSettings(vm.userUpdate.data.email)" novalidate>
-                <md-card-title>
-                    <h4 class="md-title">Alteração de e-mail do usuário</h4>
-                </md-card-title>
+<md-card class="my-md-no-margin my-md-noround-border dashboard-edit my-md-no-shadow" flex ng-show="vm.userIsEditSettings[1]">
+    <form name="vm.userUpdateFormEmail" ng-submit="vm.userUpdateFormEmail.$valid && vm.userUpdateSettings(vm.userUpdate.data.email)" novalidate>
+        <md-card-title>
+            <h4 class="md-title">Alteração de e-mail do usuário</h4>
+        </md-card-title>
 
-                <md-card-content>
-                    <p>Use o formulário abaixo para alterar o seu email. Use o novo email na próxima vez que acessar a nossa página.
-                    </p>
-                    <md-list class="md-2-line">
-                        <md-list-item>
-                            <div class="md-list-item-text">
-                                <h4><b>Email atual:</b></h4>
-                                <p>{{vm.user.email}}</p>
-                            </div>
-                        </md-list-item>
-                    </md-list>
-                    <div layout="column" flex="50">
-                        <md-input-container>
-                            <md-icon class="material-icons">email</md-icon>
-                            <input type="email" name="email" placeholder="Novo e-mail" ng-model="vm.userUpdate.data.email" ng-pattern="/^.+@.+\..+$/" required>
-                            <div ng-messages="vm.userUpdateFormEmail.email.$error" ng-show="vm.userUpdateFormEmail.email.$touched" role="alert">
-                                <div ng-message-exp="'required'">Você deve entrar com um e-mail válido</div>
-                                <div ng-message-exp="'pattern'">
-                                    Por favor, Forneça um email no formato email@email.com
-                                </div>
-                            </div>
-                        </md-input-container>
+        <md-card-content>
+            <p>Use o formulário abaixo para alterar o seu email. Use o novo email na próxima vez que acessar a nossa página.
+            </p>
+            <md-list class="md-2-line">
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h4><b>Email atual:</b></h4>
+                        <p>{{vm.user.email}}</p>
                     </div>
-                    <div layout="column" flex="50">
-                        <md-input-container>
-                            <md-icon class="material-icons">email</md-icon>
-                            <input type="email" name="retypeEmail" placeholder="Repetir o novo e-mail" ng-model="vm.userUpdtate.data.retypeEmail" match="vm.userUpdate.data.email" ng-pattern="/^.+@.+\..+$/">
-                            <div ng-messages="vm.userUpdateFormEmail.retypeEmail.$error" role="alert">
-                                <div ng-message="match">
-                                    Os emails não coincidem
-                                </div>
-                            </div>
-                        </md-input-container>
+                </md-list-item>
+            </md-list>
+            <div layout="column" flex="50">
+                <md-input-container>
+                    <md-icon class="material-icons">email</md-icon>
+                    <input type="email" name="email" placeholder="Novo e-mail" ng-model="vm.userUpdate.data.email" ng-pattern="/^.+@.+\..+$/" required>
+                    <div ng-messages="vm.userUpdateFormEmail.email.$error" ng-show="vm.userUpdateFormEmail.email.$touched" role="alert">
+                        <div ng-message-exp="'required'">Você deve entrar com um e-mail válido</div>
+                        <div ng-message-exp="'pattern'">
+                            Por favor, Forneça um email no formato email@email.com
+                        </div>
                     </div>
-                </md-card-content>
-                <md-divider></md-divider>
-                <!--                <md-card-actions layout="row" layou-align="center center">-->
-				  <div layout="row" layout-margin>
+                </md-input-container>
+            </div>
+            <div layout="column" flex="50">
+                <md-input-container>
+                    <md-icon class="material-icons">email</md-icon>
+                    <input type="email" name="retypeEmail" placeholder="Repetir o novo e-mail" ng-model="vm.userUpdtate.data.retypeEmail" match="vm.userUpdate.data.email" ng-pattern="/^.+@.+\..+$/">
+                    <div ng-messages="vm.userUpdateFormEmail.retypeEmail.$error" role="alert">
+                        <div ng-message="match">
+                            Os emails não coincidem
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-card-content>
+        <md-divider></md-divider>
+        <!--                <md-card-actions layout="row" layou-align="center center">-->
+        <div layout="row" layout-margin>
+            <md-button class="md-primary md-raised" type="submit">Salvar alterações</md-button>
+            <md-button class="md-raised" ng-click="vm.userUpdateSettings('cancel')()">Cancelar</md-button>
+        </div>
+        <!--                </md-card-actions>-->
+    </form>
+</md-card>
+<md-divider></md-divider>
+
+<md-card ng-show="!vm.userIsEditSettings[2]" class="my-md-no-margin my-md-noround-border my-md-no-shadow">
+
+    <md-card-content ng-click="vm.userEditSettings(2)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="space-between center">
+        <div flex layout="row" layout-align="start"><b>Senha</b>
+        </div>
+        <div flex layout="row" layout-align="start" class="md-subheader" style="background-color:inherit"><b>********</b>
+        </div>
+        <div flex layout="row" layout-align="end">
+            <md-button class="md-primary">
+                <md-icon class="material-icons  md-primary">edit</md-icon>
+                Editar</md-button>
+        </div>
+    </md-card-content>
+</md-card>
+
+<md-card class="my-md-no-margin my-md-noround-border dashboard-edit my-md-no-shadow" flex ng-show="vm.userIsEditSettings[2]">
+    <form name="vm.userUpdateFormPassword" ng-submit="vm.userUpdateFormPassword.$valid && vm.userUpdateSettings (vm.userUpdate.data.password)" novalidate>
+        <md-card-title>
+            <h4 class="md-title">Alteração de senha da conta do usuário</h4>
+        </md-card-title>
+
+        <md-card-content>
+            <p>Use o formulário abaixo para alterar a sua senha. Use a nova senha na próxima vez que acessar a nossa página.
+            </p>
+            <div layout="column" flex="50">
+                <md-input-container class="md-block">
+                    <label>Nova senha</label>
+                    <input type="password" name="password" ng-model="vm.userUpdate.data.password" minlength="6" maxlength="8" required>
+                    <div ng-messages="vm.userUpdateFormPassword.password.$error">
+                        <div ng-message="required">Deves entrar com uma senha</div>
+                        <div flex wrap ng-message="minlength, maxlength">Sua senha deve conter no mín. seis caracteres</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="column" flex="50">
+                <md-input-container class="md-block">
+                    <label>Repetir nova senha</label>
+                    <input type="password" name="retypePassword" ng-model="vm.userUpdate.data.retypePassword" minlength="6" maxlength="8" match="vm.userUpdate.data.password">
+                    <div ng-messages="vm.userUpdateFormPassword.retypePassword.$error">
+                        <div ng-message="match">As senhas não conferem.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <md-divider></md-divider>
+        </md-card-content>
+        <div layout="row" layout-margin>
+            <md-button class="md-primary md-raised" type="submit">Salvar alterações</md-button>
+            <md-button class="md-raised" ng-click="vm.userUpdateSettings('cancel')('cancel')">Cancelar</md-button>
+        </div>
+    </form>
+</md-card>
+<md-divider></md-divider>
+<md-card ng-show="!vm.userIsEditSettings[3]" class="my-md-no-margin my-md-noround-border my-md-no-shadow" my-md-no-shadow>
+    <md-card-content ng-click="vm.userEditSettings(1)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="space-between center">
+        <div flex layout="row" layout-align="start"><b>Tel. celular</b>
+        </div>
+        <div layout="row" layout-align="start" flex class="md-subheader" style="background-color:inherit"><b>981004212</b>
+        </div>
+        <div flex layout="row" layout-align="end">
+            <md-button class="md-primary" ng-click="vm.userEditSettings(3)">
+                <md-icon class="material-icons  md-primary">edit</md-icon>
+                Editar</md-button>
+        </div>
+    </md-card-content>
+</md-card>
+
+<md-card class="my-md-no-margin my-md-noround-border dashboard-edit my-md-no-shadow" flex ng-show="vm.userIsEditSettings[3]">
+    <form name="vm.userUpdateFormPhones" ng-submit="vm.userUpdateFormPhones.$valid && vm.userUpdateSettings (vm.userUpdate.data.password)" novalidate>
+        <md-card-title>
+            <h4 class="md-title">Alterar telefones de contato</h4>
+        </md-card-title>
+        <md-card-content>
+            <p>Use o formulário abaixo para alterar o seu telefone de contato.
+            </p>
+            <h5 class="md-subhead" style="background-color:inherit"><b>Telefones atuais:</b></h5>
+            <md-list>
+                <md-list-item class="md-2-line">
+                    <!--						<h3><b>{{vm.user.celular}}</b></h3>-->
+                    <md-icon class="material-icons">phone</md-icon>
+                    <div class="md-list-item-text">
+                        <h4>{{vm.user.telefone}}</h4>
+                        <p>Residencial</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <md-icon class="material-icons">smartphone</md-icon>
+                    <div class="md-list-item-text">
+                        <h4>{{vm.user.telefone}}</h4>
+                        <p>Celular</p>
+                    </div>
+
+                </md-list-item>
+            </md-list>
+            <div layout="column" flex="50">
+                <md-input-container flex class="md-icon-float md-block">
+                    <label>Novo telefone celular</label>
+                    <input name="celular" ng-model="vm.userUpdate.data.celular" ui-mask="(99) 9999-9999" type="text" required>
+                    <div ng-messages="vm.userUpdateFormPhones.celular.$error">
+                        <div ng-message="required">Campo obrigatório</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="column" flex="50">
+                <md-input-container flex class="md-icon-float md-block">
+                    <label>Novo telefone residencial</label>
+                    <input name="telefone" ng-model="vm.userUpdate.data.telefone" ui-mask="(99) 9999-9999" type="text" required>
+                    <div ng-messages="vm.userUpdateFormPhones.celular.telefone.$error">
+                        <div ng-message="required">Campo obrigatório</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-margin>
                 <md-button class="md-primary md-raised" type="submit">Salvar alterações</md-button>
                 <md-button class="md-raised" ng-click="vm.userUpdateSettings('cancel')()">Cancelar</md-button>
-				</div>
-                <!--                </md-card-actions>-->
-            </form>
-        </md-card>
-        <md-divider></md-divider>
-
-        <md-card ng-show="!vm.userIsEditSettings[2]" class="my-md-no-margin my-md-noround-border my-md-no-shadow">
-
-            <md-card-content ng-click="vm.userEditSettings(2)" class="md-button my-md-no-margin" layout="row" layout-align="space-between center">
-                <div flex layout="row" layout-align="start"><b>Senha</b>
-                </div>
-                <div flex layout="row" layout-align="start" class="md-subheader" style="background-color:inherit"><b>********</b>
-                </div>
-                <div flex layout="row" layout-align="end">
-                    <md-button class="md-primary">Editar</md-button>
-                </div>
-            </md-card-content>
-        </md-card>
-
-        <md-card class="my-md-no-margin my-md-noround-border dashboard-edit my-md-no-shadow" flex ng-show="vm.userIsEditSettings[2]">
-            <form name="vm.userUpdateFormPassword" ng-submit="vm.userUpdateFormPassword.$valid && vm.userUpdateSettings (vm.userUpdate.data.password)" novalidate>
-                <md-card-title>
-                    <h4 class="md-title">Alteração de senha da conta do usuário</h4>
-                </md-card-title>
-
-                <md-card-content>
-                    <p>Use o formulário abaixo para alterar a sua senha. Use a nova senha na próxima vez que acessar a nossa página.
-                    </p>
-                    <div layout="column" flex="50">
-                        <md-input-container class="md-block">
-                            <label>Nova senha</label>
-                            <input type="password" name="password" ng-model="vm.userUpdate.data.password" minlength="6" maxlength="8" required>
-                            <div ng-messages="vm.userUpdateFormPassword.password.$error">
-                                <div ng-message="required">Deves entrar com uma senha</div>
-                                <div flex wrap ng-message="minlength, maxlength">Sua senha deve conter no mín. seis caracteres</div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                    <div layout="column" flex="50">
-                        <md-input-container class="md-block">
-                            <label>Repetir nova senha</label>
-                            <input type="password" name="retypePassword" ng-model="vm.userUpdate.data.retypePassword" minlength="6" maxlength="8" match="vm.userUpdate.data.password">
-                            <div ng-messages="vm.userUpdateFormPassword.retypePassword.$error">
-                                <div ng-message="match">As senhas não conferem.</div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                    <md-divider></md-divider>
-                    <div layout="row" layout-margin>
-                        <md-button class="md-primary md-raised" type="submit">Salvar alterações</md-button>
-                        <md-button class="md-raised" ng-click="vm.userUpdateSettings('cancel')('cancel')">Cancelar</md-button>
-                    </div>
-                </md-card-content>
-            </form>
-        </md-card>
-        <md-divider></md-divider>
-        <md-card ng-show="!vm.userIsEditSettings[3]" class="my-md-no-margin my-md-noround-border my-md-no-shadow" my-md-no-shadow>
-            <md-card-content ng-click="vm.userEditSettings(1)" class="md-button my-md-no-margin" layout="row" layout-align="space-between center">
-                <div flex layout="row" layout-align="start"><b>Tel. celular</b>
-                </div>
-                <div layout="row"  layout-align="start" flex class="md-subheader" style="background-color:inherit"><b>981004212</b>
-                </div>
-                <div flex layout="row" layout-align="end">
-                    <md-button class="md-primary" ng-click="vm.userEditSettings(3)">Editar</md-button>
-                </div>
-            </md-card-content>
-        </md-card>
-
-        <md-card class="my-md-no-margin my-md-noround-border dashboard-edit my-md-no-shadow" flex ng-show="vm.userIsEditSettings[3]">
-            <form name="vm.userUpdateFormPhones" ng-submit="vm.userUpdateFormPhones.$valid && vm.userUpdateSettings (vm.userUpdate.data.password)" novalidate>
-                <md-card-title>
-                    <h4 class="md-title">Alterar telefones de contato</h4>
-                </md-card-title>
-                <md-card-content>
-                    <p>Use o formulário abaixo para alterar o seu telefone de contato.
-                    </p>
-                    <h5 class="md-subhead" style="background-color:inherit"><b>Telefones atuais:</b></h5>
-                    <md-list>
-                        <md-list-item class="md-2-line">
-                            <!--						<h3><b>{{vm.user.celular}}</b></h3>-->
-                            <md-icon class="material-icons">phone</md-icon>
-                            <div class="md-list-item-text">
-                                <h4>{{vm.user.telefone}}</h4>
-                                <p>Residencial</p>
-                            </div>
-                        </md-list-item>
-                        <md-list-item class="md-2-line">
-                            <md-icon class="material-icons">smartphone</md-icon>
-                            <div class="md-list-item-text">
-                                <h4>{{vm.user.telefone}}</h4>
-                                <p>Celular</p>
-                            </div>
-
-                        </md-list-item>
-                    </md-list>
-                    <div layout="column" flex="50">
-                        <md-input-container flex class="md-icon-float md-block">
-                            <label>Novo telefone celular</label>
-                            <input name="celular" ng-model="vm.userUpdate.data.celular" ui-mask="(99) 9999-9999" type="text" required>
-                            <div ng-messages="vm.userUpdateFormPhones.celular.$error">
-                                <div ng-message="required">Campo obrigatório</div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                    <div layout="column" flex="50">
-                        <md-input-container flex class="md-icon-float md-block">
-                            <label>Novo telefone residencial</label>
-                            <input name="telefone" ng-model="vm.userUpdate.data.telefone" ui-mask="(99) 9999-9999" type="text" required>
-                            <div ng-messages="vm.userUpdateFormPhones.celular.telefone.$error">
-                                <div ng-message="required">Campo obrigatório</div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                     <div layout="row" layout-margin>
-                        <md-button class="md-primary md-raised" type="submit">Salvar alterações</md-button>
-                        <md-button class="md-raised" ng-click="vm.userUpdateSettings('cancel')()">Cancelar</md-button>
-                    </div>
-                </md-card-content>
-            </form>
-        </md-card>
+            </div>
+        </md-card-content>
+    </form>
+</md-card>
 <!--    </md-card-content>-->
 <!--</md-card>-->
 

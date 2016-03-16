@@ -183,7 +183,7 @@
 			sectionTitle: 'Endereços de entrega'
         }, {
             name: 'Pedidos',
-            icon: 'view_list',
+            icon: 'local_shipping',
             link: 'app.user.dashboard.pedidos',
 			sectionTitle: 'Pedidos'
         }];

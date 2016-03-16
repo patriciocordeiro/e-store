@@ -48,19 +48,9 @@
             </md-button>
         </div>
         <md-card ng-show="vm.showFilters" class="my-md-filter-area cssSlideUp my-md-no-shadow" layout="column" style="background-color:#f5f5f5">
-            <!--
-            <md-card-title>
-                <div flex layout="column">
-
-                </div>
-            </md-card-title>
--->
             <md-card-content>
                 <div layout="row" class="prd-filter-list" layout-align="start center">
-                    <!--                    <md-list layout="row">-->
-                    <!--                    <div flex="100" layout ="row" >-->
                     <md-card flex="25" ng-repeat="(key, val) in vm.filterData" layout="column">
-
                         <md-card-title>
                             <h4 class='md-subhead my-md-capital'><b>{{key}}</b></h4>
                         </md-card-title>
@@ -77,11 +67,8 @@
                             </md-card-content>
                         </md-content>
                     </md-card>
-                    <!--                    </div>-->
-                    <!--                    </md-list>-->
                 </div>
             </md-card-content>
-			
         </md-card>
 <md-divider></md-divider>
 
@@ -94,9 +81,7 @@
                     </md-select>
                 </md-input-container>
             </div>
-            <!--            <div flex layout="row" layout-align="end center">-->
             <div flex="50">
-
                 <section class="navigate-group-btn" layout="row" layout-align="end center">
                     <span layout="row" layout-margin><h4 class="md-subhead"><b>Página</b>:</h4></span>
                     <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
@@ -114,7 +99,7 @@
             <!--            </div>-->
         </md-card>
 		<md-divider></md-divider>
-        <md-toolbar class="my-md-toolbar-header">
+        <md-toolbar class="my-md-toolbar-header md-hue-2">
             <md-card class="my-md-no-padding my-md-no-margin" style="background-color:transparent">
                 <md-card-content class="my-md-no-padding my-md-no-margin">
                     <md-list layout-gt-sm="row">
@@ -124,7 +109,6 @@
                         <md-list-item flex ng-repeat="caractName in vm.caract[0]" flex-gt-sm="{{vm.columnsSizes[1]}}">
                             <span class="my-md-capital my-md-bold">{{caractName.nome}}</span>
                         </md-list-item>
-
                     </md-list>
                 </md-card-content>
             </md-card>
@@ -167,7 +151,6 @@
         </md-card>
         <md-divider></md-divider>
         <md-card flex layout="row" class="my-md-no-margin" layout-align="end center">
-            <!--            <div flex layout="row" layout-align="end center">-->
             <div><b>Página</b>:</div>
             <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
             </md-button>
@@ -179,7 +162,6 @@
             <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
             </md-button>
             <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()">Last</md-button>
-            <!--            </div>-->
         </md-card>
     </div>
 

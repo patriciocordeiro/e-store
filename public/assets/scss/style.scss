@@ -22,7 +22,6 @@ $indigo:#3F51B5;
 
 }
 
-
 .dashboard-edit{
   transition: bottom 0.3s linear;
   position: relative;
@@ -66,7 +65,7 @@ $indigo:#3F51B5;
 }
 
 .my-md-no-padding{
-	padding: 0px;
+	padding: 0px !important;
 }
 .my-md-noround-border{
 	border-radius: 0 !important;
@@ -178,7 +177,7 @@ text-transform: lowercase !important;
 }
 
 .my-nav-bar-menu {
-z-index: 4;
+z-index: 100;
 }
 
 /*Customize the menu bar to fit toolbar hight*/
@@ -307,11 +306,12 @@ md-menu-content {
     margin:0 !important;
     //    padding: 0 !important;
     //    line-height:20px !important;
-    color:#00695C !important;
+//    color:#00695C !important;
     min-height:auto !important;
     text-transform:none !important;
     min-width:20px !important;
     font-size:12px !important;
+	font-weight:100 !important;
 }
 .my-md-icon-btn {
     padding: 0px !important;
