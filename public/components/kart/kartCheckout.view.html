@@ -9,7 +9,7 @@
                     <md-content class="md-padding">
                         <!--                                <md-toolbar class="md-toolbar-tools">Escolha um endereço de entrega</md-toolbar>-->
                         <md-card-title>
-                            <h4 class="md-title">Escolha um endereço de entrega</h4>
+                            <h3 class="md-headline">Escolha um endereço de entrega</h3>
                         </md-card-title>
                         <div layout="column">
                             <div layout="row" layout-wrap>
@@ -48,47 +48,25 @@
                        
 -->
                     <md-card-title>
-                        <h4 class="md-title">Escolha as opções de entrega</h4>
+                        <h4 class="md-headline ">Escolha as opções de entrega</h4>
                     </md-card-title>
+                    <md-card class="my-md-no-shadow my-md-no-padding">
+                        <md-card-title class="my-md-no-padding">
+                            <md-card-title-text>
+                                <span class="md-title my-md-smooth-title">Será entregue no endereço:</span>
+                                <span class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.shipAddress.bairro}}, {{vm.shipAddress.cep}}, {{vm.shipAddress.cidade}}, {{vm.shipAddress.estado}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
                     <md-divider></md-divider>
-                    <md-divider></md-divider>
-                    <!--                        <md-card>-->
-                    <!--                            <md-card-title>-->
-                    <h4 class="md-title md-subheader">Será entregue no endereço:</h4>
-                    <!--                                <md-card-title-text>-->
-                    <div flex>
-                        <p class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.userData.endereco.bairro}}, {{vm.shipAddress.cep}}, {{vm.shipAddress.cidade}}, {{vm.shipAddress.estado}}</p>
-                    </div>
-                    <!--                                </md-card-title-text>-->
-                    <!--                            </md-card-title>-->
-                    <!--                            <md-card-content>-->
                     <div layout="column">
-                        <md-card class="my-md-no-shadow">
-                            <md-card-title>
-                                <!--                                            <md-card-title-text>-->
-                                <h4 class="md-title">Opçoes de entrega</h4>
-                                <!--                                            </md-card-title-text>-->
-                            </md-card-title>
-                            <md-card-content layout="column">
-                                <md-list layout-padding>
-                                    <md-list-item layout="row" layout-align="end space-between" ng-repeat="shipOption in vm.deliveryOptions">
-                                        <div flex="80">
-                                            <md-radio-group ng-model="vm.selShipOption">
-                                                <md-radio-button value="{{shipOption.type}}" alue>{{shipOption.text}}</md-radio-button>
-                                            </md-radio-group>
-                                        </div>
-                                        <div flex="20">
-                                            R$ {{shipOption.cost}}
-                                        </div>
-                                    </md-list-item>
-                                </md-list>
-                            </md-card-content>
-                        </md-card>
+
                         <md-divider></md-divider>
+                        <!--
                         <md-card class="my-md-no-shadow">
                             <md-card-title>
                                 <md-card-title-text>
-									<h4 class="md-title">Entrega 1 de 1</h4>
+                                    <h4 class="md-title">Entrega 1 de 1</h4>
                                 </md-card-title-text>
                             </md-card-title>
                             <md-card-content layout="column">
@@ -98,7 +76,7 @@
                                             </md-button>
 											</h4>
                                 <md-list layout-padding>
-                                    <md-list-item  flex>
+                                    <md-list-item flex>
                                         <p class="md-subheader">Item</p>
                                         <p class="md-subheader">Descricao</p>
                                         <span flex></span>
@@ -114,9 +92,55 @@
                                 </md-list>
                             </md-card-content>
                         </md-card>
+-->
+                        <div layout="row">
+                            <md-card flex="50" layout="column" class="my-md-no-shadow">
+                                <md-card-title>
+                                    <h4 class="md-title">Entrega 1 de 1</h4>
+                                </md-card-title>
+                                <md-card-content>
+                                    <md-divider></md-divider>
+                                    <md-divider></md-divider>
+                                    <md-card ng-repeat="prd in vm.kartData" class="my-md-no-margin my-md-no-shadow my-md-no-round-border">
+                                        <md-card-content>
+                                            <md-list>
+                                                <md-list-item class="md-3-line">
+                                                    <div class="md-list-item-text md-long-text" layout="column">
+                                                        <h3 class="my-md-capital">{{prd.categoria}} {{prd.ref_PM}}</h3>
+                                                        <p class="my-md-capital">{{prd.descricao}}</p>
+                                                        <p>Quantidade:{{prd.buyQty}}</p>
+                                                    </div>
+                                                </md-list-item>
+                                            </md-list>
+                                        </md-card-content>
+                                        <md-divider></md-divider>
+                                    </md-card>
+                                </md-card-content>
+                            </md-card>
+                            <md-divider></md-divider>
+                            <md-card flex="50" layout="column" layout-align="start start" class="my-md-no-shadow" style="background-color:#f5f5f5	">
+<!--                                <md-card-title>-->
+                                    <h4 class="md-title">Tipo de entrega</h4>
+<!--                                </md-card-title>-->
+                                <md-card-content flex layout="column" layout-align="start start">
+                                    <md-list layout-padding>
+                                        <md-list-item layout="row" ng-repeat="shipOption in vm.deliveryOptions">
+                                            <div flex="80">
+                                                <md-radio-group ng-model="vm.selShipOption">
+                                                    <md-radio-button value="{{shipOption.type}}" alue>{{shipOption.text}}</md-radio-button>
+                                                </md-radio-group>
+                                            </div>
+                                            <div flex="20">
+                                                R$ {{shipOption.cost}}
+                                            </div>
+                                        </md-list-item>
+                                    </md-list>
+                                </md-card-content>
+                            </md-card>
+                        </div>
                     </div>
-					<md-divider></md-divider>
-					<md-divider></md-divider>
+                    <md-divider></md-divider>
+                    <md-divider></md-divider>
                     <div layout="row" layout-align="space-between" layout-margin>
                         <md-button class="md-raised md-warn" ng-click="vm.enableNextTab(vm.selectedIndex-2)">Alterar endereço</md-button>
                         <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Ir para o pagamento</md-button>

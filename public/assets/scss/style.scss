@@ -22,6 +22,12 @@ $indigo:#3F51B5;
 
 }
 
+
+//Angular property
+.md-subheader{
+	background: transparent !important;
+}
+//----------------------------------
 .dashboard-edit{
   transition: bottom 0.3s linear;
   position: relative;
@@ -76,6 +82,10 @@ $indigo:#3F51B5;
 }
 .my-md-float-btn{
 	position: absolute !important;
+}
+
+.my-md-smooth-title{
+	color: rgba(0,0,0,0.54) !important;
 }
 //====================================================
 
