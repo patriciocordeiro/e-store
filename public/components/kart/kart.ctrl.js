@@ -81,16 +81,43 @@
             vm.isNextTabEnable[currTabIndex + 1] = false;
         }
 
-        vm.selShipOption = 'Normal';
+        //Initialize with the first element
+        vm.selDeliveryOptions = 'SEDEX';
         vm.deliveryOptions = [{
-            type: 'Normal',
-            text: 'Standard Shipping (4-5 business days)',
+            type: 'SEDEX',
+            text: 'Entrega em até 2 dias úteis',
             cost: 100
         }, {
-            type: 'Sedex',
-            text: 'FREE Shipping (5-8 business days)',
-            cost: 25
+            type: 'PAC',
+            text: 'Entrega em Até 7 dias úteis',
+            cost: 35
+        }, {
+            type: 'NORMAL',
+            text: 'Entrega em até 15 dias úteis',
+            cost: 15
         }]
+
+        //Put the selected delivery option in the kartData 
+        //Initialize with the default at the controller load
+        var i=0;
+        _(vm.kartData).forEach(function() {
+            vm.kartData[i].selDelivery = vm.deliveryOptions[0];
+            i++;
+        })
+        
+        //For each element in the array
+        //Get the selected delivery option
+        vm.getDeliveryType = function(index) {
+            console.log(vm.selShipOption);
+            //Pass only the selected delivery to a new variable
+            //            vm.kartData.selDelivery = vm.deliveryOptions[index]
+            var i = 0;
+            _(vm.kartData).forEach(function() {
+                vm.kartData[i].selDelivery = vm.deliveryOptions[index];
+                i++;
+            })
+            console.log(vm.kartData);
+        }
 
         /*New Address dialog*/
         vm.addNewAddressDialog = function(ev) {

@@ -23,7 +23,7 @@
                                     </md-card-content>
                                     <div layout="row" layout-align="start end">
                                         <md-card-actions>
-                                            <md-button class="md-raised md-warn" ng-click="vm.enableNextTab(vm.selectedIndex); vm.selShipAddress($index)">Entregar neste endereco</md-button>
+                                            <md-button class="md-primary md-raised" ng-click="vm.enableNextTab(vm.selectedIndex); vm.selShipAddress($index)">Entregar neste endereco</md-button>
                                         </md-card-actions>
                                     </div>
 
@@ -33,7 +33,7 @@
                             <!--                                <md-card-content layout="column" layout-align="center center">-->
                             <!--                                    <h2 class="md-title"></h2>-->
                             <div layout="row" layout-margin flex="25" layout-align="center center">
-                                <md-button ng-click="vm.addNewAddressDialog($event)" class="md-raised md-primary">Cadastrar outro endereço +</md-button>
+                                <md-button ng-click="vm.addNewAddressDialog($event)" class="md-raised md-primary md-hue-2">Cadastrar outro endereço +</md-button>
                             </div>
                             <!--                                </md-card-content>-->
 
@@ -54,14 +54,17 @@
                         <md-card-title class="my-md-no-padding">
                             <md-card-title-text>
                                 <span class="md-title my-md-smooth-title">Será entregue no endereço:</span>
-                                <span class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.shipAddress.bairro}}, {{vm.shipAddress.cep}}, {{vm.shipAddress.cidade}}, {{vm.shipAddress.estado}}</span>
+                                <span class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.shipAddress.bairro}},
+                                </span>
+                                <span class="md-subheader">CEP:{{vm.shipAddress.cep}}</span>
+                                <span class="md-subheader">{{vm.shipAddress.cidade}}</span>  <span class="md-subheader">{{vm.shipAddress.estado}}</span>
                             </md-card-title-text>
                         </md-card-title>
                     </md-card>
                     <md-divider></md-divider>
                     <div layout="column">
 
-                        <md-divider></md-divider>
+                        <!--                        <md-divider></md-divider>-->
                         <!--
                         <md-card class="my-md-no-shadow">
                             <md-card-title>
@@ -100,10 +103,11 @@
                                 </md-card-title>
                                 <md-card-content>
                                     <md-divider></md-divider>
-                                    <md-divider></md-divider>
                                     <md-card ng-repeat="prd in vm.kartData" class="my-md-no-margin my-md-no-shadow my-md-no-round-border">
-                                        <md-card-content>
-                                            <md-list>
+                                        <md-divider></md-divider>
+
+                                        <md-card-content class="my-md-no-padding">
+                                            <md-list class="my-md-no-padding">
                                                 <md-list-item class="md-3-line">
                                                     <div class="md-list-item-text md-long-text" layout="column">
                                                         <h3 class="my-md-capital">{{prd.categoria}} {{prd.ref_PM}}</h3>
@@ -113,26 +117,28 @@
                                                 </md-list-item>
                                             </md-list>
                                         </md-card-content>
-                                        <md-divider></md-divider>
                                     </md-card>
                                 </md-card-content>
                             </md-card>
                             <md-divider></md-divider>
-                            <md-card flex="50" layout="column" layout-align="start start" class="my-md-no-shadow" style="background-color:#f5f5f5	">
-<!--                                <md-card-title>-->
+                            <md-card flex="50" class="my-md-no-shadow my-md-no-margin" style="background-color:#f5f5f5	">
+                                <md-card-title flex="none">
                                     <h4 class="md-title">Tipo de entrega</h4>
-<!--                                </md-card-title>-->
-                                <md-card-content flex layout="column" layout-align="start start">
-                                    <md-list layout-padding>
-                                        <md-list-item layout="row" ng-repeat="shipOption in vm.deliveryOptions">
+                                </md-card-title>
+                                <md-card-content>
+                                    <md-list>
+                                        <md-list-item ng-repeat="deliveryOption in vm.deliveryOptions" layout="row" layout-align="end space-between">
                                             <div flex="80">
-                                                <md-radio-group ng-model="vm.selShipOption">
-                                                    <md-radio-button value="{{shipOption.type}}" alue>{{shipOption.text}}</md-radio-button>
+                                                <md-radio-group ng-model="vm.selDeliveryOptions" ng-click="vm.getDeliveryType($index)">
+                                                    <md-radio-button value="{{deliveryOption.type}}">{{deliveryOption.type}}:&nbsp;{{deliveryOption.text}}</md-radio-button>
                                                 </md-radio-group>
                                             </div>
-                                            <div flex="20">
+                                            <!--                                            <p class="md-secondary">R$ {{shipOption.cost}}</p>-->
+                                            <div flex="20" layout-margin>
                                                 R$ {{shipOption.cost}}
                                             </div>
+
+
                                         </md-list-item>
                                     </md-list>
                                 </md-card-content>
@@ -147,76 +153,124 @@
                     </div>
                 </md-tab>
                 <md-tab ng-disabled="vm.isNextTabEnable[2]" label="Pagamento">
-                    <md-content class="md-padding">
-                        <md-toolbar class="md-toolbar-tools">Resumo do pedido</md-toolbar>
-                        <md-card>
-                            <md-card-title layout="row" layout-align="space-between">
-                                <h2 class="md-title">Valor total do pedido:</h2>
-                                <h2 class="md-title">{{vm.kartTotal | currency:"R$ "}}</h2>
-                            </md-card-title>
-                        </md-card>
-                        <md-card>
+                    <div layout="row">
+                        <md-card flex="50" layout="column" class="my-md-no-shadow">
                             <md-card-title>
-                                <span>Escolha a forma de pagamento</span>
+                                <h4 class="md-title">Produtos</h4>
+                            </md-card-title>
+                            <md-card-content>
+                                <md-divider></md-divider>
+                                <md-card ng-repeat="prd in vm.kartData" class="my-md-no-margin my-md-no-shadow my-md-no-round-border">
+                                    <md-divider></md-divider>
+
+                                    <md-card-content class="my-md-no-padding">
+                                        <md-list class="my-md-no-padding">
+                                            <md-list-item class="md-3-line">
+                                                <div class="md-list-item-text md-long-text" layout="column">
+                                                    <h3 class="my-md-capital">{{prd.categoria}} {{prd.ref_PM}}</h3>
+                                                    <p class="my-md-capital">{{prd.descricao}}</p>
+                                                    <p>Quantidade:{{prd.buyQty}}-{{ prd.selDelivery.text}}</p>
+                                                </div>
+                                            </md-list-item>
+                                        </md-list>
+                                    </md-card-content>
+                                </md-card>
+                            </md-card-content>
+                        </md-card>
+                        <md-divider></md-divider>
+                        <md-card flex="50" class="my-md-no-shadow my-md-no-margin" style="background-color:#f5f5f5	">
+                            <md-card-title flex="none">
+                                <h4 class="md-title">Tipo de entrega</h4>
                             </md-card-title>
                             <md-card-content>
                                 <md-list>
-                                    <md-list-item ng-repeat="payOption in vm.payOption">
-                                        <md-radio-group ng-model="vm.payOption">
-                                            <md-radio-button value="{{payOption}}" ng-click="vm.getPayOption(vm.payOption)">{{payOption}}</md-radio-button>
-                                        </md-radio-group>
+                                    <md-list-item ng-repeat="shipOption in vm.deliveryOptions" layout="row" layout-align="end space-between">
+                                        <div flex="80">
+                                            <md-radio-group ng-model="vm.selShipOption">
+                                                <md-radio-button value="{{shipOption.type}}" alue>{{shipOption.type}}:&nbsp;{{shipOption.text}}</md-radio-button>
+                                            </md-radio-group>
+                                        </div>
+                                        <!--                                            <p class="md-secondary">R$ {{shipOption.cost}}</p>-->
+                                        <div flex="20" layout-margin>
+                                            R$ {{shipOption.cost}}
+                                        </div>
+
+
                                     </md-list-item>
                                 </md-list>
                             </md-card-content>
                         </md-card>
-                        <md-card layout="row" layout-align="start center">
-                            <md-card-title layout="row" layout-align="space-between">
-                                <div flex="60">
-                                    <h4 class="md-title">Endereço de entrega: <md-button  class="md-primary my-md-icon-btn" style="border:2px solid #F5F5F5 " >
+                    </div>
+                    <!--                    <md-content class="md-padding">-->
+                    <!--                        <md-toolbar class="md-toolbar-tools">Resumo do pedido</md-toolbar>-->
+                    <md-card>
+                        <md-card-title layout="row" layout-align="space-between">
+                            <h2 class="md-title">Valor total do pedido:</h2>
+                            <h2 class="md-title">{{vm.kartTotal | currency:"R$ "}}</h2>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <span>Escolha a forma de pagamento</span>
+                        </md-card-title>
+                        <md-card-content>
+                            <md-list>
+                                <md-list-item ng-repeat="payOption in vm.payOption">
+                                    <md-radio-group ng-model="vm.payOption">
+                                        <md-radio-button value="{{payOption}}" ng-click="vm.getPayOption(vm.payOption)">{{payOption}}</md-radio-button>
+                                    </md-radio-group>
+                                </md-list-item>
+                            </md-list>
+                        </md-card-content>
+                    </md-card>
+                    <md-card layout="row" layout-align="start center">
+                        <md-card-title layout="row" layout-align="space-between">
+                            <div flex="60">
+                                <h4 class="md-title">Endereço de entrega: <md-button  class="md-primary my-md-icon-btn" style="border:2px solid #F5F5F5 " >
                                         <md-icon class="material-icons md-18">edit</md-icon>
                                     </md-button></h4>
-                                    <p>{{vm.userData.endereco.endereco}}, {{vm.userData.endereco.numero}}, {{vm.userData.endereco.complemento}}, {{vm.userData.endereco.referencia}}, {{vm.userData.endereco.bairro}}, {{vm.userData.endereco.cep}}, {{vm.userData.endereco.cidade}}, {{vm.userData.endereco.estado}}
-                                </div>
-                            </md-card-title>
-                        </md-card>
-                        <md-card>
-                            <md-card-title>
-                                <md-card-title-text layout="row" layout-align="start center">
-                                    <h4 class="md-subhead"><b>Produtos</b>
+                                <p>{{vm.userData.endereco.endereco}}, {{vm.userData.endereco.numero}}, {{vm.userData.endereco.complemento}}, {{vm.userData.endereco.referencia}}, {{vm.userData.endereco.bairro}}, {{vm.userData.endereco.cep}}, {{vm.userData.endereco.cidade}}, {{vm.userData.endereco.estado}}
+                            </div>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text layout="row" layout-align="start center">
+                                <h4 class="md-subhead"><b>Produtos</b>
                                      <md-button ui-sref="app.minhaCesta" class="md-primary my-md-icon-btn" style="border:2px solid #F5F5F5 " >
                                         <md-icon class="material-icons md-18">edit</md-icon>
                                     </md-button>
                                     </h4>
-                                </md-card-title-text>
-                            </md-card-title>
-                            <md-card-content>
-                                <md-list layout="column" layout-align="center start">
-                                    <md-list-item class="md-3-line">
-                                        <div flex="20">
-                                            <img src="../../assets/img/resistor/resistor.png">
-                                        </div>
-                                        <div flex="80">
-                                            Smart TV LED Curva Ultra HD/4K 48" Samsung UN48JU6700GXZD Processador Quad Core Função Game (Gamefly) Clear Motion Rate 240Hz - SamsungQuantidade: 1</div>
-                                    </md-list-item>
-                                    <md-divider></md-divider>
-                                    <md-list-item class="md-3-line">
-                                        <div flex="20">
-                                            <img src="../../assets/img/resistor/resistor.png">
-                                        </div>
-                                        <div flex="80">
-                                            Smart TV LED Curva Ultra HD/4K 48" Samsung UN48JU6700GXZD Processador Quad Core Função Game (Gamefly) Clear Motion Rate 240Hz - SamsungQuantidade: 1</div>
-                                    </md-list-item>
-                                </md-list>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <md-list layout="column" layout-align="center start">
+                                <md-list-item class="md-3-line">
+                                    <div flex="20">
+                                        <img src="../../assets/img/resistor/resistor.png">
+                                    </div>
+                                    <div flex="80">
+                                        Smart TV LED Curva Ultra HD/4K 48" Samsung UN48JU6700GXZD Processador Quad Core Função Game (Gamefly) Clear Motion Rate 240Hz - SamsungQuantidade: 1</div>
+                                </md-list-item>
                                 <md-divider></md-divider>
-                            </md-card-content>
-                            <md-card-actions layout="row" layout-align="space-between">
-                                <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex-2)"><i class="material-icons">keyboard_arrow_left</i>Alterar Tipo de entraga</md-button>
-                                <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Gerar pedido</md-button>
-                            </md-card-actions>
-                        </md-card>
-                    </md-content>
-                </md-tab>
-            </md-tabs>
+                                <md-list-item class="md-3-line">
+                                    <div flex="20">
+                                        <img src="../../assets/img/resistor/resistor.png">
+                                    </div>
+                                    <div flex="80">
+                                        Smart TV LED Curva Ultra HD/4K 48" Samsung UN48JU6700GXZD Processador Quad Core Função Game (Gamefly) Clear Motion Rate 240Hz - SamsungQuantidade: 1</div>
+                                </md-list-item>
+                            </md-list>
+                            <md-divider></md-divider>
+                        </md-card-content>
+                        <md-card-actions layout="row" layout-align="space-between">
+                            <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex-2)"><i class="material-icons">keyboard_arrow_left</i>Alterar Tipo de entraga</md-button>
+                            <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Gerar pedido</md-button>
+                        </md-card-actions>
+                    </md-card>
+        </md-content>
+        </md-tab>
+        </md-tabs>
         </md-content>
     </md-card-content>
 </md-card>
