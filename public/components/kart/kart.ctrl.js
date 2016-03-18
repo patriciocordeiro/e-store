@@ -134,19 +134,36 @@
         vm.payOption = ["Cartao de Crédito", "Transferência", "Boleto Bancário"];
         vm.creditCardType = [{
             name: "Visa",
-            icon: "fa fa-cc-visa fa-3x"
+            icon: "fa fa-cc-visa fa-3x",
+            digits:16
         }, {
             name: "Mastercard",
-            icon: "fa fa-cc-mastercard fa-3x"
+            icon: "fa fa-cc-mastercard fa-3x",
+            digits:16
         }, {
             name: "Diners",
             icon: "fa fa-cc-diners-club fa-3x"
         }, {
             name: "American Express",
-            icon: "fa fa-cc-amex fa-3x"
+            icon: "fa fa-cc-amex fa-3x",
+            digits:10,
         }];
-        vm.getPayOption = function(selected) {
-            console.log(selected);
+        vm.getPayOption = function(idx) {
+            vm.ccardMaxDigits =  vm.creditCardType[idx].digits;
+            console.log( vm.ccardMaxDigits);
+        }
+        
+        //Show/hide kart in the payment page
+        vm.isKartShow = false;
+        vm.layout = "column"
+        vm.showHideKart = function(){
+             vm.isKartShow = ! vm.isKartShow;
+            if(vm.isKartShow)
+                vm.layout = "row";
+            else vm.layout= "column";
+            console.log(vm.isKartShow)
+            console.log(  vm.layout)
+        
         }
     }
 }());

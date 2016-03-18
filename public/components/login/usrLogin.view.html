@@ -1,18 +1,15 @@
-<!--<div id="login">-->
-<!--    <md-content layout="column" layout-padding  layout-align="center center">-->
-<!--<div layout="row" layout-align="center center">-->
 <div hide-xs layout="column" layout-align="center center">
     <h2 class="md-title">Faça o seu login e aproveite as vantagens</h2>
+    <span style="color:red">{{vm.loginMsg}}</span>
 </div>
 <div layout="row" layout-align="center center">
-    <div layout="row" flex-gt-md="25">
+    <div layout="row" flex-gt-md="30">
         <md-card flex>
-            <md-card-title hide-xs>
-                <div style="color:red">{{vm.loginMsg}}</div>
-                <md-icon class="material-icons md-72">account_circle</md-icon>
+            <md-card-title class="my-md-no-margin" layout="row" layout-align="center start" hide-xs>
+                <md-icon class="material-icons md-96">account_circle</md-icon>
             </md-card-title>
             <form name="vm.loginForm" ng-submit="vm.submitForm(vm.loginForm.$valid)" novalidate>
-                <md-card-content flex>
+                <md-card-content flex >
 
                     <md-input-container class="md-block">
                         <md-icon class="material-icons">email</md-icon>
@@ -44,17 +41,6 @@
                             <span class="md-subhead">Esqueci minha senha</span>
                         </md-button>
                     </div>
-                    <!--
-                        <div>
-
-                        </div>
--->
-                    <!--                        <div layout="row" layout-align="space-between end">-->
-                    <!--                            <md-checkbox>Permanecer conectado</md-checkbox>-->
-
-                    <!--                        </div>-->
-
-
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="center center">
                     <md-button flex="90" class="md-raised md-primary" type="submit" ng-click="vm.loginLocal(vm.user, true)">Entrar</md-button>
@@ -62,51 +48,12 @@
             </form>
             <md-divider></md-divider>
             <div layout="row" layout-align="start center" layout-margin>
-
-                <!--                <div layout="column">-->
                 <h4 class="md-subheader md-subhead">Ainda não tem conta? 
-				<span><md-button ui-sref="app.user.signup"  class="my-md-link-btn my-md-displayInline md-primary"> <span class="md-subhead">Cadastre-se</span></md-button></span>
+				<span><md-button ui-sref="app.user.signup"  class="my-md-link-btn my-md-displayInline md-primary"><span class="md-subhead">Cadastre-se</span></md-button></span>
 					</h4>
-
             </div>
-
-<!--
-            <md-card-actions layout="row" layout-align="center center">
-                <md-button ui-sref="app.user.signup" flex class="md-raised">Crie uma conta agora</md-button>
-            </md-card-actions>
--->
-            <!--                </div>-->
-            <!--            </div>-->
         </md-card>
     </div>
 </div>
-<!--    </div>-->
-<!--
-            <md-card flex-gt-md="50" layout-padding>
-                <md-card-title>
-                    <h4 class="md-title">Não Tem cadastro?</h4>
-                </md-card-title>
-                <md-card-content>
-                    <p>Crie o seu e aproveite as vantagens que incluem:</p>
-                    <md-list>
-                        <md-list-item>
-                            <p>Receber email de lançamentos, novidades e promoçõs de produtos</p>
-                        </md-list-item>
-                        <md-list-item>
-                            <p>Rastrear com facilidade manter o histórico e seus pedidos</p>
-                        </md-list-item>
-
-                    </md-list>
-                    <div layout="row" layout-align="center center">
-                        <md-button flex="60" ui-sref="app.user.signup" class="md-raised md-warn">Criar Cadastro</md-button>
-                    </div>
-                </md-card-content>
-            </md-card>
--->
-<!--</div>-->
-<!--    </md-content>-->
-<!--    </div>-->
-<!--</div>-->
-
 
 
