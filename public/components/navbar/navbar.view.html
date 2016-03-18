@@ -1,17 +1,19 @@
 <div layout="row" layout-wrap class="my-top-nav-bar" ng-controller="NavbarCtrl as vm">
-    <md-toolbar class="md-toolbar-tools my-md-menu-top my-md-no-padding" layout="row" layout-align="center center" style="background-color:#FAFAFA" >
+    <md-toolbar class="md-toolbar-tools my-md-menu-top my-md-no-padding" layout="row" layout-align="center center" style="background-color:#FAFAFA">
         <div flex="90" layout="row" layout-fill>
             <div flex layout="row" layout-fill layout-align="end  center" ng-cloak>
                 <md-button layout="row" layout-align="center center" class="md-primary md-hue-1 my-md-link-btn" ui-sref="app.user.dashboard.pedidos">Meus Pedidos
                 </md-button>
-                <md-button layout="row" layout-align="center center"  class="md-primary my-md-link-btn md-hue-1" ui-sref="app.user.dashboard.dados" ng-hide="!isloggedIn"><md-icon class="material-icons md-36">account_circle</md-icon>Olá {{loggedUserName}}</md-button>
-                <md-button layout="row" layout-align="center center" class="md-primary md-hue-2 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.login"><i class="fa fa-sign-in fa-3x"></i>&nbsp; Entrar
+                <md-button layout="row" layout-align="center center" class="md-primary my-md-link-btn md-hue-1" ui-sref="app.user.dashboard.dados" ng-hide="!isloggedIn">
+                    <md-icon class="material-icons md-36">account_circle</md-icon>Olá {{loggedUserName}}</md-button>
+
+                <md-button layout="row" layout-align="center center" class="md-primary md-hue-1 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastro
                 </md-button>
-                <md-button layout="row" layout-align="center center"  class="md-primary md-hue-1 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastro
+                <md-button layout="row" layout-align="center center" class="md-primary md-hue-2 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.login"><i class="fa fa-sign-in fa-2x"></i>&nbsp; Entrar
                 </md-button>
-                <md-button layout="row" layout-align="center center"  class="md-primary md-hue-2 my-md-link-btn" ng-hide="!isloggedIn" ng-click="vm.logout()"><i class="fa fa-sign-in fa-3x"></i>&nbsp;Sair
+                <md-button layout="row" layout-align="center center" class="md-primary md-hue-2 my-md-link-btn" ng-hide="!isloggedIn" ng-click="vm.logout()"><i class="fa fa-sign-in fa-2x"></i>&nbsp;Sair
                 </md-button>
-                <md-button layout="row" layout-align="center center"  class="md-warn md-raised" ui-sref="app.minhaCesta" ng-mouseover="vm.showPutedInCartToast()">
+                <md-button layout="row" layout-align="center center" class="md-warn md-raised" ui-sref="app.minhaCesta" ng-mouseover="vm.showPutedInCartToast()">
                     <md-icon class="material-icons">shopping_cart</md-icon>
                     <span>{{vm.kartSize}}</span>
                 </md-button>

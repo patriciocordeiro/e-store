@@ -70,7 +70,6 @@
         vm.userData = userSrcv.usr.login.data.local;
         console.log(vm.userData);
         var prevTab = 0;
-        console.log(vm.user);
         vm.selectedIndex = 0;
 
         vm.isNextTabEnable = [false, true, true];
@@ -99,24 +98,27 @@
 
         //Put the selected delivery option in the kartData 
         //Initialize with the default at the controller load
-        var i=0;
+        var i = 0;
         _(vm.kartData).forEach(function() {
             vm.kartData[i].selDelivery = vm.deliveryOptions[0];
             i++;
         })
-        
+        vm.buyTotal = vm.kartData[0].selDelivery.cost + vm.kartTotal;
+
         //For each element in the array
         //Get the selected delivery option
         vm.getDeliveryType = function(index) {
-            console.log(vm.selShipOption);
+            console.log(vm.selDeliveryOptions);
             //Pass only the selected delivery to a new variable
-            //            vm.kartData.selDelivery = vm.deliveryOptions[index]
+            //vm.kartData.selDelivery = vm.deliveryOptions[index]
             var i = 0;
             _(vm.kartData).forEach(function() {
                 vm.kartData[i].selDelivery = vm.deliveryOptions[index];
                 i++;
             })
-            console.log(vm.kartData);
+
+            vm.buyTotal = vm.kartData[0].selDelivery.cost + vm.kartTotal;
+            console.log(vm.kartData[0].selDelivery.cost + Number(vm.kartTotal));
         }
 
         /*New Address dialog*/
@@ -130,7 +132,19 @@
         }
 
         vm.payOption = ["Cartao de Crédito", "Transferência", "Boleto Bancário"];
-        vm.creditCardType = ["Master Card", "Visa"];
+        vm.creditCardType = [{
+            name: "Visa",
+            icon: "fa fa-cc-visa fa-3x"
+        }, {
+            name: "Mastercard",
+            icon: "fa fa-cc-mastercard fa-3x"
+        }, {
+            name: "Diners",
+            icon: "fa fa-cc-diners-club fa-3x"
+        }, {
+            name: "American Express",
+            icon: "fa fa-cc-amex fa-3x"
+        }];
         vm.getPayOption = function(selected) {
             console.log(selected);
         }
