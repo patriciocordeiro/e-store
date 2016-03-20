@@ -22,6 +22,11 @@
         vm.kartTotal = prdSrvc.prd.kart.total;
         console.log(vm.kartTotal);
         //------------------------------------------------------------
+		
+		/*Total Items in the kart*/
+		// Variable updated when remove itens
+		vm.kartTotalItems = vm.kartData.length;
+		/*---------------------------------- */
         /*Recover data on cookies if any*/
         //        prdSrvc.prd.kart.recover(function(data) {
         //            console.log('fireup recover');
@@ -61,7 +66,8 @@
             //update the local kart Total
             vm.kartTotal = prdSrvc.prd.kart.total;
             vm.isKartEmpty = prdSrvc.prd.kart.isEmpty;
-            console.log(vm.isKartEmpty);
+			//update kart total items
+			vm.kartTotalItems = vm.kartData.length;
         }
         //---------------------------------------------------------
 
@@ -80,6 +86,7 @@
             vm.isNextTabEnable[currTabIndex + 1] = false;
         }
 
+		/*Delivery options-----------------------------------*/
         //Initialize with the first element
         vm.selDeliveryOptions = 'SEDEX';
         vm.deliveryOptions = [{
@@ -120,7 +127,8 @@
             vm.buyTotal = vm.kartData[0].selDelivery.cost + vm.kartTotal;
             console.log(vm.kartData[0].selDelivery.cost + Number(vm.kartTotal));
         }
-
+		/*-----------------------------------------------------------------*/
+		
         /*New Address dialog*/
         vm.addNewAddressDialog = function(ev) {
             userSrcv.usr.addNewAddress.dialog(ev)
@@ -134,19 +142,47 @@
         vm.payOption = ["Cartao de Crédito", "Transferência", "Boleto Bancário"];
         vm.creditCardType = [{
             name: "Visa",
-            icon: "fa fa-cc-visa fa-3x"
+            icon: "/../assets/payment-icon-set/icons/visa-straight-32px.png",
+            digits: 16
         }, {
             name: "Mastercard",
-            icon: "fa fa-cc-mastercard fa-3x"
+            icon: "/../assets/payment-icon-set/icons/mastercard-straight-32px.png",
+            digits: 16
         }, {
-            name: "Diners",
-            icon: "fa fa-cc-diners-club fa-3x"
+            name: "PayPal",
+            icon: "/../assets/payment-icon-set/icons/paypal-straight-32px.png",
+			digits: 16
         }, {
             name: "American Express",
-            icon: "fa fa-cc-amex fa-3x"
+            icon: "/../assets/payment-icon-set/icons/american-express-straight-32px.png",
+            digits: 10,
         }];
-        vm.getPayOption = function(selected) {
-            console.log(selected);
+        vm.getPayOption = function(idx) {
+            vm.ccardMaxDigits = vm.creditCardType[idx].digits;
+            console.log(vm.ccardMaxDigits);
+        }
+
+        //Show/hide kart in the payment page
+        vm.isKartShow = false;
+        vm.layout = "column";
+        vm.btnText = 'Exibir produtos no carrinho';
+		vm.icon = 'expand_more'
+        vm.showHideKart = function() {
+            vm.isKartShow = !vm.isKartShow;
+            if (vm.isKartShow) {
+                vm.layout = "row";
+                vm.btnText = 'Ocultar produtos no carrinho'
+				vm.icon = 'expand_less'
+				
+            } else {
+                vm.layout = "column";
+                vm.btnText = 'Exibir produtos no carrinho';
+				vm.icon = 'expand_more'
+            }
+            console.log(vm.isKartShow)
+            console.log(vm.layout)
+
+
         }
     }
 }());

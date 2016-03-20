@@ -1,35 +1,53 @@
 <!--<section class="column" ng-cloak>-->
 <!--    <div layout="row" layout-align="center center">-->
 <md-divider></md-divider>
-<md-card>
-    <md-card-content>
+<md-card class="my-md-no-padding my-md-no-margin">
+    <md-card-content class="my-md-no-padding">
         <md-content>
             <md-tabs md-selected="vm.selectedIndex" md-dynamic-height md-border-bottom>
                 <md-tab ng-disabled="vm.isNextTabEnable[0]" label="Endereço">
-                    <md-content class="md-padding">
+                    <md-content class="my-md-grey-bg">
                         <md-card-title>
-                            <h3 class="md-headline">Escolha um endereço de entrega</h3>
+                            <h4 class="md-headline">Escolha um endereço de entrega</h4>
                         </md-card-title>
                         <div layout="column">
                             <div layout="row" layout-wrap>
-                                <md-card flex ng-repeat="shipAddress in vm.userData.endereco track by $index">
-                                    <md-card-content>
-                                        <h2 class="md-title">{{shipAddress.destinatario}}</h2>
-                                        <p>{{shipAddress.endereco}}, No. {{shipAddress.numero}}, {{shipAddress.complemento}}, {{shipAddress.bairro}},
-                                        </p>
-                                        <p>CEP: {{shipAddress.cep}}</p>
-                                        <p>{{shipAddress.cidade}} - {{shipAddress.estado}}
+                                <md-card flex="30" layout="column" layout-align="center center">
+
+                                    <md-card-content layout="column" layout-align="center center">
+                                        <md-button class="md-primary md-raised md-hue-2" ng-click="vm.addNewAddressDialog($event)">
+                                            <md-icon class="material-icons">add_box</md-icon>
+                                        </md-button>
+                                        <span flex class="md-title">Cadastrar um novo endereço</span>
                                     </md-card-content>
-                                    <div layout="row" layout-align="start end">
-                                        <md-card-actions>
-                                            <md-button class="md-primary md-raised" ng-click="vm.enableNextTab(vm.selectedIndex); vm.selShipAddress($index)">Entregar neste endereco</md-button>
-                                        </md-card-actions>
+                                </md-card>
+                                <md-card layout="column" flex="30" ng-repeat="shipAddress in vm.userData.endereco track by $index">
+                                    <md-card-title class="my-md-capital" flex="none">
+                                        <span layout="row"><h4 class="md-title ">{{shipAddress.destinatario}}</h4><md-button aria-label="edit" layout-padding class="md-icon-button my-md-no-margin my-md-no-padding my-md-smooth-title"><i class="fa fa-pencil-square-o fa-2x"></i>
+                                    </m-button></span> 
+                                        <!--
+                                        <h4 class="md-title my-md-no-padding">{{shipAddress.destinatario}}
+                                                </h4>
+                                        <md-button class="md-primary md-hue-1 md-icon-button my-md-no-margin my-md-no-padding">
+                                            <i class="fa fa-pencil-square-o fa-2x"></i>
+                                        </md-button>
+-->
+                                    </md-card-title>
+                                    <div flex>
+                                        <md-card-content>
+                                            <p>{{shipAddress.endereco}}, No. {{shipAddress.numero}}, {{shipAddress.complemento}}, {{shipAddress.bairro}},
+                                            </p>
+                                            <p>CEP: {{shipAddress.cep}}</p>
+                                            <p>{{shipAddress.cidade}} - {{shipAddress.estado}}
+
+                                            </p>
+                                        </md-card-content>
+                                    </div>
+                                    <div flex layout="row" layout-align="center end" layout-margin>
+                                        <md-button flex="80" class="md-primary md-raised" ng-click="vm.enableNextTab(vm.selectedIndex); vm.selShipAddress($index)">Entregar neste endereco</md-button>
                                     </div>
 
                                 </md-card>
-                            </div>
-                            <div layout="row" layout-margin flex="25" layout-align="center center">
-                                <md-button ng-click="vm.addNewAddressDialog($event)" class="md-raised md-primary md-hue-2">Cadastrar outro endereço +</md-button>
                             </div>
                         </div>
                     </md-content>
@@ -42,12 +60,19 @@
                         <md-card class="my-md-no-shadow my-md-no-padding">
                             <md-card-title class="my-md-no-padding">
                                 <md-card-title-text>
-                                    <span class="md-title my-md-smooth-title">Será entregue no endereço:</span>
+                                    <span layout="row" class="my-md-smooth-title"><h4 class="md-title ">Será entregue no endereço</h4><md-button layout-padding class="md-icon-button my-md-no-margin my-md-no-padding" aria-label="edit property"><i class="fa fa-pencil-square-o fa-2x"></i>
+                                    </m-button></span>
                                     <span class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.shipAddress.bairro}},
                                 </span>
                                     <span class="md-subheader">CEP:{{vm.shipAddress.cep}}</span>
                                     <span class="md-subheader">{{vm.shipAddress.cidade}}</span>  <span class="md-subheader">{{vm.shipAddress.estado}}</span>
                                 </md-card-title-text>
+                                <div>
+                                    <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Pagamento
+                                        <md-icon class="material-icons">chevron_right</md-icon>
+
+                                    </md-button>
+                                </div>
                             </md-card-title>
                         </md-card>
                         <md-divider></md-divider>
@@ -77,15 +102,16 @@
                                     </md-card-content>
                                 </md-card>
                                 <md-divider></md-divider>
-                                <md-card flex="50" class="my-md-no-shadow my-md-no-margin" style="background-color:#f5f5f5	">
+                                <md-card flex="50" class="my-md-no-shadow my-md-no-margin my-md-grey-bg">
                                     <md-card-title flex="none">
                                         <h4 class="md-title">Tipo de entrega</h4>
+
                                     </md-card-title>
                                     <md-card-content>
                                         <md-list>
                                             <md-list-item ng-repeat="deliveryOption in vm.deliveryOptions" layout="row" layout-align="end space-between">
                                                 <div flex="80">
-                                                    <md-radio-group ng-model="vm.selDeliveryOptions" ng-click="vm.getDeliveryType($index)">
+                                                    <md-radio-group class="md-warn" ng-model="vm.selDeliveryOptions" ng-click="vm.getDeliveryType($index)">
                                                         <md-radio-button value="{{deliveryOption.type}}">{{deliveryOption.type}}:&nbsp;{{deliveryOption.text}}</md-radio-button>
                                                     </md-radio-group>
                                                 </div>
@@ -104,16 +130,27 @@
                         <md-divider></md-divider>
                         <md-divider></md-divider>
                         <div layout="row" layout-align="space-between" layout-margin>
-                            <md-button class="md-raised md-warn" ng-click="vm.enableNextTab(vm.selectedIndex-2)">Alterar endereço</md-button>
-                            <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Ir para o pagamento</md-button>
+                            <md-button class="md-raised md-primary md-hue-2" ng-click="vm.enableNextTab(vm.selectedIndex-2)"><md-icon class="material-icons">chevron_left</md-icon>Alterar endereço</md-button>
+                            <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Pagamento
+                                <md-icon class="material-icons">chevron_right</md-icon>
+                            </md-button>
                         </div>
 
                     </md-content>
                 </md-tab>
                 <md-tab ng-disabled="vm.isNextTabEnable[2]" label="Pagamento">
                     <md-content>
-                        <div layout="row">
-                            <md-card flex="50" layout="column" class="my-md-no-shadow">
+                        <md-card-title>
+                            <h2 class="md-headline">Resumo do pedido</h2>
+                        </md-card-title>
+                        <md-button class="md-primary md-hue-2 md-raised" ng-click="vm.showHideKart()">
+                            <md-icon class="material-icons">shopping_cart_outline</md-icon>{{vm.btnText}}
+                            <md-icon class="material-icons">{{vm.icon}}</md-icon>
+                        </md-button>
+                        <md-divider></md-divider>
+                        <md-divider></md-divider>
+                        <div layout="vm.layout">
+                            <md-card class="slideUpDown my-md-no-shadow" flex="50" layout="column" ng-show="vm.isKartShow">
                                 <md-card-title>
                                     <h4 class="md-title">Produtos</h4>
                                 </md-card-title>
@@ -121,14 +158,20 @@
                                     <md-divider></md-divider>
                                     <md-card ng-repeat="prd in vm.kartData" class="my-md-no-margin my-md-no-shadow my-md-no-round-border">
                                         <md-divider></md-divider>
-
                                         <md-card-content class="my-md-no-padding">
                                             <md-list class="my-md-no-padding">
                                                 <md-list-item class="md-3-line">
                                                     <div class="md-list-item-text md-long-text" layout="column">
                                                         <h3 class="my-md-capital">{{prd.categoria}} {{prd.ref_PM}}</h3>
                                                         <p class="my-md-capital">{{prd.descricao}}</p>
-                                                        <p>Quantidade:{{prd.buyQty}}-{{ prd.selDelivery.text}}</p>
+                                                        <p>Quantidade:&nbsp;{{prd.buyQty}}&nbsp;-&nbsp;{{ prd.selDelivery.text}}
+                                                            <md-button flex="30" aria-label="edit property" class="md-icon-button my-md-no-margin my-md-no-padding">
+                                                                <i class="fa fa-pencil-square-o"></i>
+                                                            </md-button>
+                                                            <md-button flex="30" aria-label="remove item" class="md-icon-button my-md-no-margin my-md-no-padding">
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </md-button>
+                                                        </p>
                                                     </div>
                                                 </md-list-item>
                                             </md-list>
@@ -136,65 +179,99 @@
                                     </md-card>
                                 </md-card-content>
                             </md-card>
-                            <md-divider></md-divider>
-                            <md-card flex="50" class="my-md-no-shadow my-md-no-margin">
-                                <md-card-title flex="none">
-                                    <h4 class="md-title">EScolha a forma de pagamento</h4>
-                                </md-card-title>
+                            <md-card flex="50" class="my-md-no-shadow my-md-no-margin my-md-grey-bg">
                                 <md-card-content>
-                                    <md-tabs>
-                                        <md-tab label="Cartão de crédito">
-                                            <md-list layout="row">
-                                                <md-list-item ng-repeat="creditCard in vm.creditCardType">
-                                                    <md-radio-group ng-model="vm.payOption">
-                                                        <md-radio-button value="{{creditCard.name}}" ng-click="vm.getPayOption(vm.payOption)">
-<!--															{{creditCard.name}}-->
-															<i class='{{creditCard.icon}}'></i>
-                                                        </md-radio-button>
-                                                    </md-radio-group>
-                                                </md-list-item>
-                                            </md-list>
-                                            <form name="FormCreditCard">
-                                                <div layout="column">
-                                                    <md-input-container>
-                                                        <label>Número do cartão</label>
-                                                        <input type="text" required>
-                                                    </md-input-container>
-                                                    <md-input-container>
-                                                        <label>Nome do titular</label>
-                                                        <input type="text" required>
-                                                    </md-input-container>
-                                                    <md-datepicker class="md-block" ng-model="user.submissionDate" md-placeholder="Data de validade date">
-                                                    </md-datepicker>
-                                                    <md-input-container>
-                                                        <label>Código de segurança</label>
-                                                        <input type="text" required>
-                                                    </md-input-container>
-                                                    <md-input-container>
-                                                        <label>Número de parcelas</label>
-                                                        <md-select ng-model="teste">
-                                                            <md-option value="100">3x sem juros de R$ 35
-                                                            </md-option>
-                                                            <md-option value="100">3x sem juros de R$ 25
-                                                            </md-option>
-                                                        </md-select>
-                                                    </md-input-container>
-                                                </div>
-                                            </form>
-                                        </md-tab>
-                                        <md-tab label="Boleto"></md-tab>
-                                    </md-tabs>
-                                    <div style="background-color:#f5f5f5">
-                                        <h4 class="md-title my-md-smooth-title">Subtotal: {{vm.kartTotal | currency:"R$ " }}</h4>
-                                        <h4 class="md-title my-md-smooth-title">Frete:&nbsp;{{vm.kartData[0].selDelivery.cost  | currency:"R$ "}}</h4>
-                                        <h2 class="md-headline my-md-smooth-title">Valor total a pagar: &nbsp; {{vm.buyTotal | currency:"R$ " }}</h2>
-                                    </div>
+                                    <!--                                    <div >-->
+                                    <h4 class="md-subhead my-md-smooth-title"><b>Subtotal: {{vm.kartTotal | currency:"R$ " }}</b></h4>
+                                    <h4 class="md-subhead my-md-smooth-title"><b>Frete:&nbsp;{{vm.kartData[0].selDelivery.cost  | currency:"R$ "}}</b></h4>
+                                    <h2 class="md-title my-md-smooth-title"><b>Valor total a pagar: &nbsp; {{vm.buyTotal | currency:"R$ " }}</b></h2>
+                                    <!--                                    </div>-->
+                                </md-card-content>
+                            </md-card>
+                            <md-divider></md-divider>
+                            <md-card flex="50" class="my-md-no-shadow my-md-no-margin my-md-grey-bg">
+                                <md-card-content>
+                                    <span layout="row" class="my-md-smooth-title"><h4 class="md-title ">Será entregue no endereço</h4><md-button layout-padding class="md-icon-button my-md-no-margin my-md-no-padding" aria-label="edit property"><i class="fa fa-pencil-square-o fa-2x"></i>
+                                    </m-button></span>
+                                    <span class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.shipAddress.bairro}},
+                                </span>
+                                    <span class="md-subheader">CEP:{{vm.shipAddress.cep}}</span>
+                                    <span class="md-subheader">{{vm.shipAddress.cidade}}</span>  <span class="md-subheader">{{vm.shipAddress.estado}}</span>
+                                    <!--                                    </md-card-title-text>-->
                                 </md-card-content>
                             </md-card>
                         </div>
+                        <md-divider></md-divider>
+                        <md-divider></md-divider>
+                        <!--                        <div layout="row" layout-align="center">-->
+                        <md-card flex="60" class="my-md-no-shadow my-md-no-margin" layout-align="center start">
+                            <md-card-title flex="none">
+                                <h4 class="md-">Escolha a forma de pagamento</h4>
+                            </md-card-title>
+                            <md-card-content>
+                                <md-tabs>
+                                    <md-tab label="Cartão de crédito">
+                                        <md-list layout="row" layout-margin>
+                                            <md-list-item ng-repeat="creditCard in vm.creditCardType track by $index">
+                                                <md-radio-group class="md-warn" ng-model="vm.payOption">
+                                                    <md-radio-button value="{{creditCard.name}}" aria-label="pay option" ng-click="vm.getPayOption($index)">
+                                                        <img ng-src="{{creditCard.icon}}">
+                                                    </md-radio-button>
+                                                </md-radio-group>
+                                            </md-list-item>
+                                        </md-list>
+                                        <form name="FormCreditCard">
+                                            <div layout="column">
+                                                <div layout="row">
+                                                    <div flex layout-margin>
+                                                        <md-input-container class="md-block">
+                                                            <label>Número do cartão</label>
+                                                            <input type="text" required maxlength="{{vm.ccardMaxDigits}}">
+                                                        </md-input-container>
+                                                    </div>
+                                                    <div flex layout-margin>
+                                                        <md-input-container class="md-block">
+                                                            <label>Nome do titular</label>
+                                                            <input type="text" required>
+                                                        </md-input-container>
+                                                    </div>
+                                                </div>
+                                                <div layout="row">
+                                                    <div flex layout-margin>
+                                                        <md-datepicker class="md-block" ng-model="user.submissionDate" md-placeholder="Data de validade">
+                                                        </md-datepicker>
+                                                    </div>
+                                                    <div flex>
+                                                        <md-input-container>
+                                                            <label>Código de segurança</label>
+                                                            <input type="text" maxlength="3" required>
+                                                        </md-input-container>
+														<img src="../../assets/payment-icon-set/icons/payment-card-security-code.png">
+<!--                                                        <i class="fa fa-credit-card fa-3x"></i>-->
+                                                    </div>
+                                                </div>
+                                                <md-input-container>
+                                                    <label>Número de parcelas</label>
+                                                    <md-select ng-model="teste">
+                                                        <md-option value="100">3x sem juros de R$ 35
+                                                        </md-option>
+                                                        <md-option value="200">3x sem juros de R$ 25
+                                                        </md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </div>
+                                        </form>
+                                    </md-tab>
+                                    <md-tab label="Boleto"></md-tab>
+                                </md-tabs>
+
+                            </md-card-content>
+                        </md-card>
+                        <!--                        </div>-->
                         <md-card-actions layout="row" layout-align="space-between">
-                            <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex-2)">
-                                <md-icon class="material-icons">keyboard_arrow_left</md-icon>Alterar Tipo de entraga</md-button>
+
+                            <md-button class="md-raised md-primary md-hue-2" ng-click="vm.enableNextTab(vm.selectedIndex-2)">
+                                <md-icon class="material-icons">chevron_left</md-icon>Alterar Tipo de entrega</md-button>
                             <md-button class="md-raised md-primary" ng-click="vm.enableNextTab(vm.selectedIndex)">Finalizar compra</md-button>
                         </md-card-actions>
                     </md-content>

@@ -18,11 +18,6 @@
             vm.kartData = data;
             vm.kartSize = data.length;
         });
-        //        var getSizePromisse = prdSrvc.prd.kart.getSize();
-        //        getSizePromisse.then(function(data) {
-        //            console.log(data);
-        //        })
-
 
         //---------------------------------------------------------
         /*Get all kart data*/

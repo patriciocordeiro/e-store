@@ -1,6 +1,6 @@
 //colors
-md-content{
-	overflow: hidden !important;
+md-content {
+    overflow: hidden !important;
 }
 $indigo:#3F51B5;
  $light_bue:#03A9F4;
@@ -18,111 +18,103 @@ $indigo:#3F51B5;
     //    .md-button {
     //        color: #3F79C2 !important;
     //        text-transform: capitalize;
-     //   }
+    //   }
 
 }
-
-
 //Angular property
-.md-subheader{
-	background: transparent !important;
+.md-subheader {
+    background: transparent !important;
 }
 //----------------------------------
-.dashboard-edit{
-  transition: bottom 0.3s linear;
-  position: relative;
-//    left: 0px;
-//    right: 0px;
-//    bottom: 0px;
-    bottom:0px;
+.dashboard-edit {
+    transition: bottom 0.3s linear;
+    position: relative;
+    //    left: 0px;
+    //    right: 0px;
+    //    bottom: 0px;
+    bottom: 0px;
     overflow: hidden;
-//    z-index: 10;
-	background-color:#f5f5f5;
+    //    z-index: 10;
+    background-color: #f5f5f5;
 }
-.dashboard-edit.ng-hide{
-    bottom:-544px;
-	 overflow: hidden;
+.dashboard-edit.ng-hide {
+    bottom: -544px;
+    overflow: hidden;
 }
-
-.userAddress{
-     transition: top 0.3s linear;
-      position: relative;
-    top:0px;
+.userAddress {
+    transition: top 0.3s linear;
+    position: relative;
+    top: 0px;
 }
-
-.userAddress.ng-hide{
-    top:-544px;
+.userAddress.ng-hide {
+    top: -544px;
 }
-
-.md-button{
-	text-transform: none !important;
+.md-button {
+    text-transform: none !important;
 }
 //=====================================================
 //rules bellow are for my list tables with md-card
-.even{
+.even {
     background-color: white;
 }
-.odd{
-    background-color: aliceblue;
+.odd {
+    background-color:#fafafa;
 }
-
-.my-md-no-margin{
-	margin: 0 !important;
+.my-md-no-margin {
+    margin: 0 !important;
 }
-
-.my-md-no-padding{
-	padding: 0px !important;
+.my-md-no-margin-top {
+    margin-top: 0 !important;
 }
-.my-md-noround-border{
-	border-radius: 0 !important;
+.my-md-grey-bg {
+    background-color: #f5f5f5;
 }
-
-.my-md-btn-icon-below{
-	line-height: inherit !important;
+.my-md-no-padding {
+    padding: 0px !important;
 }
-.my-md-float-btn{
-	position: absolute !important;
+.my-md-noround-border {
+    border-radius: 0 !important;
 }
-
-.my-md-smooth-title{
-	color: rgba(0,0,0,0.54) !important;
+.my-md-btn-icon-below {
+    line-height: inherit !important;
+}
+.my-md-float-btn {
+    position: absolute !important;
+}
+.my-md-smooth-title {
+    
+	color: rgba(0, 0, 0, 0.54) !important;
 }
 //====================================================
-
-.my-md-toolbar-header{
-	font-size: 14px !important;
+ .my-md-toolbar-header {
+    font-size: 14px !important;
+	background-color: #f5f5f5 !important;
+	
+	 
+	 color: rgba(0, 0, 0, 0.87) !important;
 }
 // For text and titles
-.my-md-capital{
-text-transform: capitalize;	
+.my-md-capital {
+    text-transform: capitalize;
 }
-
-.my-md-no-shadow{
-	box-shadow:none;
+.my-md-no-shadow {
+    box-shadow: none;
 }
-.my-md-notextTransform{
-   text-transform:none !important;
-  
+.my-md-notextTransform {
+    text-transform: none !important;
 }
-
-.my-md-bold{
-	font-weight: bold !important;
+.my-md-bold {
+    font-weight: bold !important;
 }
-
 .my-top-nav-bar {
     z-index: 222 !important;
 }
-
-.my-md-lowercase{
-text-transform: lowercase !important;	
+.my-md-lowercase {
+    text-transform: lowercase !important;
 }
-
-.my-md-displayInline{
-	display: inline !important;
+.my-md-displayInline {
+    display: inline !important;
 }
-
-
-
 //.my-md-full-heigth{
 ////	height: 100% !important;
 //	background-color: red !important;
@@ -185,9 +177,20 @@ text-transform: lowercase !important;
         height: 25px !important;
     }
 }
-
 .my-nav-bar-menu {
-z-index: 100;
+    z-index: 100;
+}
+
+.kart-list{
+	md-list{
+		md-list-item{
+			min-height: auto!important;
+		}
+	}
+}
+
+.kart-total{
+	background-color: #f5f5f5 !important;
 }
 
 /*Customize the menu bar to fit toolbar hight*/
@@ -201,16 +204,38 @@ z-index: 100;
     transform: rotate(90deg);
 }
 .cssSlideUp {
+    -webkit-transition: .5s linear all;
+    -moz-transition: .5s linear all;
+    -o-transition: .5s linear all;
     transition: .5s linear all;
     //	min-height: 150px;
     height: 300px;
     overflow: hidden;
     display: block;
     margin-top: 0;
-//    padding: 3% 0;
+    //    padding: 3% 0;
+
 }
 .cssSlideUp.ng-hide {
     height: 0;
+}
+
+
+.slideUpDown{
+    line-height:30px;
+	opacity: 1;
+//	max-height: 100%;
+    overflow: hidden;
+//    display: block;
+    -webkit-transition:   .5s linear all;
+    -moz-transition:   .5s linear all;
+    -o-transition:  .5s linear all;
+    transition:  all .2s ease-in-out;
+}
+.slideUpDown.ng-hide{
+	  line-height: 0;
+	opacity: 0;
+
 }
 .full-menu {
     position: absolute;
@@ -221,6 +246,9 @@ z-index: 100;
     top: 64px;
     overflow: hidden;
     transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
+	-webkit-transition:top 0.5s ease-in 0.1s, left 0s linear 0.25s;
+	-moz-transition:top 0.5s ease-in 0.1s, left 0s linear 0.25s;
+	-o-transition:top 0.5s ease-in 0.1s, left 0s linear 0.25s;
 }
 .full-menu.ng-hide {
     top: -560px;
@@ -228,10 +256,9 @@ z-index: 100;
 //.full-menu.ng-hide {
 //    height: 0;
 //}
-.my-md-menu-bar {} 
-.submenu {
+.my-md-menu-bar {} .submenu {
     //    background-color: white;
-//    position: fixed;
+    //    position: fixed;
     width: 100%;
     left: 0;
     right: 0;
@@ -290,21 +317,31 @@ md-menu-content {
 // Rules for sizing the icon.
 .material-icons.md-18 {
     font-size: 18px;
+    height: 18px;
+    width: 18px;
 }
 .material-icons.md-24 {
     font-size: 24px;
+    height: 24px;
+    width: 24px;
 }
 .material-icons.md-36 {
     font-size: 36px;
+    height: 36px;
+    width: 36px;
 }
 .material-icons.md-48 {
     font-size: 48px;
+    height: 48px;
 }
 .material-icons.md-60 {
     font-size: 60px;
+    height: 60px;
 }
-.material-icons.md-72 {
-    font-size: 72px;
+.material-icons.md-96 {
+    font-size: 96px !important;
+    height: 96px;
+    width: 96px;
 }
 .my-md-link-btn {
     // this style applies to all link buttons
@@ -316,12 +353,12 @@ md-menu-content {
     margin:0 !important;
     //    padding: 0 !important;
     //    line-height:20px !important;
-//    color:#00695C !important;
+    //    color:#00695C !important;
     min-height:auto !important;
     text-transform:none !important;
     min-width:20px !important;
     font-size:12px !important;
-	font-weight:100 !important;
+    font-weight:100 !important;
 }
 .my-md-icon-btn {
     padding: 0px !important;
@@ -349,7 +386,7 @@ md-menu-content {
 }
 .md-button.middle {
     border-radius: 0;
-    border: 1px solid rgba(230, 230, 230, 0.96) ;
+    border: 1px solid rgba(230, 230, 230, 0.96);
     //    border-right: 1px solid rgba(230, 230, 230, 0.96);
 
 }
@@ -441,43 +478,39 @@ md-toast .md-toast-content {
     height: 100% !important;
     max-height: 100%!important;
 }
-
-.my-md-filter-area{
-margin-top: 3% !important;
+.my-md-filter-area {
+    margin-top: 3% !important;
 }
-
 .prd-filter-list {
-	md-list{
-//		border: solid 1px red;
-	}
-	md-card md-card-content {
-    display: block;
-//    padding: 0px 6px 0px 0px;
-}
-	md-card-title{
-		padding: 0px 14px;
-	}
-md-list-item, md-list-item .md-list-item-inner {
-	 min-height: 0px !important;
-	md-checkbox{
-		margin-right: 6px !important;
-	}
-}
-	
+    md-list {
+        //		border: solid 1px red;
 
+    }
+    md-card md-card-content {
+        display: block;
+        //    padding: 0px 6px 0px 0px;
 
+    }
+    md-card-title {
+        padding: 0px 14px;
+    }
+    md-list-item,
+    md-list-item .md-list-item-inner {
+        min-height: 0px !important;
+        md-checkbox {
+            margin-right: 6px !important;
+        }
+    }
 }
-
-.link-btn{
-		width: 100%;
-		a{
-				padding: 0px !important;
-	
-		}
+.link-btn {
+    width: 100%;
+    a {
+        padding: 0px !important;
+    }
 }
-.prd-info-list{
-	md-list-item{
-		padding: 0px !important;
-	}
+.prd-info-list {
+    md-list-item {
+        padding: 0px !important;
+    }
 }
 /*css anmations*/

@@ -1,30 +1,42 @@
 <div layout="row" layout-align="center center">
     <div layout="column" flex>
+
         <div ng-show="!vm.isKartEmpty">
-            <md-card class="my-md-no-margin my-md-noround-border" >
-                <md-card-actions layout="row" layout-padding layout-align="space-between center">
-                    <md-button class="md-warn md-raised">Continuar Compras</md-button>
+            <md-card class="my-md-no-margin my-md-noround-border my-md-no-shadow">
+                <md-card-title>
+                    <h2 class="md-headline">Meu Carrinho ({{vm.kartTotalItems}} Itens)</h2>
+                </md-card-title>
+                <md-card-content>
+                </md-card-content>
+
+                <md-card-actions layout="row" layout-align="space-between center">
+                    <md-button class="md-raised md-primary md-hue-2">Continuar Compras</md-button>
                     <md-button ui-sref="app.minhaCesta.checkout" ng-click="vm.finalizarCompra()" class="md-primary md-raised">Finalizar Compra</md-button>
+
                 </md-card-actions>
             </md-card>
-            <md-toolbar class="my-md-toolbar-header">
-                <md-card class="my-md-no-padding my-md-no-margin" style="background-color:transparent" hide-sm hide-xs>
+            <md-divider></md-divider>
+            <md-divider></md-divider>
+            <md-toolbar class="my-md-toolbar-header md-primary md-hue-2">
+                <md-card class="my-md-no-padding my-md-no-margin my-md-no-shadow" style="background-color:transparent" hide-sm hide-xs>
                     <md-card-content class="my-md-no-padding my-md-no-margin">
                         <md-list layout-gt-sm="row">
-                            <md-list-item ng-repeat="fixedCols in vm.prdFixedCols" flex-gt-sm="{{vm.columnsSizes[$index]}}">
+                            <md-list-item layout-align="center center" ng-repeat="fixedCols in vm.prdFixedCols" flex-gt-sm="{{vm.columnsSizes[$index]}}">
                                 <b>{{fixedCols}}</b>
                             </md-list-item>
                         </md-list>
                     </md-card-content>
                 </md-card>
             </md-toolbar>
-            <md-card class="kart-list my-md-no-margin my-md-noround-border" ng-class="{even:$even, odd:$odd}" ng-repeat="prd in vm.kartData">
-                <md-card-content>
+            <md-divider></md-divider>
+            <md-divider></md-divider>
+            <md-card class="kart-list my-md-no-margin my-md-no-padding my-md-noround-border" ng-class="{even:$even, odd:$odd}" ng-repeat="prd in vm.kartData">
+                <md-card-content class="my-md-no-padding">
                     <md-list layout-gt-sm="row">
-                        <md-list-item flex-gt-sm="{{vm.columnsSizes[0]}}">
-                            {{$index}}
+                        <md-list-item layout-align="center center" flex-gt-sm="{{vm.columnsSizes[0]}}">
+                            <span class="subhead">{{$index}}</span>
                         </md-list-item>
-                        <md-list-item flex-gt-sm="{{vm.columnsSizes[1]}}">
+                        <md-list-item layout-align="center center" flex-gt-sm="{{vm.columnsSizes[1]}}">
                             <md-list class="prd-info-list" flex layout="column">
                                 <md-list-item layout="row">
                                     <div flex><b>Ref do fabricante:</b>
@@ -46,7 +58,7 @@
                                     <div flex><b>Fabricante:</b>
                                     </div>
                                     <span flex></span>
-                                    <div flex><b>{{prd.ref_PM}}</b>
+                                    <div flex>{{prd.ref_PM}}
                                     </div>
                                 </md-list-item>
                                 <md-list-item layout="row">
@@ -54,41 +66,44 @@
                                     </div>
                                     <span flex></span>
                                     <div flex>
-                                        {{prd.descricao}}
+                                        <p class="md-subhead"><b>{{prd.descricao}}</b>
+                                        </p>
                                     </div>
                                 </md-list-item>
 
                             </md-list>
                         </md-list-item>
-                        <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}">
-                            <p hide-gt-sm>Quantidade:</p>
-                            <p class="md-title">
+                        <md-list-item layout-align="center center" flex-gt-sm="{{vm.columnsSizes[2]}}">
+                            <span hide-gt-sm>Quantidade:</span>
+                            <span class="md-subhead">
                                 <md-input-container>
                                     <input style="text-align:center" type="number" maxlength="3" step="1" ng-model="vm.kartData[$index].buyQty" ng-click="vm.getKartUpdate($index, vm.kartData[$index].buyQty)" min="1" max="100" />
                                 </md-input-container>
-                            </p>
+							</span>
                         </md-list-item>
-                        <md-list-item flex-gt-sm="{{vm.columnsSizes[3]}}">
-                            <p hide-gt-sm>Preço unit.</p>
-                            <p class="md-title">{{prd.preco| currency:"R$ "}}</p>
+                        <md-list-item layout-align="center center" flex-gt-sm="{{vm.columnsSizes[3]}}">
+                            <span hide-gt-sm>Preço unit.</span>
+                            <span class="md-subhead">{{prd.preco| currency:"R$ "}}</span>
                         </md-list-item>
-                        <md-list-item flex-gt-sm="{{vm.columnsSizes[4]}}">
-                            <p hide-gt-sm>Subtotal:</p>
-                            <p class="md-title">{{prd.priceSubTotal| currency:"R$ "}}</p>
+                        <md-list-item layout-align="center center" flex-gt-sm="{{vm.columnsSizes[4]}}">
+                            <span hide-gt-sm>Subtotal:</span>
+                            <span class="md-subhead">{{prd.priceSubTotal| currency:"R$ "}}</span>
                         </md-list-item>
-                        <md-list-item flex-gt-sm="{{vm.columnsSizes[5]}}">
-                            <p>
-                                <md-button class="md-icon-button" ng-click="vm.remItem($index)">
-                                    <md-icon class="material-icons" style="color:#FF5722">delete</md-icon>
-                                </md-button>
-                            </p>
+                        <md-list-item layout-align="center center" flex-gt-sm="{{vm.columnsSizes[5]}}">
+                            <!--                            <p>-->
+                            <md-button class="md-icon-button" ng-click="vm.remItem($index)">
+                                <md-icon class="material-icons">delete_forever</md-icon>
+                            </md-button>
+                            <!--                            </p>-->
                         </md-list-item>
                     </md-list>
                 </md-card-content>
+                <md-divider></md-divider>
             </md-card>
-            <md-card class="my-md-no-margin my-md-noround-border">
-				<md-divider></md-divider>
-                <md-card-content  layout="row" layout-align-gt-sm="end center">
+            <md-divider></md-divider>
+            <md-card class="kart-total my-md-no-margin my-md-noround-border">
+                <md-divider></md-divider>
+                <md-card-content layout="row" layout-align-gt-sm="end center">
                     <md-list>
                         <md-list-item layout-padding>
                             <h4 class="md-title">Total da Compra:</h4>
@@ -97,11 +112,13 @@
                     </md-list>
                 </md-card-content>
             </md-card>
-            <md-card class="my-md-no-margin my-md-noround-border">
-				<md-divider></md-divider>
-                <md-card-actions layout="row" layout-padding layout-align="space-between center">
-                    <md-button class="md-warn md-raised">Continuar Compras</md-button>
+            <md-divider></md-divider>
+            <md-divider></md-divider>
+            <md-card class="my-md-no-margin my-md-noround-border my-md-no-shadow">
+                <md-card-actions layout="row" layout-align="space-between center">
+                    <md-button class="md-raised md-primary md-hue-2">Continuar Compras</md-button>
                     <md-button ui-sref="app.minhaCesta.checkout" ng-click="vm.finalizarCompra()" class="md-primary md-raised">Finalizar Compra</md-button>
+
                 </md-card-actions>
             </md-card>
         </div>
