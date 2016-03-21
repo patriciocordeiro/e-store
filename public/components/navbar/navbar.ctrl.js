@@ -18,6 +18,11 @@
             vm.kartData = data;
             vm.kartSize = data.length;
         });
+        //        var getSizePromisse = prdSrvc.prd.kart.getSize();
+        //        getSizePromisse.then(function(data) {
+        //            console.log(data);
+        //        })
+
 
         //---------------------------------------------------------
         /*Get all kart data*/
@@ -25,8 +30,8 @@
         //---------------------------------------------------------
         /*Menu Itens*/
         var imgProductNavFolder = '../../assets/img/navbar/';
-		vm.navBar = ['Produtos', 'Tutoriais', ]
-		
+        vm.navBar = ['Produtos', 'Tutoriais', ]
+
         vm.productNavCategories = [{
             name: 'Componentes Eletrônicos',
             icon: 'tv',
@@ -193,28 +198,41 @@
             })
             return $q.when(temp);
         }
-        vm.showSubMenu = closeAll(vm.productNavCategories.length);
-
+        //        vm.showSubMenu = closeAll(vm.productNavCategories.length);
+        vm.showSubMenu = -1;
         vm.OpenMenu = function() {
             vm.showMenu = !vm.showMenu;
+            console.log(vm.showMenu);
+						//close submenu if menu is closed
+			if(vm.showMenu){
+            vm.showSubMenu = -1;
+			  vm.isSubMenuOpen = false;
+			}
         }
 
         vm.openSubMenu = function(idx) {
-            console.log(idx);
-			vm.activeMenuIdx = idx;
-            closeAll(vm.productNavCategories.length).then(function(data) {
-                vm.showSubMenu = data;
-                vm.showSubMenu[idx] = !vm.show
-                console.log(vm.showSubMenu);
-            })
+            console.log('my idx',  idx);
+            vm.activeMenuIdx = idx;
+            vm.showSubMenu = idx;
+            vm.isSubMenuOpen = true;
+            //            closeAll(vm.productNavCategories.length).then(function(data) {
+            //                vm.showSubMenu = data;
+            //                vm.showSubMenu[idx] = !vm.show
+            //                console.log(vm.showSubMenu);
+            //            })
+
         }
 
         vm.closeMenus = function() {
             vm.showMenu = false;
-            closeAll(vm.productNavCategories.length).then(function(data) {
-                vm.showSubMenu = data;
-            });
-			console.log('clossing all menus and submenus');
+            //            closeAll(vm.productNavCategories.length).then(function(data) {
+            //Set show menu index=-1
+			vm.showSubMenu = -1;
+			//The submenu is closed
+            vm.isSubMenuOpen = false;
+
+            //            });
+            console.log('clossing all menus and submenus');
         }
 
         vm.isActive = function(menuItem) {

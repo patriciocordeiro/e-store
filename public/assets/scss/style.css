@@ -1,7 +1,3 @@
-/* line 2, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
-md-content {
-  overflow: hidden !important; }
-
 /* line 7, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-menu-top {
   min-height: 100% !important;
@@ -83,47 +79,47 @@ md-content {
 .my-md-smooth-title {
   color: rgba(0, 0, 0, 0.54) !important; }
 
-/* line 89, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 88, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-toolbar-header {
   font-size: 14px !important;
   background-color: #f5f5f5 !important;
   color: rgba(0, 0, 0, 0.87) !important; }
 
-/* line 97, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 94, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-capital {
   text-transform: capitalize; }
 
-/* line 100, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 97, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-no-shadow {
   box-shadow: none; }
 
-/* line 103, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 100, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-notextTransform {
   text-transform: none !important; }
 
-/* line 106, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 103, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-bold {
   font-weight: bold !important; }
 
-/* line 109, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 106, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-top-nav-bar {
   z-index: 222 !important; }
 
-/* line 112, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 109, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-lowercase {
   text-transform: lowercase !important; }
 
-/* line 115, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 112, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-displayInline {
   display: inline !important; }
 
-/* line 123, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 120, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-list-item.active-menu {
   background-color: rgba(0, 128, 128, 0.21);
   transition: border-width 0.3s linear;
   border-width: 100%;
   border-bottom: solid 6px teal; }
-  /* line 124, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  /* line 121, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   .my-md-list-item.active-menu:after {
     content: '';
     display: block;
@@ -131,33 +127,34 @@ md-content {
     width: 0;
     background: transparent; }
 
-/* line 145, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 142, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-icon-fit {
   padding: 0 !important;
   margin: 0 !important; }
 
-/* line 158, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
-.my-md-list-item img {
-  max-width: 100%;
-  align-content: center; }
+/* line 146, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+.my-md-menu-item {
+  background: transparent; }
+  /* line 155, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  .my-md-menu-item img {
+    max-width: 100%;
+    align-content: center; }
+  /* line 159, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  .my-md-menu-item p {
+    text-align: center !important;
+    font-size: 14px;
+    font-weight: bolder;
+    color: #dde3e8; }
 
-/* line 162, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
-.my-md-list-item p {
-  text-align: center !important;
-  font-size: 14px;
-  font-weight: bolder;
-  margin-bottom: 0;
-  color: #dde3e8; }
-
-/* line 176, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
-.my-list-item .md-list-item-inner {
+/* line 178, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+.my-md-filter-list md-list-item-inner {
   height: 25px !important; }
 
-/* line 180, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 182, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-nav-bar-menu {
   z-index: 100; }
 
-/* line 186, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 187, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .kart-list md-list md-list-item {
   min-height: auto !important; }
 
@@ -166,7 +163,7 @@ md-content {
   background-color: #f5f5f5 !important; }
 
 /*Customize the menu bar to fit toolbar hight*/
-/* line 199, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 198, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-rotate-90 {
   -ms-transform: rotate(90deg);
   /* IE 9 */
@@ -174,7 +171,7 @@ md-content {
   /* Chrome, Safari, Opera */
   transform: rotate(90deg); }
 
-/* line 206, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 205, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .cssSlideUp {
   -webkit-transition: .5s linear all;
   -moz-transition: .5s linear all;
@@ -182,14 +179,13 @@ md-content {
   transition: .5s linear all;
   height: 300px;
   overflow: hidden;
-  display: block;
-  margin-top: 0; }
+  display: block; }
 
-/* line 219, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 218, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .cssSlideUp.ng-hide {
   height: 0; }
 
-/* line 224, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 221, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .slideUpDown {
   line-height: 30px;
   opacity: 1;
@@ -199,15 +195,14 @@ md-content {
   -o-transition: .5s linear all;
   transition: all 0.2s ease-in-out; }
 
-/* line 235, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 232, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .slideUpDown.ng-hide {
   line-height: 0;
   opacity: 0; }
 
-/* line 240, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 236, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .full-menu {
   position: absolute;
-  background-color: white;
   left: 0;
   right: 0;
   z-index: 10;
@@ -218,34 +213,43 @@ md-content {
   -moz-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
   -o-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s; }
 
-/* line 253, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 249, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .full-menu.ng-hide {
   top: -560px; }
 
-/* line 259, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 255, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .submenu {
+  background-color: white;
+  border-top: solid 1px rgba(255, 248, 248, 0.72);
   width: 100%;
   left: 0;
   right: 0;
+  position: absolute;
+  bottom: 25px;
   /* For Safari 3.1 to 6.0 */ }
 
-/* line 277, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 276, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 md-menu-bar {
   background-color: blueviolet !important; }
-  /* line 289, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  /* line 288, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   md-menu-bar button {
     height: 100% !important;
     width: !important; }
 
-/* line 294, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 293, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-menu-item {
-  z-index: 3; }
+  z-index: 3;
+  margin-bottom: inherit !important; }
 
-/* line 297, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 299, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+.my-md-menu-open {
+  margin-bottom: 13% !important; }
+
+/* line 304, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 md-menu-content {
   max-height: 100% !important; }
 
-/* line 300, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 307, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .md-open-menu-container {
   position: fixed;
   left: 0% !important;
@@ -255,50 +259,50 @@ md-menu-content {
   opacity: 0;
   border-radius: 2px; }
 
-/* line 309, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 316, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .breadcrumbs-area {
   background-color: #f5f5f5 !important; }
-  /* line 311, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  /* line 318, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   .breadcrumbs-area .breadcrumb {
     margin-bottom: 0px;
     font-size: 12px;
     background-color: transparent; }
 
-/* line 318, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 325, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .material-icons.md-18 {
   font-size: 18px;
   height: 18px;
   width: 18px; }
 
-/* line 323, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 330, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .material-icons.md-24 {
   font-size: 24px;
   height: 24px;
   width: 24px; }
 
-/* line 328, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 335, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .material-icons.md-36 {
   font-size: 36px;
   height: 36px;
   width: 36px; }
 
-/* line 333, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 340, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .material-icons.md-48 {
   font-size: 48px;
   height: 48px; }
 
-/* line 337, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 344, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .material-icons.md-60 {
   font-size: 60px;
   height: 60px; }
 
-/* line 341, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 348, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .material-icons.md-96 {
   font-size: 96px !important;
   height: 96px;
   width: 96px; }
 
-/* line 346, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 353, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-link-btn {
   margin: 0 !important;
   min-height: auto !important;
@@ -306,12 +310,12 @@ md-menu-content {
   min-width: 20px !important;
   font-size: 12px !important;
   font-weight: 100 !important; }
-  /* line 349, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  /* line 356, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   .my-md-link-btn:hover {
     text-decoration: underline !important;
     background-color: inherit !important; }
 
-/* line 363, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 370, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-icon-btn {
   padding: 0px !important;
   line-height: inherit !important;
@@ -320,7 +324,7 @@ md-menu-content {
   height: 24px !important;
   width: 24px !important; }
 
-/* line 371, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 378, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .groupX {
   font-size: 16px;
   margin: 20px 0 !important;
@@ -330,28 +334,28 @@ md-menu-content {
   min-height: 28px !important;
   line-height: 10px !important; }
 
-/* line 383, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 390, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .md-button.left {
   border-radius: 10px 0 0 10px;
   border: 1px solid rgba(230, 230, 230, 0.96); }
 
-/* line 387, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 394, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .md-button.middle {
   border-radius: 0;
   border: 1px solid rgba(230, 230, 230, 0.96); }
 
-/* line 393, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 400, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .md-button.right {
   border-radius: 0 10px 10px 0;
   border: 1px solid rgba(230, 230, 230, 0.96); }
 
-/* line 397, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 404, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .md-button:not([disabled]):hover {
   background-color: rgba(193, 193, 193, 0.96);
   color: rgba(44, 65, 164, 0.96);
   transition: 0.3s; }
 
-/* line 402, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 409, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .menu-button {
   min-height: 64px !important;
   border: none !important;
@@ -360,101 +364,103 @@ md-menu-content {
   padding: 0px 16px !important;
   margin: 0px !important; }
 
-/* line 410, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 417, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .animate-show {
   line-height: 20px;
   opacity: 1;
   padding: 10px;
   background: white; }
 
-/* line 417, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 424, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .animate-show.ng-hide-add,
 .animate-show.ng-hide-remove {
   transition: all linear 0.5s; }
 
-/* line 420, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 427, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .animate-show.ng-hide {
   line-height: 0;
   opacity: 0;
   padding: 0 10px; }
 
-/* line 426, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 433, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .subsect-menu .md-media-md {
   text-align: center;
   min-height: 150px !important; }
 
-/* line 433, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 440, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .prd-list-table {
   tr: nth-child(odd);
     tr-background-color: #f1f1f1;
   text-align: center; }
-  /* line 438, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  /* line 445, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   .prd-list-table tr {
     height: 50px;
     max-height: 300px;
     min-height: 100px;
     text-align: center; }
-  /* line 444, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  /* line 451, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   .prd-list-table .my-md-ordering-btn {
     height: auto !important;
     background-color: aliceblue !important;
     text-align: center; }
-  /* line 450, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  /* line 457, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   .prd-list-table thead th {
     text-align: center !important;
     padding: 1%; }
-  /* line 454, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  /* line 461, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   .prd-list-table thead tr {
     height: 5px !important;
     background-color: white !important; }
 
 /*Product detail*/
-/* line 463, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 470, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 #main-product-detail-box md-list-item, #main-product-detail-box md-list-item .md-list-item-inner {
   min-height: 48px !important; }
 
 /*-----------------------------------------------------*/
 /*Cart*/
-/* line 471, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 478, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-cart-table {
   td: nth-child(2);
     td-width: 60%;
     td-text-align: left; }
 
-/* line 477, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 484, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 md-toast .md-toast-content {
   height: 100% !important;
   max-height: 100% !important; }
 
-/* line 481, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 488, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .my-md-filter-area {
   margin-top: 3% !important; }
 
-/* line 489, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 496, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .prd-filter-list md-card md-card-content {
-  display: block; }
+  display: block;
+  padding-top: 8px; }
 
-/* line 494, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 502, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .prd-filter-list md-card-title {
   padding: 0px 14px; }
 
-/* line 498, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 506, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .prd-filter-list md-list-item,
 .prd-filter-list md-list-item .md-list-item-inner {
-  min-height: 0px !important; }
-  /* line 500, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  min-height: 0px !important;
+  height: 32px !important; }
+  /* line 509, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   .prd-filter-list md-list-item md-checkbox,
   .prd-filter-list md-list-item .md-list-item-inner md-checkbox {
     margin-right: 6px !important; }
 
-/* line 505, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 514, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .link-btn {
   width: 100%; }
-  /* line 507, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+  /* line 516, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
   .link-btn a {
     padding: 0px !important; }
 
-/* line 512, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
+/* line 521, C:/Home Solutions/projetos/siteCordeiroEletronicos/e-store/public/assets/scss/style.scss */
 .prd-info-list md-list-item {
   padding: 0px !important; }
 
