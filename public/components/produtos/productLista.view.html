@@ -40,11 +40,12 @@
         </md-button> 
 -->
         <div flex layout="colum" layout-align="center center">
-            <md-button layout="column" class="my-md-btn-icon-below my-md-float-btn md-warn md-raised" style="max-width:15%" ng-click="vm.showHideFilters()">
-                <div flex>Filtros</div>
-                <div flex>
+            <md-button  class="my-md-btn-icon-below my-md-float-btn md-warn md-raised" style="max-width:15%" ng-click="vm.showHideFilters()">
+<!--                <div flex>Filtros</div>-->
+                Filtros
+<!--                <div flex>-->
                     <md-icon class="md-button-icon material-icons">{{vm.showFilterIcon}}</md-icon>
-                </div>
+<!--                </div>-->
             </md-button>
         </div>
         <md-card ng-show="vm.showFilters" class="my-md-filter-area cssSlideUp my-md-no-shadow" layout="column" style="background-color:#f5f5f5">

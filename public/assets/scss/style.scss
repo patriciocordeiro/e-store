@@ -239,7 +239,7 @@ $indigo:#3F51B5;
     left: 0;
     right: 0;
     z-index: 10;
-    top: 64px;
+//    top: 64px;
     overflow: hidden;
     transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
     -webkit-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
@@ -260,7 +260,9 @@ $indigo:#3F51B5;
     left: 0;
     right: 0;
     position: absolute;
-    bottom: 25px;
+     top: 45%;
+//     padding: 24px;
+//    bottom: 24px;
     //	height: 220PX;
     //    height: 0px;
     //    -webkit-transition: height 2s;
@@ -294,10 +296,23 @@ md-menu-bar {
     z-index: 3;
     margin-bottom: inherit !important;
     //    background-color: transparent !important;
+    md-card md-card-content{
+      
+    padding: 8px 8px 0px 8px !important;
+    }
+    .md-button{
+        white-space: normal;
+    }
+      p{
+                     line-height: 20px!important;
+          margin-bottom: 0;
+
+        }
+   
 
 }
 .my-md-menu-open {
-    margin-bottom: 13% !important;
+    margin-bottom: 24% !important;
     //    background-color: transparent !important;
 
 }
