@@ -260,7 +260,9 @@ $indigo:#3F51B5;
     left: 0;
     right: 0;
     position: absolute;
-    bottom: 25px;
+     top: 45%;
+//     padding: 24px;
+//    bottom: 24px;
     //	height: 220PX;
     //    height: 0px;
     //    -webkit-transition: height 2s;
@@ -294,10 +296,20 @@ md-menu-bar {
     z-index: 3;
     margin-bottom: inherit !important;
     //    background-color: transparent !important;
+    md-card md-card-content{
+      
+    padding: 8px 8px 0px 8px !important;
+    }
+      p{
+                     line-height: 20px!important;
+          margin-bottom: 0;
+
+        }
+   
 
 }
 .my-md-menu-open {
-    margin-bottom: 13% !important;
+    margin-bottom: 24% !important;
     //    background-color: transparent !important;
 
 }
