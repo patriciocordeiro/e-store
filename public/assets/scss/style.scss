@@ -235,11 +235,11 @@ $indigo:#3F51B5;
 }
 .full-menu {
     position: absolute;
-    //    background-color: white;
+//        background-color: white;
     left: 0;
     right: 0;
     z-index: 10;
-//    top: 64px;
+    top: 62px;
     overflow: hidden;
     transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
     -webkit-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
@@ -261,7 +261,7 @@ $indigo:#3F51B5;
     right: 0;
     position: absolute;
      top: 45%;
-//     padding: 24px;
+     padding: 2% !important;
 //    bottom: 24px;
     //	height: 220PX;
     //    height: 0px;
@@ -273,8 +273,36 @@ $indigo:#3F51B5;
     //        background-color: red;
     //        height: 300px;
     //    }
+	     overflow: hidden;
+//    transition: left 1s linear;
+//    -webkit-transition: left 0.5s ease-in 0.1s, 0.8s 0s linear 0.25s;
+//    -moz-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
+//    -o-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
 
 }
+
+.subMenuItems{
+//	background-color: red;
+	overflow: hidden;
+  
+	left:0px;
+	top:0;
+	bottom: 20px;
+//	right: 0;
+	height: 100%;
+	position: relative;
+	  transition: left  0.5s linear;
+//    -webkit-transition: left 0.5s ease-in 0.1s, 0.8s 0s linear 0.25s;
+//    -moz-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
+//    -o-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
+}
+.subMenuItems.ng-hide{
+		left:-1000px;
+	}
+.subMenuItems.ng-show{
+		left:-1000px;
+	}
+
 md-menu-bar {
     background-color: blueviolet !important;
     //            height: 100% !important;
@@ -312,7 +340,7 @@ md-menu-bar {
 
 }
 .my-md-menu-open {
-    margin-bottom: 24% !important;
+    margin-bottom: 15% !important;
     //    background-color: transparent !important;
 
 }
@@ -421,13 +449,33 @@ md-menu-content {
     color: rgba(44, 65, 164, 0.96);
     transition: 0.3s;
 }
-.menu-button {
+
+.logo{
+	background-color: red;
+//	    min-height: 64px !important;
+//    border: none !important;
+//    text-transform: uppercase!important;
+//    font-size: 16px !important;
+//    padding: 0px 16px !important;
+//    margin: 0px !important;
+}
+.menu-button-sm {
+    min-height: 56px !important;
+    border: none !important;
+    text-transform: uppercase!important;
+    font-size: 16px !important;
+    padding: 0px 16px !important;
+    margin: 0px !important;
+	line-height: 56px !important;
+}
+.menu-button-lg {
     min-height: 64px !important;
     border: none !important;
     text-transform: uppercase!important;
     font-size: 16px !important;
     padding: 0px 16px !important;
     margin: 0px !important;
+	line-height: 64px !important;
 }
 .animate-show {
     line-height: 20px;

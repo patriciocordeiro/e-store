@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', '$state', 'productSrvc', 'userSrcv', '$mdToast', '$document', '$q', NavbarCtrl]);
+    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', '$state', 'productSrvc', 'userSrcv', '$mdToast', '$document', '$q','$mdMedia', NavbarCtrl]);
 
-    function NavbarCtrl($scope, $rootScope, $state, productSrvc, userSrcv, $mdToast, $document, $q) {
+    function NavbarCtrl($scope, $rootScope, $state, productSrvc, userSrcv, $mdToast, $document, $q, $mdMedia) {
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
@@ -23,7 +23,9 @@
         //            console.log(data);
         //        })
 
-
+		//Will apply specific height according to screen size	
+		vm.$mdMedia = $mdMedia;
+		
         //---------------------------------------------------------
         /*Get all kart data*/
         vm.kartData = prdSrvc.prd.kart.data;
@@ -33,9 +35,9 @@
         vm.navBar = ['Produtos', 'Tutoriais', ]
 
         vm.productNavCategories = [{
-            name: 'Componentes Eletrônicos',
+            name: 'C. Eletrônicos',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+            imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
                 name: 'Resistor',
@@ -59,7 +61,7 @@
         }, {
             name: 'Arduino',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'arduino_sect.jpg',
+            imgPath: imgProductNavFolder + 'arduino_sect.png',
 
             subcat: [{
                 name: 'Placas',
@@ -77,7 +79,7 @@
         }, {
             name: 'Raspbery',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+            imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
                 name: 'Placas',
@@ -92,7 +94,7 @@
         }, {
             name: 'Conexão',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+            imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
                 name: 'Conectores',
@@ -105,9 +107,9 @@
                 imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
             }]
         }, {
-            name: 'Kits Didáticos',
+            name: 'Kits',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+            imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
                 name: 'Conectores',

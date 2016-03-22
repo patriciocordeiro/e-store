@@ -60,7 +60,7 @@
     <md-card-content ng-click="vm.userEditSettings(1)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="space-between center">
         <div flex layout="row" layout-align="start"><b>Email</b>
         </div>
-        <div flex layout="row" layout-align="start" class="md-subheader" style="background-color:inherit"><b>paponcio6@gmail.com</b>
+        <div flex layout="row" layout-align="start" class="md-subheader" style="background-color:inherit"><b>{{vm.user.email}}</b>
         </div>
         <div flex layout="row" layout-align="end">
             <md-button class="md-primary">
@@ -175,10 +175,10 @@
 </md-card>
 <md-divider></md-divider>
 <md-card ng-show="!vm.userIsEditSettings[3]" class="my-md-no-margin my-md-noround-border my-md-no-shadow" my-md-no-shadow>
-    <md-card-content ng-click="vm.userEditSettings(1)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="space-between center">
+    <md-card-content ng-click="vm.userEditSettings(3)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="space-between center">
         <div flex layout="row" layout-align="start"><b>Tel. celular</b>
         </div>
-        <div layout="row" layout-align="start" flex class="md-subheader" style="background-color:inherit"><b>981004212</b>
+        <div layout="row" layout-align="start" flex class="md-subheader" style="background-color:inherit"><b>{{vm.user.telefone}}</b>
         </div>
         <div flex layout="row" layout-align="end">
             <md-button class="md-primary" ng-click="vm.userEditSettings(3)">
