@@ -28,7 +28,7 @@
     <md-toolbar layout="row" layout-align="center center" class="my-md-no-padding md-toolbar-tools my-nav-bar-menu">
         <div flex="100" flex-gt-md="90" layout="row" class="md-menu-toolbar" layout-align="space-between center">
             <div id="myCartToast"></div>
-            <div flex layout="row" >
+            <div flex layout="row">
                 <md-button ui-sref="app" class="groupX middle" ng-class="{'menu-button-sm':vm.$mdMedia('xs'), 'menu-button-lg':vm.$mdMedia('gt-xs')}">
                     <img src="../../assets/img/logo/sonyLogo2.png">
                 </md-button>
@@ -78,7 +78,7 @@
                             </div>
 
                         </div>
-                                                    <md-button class="md-primary">Todos os departamentos</md-button>
+                        <md-button class="md-title md-primary"><md-icon class="material-icons">apps</md-icon> Todos os departamentos</md-button>
                     </div>
                 </div>
                 <div>
@@ -87,7 +87,7 @@
                     </md-button>
                 </div>
                 <div>
-                    <md-button class="groupX middle" ng-class="{'menu-button-sm':vm.$mdMedia('xs'), 'menu-button-lg':vm.$mdMedia('gt-xs')}">
+                    <md-button ui-sref="app.contact" class="groupX middle" ng-class="{'menu-button-sm':vm.$mdMedia('xs'), 'menu-button-lg':vm.$mdMedia('gt-xs')}">
                         Contato
                     </md-button>
                 </div>

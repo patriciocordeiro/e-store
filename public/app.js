@@ -62,9 +62,9 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         /*Angular theme configuration*/
         $mdThemingProvider.theme('default')
         //            .primaryPalette('teal')
-                    .primaryPalette('blue')
-//        .primaryPalette('indigo')
-            .accentPalette('deep-orange')
+        .primaryPalette('blue')
+        //        .primaryPalette('indigo')
+        .accentPalette('deep-orange')
         //            .backgroundPalette('white', {
         //                'default': '50'
         //            });
@@ -333,6 +333,20 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 }
 
             })
+
+        .state('app.contact', {
+            url: '/app/contact',
+            views: {
+                "products@": {
+                    templateUrl: 'components/contact/contact.view.html',
+                    //            controller: 'controller as vm',
+                },
+            },
+            data: {
+                displayName: 'Contato',
+            }
+        })
+
 
         $urlRouterProvider.otherwise("app")
 

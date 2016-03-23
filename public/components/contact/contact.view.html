@@ -1,0 +1,59 @@
+<md-card>
+    <md-card-title layout="column">
+        <h2 class="md-headline">Contate-nos</h2>
+		<span>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dictum sem vitae tincidunt mollis. Quisque ut erat vitae magna malesuada bibendum vel ac justo. Nam pharetra vestibulum scelerisque. Phasellus pellentesque dignissim scelerisque. In at ligula interdum erat viverra volutpat. Donec pellentesque massa eu commodo scelerisque. In in tempor lacus. Curabitur aliquet risus nec tortor eleifend,</span>
+    </md-card-title>
+    <md-card-content layout="row">
+        <md-card layout="column" flex="50" class="my-md-no-shadow my-md-no-margin">
+            <md-card-title>
+                <span class="md-title">Envie-nos uma mensagem</span>
+            </md-card-title>
+            <md-card-content>
+                <form name="contactForm">
+                    <div layout="column">
+                        <md-input-container>
+                            <label>Seu nome</label>
+                            <input type="text" ng-model="contact.name" required>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Seu email</label>
+                            <input type="email" ng-model="contact.email" required>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Assunto</label>
+                            <input type="text" ng-model="contact.subject" required>
+                        </md-input-container>
+                        <md-input-container>
+                            <textarea placeholder="Escreva a sua mensagem aqui" cols="1" ng-model="contact.text" required></textarea>
+                        </md-input-container>
+
+                    </div>
+                    <md-button flex class="md-primary" ng-class="{'md-raised':contactForm.$dirty && contactForm.$valid}" type="submit">Enviar</md-button>
+                </form>
+            </md-card-content>
+        </md-card>
+        <md-card flex="50" class="my-md-grey-bg my-md-no-shadow my-md-no-margin">
+            <md-card-content>
+                <md-list>
+                    <md-list-item>
+                        <md-icon class="material-icons md-primary md-hue-1">phone</md-icon>
+                        <p class="md-title my-md-smooth-title">(91)333-333</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <md-icon class="material-icons md-primary md-hue-1">phone_iphone</md-icon>
+                        <p class="md-title my-md-smooth-title">(91)333-333</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <md-icon class="material-icons md-primary md-hue-1">email</md-icon>
+                        <p class="md-title my-md-smooth-title">pppm@gmail.com</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <md-icon class="material-icons md-primary md-hue-1">location_on</md-icon>
+                        <p class="md-title my-md-smooth-title">Rodovia augusto montenegro, Bl02, apt.303</p>
+                    </md-list-item>
+                </md-list>
+            </md-card-content>
+        </md-card>
+    </md-card-content>
+</md-card>
