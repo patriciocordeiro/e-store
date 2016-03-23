@@ -585,4 +585,21 @@ md-toast .md-toast-content {
         padding: 0px !important;
     }
 }
+
+/*Contact*/
+.my-md-contact-icon{
+    $border-size : 40px;
+    border: 1px solid;
+    border-radius: 50%;
+    min-height: $border-size !important;
+    min-width:$border-size !important;
+    line-height: $border-size !important;
+    text-align: center !important;
+}
+.my-md-contact-map{
+    height: 500px;
+    width: 90%;
+    background-color: aqua;
+}
+
 /*css anmations*/
