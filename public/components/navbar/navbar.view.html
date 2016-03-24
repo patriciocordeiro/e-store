@@ -29,13 +29,13 @@
         <div flex="100" flex-gt-md="90" layout="row" class="md-menu-toolbar" layout-align="space-between center">
             <div id="myCartToast"></div>
             <div flex layout="row">
-                <md-button ui-sref="app" class="groupX middle" ng-class="{'menu-button-sm':vm.$mdMedia('xs'), 'menu-button-lg':vm.$mdMedia('gt-xs')}">
+                <md-button ui-sref="app" class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}">
                     <img src="../../assets/img/logo/sonyLogo2.png">
                 </md-button>
             </div>
             <div flex="50" layout="row">
                 <div class="menu-bar" layout="column" ng-mouseleave="vm.closeMenus()">
-                    <md-button class="groupX middle" ng-class="{'menu-button-sm':vm.$mdMedia('xs'), 'menu-button-lg':vm.$mdMedia('gt-sm' )}" ng-click="vm.OpenMenu()">
+                    <md-button class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}" ng-click="vm.OpenMenu()">
                         Produtos
                         <md-icon class="material-icons my-md-rotate-90">chevron_right</md-icon>
                     </md-button>
@@ -82,12 +82,12 @@
                     </div>
                 </div>
                 <div>
-                    <md-button class=" groupX middle" ng-class="{'menu-button-sm':vm.$mdMedia('xs'), 'menu-button-lg':vm.$mdMedia('gt-xs')}">
+                    <md-button class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}">
                         Tutoriais
                     </md-button>
                 </div>
                 <div>
-                    <md-button ui-sref="app.contact" class="groupX middle" ng-class="{'menu-button-sm':vm.$mdMedia('xs'), 'menu-button-lg':vm.$mdMedia('gt-xs')}">
+                    <md-button ui-sref="app.contact" class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}">
                         Contato
                     </md-button>
                 </div>

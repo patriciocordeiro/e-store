@@ -10,7 +10,7 @@
         <md-divider></md-divider>
         <div layout="row">
             <md-card layout="column" flex="50" class="my-md-no-shadow my-md-no-margin">
-                <md-card-title>
+                <md-card-title flex="none">
                     <span class="md-title">Envie-nos uma mensagem</span>
                 </md-card-title>
                 <md-card-content>
@@ -28,12 +28,15 @@
                                 <label>Assunto</label>
                                 <input type="text" ng-model="contact.subject" required>
                             </md-input-container>
-                            <md-input-container>
-                                <textarea placeholder="Escreva a sua mensagem aqui" cols="1" ng-model="contact.text" required></textarea>
+                            <md-input-container class="my-md-no-margin">
+                                <textarea placeholder="Escreva a sua mensagem aqui" cols="1" ng-model="vm.contactMsg" ng-keydown="vm.getNumOfChars()" required maxlength="{{vm.maxNumOfChars}}"></textarea>
+								
                             </md-input-container>
+							<span class="md-subheader"><b>Caracteres restantes: {{vm.remainChars}}</b></span>
+							
 
                         </div>
-                        <md-button flex class="md-primary" ng-class="{'md-raised':contactForm.$dirty && contactForm.$valid}" type="submit">Enviar</md-button>
+                        <md-button flex class="md-primary md" ng-class="{'md-raised':contactForm.$dirty && contactForm.$valid}" type="submit">Enviar</md-button>
                     </form>
                 </md-card-content>
             </md-card>

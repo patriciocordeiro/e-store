@@ -339,7 +339,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             views: {
                 "products@": {
                     templateUrl: 'components/contact/contact.view.html',
-                    //            controller: 'controller as vm',
+                    controller: 'contactCtrl as vm',
                 },
             },
             data: {
