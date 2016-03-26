@@ -75,6 +75,10 @@ $indigo:#3F51B5;
 .my-md-noround-border {
     border-radius: 0 !important;
 }
+
+.my-md-circle{
+//	border-radius: 50% !important;
+}
 .my-md-btn-icon-below {
     line-height: inherit !important;
 }
@@ -90,6 +94,7 @@ $indigo:#3F51B5;
     background-color: #f5f5f5 !important;
     color: rgba(0, 0, 0, 0.87) !important;
 }
+
 // For text and titles
 .my-md-capital {
     text-transform: capitalize;
@@ -185,7 +190,7 @@ $indigo:#3F51B5;
 .kart-list {
     md-list {
         md-list-item {
-            	min-height: auto!important;
+            min-height: auto!important;
         }
     }
 }
@@ -219,23 +224,25 @@ $indigo:#3F51B5;
     height: 0;
 }
 .slideUpDown {
+//	max-height: 500px;
     line-height: 30px;
     opacity: 1;
-    //	max-height: 100%;
+//    	max-height: 100%;
     overflow: hidden;
     //    display: block;
     -webkit-transition: .5s linear all;
     -moz-transition: .5s linear all;
     -o-transition: .5s linear all;
-    transition: all .2s ease-in-out;
+    transition: line-height 1s linear all;
 }
 .slideUpDown.ng-hide {
+	max-height: 0;
     line-height: 0;
     opacity: 0;
 }
 .full-menu {
     position: absolute;
-//        background-color: white;
+    //        background-color: white;
     left: 0;
     right: 0;
     z-index: 10;
@@ -260,9 +267,9 @@ $indigo:#3F51B5;
     left: 0;
     right: 0;
     position: absolute;
-     top: 45%;
-     padding: 2% !important;
-//    bottom: 24px;
+    top: 45%;
+    padding: 2% !important;
+    //    bottom: 24px;
     //	height: 220PX;
     //    height: 0px;
     //    -webkit-transition: height 2s;
@@ -273,36 +280,34 @@ $indigo:#3F51B5;
     //        background-color: red;
     //        height: 300px;
     //    }
-	     overflow: hidden;
-//    transition: left 1s linear;
-//    -webkit-transition: left 0.5s ease-in 0.1s, 0.8s 0s linear 0.25s;
-//    -moz-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
-//    -o-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
+    overflow: hidden;
+    //    transition: left 1s linear;
+    //    -webkit-transition: left 0.5s ease-in 0.1s, 0.8s 0s linear 0.25s;
+    //    -moz-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
+    //    -o-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
 
 }
+.subMenuItems {
+    //	background-color: red;
+    overflow: hidden;
+    left: 0px;
+    top: 0;
+    bottom: 20px;
+    //	right: 0;
+    height: 100%;
+    position: relative;
+    transition: left 0.5s linear;
+    //    -webkit-transition: left 0.5s ease-in 0.1s, 0.8s 0s linear 0.25s;
+    //    -moz-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
+    //    -o-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
 
-.subMenuItems{
-//	background-color: red;
-	overflow: hidden;
-  
-	left:0px;
-	top:0;
-	bottom: 20px;
-//	right: 0;
-	height: 100%;
-	position: relative;
-	  transition: left  0.5s linear;
-//    -webkit-transition: left 0.5s ease-in 0.1s, 0.8s 0s linear 0.25s;
-//    -moz-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
-//    -o-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
 }
-.subMenuItems.ng-hide{
-		left:-1000px;
-	}
-.subMenuItems.ng-show{
-		left:-1000px;
-	}
-
+.subMenuItems.ng-hide {
+    left: -1000px;
+}
+.subMenuItems.ng-show {
+    left: -1000px;
+}
 md-menu-bar {
     background-color: blueviolet !important;
     //            height: 100% !important;
@@ -324,20 +329,16 @@ md-menu-bar {
     z-index: 3;
     margin-bottom: inherit !important;
     //    background-color: transparent !important;
-    md-card md-card-content{
-      
-    padding: 8px 8px 0px 8px !important;
+    md-card md-card-content {
+        padding: 8px 8px 0px 8px !important;
     }
-    .md-button{
+    .md-button {
         white-space: normal;
     }
-      p{
-                     line-height: 20px!important;
-          margin-bottom: 0;
-
-        }
-   
-
+    p {
+        line-height: 20px!important;
+        margin-bottom: 0;
+    }
 }
 .my-md-menu-open {
     margin-bottom: 15% !important;
@@ -449,15 +450,15 @@ md-menu-content {
     color: rgba(44, 65, 164, 0.96);
     transition: 0.3s;
 }
+.logo {
+    background-color: red;
+    //	    min-height: 64px !important;
+    //    border: none !important;
+    //    text-transform: uppercase!important;
+    //    font-size: 16px !important;
+    //    padding: 0px 16px !important;
+    //    margin: 0px !important;
 
-.logo{
-	background-color: red;
-//	    min-height: 64px !important;
-//    border: none !important;
-//    text-transform: uppercase!important;
-//    font-size: 16px !important;
-//    padding: 0px 16px !important;
-//    margin: 0px !important;
 }
 .menu-button-sm {
     min-height: 56px !important;
@@ -466,20 +467,13 @@ md-menu-content {
     font-size: 16px !important;
     padding: 0px 16px !important;
     margin: 0px !important;
-	line-height: 56px !important;
-	display: block !important;
-	border-radius: 0!important;
+    line-height: 56px !important;
+    display: block !important;
+    border-radius: 0!important;
 }
 .menu-button-lg.menu-button-sm {
-	
     min-height: 64px !important;
-//    border: none !important;
-//    text-transform: uppercase!important;
-//    font-size: 16px !important;
-//    padding: 0px 16px !important;
-//    margin: 0px !important;
-	line-height: 64px !important;
-//	display: block !important;
+    line-height: 64px !important;
 }
 .animate-show {
     line-height: 20px;
@@ -562,7 +556,7 @@ md-toast .md-toast-content {
     }
     md-card md-card-content {
         display: block;
-		padding-top: 8px;
+        padding-top: 8px;
         //    padding: 0px 6px 0px 0px;
 
     }
@@ -572,7 +566,7 @@ md-toast .md-toast-content {
     md-list-item,
     md-list-item .md-list-item-inner {
         min-height: 0px !important;
-		height: 32px !important;
+        height: 32px !important;
         md-checkbox {
             margin-right: 6px !important;
         }
@@ -589,21 +583,47 @@ md-toast .md-toast-content {
         padding: 0px !important;
     }
 }
-
 /*Contact*/
-.my-md-contact-icon{
-    $border-size : 40px;
+
+.my-md-contact-icon {
+    $border-size: 60px;
     border: 1px solid;
     border-radius: 50%;
     min-height: $border-size !important;
-    min-width:$border-size !important;
+    min-width: $border-size !important;
     line-height: $border-size !important;
     text-align: center !important;
 }
-.my-md-contact-map{
-    height: 500px;
-    width: 90%;
-    background-color: aqua;
+
+.my-md-social-icon.facebook {
+    background-color: #3b5998;
+}
+.my-md-social-icon.twitter {
+    background-color: #1baae1;
+}
+.my-md-social-icon.instagram {
+    background-color: #4e433c;
+}
+.my-md-social-icon.youtube {
+    background-color: #ff3333;
+}
+.my-md-social-icon.googleplus {
+    background-color: #c63d2d;
+}
+.my-md-social-icon.linkedin{
+    background-color: #4875b4	;
 }
 
+.my-md-social-button{
+	padding:0 !important;
+	margin: 0 !important;
+	border-radius: 0 !important;
+	min-height: 100% !important;
+	min-width: 100% !important;
+	min-height: 100% !important;
+	line-height: 0 !important;
+}
+.angular-google-map-container {
+    height: 400px;
+}
 /*css anmations*/

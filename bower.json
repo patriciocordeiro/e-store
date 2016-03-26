@@ -20,6 +20,7 @@
     "angular-utils-ui-breadcrumbs": "*",
     "angular-material": "latest",
     "lodash": "~4.0.0",
-    "components-font-awesome": "^4.5.0"
+    "components-font-awesome": "^4.5.0",
+    "angular-google-maps": "~2.3.2"
   }
 }

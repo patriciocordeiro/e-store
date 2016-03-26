@@ -388,7 +388,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                             var i = 0;
                             for (i = 0; i < temp.length; i++) {
                                 _this.prd.kart.recvQtys.push(Number(temp[i]))
-                                console.log(_this.prd.kart.recvQtys);
+//                                console.log(_this.prd.kart.recvQtys);
                             }
                             //return that cookies exists
                             _this.prd.kart.qtys = _this.prd.kart.recvQtys;
