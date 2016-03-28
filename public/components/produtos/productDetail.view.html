@@ -1,3 +1,4 @@
+<!--
 <div layout="row" layout-margin layout-align="center start" id="main-product-detail-box">
     <div flex="35" flex-offset="25" layout-margin layout="column" class="product-detail-box-left">
         <div flex layout="row" class="md-whiteframe-z1">
@@ -63,7 +64,7 @@
             <md-content layout-padding>
                 <md-list>
                     <md-list-item class="secondary-button-padding">
-                        <!--                        <p>Quantidade</p>-->
+                                                <p>Quantidade</p>
                         <p>
                             <md-input-container>
                                 <label>Quantidade</label>
@@ -110,4 +111,60 @@
             </md-content>
         </div>
     </div>
-</div>
+</div>-->
+<md-content layout="column">
+    <md-card>
+        <md-card-content layout="row">
+            <md-card flex="30" id="imagem">
+                <md-card-content>
+                    <img id="zoom_01" src="../../assets/img/prdDetail/small/image1.png" data-zoom-image="../../assets/img/prdDetail/large/image1.jpg" />
+                </md-card-content>
+            </md-card>
+
+            <md-card flex="40" id="infos">
+                <md-card-title layout="column" flex="none">
+                    <h4 class="md-title my-md-capital">{{vm.prdData.descricao}}</h4>
+					<md-card-title-text>
+					 <div style="font-size:14px" awesome-rating="6" class="fa fa-2x">
+						 <md-button class="md-primary">20 revisões de clientes</md-button>
+						 
+						</div>
+						
+						</md-card-title-text>
+                                       
+                </md-card-title>
+                <md-divider></md-divider>
+                <md-card-content>
+
+					<h4 class="md-subheader"><b>Preço:</b> <span class="md-title my-md-warn-DeepOrange">{{vm.prdData.preco| currency:"R$ "}}</span></h4>
+					<h2 class="md-subhead my-md-warn-grey">Em estoque.</h2>
+                    
+                </md-card-content>
+            </md-card>
+            <md-card flex-gt-md="15" id="infos">
+                <md-card-title>
+                    Outas acoes
+                </md-card-title>
+                <md-card-content>
+                    <div layout="column">
+						<h4 class="md-subheader "><span class="md-tilte"><b>Disponibilidade: </b>{{vm.prdData.disponibilidade}}</span></h4>
+						<span layout-margin></span>
+						<h3 class="md-subheader">
+						Qty min: <span class="md-subhead">10</span>
+						</h3>
+						<span layout-margin></span>
+                        <md-input-container class="md-block">
+							 <label>Quantidade:</label>
+                            <input aria-label="quantity" type="number" min="1" max="10" value="1" style="text-align:center">
+                        </md-input-container>
+                        <md-button class="md-primary md-raised" ng-click="vm.prdGetBuy(vm.prdQty[$index], prd._id); vm.showJanoCarrinhoDiag($event)">
+                            <md-icon class="material-icons md-primary">shopping_cart</md-icon>Comprar
+                        </md-button>
+                    </div>
+                </md-card-content>
+            </md-card>
+
+
+        </md-card-content>
+    </md-card>
+</md-content>
