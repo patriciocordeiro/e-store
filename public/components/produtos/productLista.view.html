@@ -40,11 +40,12 @@
         </md-button> 
 -->
         <div flex layout="colum" layout-align="center center">
-            <md-button layout="column" class="my-md-btn-icon-below my-md-float-btn md-warn md-raised" style="max-width:15%" ng-click="vm.showHideFilters()">
-                <div flex>Filtros</div>
-                <div flex>
-                    <md-icon class="md-button-icon material-icons">{{vm.showFilterIcon}}</md-icon>
-                </div>
+            <md-button class="my-md-btn-icon-below my-md-float-btn md-warn md-raised" style="max-width:15%" ng-click="vm.showHideFilters()">
+                <!--                <div flex>Filtros</div>-->
+                Filtros
+                <!--                <div flex>-->
+                <md-icon class="md-button-icon material-icons">{{vm.showFilterIcon}}</md-icon>
+                <!--                </div>-->
             </md-button>
         </div>
         <md-card ng-show="vm.showFilters" class="my-md-filter-area cssSlideUp my-md-no-shadow" layout="column" style="background-color:#f5f5f5">
@@ -55,10 +56,10 @@
                             <h4 class='md-subhead my-md-capital'><b>{{key}}</b></h4>
                         </md-card-title>
                         <md-divider></md-divider>
-                        <md-content layout="column" style="height:200px">
+                        <md-content layout="column" style="height:180px">
                             <md-card-content>
                                 <md-list>
-                                    <md-list-item class="my-list-item" ng-repeat="values in val">
+                                    <md-list-item class="my-md-filter-list" ng-repeat="values in val">
                                         <md-checkbox aria-label="caract filter" ng-model="vm.caractFilter[values.$$hashKey]" ng-click="vm.comFilter(values, vm.caracArrayToFilt)"></md-checkbox>
                                         {{values.valor}}
                                     </md-list-item>
@@ -70,7 +71,7 @@
                 </div>
             </md-card-content>
         </md-card>
-<md-divider></md-divider>
+        <md-divider></md-divider>
 
         <md-card class="my-md-no-margin" layout="row" layout-align="space-between center" layout-padding>
             <div flex="10">
@@ -84,21 +85,22 @@
             <div flex="50">
                 <section class="navigate-group-btn" layout="row" layout-align="end center">
                     <span layout="row" layout-margin><h4 class="md-subhead"><b>Página</b>:</h4></span>
-                    <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
+                    <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">first_page</i>
                     </md-button>
                     <md-button ng-disabled="vm.disablePrevBtn" class="md-primary  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i>
                     </md-button>
                     <div ng-repeat="page in vm.pages">
-                        <md-button ng-model="vm.currentPage" class="md-primary groupX middle" ng-click="vm.changePage(page)" ng-class="vm.isActive(page)">{{page}}</md-button>
+                        <md-button ng-model="vm.currentPage" class="md-warn groupX middle" ng-click="vm.changePage(page)" ng-class="vm.isActive(page)">{{page}}</md-button>
                     </div>
-                    <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
+                    <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
                     </md-button>
-                    <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()">Last</md-button>
+                    <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()"><i class="material-icons">last_page</i>
+                    </md-button>
                 </section>
             </div>
             <!--            </div>-->
         </md-card>
-		<md-divider></md-divider>
+        <md-divider></md-divider>
         <md-toolbar class="my-md-toolbar-header md-hue-2">
             <md-card class="my-md-no-padding my-md-no-margin" style="background-color:transparent">
                 <md-card-content class="my-md-no-padding my-md-no-margin">
@@ -122,11 +124,11 @@
                         <img ng-src={{prd.imagens}}>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[1]}}">
-                        <md-button class="md-primary">{{prd.ref_PM}}</md-button>
+                        <md-button href="#/app/produtos/categoria/{{productsCategory.category}}/{{prd._id}}" class="md-primary my-md-link-btn">{{prd.ref_PM}}</md-button>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}"><span class="md-subhead">{{prd.ref_fabricante}}</span>
                     </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[3]}}"><span class="my-md-capital md-subhead"><b>{{prd.descricao}}</b></span>
+                    <md-list-item flex-gt-sm="{{vm.columnsSizes[3]}}"><span class="my-md-capital md-subhead">{{prd.descricao}}</span>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}"><span class="md-subhead">{{prd.disponibilidade}}</span>
                     </md-list-item>
@@ -134,34 +136,35 @@
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[4]}}">
                         <md-input-container class="md-block">
-                            <input aria-label="quantity" type="number" min="1" max="{{prd.disponibilidade}}" value="{{vm.prdQty[$index+vm.start+vm.itemPerPage]}}" ng-model="vm.prdQty[$index+vm.start+vm.itemPerPage]" aria-label="quantidade">
-                            <md-button class="md-warn md-raised" ng-click="vm.prdGetBuy(vm.prdQty[$index], prd._id); vm.showJanoCarrinhoDiag($event)">
-                                Comprar {{$index}}:{{vm.start}}:{{vm.itemPerPage}}
+                            <input aria-label="quantity" type="number" min="1" max="{{prd.disponibilidade}}" value="{{vm.prdQty[$index+vm.start+vm.itemPerPage]}}" ng-model="vm.prdQty[$index+vm.start+vm.itemPerPage]" aria-label="quantidade" style="text-align:center">
+                            <md-button class="md-primary md-raised" ng-click="vm.prdGetBuy(vm.prdQty[$index], prd._id); vm.showJanoCarrinhoDiag($event)">
+                                Comprar
                             </md-button>
                         </md-input-container>
                     </md-list-item>
 
-                    <md-list-item ng-repeat="val in prd.caracteristicas" flex-gt-sm="{{vm.columnsSizes[5]}}">
+                    <md-list-item layout-align="center center" ng-repeat="val in prd.caracteristicas" flex-gt-sm="{{vm.columnsSizes[5]}}">
                         <span class="md-subhead">{{val.valor}}</span>
                     </md-list-item>
 
                 </md-list>
             </md-card-content>
-			<md-divider></md-divider>
+            <md-divider></md-divider>
         </md-card>
         <md-divider></md-divider>
         <md-card flex layout="row" class="my-md-no-margin" layout-align="end center">
             <div><b>Página</b>:</div>
-            <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">navigate_before</i>
+            <md-button ng-disabled="vm.disablePrevBtn" class="md-primary groupX left" ng-click=" vm.gotoFirstPage()"><i class="material-icons">first_page</i>
             </md-button>
             <md-button ng-disabled="vm.disablePrevBtn" class="md-primary  groupX middle" ng-click="vm.prevPage()"><i class="material-icons">navigate_before</i>
             </md-button>
             <div ng-repeat="page in vm.pages">
-                <md-button ng-model="vm.currentPage" class="md-primary groupX middle" ng-class="vm.isActive(page)" ng-click="vm.changePage(page)">{{page}}</md-button>
+                <md-button ng-model="vm.currentPage" class="md-warn groupX middle" ng-class="vm.isActive(page)" ng-click="vm.changePage(page)">{{page}}</md-button>
             </div>
             <md-button ng-disabled="vm.disableNextBtn" class="md-primary  groupX middle" ng-click="vm.nextPage()"><i class="material-icons">navigate_next</i>
             </md-button>
-            <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()">Last</md-button>
+            <md-button ng-disabled="vm.disableNextBtn" class="md-primary groupX right" ng-click="vm.goTolastPage()"><i class="material-icons">last_page</i>
+            </md-button>
         </md-card>
     </div>
 

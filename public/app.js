@@ -1,5 +1,5 @@
 'use strict'
-angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs', 'ngMessages'])
+angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies', 'LocalStorageModule', 'validation.match', 'ui.mask', 'awesome-rating', 'ngMaterial', 'ncy-angular-breadcrumb', 'angularUtils.directives.uiBreadcrumbs', 'ngMessages', 'uiGmapgoogle-maps'])
     .run(function($rootScope, $state, authentication, $cookies, userSrcv) {
         //Check if user is loggedin (cookies)
         var lastState = $cookies.get('lastState');
@@ -58,31 +58,36 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
         })
     })
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
-
+         /*Google Maps directive (http://angular-ui.github.io/angular-google-maps/#!/use*/
+        ['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
+            GoogleMapApiProviders.configure({
+                chine: true
+            });
+        }]
         /*Angular theme configuration*/
         $mdThemingProvider.theme('default')
         //            .primaryPalette('teal')
-                    .primaryPalette('blue')
-//        .primaryPalette('indigo')
-            .accentPalette('deep-orange')
+        .primaryPalette('blue')
+        //        .primaryPalette('indigo')
+        .accentPalette('deep-orange')
         //            .backgroundPalette('white', {
         //                'default': '50'
         //            });
 
         $stateProvider
-            .state('app', {
-                url: "^",
-                views: {
-                    "products@": {
-                        templateUrl: 'components/home/home.view.html',
-                        controller: 'HomeCtrl as vm',
-                        //                        controller: 'ProdutosCtrl as vm', //apagar qdo terminar o teste
-                    }
-                },
-                data: {
-                    displayName: 'Home',
+        .state('app', {
+            url: "^",
+            views: {
+                "products@": {
+                    templateUrl: 'components/home/home.view.html',
+                    controller: 'HomeCtrl as vm',
+                    //                        controller: 'ProdutosCtrl as vm', //apagar qdo terminar o teste
                 }
-            })
+            },
+            data: {
+                displayName: 'Home',
+            }
+        })
 
         .state('app.produtos', {
             abstract: true,
@@ -190,20 +195,20 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
                 displayName: 'Meu carrinho',
             }
         })
-            .state('app.minhaCesta.checkout', {
-                url: "/checkout",
-                authenticate: true,
-                views: {
-                    'products@': {
-                        templateUrl: 'components/kart/kartCheckout.view.html',
-                        controller: 'KartCtrl as vm',
-                        authenticate: true,
-                        data: {
-                            displayName: 'Finalizar compra',
-                        }
+        .state('app.minhaCesta.checkout', {
+            url: "/checkout",
+            authenticate: true,
+            views: {
+                'products@': {
+                    templateUrl: 'components/kart/kartCheckout.view.html',
+                    controller: 'KartCtrl as vm',
+                    authenticate: true,
+                    data: {
+                        displayName: 'Finalizar compra',
                     }
                 }
-            })
+            }
+        })
 
 
         .state('app.user.signup', {
@@ -224,58 +229,58 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             url: "/app/user",
             template: '<ui-view/>',
         })
-            .state('app.user.login', {
-                url: "/login",
-                views: {
-                    'products@': {
-                        templateUrl: 'components/login/usrLogin.view.html',
-                        controller: 'usrLoginCtrl as vm',
-                        //            template : '<h1>Funciona</h1>',
-                    }
-                },
-                data: {
-                    displayName: 'Login'
+        .state('app.user.login', {
+            url: "/login",
+            views: {
+                'products@': {
+                    templateUrl: 'components/login/usrLogin.view.html',
+                    controller: 'usrLoginCtrl as vm',
+                    //            template : '<h1>Funciona</h1>',
                 }
-            })
-            .state('app.user.forgetPassword', {
-                url: "/forgetPassword",
-                views: {
-                    'products@': {
-                        templateUrl: 'components/login/forgotPassword.view.html',
-                        controller: 'UserCtrl as vm',
-                        //            template : '<h1>Funciona</h1>',
-                    }
-                },
-                data: {
-                    displayName: 'Esqueci minha senha'
+            },
+            data: {
+                displayName: 'Login'
+            }
+        })
+        .state('app.user.forgetPassword', {
+            url: "/forgetPassword",
+            views: {
+                'products@': {
+                    templateUrl: 'components/login/forgotPassword.view.html',
+                    controller: 'UserCtrl as vm',
+                    //            template : '<h1>Funciona</h1>',
                 }
-            })
-            .state('app.user.forgetPassword.token', {
-                url: "/:token",
-                views: {
-                    'products@': {
-                        template: '',
-                        controller: 'UserCtrl as vm',
-                        //            template : '<h1>Funciona</h1>',
-                    }
-                },
-                data: {
-                    displayName: 'Redefinição de senha'
+            },
+            data: {
+                displayName: 'Esqueci minha senha'
+            }
+        })
+        .state('app.user.forgetPassword.token', {
+            url: "/:token",
+            views: {
+                'products@': {
+                    template: '',
+                    controller: 'UserCtrl as vm',
+                    //            template : '<h1>Funciona</h1>',
                 }
-            })
-            .state('app.user.resetPassword', {
-                url: "/resetPassword",
-                views: {
-                    'products@': {
-                        templateUrl: 'components/login/resetPassword.view.html',
-                        controller: 'UserCtrl as vm',
-                        //            template : '<h1>Funciona</h1>',
-                    }
-                },
-                data: {
-                    displayName: 'Redefinição de senha'
+            },
+            data: {
+                displayName: 'Redefinição de senha'
+            }
+        })
+        .state('app.user.resetPassword', {
+            url: "/resetPassword",
+            views: {
+                'products@': {
+                    templateUrl: 'components/login/resetPassword.view.html',
+                    controller: 'UserCtrl as vm',
+                    //            template : '<h1>Funciona</h1>',
                 }
-            })
+            },
+            data: {
+                displayName: 'Redefinição de senha'
+            }
+        })
 
         .state('app.user.dashboard', {
             url: "/dashboard",
@@ -299,41 +304,55 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             //            template : '<h1>Funciona</h1>',
             authenticate: true
         })
-            .state('app.user.dashboard.password', {
-                url: "/password",
-                templateUrl: 'components/dashboard/userAlterarSenha.view.html',
-                controller: 'userDashboardCtrl as vm',
-                authenticate: true
-            })
-            .state('app.user.dashboard.dados', {
-                url: "/dados",
-                templateUrl: 'components/dashboard/userAlterarDados.view.html',
-                controller: 'userDashboardCtrl as vm',
-                data: {
-                    displayName: 'Dados da conta',
-                }
+        .state('app.user.dashboard.password', {
+            url: "/password",
+            templateUrl: 'components/dashboard/userAlterarSenha.view.html',
+            controller: 'userDashboardCtrl as vm',
+            authenticate: true
+        })
+        .state('app.user.dashboard.dados', {
+            url: "/dados",
+            templateUrl: 'components/dashboard/userAlterarDados.view.html',
+            controller: 'userDashboardCtrl as vm',
+            data: {
+                displayName: 'Dados da conta',
+            }
 
-                //                authenticate: true
-            })
-            .state('app.user.dashboard.endereco', {
-                url: "/endereco",
-                templateUrl: 'components/dashboard/userAlterarEndereco.view.html',
-                authenticate: true,
-                data: {
-                    displayName: 'Meus endereços'
-                }
-            })
-            .state('app.user.dashboard.pedidos', {
-                url: "/pedidos",
-                templateUrl: 'components/dashboard/pedidos.view.html',
-                controller: 'DashboardPedidosCtrl as vm',
-                authenticate: true,
-                data: {
-                    displayName: 'Meus Pedidos',
-                }
+            //                authenticate: true
+        })
+        .state('app.user.dashboard.endereco', {
+            url: "/endereco",
+            templateUrl: 'components/dashboard/userAlterarEndereco.view.html',
+            authenticate: true,
+            data: {
+                displayName: 'Meus endereços'
+            }
+        })
+        .state('app.user.dashboard.pedidos', {
+            url: "/pedidos",
+            templateUrl: 'components/dashboard/pedidos.view.html',
+            controller: 'DashboardPedidosCtrl as vm',
+            authenticate: true,
+            data: {
+                displayName: 'Meus Pedidos',
+            }
 
-            })
+        })
+
+        .state('app.contact', {
+            url: '/app/contact',
+            views: {
+                "products@": {
+                    templateUrl: 'components/contact/contact.view.html',
+                    controller: 'contactCtrl as vm',
+                },
+            },
+            data: {
+                displayName: 'Contato',
+            }
+        })
+
 
         $urlRouterProvider.otherwise("app")
 
-    });
+});

@@ -173,12 +173,12 @@
         //Handle the left navbar-----------------------
         vm.settingsList = [{
             name: 'Minha conta',
-            icon: 'account_circle',
+            icon: 'settings',
             link: 'app.user.dashboard.dados',
 			sectionTitle: 'Configurações gerais da conta'
         }, {
             name: 'Endereços',
-            icon: 'home',
+            icon: 'location_on',
             link: 'app.user.dashboard.endereco',
 			sectionTitle: 'Endereços de entrega'
         }, {

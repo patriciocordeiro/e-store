@@ -1,17 +1,20 @@
 <div layout="row" layout-wrap class="my-top-nav-bar" ng-controller="NavbarCtrl as vm">
-    <md-toolbar class="md-toolbar-tools my-md-menu-top my-md-no-padding" layout="row" layout-align="center center" style="background-color:#FAFAFA" >
-        <div flex="90" layout="row" layout-fill>
+    <md-toolbar class="md-toolbar-tools my-md-menu-top my-md-no-padding" layout="row" layout-align="center center" style="background-color:#FAFAFA">
+        <div flex-gt-md="90" layout="row" layout-fill>
             <div flex layout="row" layout-fill layout-align="end  center" ng-cloak>
                 <md-button layout="row" layout-align="center center" class="md-primary md-hue-1 my-md-link-btn" ui-sref="app.user.dashboard.pedidos">Meus Pedidos
                 </md-button>
-                <md-button layout="row" layout-align="center center"  class="md-primary my-md-link-btn md-hue-1" ui-sref="app.user.dashboard.dados" ng-hide="!isloggedIn"><md-icon class="material-icons md-36">account_circle</md-icon>Olá {{loggedUserName}}</md-button>
-                <md-button layout="row" layout-align="center center" class="md-primary md-hue-2 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.login"><i class="fa fa-sign-in fa-3x"></i>&nbsp; Entrar
+                <md-button layout="row" layout-align="center center" class="md-primary my-md-link-btn md-hue-1" ui-sref="app.user.dashboard.dados" ng-hide="!isloggedIn">
+                    <md-icon class="material-icons md-36">account_circle</md-icon>Olá {{loggedUserName}}
                 </md-button>
-                <md-button layout="row" layout-align="center center"  class="md-primary md-hue-1 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastro
+
+                <md-button layout="row" layout-align="center center" class="md-primary md-hue-1 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastro
                 </md-button>
-                <md-button layout="row" layout-align="center center"  class="md-primary md-hue-2 my-md-link-btn" ng-hide="!isloggedIn" ng-click="vm.logout()"><i class="fa fa-sign-in fa-3x"></i>&nbsp;Sair
+                <md-button layout="row" layout-align="center center" class="md-primary md-hue-2 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.login"><i class="fa fa-sign-in fa-2x"></i>&nbsp; Entrar
                 </md-button>
-                <md-button layout="row" layout-align="center center"  class="md-warn md-raised" ui-sref="app.minhaCesta" ng-mouseover="vm.showPutedInCartToast()">
+                <md-button layout="row" layout-align="center center" class="md-primary md-hue-2 my-md-link-btn" ng-hide="!isloggedIn" ng-click="vm.logout()"><i class="fa fa-sign-out fa-2x"></i>Sair
+                </md-button>
+                <md-button layout="row" layout-align="center center" class="md-warn md-raised" ui-sref="app.minhaCesta" ng-mouseover="vm.showPutedInCartToast()">
                     <md-icon class="material-icons">shopping_cart</md-icon>
                     <span>{{vm.kartSize}}</span>
                 </md-button>
@@ -26,53 +29,68 @@
         <div flex="100" flex-gt-md="90" layout="row" class="md-menu-toolbar" layout-align="space-between center">
             <div id="myCartToast"></div>
             <div flex layout="row">
-                <md-button class="menu-button groupX middle">
+                <md-button ui-sref="app" class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}">
                     <img src="../../assets/img/logo/sonyLogo2.png">
                 </md-button>
             </div>
             <div flex="50" layout="row">
                 <div class="menu-bar" layout="column" ng-mouseleave="vm.closeMenus()">
-                    <md-button class="menu-button groupX middle" ng-click="vm.OpenMenu()">
+                    <md-button class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}" ng-click="vm.OpenMenu()">
                         Produtos
                         <md-icon class="material-icons my-md-rotate-90">chevron_right</md-icon>
                     </md-button>
-                    <div layout="column" layout-align="center center" ng-show="vm.showMenu" class="full-menu md-whiteframe-3dp" role="menu">
-                        <div layout="row" layout-padding class="my-md-menu-item">
-                            <md-card layout="column" layout-align="space-between center" flex="15" class="my-md-list-item" ng-class="{'active-menu':vm.activeMenuIdx==$index}" ng-repeat="prdctNavCat in vm.productNavCategories" ng-mouseover="vm.openSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name)">
-                                <md-card-content>
-                                    <img class="md-card-image" ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
-                                </md-card-content>
-                                <md-card-actions layout="column" layout-align="space-around center">
-                                    <p flex class="md-block" style="color:black">{{prdctNavCat.name}}
-                                    </p>
-                                    <span flex></span>
-                                    <md-icon style="color:black" class="material-icons  my-md-icon-fit">expand_more</md-icon>
-                                </md-card-actions>
-                            </md-card>
-                        </div>
-                        <div layout="row" ng-repeat="prdctNavSubCat in vm.productNavCategories">
-                            <md-content style="background-color:#F1F5F9" layout="column" class="md-whiteframe-24dp submenu cssSlideUp" ng-show="vm.showSubMenu[$index] && vm.showMenu">
-                                <div layout="row" layout-align="center">
-                                    <md-card flex="10" layout="column" layout-align="space-between center" ng-repeat="prdctNavSubCat in prdctNavSubCat.subcat" class="my-md-list-item" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name); vm.closeMenus()">
+                    <!--                    <div layout="column" layout-padding layout-align="center center" ng-show="true" class="full-menu my-md-grey-bg md-whiteframe-3dp" role="menu">-->
+                    <div layout="column" layout-align="center center" layout-padding ng-show="vm.showMenu" class="full-menu my-md-grey-bg md-whiteframe-3dp" role="menu">
+                        <div layout="row" layout-align="center  center" class="my-md-menu-item" ng-class="{'my-md-menu-open':vm.isSubMenuOpen}">
+                            <div flex-gt-md="25" flex-md="15" class="my-md-no-padding" ng-repeat="prdctNavCat in vm.productNavCategories">
+                                <md-card layout="column" layout-align="space-between center" class="" ng-class="{'active-menu':vm.activeMenuIdx==$index, }">
+                                    <md-button class="md-primary my-md-no-margin my-md-no-padding" ng-mouseover="vm.openSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name); vm.openSubMenu($index)">
                                         <md-card-content>
-                                            <img class="md-card-image" alt="raspery" src="../../assets/img/navbar/passive_components.jpg">
+                                            <img class="md-card-image" ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
                                         </md-card-content>
-                                        <md-card-actions>
-                                            <p style="color:black">{{prdctNavSubCat.name}}</p>
-                                        </md-card-actions>
-                                    </md-card>
+                                        <span class="md-subhead">{{prdctNavCat.name}}</span>
+                                        <md-icon class="md-primary material-icons  ">expand_more</md-icon>
+                                    </md-button>
+                                </md-card>
+
+
+                                <!--                                        </md-content>-->
+                                <div layout="row" layout-align="center center" class="submenu" ng-show="vm.showSubMenu ==$index && vm.showMenu">
+                                    <!--                                    <div layout="row" layout-padding layout-align="center center" class="submenu" ng-show="true">-->
+                                    <div flex="50" flex-md="80" layout="row" layout-align="center center" class="subMenuItems" ng-show="vm.showSubMenu ==$index && vm.showMenu">
+                                        <md-card flex="15" class="my-md-no-padding" layout-padding layout-margin ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name); vm.closeMenus()">
+                                            <md-button class="my-md-no-margin my-md-no-padding">
+                                                <md-card-content>
+                                                    <img class="md-card-image" alt="raspery" src="../../assets/img/navbar/passive_components.jpg">
+                                                </md-card-content>
+                                                </md-card-content>
+
+                                                <div layout-padding>
+                                                    <p class="md-subheader my-md-smooth-title">{{prdctNavSubCat.name}}</p>
+                                                </div>
+
+                                            </md-button>
+
+                                        </md-card>
+                                    </div>
+
                                 </div>
-                            </md-content>
+                            </div>
+
+                        </div>
+                        <div flex layout="row" style="background-color:white">
+                            <md-button class="md-title md-primary">
+                                <md-icon class="material-icons">apps</md-icon>Todos os departamentos</md-button>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <md-button class="menu-button groupX middle">
+                    <md-button class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}">
                         Tutoriais
                     </md-button>
                 </div>
                 <div>
-                    <md-button class="menu-button groupX middle">
+                    <md-button ui-sref="app.contact" class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}">
                         Contato
                     </md-button>
                 </div>

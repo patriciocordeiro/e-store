@@ -1,0 +1,119 @@
+<md-card class="my-md-no-margin">
+    <md-card-title layout="column">
+        <h2 class="md-headline">Contate-nos</h2>
+    </md-card-title>
+    <md-card-content layout="column">
+        <div flex>
+            <p layout="column" flex="50">
+                Fale conosco. Tire suas dúvidas, mande suas perguntas, dê sugestões, faça críticas/elogios, etc.
+            </p>
+            <div flex-fill hide-gt-md>
+                <md-button ng-click="vm.showHideMsgForm()" class="md-primary md-raised md-hue-2">Enviar uma mensagem
+                    <md-icon class="material-icons">expand_more</md-icon>
+                </md-button>
+            </div>
+        </div>
+        <md-divider></md-divider>
+        <div layout-gt-md="row">
+            <md-card show-gt-md ng-hide="(vm.mdMedia('xs') || vm.mdMedia('sm')|| vm.mdMedia('md')) && !vm.isShowMsgForm" layout="column" flex="100" flex-gt-md="50" class="slideUpDown my-md-no-shadow my-md-no-margin my-md-no-padding">
+                <md-card-title flex="none">
+                    <span class="md-title">Envie-nos uma mensagem</span>
+                </md-card-title>
+                <md-card-content>
+                    <form name="contactForm" flex="60">
+                        <div flex layout="column">
+                            <md-input-container class="md-block">
+                                <label>Seu nome</label>
+                                <input type="text" ng-model="contact.name" required>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Seu email</label>
+                                <input type="email" ng-model="contact.email" required>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Assunto</label>
+                                <input type="text" ng-model="contact.subject" required>
+                            </md-input-container>
+                            <md-input-container class="my-md-no-margin">
+                                <textarea placeholder="Escreva a sua mensagem aqui" cols="1" ng-model="vm.contactMsg" ng-keydown="vm.getNumOfChars()" required maxlength="{{vm.maxNumOfChars}}"></textarea>
+
+                            </md-input-container>
+                            <span class="md-subheader"><b>Caracteres restantes: {{vm.remainChars}}</b></span>
+                            <div flex>
+                                <md-button class="md-primary md" ng-class="{'md-raised':contactForm.$dirty && contactForm.$valid}" type="submit">Enviar</md-button>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </md-card-content>
+				<md-divider></md-divider>
+            </md-card>
+			
+			
+            <md-card layout="column" flex="100" flex-gt-md="50" class="my-md-no-shadow my-md-no-margin my-md-no-padding">
+				
+                <md-card-content class="my-md-no-padding my-md-no-margin " layout="column">
+                    <div layout="row">
+                        <md-card flex="50" class="my-md-no-shadow my-md-grey-bg my-md-no-margin">
+                            <md-card-title>
+                                <span class="md-title">Nossos contatos</span>
+                            </md-card-title>
+                            <md-card-content>
+                                <md-list>
+                                    <md-list-item>
+                                        <md-icon class="my-md-contact-icon material-icons md-primary md-hue-1">phone</md-icon>
+                                        <p class="md-subhead my-md-smooth-title"><b>(91)333-333</b>
+                                        </p>
+                                    </md-list-item>
+                                    <md-list-item>
+                                        <md-icon class="my-md-contact-icon material-icons md-primary md-hue-1">phone_iphone</md-icon>
+                                        <p class="md-subhead my-md-smooth-title"><b>(91)333-333</b>
+                                        </p>
+                                    </md-list-item>
+                                    <md-list-item>
+                                        <md-icon class="my-md-contact-icon material-icons md-primary md-hue-1">email</md-icon>
+                                        <p class="md-subhead my-md-smooth-title"><b>pppm@gmail.com</b>
+                                        </p>
+                                    </md-list-item>
+                                    <md-list-item>
+                                        <md-icon class="my-md-contact-icon material-icons md-primary md-hue-1">location_on</md-icon>
+                                        <p class="md-subhead my-md-smooth-title"><b>Rodovia augusto montenegro, Bl02, apt.303</b>
+                                        </p>
+                                    </md-list-item>
+                                </md-list>
+                            </md-card-content>
+                        </md-card>
+                        <md-divider></md-divider>
+
+                        <md-card flex="50" class="my-md-no-shadow my-md-grey-bg  my-md-no-margin">
+                            <md-card-title flex="none">
+                                <span class="md-title">Siga-nos</span>
+                            </md-card-title>
+                            <md-card-content layout="row" layout-align="center center">
+                                <div flex="60">
+                                    <md-grid-list md-cols="3" md-row-height="1:1" md-gutter="4px">
+                                        <md-grid-tile ng-repeat="social in vm.social" class="my-md-social-icon" ng-class="social.class">
+                                            <md-button  target="_blank" aria-label="social.name" class="my-md-social-button"><i class="material-icons mdi {{social.icon}} md-36" style="color:white"></i>
+                                            </md-button>
+                                        </md-grid-tile>
+                                    </md-grid-list>
+                                </div>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <md-card id="google-maps">
+                        <md-card-content class="my-md-no-padding">
+                            <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom'>
+                                <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                </ui-gmap-marker>
+                            </ui-gmap-google-map>
+                        </md-card-content>
+                    </md-card>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-card-content>
+    <md-divider></md-divider>
+    <md-divider></md-divider>
+</md-card>

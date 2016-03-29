@@ -1,143 +1,140 @@
-<div layout="row" layout-align="end end" layout-margin>
-    <md-button class="md-warn  md-raised">
-        <md-icon class="material-icons">add_circle</md-icon>Endereço</md-button>
-</div>
-<div ng-repeat="userAddress in vm.user.endereco track by $index">
-    <md-card class="userAddress" ng-show="vm.userIsEditAddress[$index]">
-        <md-card-content>
-            <md-card-title class="my-md-no-padding">
-                <h4 class="md-title my-md-capital ">{{userAddress.destinatario}}
-			</h4>
-            </md-card-title>
-            <p>
-                {{userAddress.endereco}}, No. {{userAddress.numero}}, {{userAddress.complemento}}, {{userAddress.bairro}},
-            </p>
-            <p>CEP: {{userAddress.cep}}</p>
-            <p>{{userAddress.cidade}} - {{userAddress.estado}}</p>
+<div layout="column" layout-wrap>
+    <md-card flex="30" layout="column" layout-align="center center">
+
+        <md-card-content layout="column" layout-align="center center">
+            <md-button class="md-primary md-raised md-hue-2" ng-click="vm.addNewAddressDialog($event)">
+                <md-icon class="material-icons">add_box</md-icon>
+            </md-button>
+            <span flex class="md-title">Cadastrar um novo endereço</span>
         </md-card-content>
-        <div layout="row" layout-margin>
-            <md-button class=" md-primary md-raised" ng-click="vm.userEditAddress($index)">
-                <md-icon class="material-icons">edit</md-icon>Editar endereço
-            </md-button>
-            <md-button class="md-warn">
-                <md-icon class="material-icons">delete</md-icon>Apagar
-            </md-button>
-        </div>
     </md-card>
-
-    <md-card ng-show="!vm.userIsEditAddress[$index]" class="dashboard-edit" style="background-color:#f5f5f5">
-        <md-card-title>
-            <h4 class="md-title">Alterar dados do endereço</h4>
+    <md-card layout="column" flex="30" ng-repeat="userAddress in vm.user.endereco track by $index">
+        <md-card-title class="my-md-capital" flex="none">
+            <span layout="row"><h4 class="md-title ">{{userAddress.destinatario}}</h4><md-button ng-click="vm.userEditAddress($index)" aria-label="edit" layout-padding class="md-icon-button my-md-no-margin my-md-no-padding my-md-smooth-title"><i class="fa fa-pencil-square-o fa-2x"></i>
+            </m-button></span> 
         </md-card-title>
-        <md-card-content>
-            <form name="udpateAddressForm" ng-submit=" udpateAddressForm.$valid && vm.userUpdateAddress(vm.user)" novalidate>
-                <!--                    <md-card layout-padding>-->
-                <!--                        <md-card-content>-->
-                <div layout-gt-md="column">
+        <div flex>
+            <md-card-content>
+                <p>{{userAddress.endereco}}, No. {{userAddress.numero}}, {{userAddress.complemento}}, {{userAddress.bairro}},
+                </p>
+                <p>CEP: {{userAddress.cep}}</p>
+                <p>{{userAddress.cidade}} - {{userAddress.estado}}
+                    <md-button flex="30" aria-label="remove item" class="md-icon-button my-md-no-margin my-md-no-padding">
+                        <i class="fa fa-trash-o fa-2x"></i>
+                    </md-button>
+                </p>
+            </md-card-content>
+        </div>
+        <md-card ng-show="!vm.userIsEditAddress[$index]" class="dashboard-edit" style="background-color:#f5f5f5">
+            <md-card-title>
+                <h4 class="md-title">Alterar dados do endereço</h4>
+            </md-card-title>
+            <md-card-content>
+                <form name="udpateAddressForm" ng-submit=" udpateAddressForm.$valid && vm.userUpdateAddress(vm.user)" novalidate>
+                    <div layout-gt-md="column">
+                        <div layout-gt-md="row">
+                            <div flex-gt-md="50">
+                                <md-input-container class="md-block">
+                                    <label>Nome do destinatário</label>
+                                    <input name="destinatario" ng-model="vm.user.endereco[$index].destinatario" name="destinatario" type="text" required>
+                                    <div ng-messages="udpateAddressForm.destinatario.$error">
+                                        <div ng-message="required">Entre com o nome do destinatário</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div flex-gt-md="25">
+                                <md-input-container class="md-block">
+                                    <label>Tipo de endereco</label>
+                                    <md-select name="tipoEndereco" ng-model="vm.user.endereco[$index].tipoEndereco" name="tipoEndereco" required>
+                                        <md-option value="Apartamento">Apartamento</md-option>
+                                        <md-option value="Casa">Casa</md-option>
+                                        <md-option value="Comercial">Comercial</md-option>
+                                        <md-option value="Outro">Outro</md-option>
+                                    </md-select>
+                                    <div ng-messages="udpateAddressForm.tipoEndereco.$error">
+                                        <div ng-message="required">Escolha o tipo de endereço</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div flex-gt-md="25">
+                                <md-input-container class="md-block">
+                                    <label>CEP</label>
+                                    <input name="cep" ng-model="vm.user.endereco[$index].cep" ui-mask="99999-999" type="text" required>
+                                    <div ng-messages="udpateAddressForm.cep.$error">
+                                        <div ng-message="required">Entre com o seu CEP</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout-gt-md="row">
+                            <div flex-gt-md="50">
+                                <md-input-container class="md-block">
+                                    <label>Endereço</label>
+                                    <input type="text" name="endereco" ng-model="vm.user.endereco[$index].endereco" required>
+                                    <div ng-messages="udpateAddressForm.endereco.$error">
+                                        <div ng-message="required">Entre com o seu endereço</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div flex-gt-md="25">
+                                <md-input-container class="md-block">
+                                    <label>Número</label>
+                                    <input type="text" name="numero" ng-model="vm.user.endereco[$index].numero" required>
+                                    <div ng-messages="udpateAddressForm.numero.$error">
+                                        <div ng-message="required">Entre com o número</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div flex-gt-md="50">
+                                <md-input-container class="md-block">
+                                    <label>Complemento</label>
+                                    <input type="text" name="complemento" ng-model="vm.user.endereco[$index].complemento" type="text">
+
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
                     <div layout-gt-md="row">
-                        <div flex-gt-md="50">
+                        <div flex-gt-md="30">
                             <md-input-container class="md-block">
-                                <label>Nome do destinatário</label>
-                                <input name="destinatario" ng-model="vm.user.endereco[$index].destinatario" name="destinatario" type="text" required>
-                                <div ng-messages="udpateAddressForm.destinatario.$error">
-                                    <div ng-message="required">Entre com o nome do destinatário</div>
+                                <label>Bairro</label>
+                                <input name="bairro" ng-model="vm.user.endereco[$index].bairro" type="text" required>
+                                <div ng-messages="udpateAddressForm.bairro.$error">
+                                    <div ng-message="required">Entre com o bairro</div>
                                 </div>
                             </md-input-container>
                         </div>
-                        <div flex-gt-md="25">
+                        <div flex-gt-md="30">
                             <md-input-container class="md-block">
-                                <label>Tipo de endereco</label>
-                                <md-select name="tipoEndereco" ng-model="vm.user.endereco[$index].tipoEndereco" name="tipoEndereco" required>
-                                    <md-option value="Apartamento">Apartamento</md-option>
-                                    <md-option value="Casa">Casa</md-option>
-                                    <md-option value="Comercial">Comercial</md-option>
-                                    <md-option value="Outro">Outro</md-option>
-                                </md-select>
-                                <div ng-messages="udpateAddressForm.tipoEndereco.$error">
-                                    <div ng-message="required">Escolha o tipo de endereço</div>
+                                <label>Cidade</label>
+                                <input name="cidade" ng-model="vm.user.endereco[$index].cidade" type="text" required>
+                                <div ng-messages="udpateAddressForm.cidade.$error">
+                                    <div ng-message="required">Entre com a cidade</div>
                                 </div>
                             </md-input-container>
                         </div>
-                        <div flex-gt-md="25">
+                        <div flex-gt-md="30">
                             <md-input-container class="md-block">
-                                <label>CEP</label>
-                                <input name="cep" ng-model="vm.user.endereco[$index].cep" ui-mask="99999-999" type="text" required>
-                                <div ng-messages="udpateAddressForm.cep.$error">
-                                    <div ng-message="required">Entre com o seu CEP</div>
+                                <label>Estado</label>
+                                <input name="estado" ng-model="vm.user.endereco[$index].estado" type="text" required>
+                                <div ng-messages="udpateAddressForm.estado.$error">
+                                    <div ng-message="required">Escolha o estado</div>
                                 </div>
                             </md-input-container>
                         </div>
                     </div>
-
                     <div layout-gt-md="row">
-                        <div flex-gt-md="50">
-                            <md-input-container class="md-block">
-                                <label>Endereço</label>
-                                <input type="text" name="endereco" ng-model="vm.user.endereco[$index].endereco" required>
-                                <div ng-messages="udpateAddressForm.endereco.$error">
-                                    <div ng-message="required">Entre com o seu endereço</div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                        <div flex-gt-md="25">
-                            <md-input-container class="md-block">
-                                <label>Número</label>
-                                <input type="text" name="numero" ng-model="vm.user.endereco[$index].numero" required>
-                                <div ng-messages="udpateAddressForm.numero.$error">
-                                    <div ng-message="required">Entre com o número</div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                        <div flex-gt-md="50">
-                            <md-input-container class="md-block">
-                                <label>Complemento</label>
-                                <input type="text" name="complemento" ng-model="vm.user.endereco[$index].complemento" type="text">
-
-                            </md-input-container>
-                        </div>
-                    </div>
-                </div>
-                <div layout-gt-md="row">
-                    <div flex-gt-md="30">
                         <md-input-container class="md-block">
-                            <label>Bairro</label>
-                            <input name="bairro" ng-model="vm.user.endereco[$index].bairro" type="text" required>
-                            <div ng-messages="udpateAddressForm.bairro.$error">
-                                <div ng-message="required">Entre com o bairro</div>
-                            </div>
+                            <md-checkbox checked="vm.newAddress.tag=true" ng-model="vm.newAddress.tag">Tornar meu endereço principal</md-checkbox>
                         </md-input-container>
                     </div>
-                    <div flex-gt-md="30">
-                        <md-input-container class="md-block">
-                            <label>Cidade</label>
-                            <input name="cidade" ng-model="vm.user.endereco[$index].cidade" type="text" required>
-                            <div ng-messages="udpateAddressForm.cidade.$error">
-                                <div ng-message="required">Entre com a cidade</div>
-                            </div>
-                        </md-input-container>
+                    <md-divider></md-divider>
+                    <div layout-gt-md="row" flex-gt-md="50" layout-align-gt-md="start center" layout-margin>
+                        <md-button type="submit" class="md-primary md-raised">Salvar alterações</md-button>
+                        <md-button class="md-raised">Cancelar</md-button>
                     </div>
-                    <div flex-gt-md="30">
-                        <md-input-container class="md-block">
-                            <label>Estado</label>
-                            <input name="estado" ng-model="vm.user.endereco[$index].estado" type="text" required>
-                            <div ng-messages="udpateAddressForm.estado.$error">
-                                <div ng-message="required">Escolha o estado</div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                </div>
-                <div layout-gt-md="row">
-                    <md-input-container class="md-block">
-                        <md-checkbox checked="vm.newAddress.tag=true" ng-model="vm.newAddress.tag">Tornar meu endereço principal</md-checkbox>
-                    </md-input-container>
-                </div>
-                <md-divider></md-divider>
-                <div layout-gt-md="row" flex-gt-md="50" layout-align-gt-md="start center" layout-margin>
-                    <md-button type="submit" class="md-primary md-raised">Salvar alterações</md-button>
-                    <md-button class="md-raised">Cancelar</md-button>
-                </div>
-
-            </form>
-        </md-card-content>
+                </form>
+            </md-card-content>
+        </md-card>
     </md-card>
 </div>

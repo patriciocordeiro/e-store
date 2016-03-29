@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', '$state', 'productSrvc', 'userSrcv', '$mdToast', '$document', '$q', NavbarCtrl]);
+    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', '$state', 'productSrvc', 'userSrcv', '$mdToast', '$document', '$q','$mdMedia', NavbarCtrl]);
 
-    function NavbarCtrl($scope, $rootScope, $state, productSrvc, userSrcv, $mdToast, $document, $q) {
+    function NavbarCtrl($scope, $rootScope, $state, productSrvc, userSrcv, $mdToast, $document, $q, $mdMedia) {
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
@@ -23,19 +23,21 @@
         //            console.log(data);
         //        })
 
-
+		//Will apply specific height according to screen size	
+		vm.$mdMedia = $mdMedia;
+		
         //---------------------------------------------------------
         /*Get all kart data*/
         vm.kartData = prdSrvc.prd.kart.data;
         //---------------------------------------------------------
         /*Menu Itens*/
         var imgProductNavFolder = '../../assets/img/navbar/';
-		vm.navBar = ['Produtos', 'Tutoriais', ]
-		
+        vm.navBar = ['Produtos', 'Tutoriais', ]
+
         vm.productNavCategories = [{
-            name: 'Componentes Eletrônicos',
+            name: 'C. Eletrônicos',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+            imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
                 name: 'Resistor',
@@ -59,7 +61,7 @@
         }, {
             name: 'Arduino',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'arduino_sect.jpg',
+            imgPath: imgProductNavFolder + 'arduino_sect.png',
 
             subcat: [{
                 name: 'Placas',
@@ -77,7 +79,7 @@
         }, {
             name: 'Raspbery',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+            imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
                 name: 'Placas',
@@ -92,7 +94,7 @@
         }, {
             name: 'Conexão',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+            imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
                 name: 'Conectores',
@@ -105,9 +107,9 @@
                 imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
             }]
         }, {
-            name: 'Kits Didáticos',
+            name: 'Kits',
             icon: 'tv',
-            imgPath: imgProductNavFolder + 'raspberry_sect.jpg',
+            imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
                 name: 'Conectores',
@@ -198,28 +200,41 @@
             })
             return $q.when(temp);
         }
-        vm.showSubMenu = closeAll(vm.productNavCategories.length);
-
+        //        vm.showSubMenu = closeAll(vm.productNavCategories.length);
+        vm.showSubMenu = -1;
         vm.OpenMenu = function() {
             vm.showMenu = !vm.showMenu;
+            console.log(vm.showMenu);
+						//close submenu if menu is closed
+			if(vm.showMenu){
+            vm.showSubMenu = -1;
+			  vm.isSubMenuOpen = false;
+			}
         }
 
         vm.openSubMenu = function(idx) {
-            console.log(idx);
-			vm.activeMenuIdx = idx;
-            closeAll(vm.productNavCategories.length).then(function(data) {
-                vm.showSubMenu = data;
-                vm.showSubMenu[idx] = !vm.show
-                console.log(vm.showSubMenu);
-            })
+            console.log('my idx',  idx);
+            vm.activeMenuIdx = idx;
+            vm.showSubMenu = idx;
+            vm.isSubMenuOpen = true;
+            //            closeAll(vm.productNavCategories.length).then(function(data) {
+            //                vm.showSubMenu = data;
+            //                vm.showSubMenu[idx] = !vm.show
+            //                console.log(vm.showSubMenu);
+            //            })
+
         }
 
         vm.closeMenus = function() {
             vm.showMenu = false;
-            closeAll(vm.productNavCategories.length).then(function(data) {
-                vm.showSubMenu = data;
-            });
-			console.log('clossing all menus and submenus');
+            //            closeAll(vm.productNavCategories.length).then(function(data) {
+            //Set show menu index=-1
+			vm.showSubMenu = -1;
+			//The submenu is closed
+            vm.isSubMenuOpen = false;
+
+            //            });
+            console.log('clossing all menus and submenus');
         }
 
         vm.isActive = function(menuItem) {

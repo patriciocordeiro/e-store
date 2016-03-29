@@ -1,11 +1,15 @@
 <div layout="row" layout-align="center center">
-    <div layout="column" flex-gt-md="70">
-        <md-toolbar class="md-toolbar-tools md-whiteframe-8dp">Cadastro de usuário</md-toolbar>
+    <div layout="column" flex-gt-md="100">
+		<md-card class="my-md-no-margin my-md-no-shadow">
+			<md-card-title>		<h2 class="md-headline">Cadastre-se e usufrua de inúmeras vantagen</h2></md-card-title>
+			<md-card-content>
+<!--        <md-toolbar class="md-toolbar-tools md-whiteframe-8dp">Cadastro de usuário</md-toolbar>-->
         <form name="signupForm" novalidate>
-            <md-card>
+			<md-divider></md-divider>
+			<md-divider></md-divider>
+            <md-card class="my-md-no-margin my-md-no-shadow">
                 <md-card-title>
-
-                    <span class="md-title"><md-icon class="material-icons md-36">person</md-icon>Dados pessoais</span>
+                    <span class="md-title"><md-icon class="material-icons md-36 md-primary">person</md-icon>Dados pessoais</span>
                 </md-card-title>
                 <md-card-content>
                     <div layout-gt-md="row">
@@ -48,12 +52,12 @@
 
                     </div>
                 </md-card-content>
-				
+<md-divider></md-divider>
 <md-divider></md-divider>
             </md-card>
-            <md-card layout-padding>
+            <md-card layout-padding class="my-md-no-margin my-md-no-shadow">
                 <md-card-title>
-                    <span class="md-title"><md-icon class="material-icons md-36">input</md-icon>Dados de login</span>
+                    <span class="md-title"><md-icon class="material-icons md-36 md-primary">input</md-icon>Dados de login</span>
                 </md-card-title>
                 <md-card-content>
                     <div layout-gt-md="row">
@@ -86,9 +90,11 @@
                     </div>
                 </md-card-content>
             </md-card>
-            <md-card layout-padding>
+			<md-divider></md-divider>
+			<md-divider></md-divider>
+            <md-card layout-padding class="my-md-no-margin my-md-no-shadow" >
                 <md-card-title>
-                    <span class="md-title"><md-icon class="material-icons md-36">location_on</md-icon>Endereço de entrega</span>
+                    <span class="md-title"><md-icon class="material-icons md-36 md-primary">location_on</md-icon>Endereço de entrega</span>
                 </md-card-title>
                 <md-card-content>
                     <md-input-container class="md-block">
@@ -166,9 +172,11 @@
                     </div>
                 </md-card-content>
             </md-card>
-            <md-card layout-padding>
+			<md-divider></md-divider>
+			<md-divider></md-divider>
+            <md-card layout-padding class="my-md-no-margin my-md-no-shadow">
                 <md-card-title>
-                    <span class="md-title"><md-icon class="material-icons md-36">phone</md-icon>Contato</span>
+                    <span class="md-title"><md-icon class="material-icons md-36 md-primary">phone</md-icon>Contato</span>
                 </md-card-title>
                 <md-card-content>
                     <div layout-gt-md="row">
@@ -190,14 +198,18 @@
                     </div>
                 </md-card-content>
             </md-card>
-            <md-card>
-                <md-card-actions layout="row" layout-align="center center">
-                    <div layout="row" flex="100" flex-lg="50"  >
-                        <md-button flex type="submit" class="md-primary md-raised" ng-click=" vm.createUser(vm.newUser)">Cadastrar</md-button>
+			<md-divider></md-divider>
+			<md-divider></md-divider>
+            <md-card class="my-md-no-margin my-md-no-shadow">
+<!--                <md-card-actions layout="row" layout-align="center center">-->
+                    <div layout="row" layout-margin  layout-align="center center"  >
+                        <md-button flex="50"  type="submit" class="md-primary md-raised" ng-click=" vm.createUser(vm.newUser)">Cadastrar</md-button>
                     </div>
-                </md-card-actions>
+<!--                </md-card-actions>-->
             </md-card>
-            <md-divider></md-divider>
+<!--            <md-divider></md-divider>-->
         </form>
+				</md-card-content>
+			</md-card>
     </div>
 </div>

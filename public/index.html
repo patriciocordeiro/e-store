@@ -10,6 +10,8 @@
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src='lib/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
+    <script src="lib/angular-google-maps/dist/angular-google-maps.min.js"></script>
 
 
     <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -57,7 +59,7 @@
     <!--controllers-->
     <!--    <script src="components/navbar/navbar.controller.js"></script>-->
 
-    <script src="components/navbar/productCatNavBar.ctrl.js"></script>
+    <!--    <script src="components/navbar/productCatNavBar.ctrl.js"></script>-->
     <script src="components/navbar/navbar.directive.js"></script>
     <script src="components/home/home.ctrl.js"></script>
     <!--    <script src="components/produtos/produtos.controller.js"></script>-->
@@ -80,6 +82,8 @@
     <script src="components/produtos/productSection.ctrl.js"></script>
     <script src="components/dialogs/dialog.ctrl.js"></script>
     <script src="components/login/user.ctrl.js"></script>
+    <script src="components/contact/contact.ctrl.js">
+    </script>
 
 
     <!--custom directives-->
@@ -95,10 +99,11 @@
     <link rel="stylesheet" href="lib/angular-material/angular-material.css">
     <!--    <link rel="stylesheet" href="lib/angular-material-data-table/dist/md-data-table.min.css">-->
     <!--    <script type="text/javascript" src="lib/angular-material-data-table/dist/md-data-table.min.js"></script>-->
-        <link rel="stylesheet" href="lib/angular-material-icon/material-icons.css" />
+    <link rel="stylesheet" href="lib/angular-material-icon/material-icons.css" />
+	<link rel="stylesheet" href="assets/icons/MaterialDesign-Webfont-master/css/materialdesignicons.css">
 
 
-<!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+<!--   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
 </head>
 <!--head-->
 
@@ -107,6 +112,8 @@
     <script src="lib/angular-aria/angular-aria.js"></script>
     <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/angular-material/angular-material.min.js"></script>
+
+
     <!--    <md-toolbar class="md-toolbar-tools" style="background-color:#FAFAFA; position:fixed">
         <div layout="row">
             <div flex layout="row" layout-align="end center" ng-controller="NavbarCtrl as vm">
@@ -134,7 +141,7 @@
     <my-bootstrap-nav-bar>
     </my-bootstrap-nav-bar>
     <div layout="row" layout-align="center center">
-        <div layout="column" flex="100" flex-gt-md="90" style="background-color:blue">
+        <div layout="column" flex="100" flex-gt-lg="90" style="background-color:blue">
             <div hide-xs layout="row" class="breadcrumbs-area" layout-align="center center">
                 <div flex>
                     <ui-breadcrumbs flex displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" template-url="lib/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>

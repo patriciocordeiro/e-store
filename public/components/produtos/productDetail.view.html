@@ -1,3 +1,4 @@
+<!--
 <div layout="row" layout-margin layout-align="center start" id="main-product-detail-box">
     <div flex="35" flex-offset="25" layout-margin layout="column" class="product-detail-box-left">
         <div flex layout="row" class="md-whiteframe-z1">
@@ -63,7 +64,7 @@
             <md-content layout-padding>
                 <md-list>
                     <md-list-item class="secondary-button-padding">
-                        <!--                        <p>Quantidade</p>-->
+                                                <p>Quantidade</p>
                         <p>
                             <md-input-container>
                                 <label>Quantidade</label>
@@ -110,4 +111,96 @@
             </md-content>
         </div>
     </div>
-</div>
+</div>-->
+<md-content layout="column">
+    <md-card>
+        <md-card-content layout="row">
+            <md-card flex="30" id="imagem">
+                <md-card-content>
+                    <img id="zoom_01" src="../../assets/img/prdDetail/small/image1.png" data-zoom-image="../../assets/img/prdDetail/large/image1.jpg" />
+                </md-card-content>
+            </md-card>
+
+            <md-card flex="40" id="infos" layout="column">
+                <md-card-content>
+
+                    <md-card>
+                        <md-card-title layout="column" flex="none">
+                            <h4 class="md-title my-md-capital">{{vm.prdData.descricao}}</h4>
+                            <md-card-title-text layout="row" layout-wrap layout-align="center center">
+                                <div style="font-size:14px" awesome-rating="6" class="fa fa-2x">
+
+                                </div>
+                                <md-divider></md-divider>
+                                <div>
+                                    <md-button class="md-primary my-md-link-btn">20 revisões</md-button>
+                                </div>
+                                <div flex>
+                                    <md-button class="md-primary md-hue-2 my-md-link-btn">Revisar</md-button>
+                                </div>
+                            </md-card-title-text>
+                        </md-card-title>
+
+
+                        <md-divider></md-divider>
+                        <md-card-content>
+                            <h4 class="md-subheader"><b>Preço:</b> <span class="md-title my-md-warn-DeepOrange">{{vm.prdData.preco| currency:"R$ "}}</span></h4>
+                            <h2 class="md-subhead my-md-warn-grey">Em estoque.</h2>
+                            <div>
+                                <md-list layout="row" class="my-md-grey-bg">
+                                    <md-list-item>
+                                        <md-button layout="column" layout-wrap class="md-primary">
+                                            <md-icon flex class="material-icon">local_shipping</md-icon><span flex="10">Frete e prazos de entrega</span>
+                                        </md-button>
+
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-button layout="column" class="md-primary">
+                                            <md-icon class="material-icon"><i class="mdi mdi-credit-card"></i>
+                                            </md-icon><span>Formas de pagamento</span>
+                                        </md-button>
+                                    </md-list-item>
+                                </md-list>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-content>
+                            <md-list layout="row">
+                                <md-list-item ng-repeat="socialButton in vm.social">
+                                    <md-button class=" md-icon-button md-primary md-raised md-hue-2">
+                                        <i class="mdi {{socialButton.icon}} material-icons  " style="color:white"></i>
+
+                                    </md-button>
+                                </md-list-item>
+                            </md-list>
+                        </md-card-content>
+                    </md-card>
+                </md-card-content>
+            </md-card>
+            <md-card flex-gt-md="15" id="infos">
+                <md-card-title>
+                    Outas acoes
+                </md-card-title>
+                <md-card-content>
+                    <div layout="column">
+                        <h4 class="md-subheader "><span class="md-tilte"><b>Disponibilidade: </b>{{vm.prdData.disponibilidade}}</span></h4>
+                        <span layout-margin></span>
+                        <h3 class="md-subheader">
+						Qty min: <span class="md-subhead">10</span>
+						</h3>
+                        <span layout-margin></span>
+                        <md-input-container class="md-block">
+                            <label>Quantidade:</label>
+                            <input aria-label="quantity" type="number" min="1" max="10" value="1" style="text-align:center">
+                        </md-input-container>
+                        <md-button class="md-primary md-raised" ng-click="vm.prdGetBuy(vm.prdQty[$index], prd._id); vm.showJanoCarrinhoDiag($event)">
+                            <md-icon class="material-icons md-primary">shopping_cart</md-icon>Comprar
+                        </md-button>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </md-card-content>
+    </md-card>
+</md-content>
