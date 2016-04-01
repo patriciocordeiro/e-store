@@ -62,6 +62,7 @@ db.once('open', function(callback) {
 
 var app = express();
 var port = 3000;
+//var port = 9222;
 app.set('port', port);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

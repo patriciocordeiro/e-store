@@ -115,16 +115,17 @@
 <md-content layout="column">
     <md-card>
         <md-card-content layout="row">
-            <md-card flex="30" id="imagem">
-                <md-card-content>
+            <md-card layout="column" layout-align="center center" class="my-md-no-shadow my-md-no-padding" flex="50" id="imagem" class="my-md-no-shadow">
+                <md-card-content flex class="my-md-no-padding" layout-align="center center">
                     <img id="zoom_01" src="../../assets/img/prdDetail/small/image1.png" data-zoom-image="../../assets/img/prdDetail/large/image1.jpg" />
                 </md-card-content>
             </md-card>
+            <md-divider></md-divider>
 
-            <md-card flex="40" id="infos" layout="column">
+            <md-card flex="40" id="infos" layout="column" class="my-md-no-shadow">
                 <md-card-content>
 
-                    <md-card>
+                    <md-card class="my-md-no-shadow">
                         <md-card-title layout="column" flex="none">
                             <h4 class="md-title my-md-capital">{{vm.prdData.descricao}}</h4>
                             <md-card-title-text layout="row" layout-wrap layout-align="center center">
@@ -148,15 +149,15 @@
                             <h2 class="md-subhead my-md-warn-grey">Em estoque.</h2>
                             <div>
                                 <md-list layout="row" class="my-md-grey-bg">
-                                    <md-list-item>
-                                        <md-button layout="column" layout-wrap class="md-primary">
+                                    <md-list-item flex layout-align="center center">
+                                        <md-button layout="column" layout-wrap class="md-primary my-md-normlWhiteSpace">
                                             <md-icon flex class="material-icon">local_shipping</md-icon><span flex="10">Frete e prazos de entrega</span>
                                         </md-button>
 
                                     </md-list-item>
                                     <md-divider></md-divider>
-                                    <md-list-item>
-                                        <md-button layout="column" class="md-primary">
+                                    <md-list-item flex layout-align="center center">
+                                        <md-button layout="column" class="md-primary my-md-normlWhiteSpace">
                                             <md-icon class="material-icon"><i class="mdi mdi-credit-card"></i>
                                             </md-icon><span>Formas de pagamento</span>
                                         </md-button>
@@ -165,12 +166,16 @@
                             </div>
                         </md-card-content>
                     </md-card>
-                    <md-card>
-                        <md-card-content>
+                    <md-divider></md-divider>
+                    <md-card class="my-md-no-shadow" layout-align="center center">
+                        <md-title>
+                            <span class="md-subheader"><b>Compartilhar</b> <span><md-icon class="material-icons">share</md-icon></span></span>
+                        </md-title>
+                        <md-card-content layout="row">
                             <md-list layout="row">
                                 <md-list-item ng-repeat="socialButton in vm.social">
-                                    <md-button class=" md-icon-button md-primary md-raised md-hue-2">
-                                        <i class="mdi {{socialButton.icon}} material-icons  " style="color:white"></i>
+                                    <md-button class="md-icon-button md-primary md-hue-1" style="border:solid 1px">
+                                        <i class="mdi {{socialButton.icon}} md-primary md-hue-3 material-icons md-24"></i>
 
                                     </md-button>
                                 </md-list-item>
@@ -180,9 +185,11 @@
                 </md-card-content>
             </md-card>
             <md-card flex-gt-md="15" id="infos">
+<!--
                 <md-card-title>
                     Outas acoes
                 </md-card-title>
+-->
                 <md-card-content>
                     <div layout="column">
                         <h4 class="md-subheader "><span class="md-tilte"><b>Disponibilidade: </b>{{vm.prdData.disponibilidade}}</span></h4>
@@ -201,6 +208,22 @@
                     </div>
                 </md-card-content>
             </md-card>
+
         </md-card-content>
+    </md-card>
+    <md-card>
+        <md-tabs>
+            <md-tab label="Caraterísticas">
+                <md-list>
+                    <md-list-item ng-repeat="(key, val) in vm.prdData.caracteristicas" ng-class="{even:$even, odd:$odd}">
+                        <p class="md-subheader my-md-capital"><b>{{val.nome}}</b>
+                        </p>
+                        <p>{{val.valor}}</p>
+                    </md-list-item>
+                </md-list>
+            </md-tab>
+            <md-tab label="Avaliações">
+            </md-tab>
+        </md-tabs>
     </md-card>
 </md-content>
