@@ -1,11 +1,12 @@
 <div layout="row" layout-wrap class="my-top-nav-bar" ng-controller="NavbarCtrl as vm">
-    <md-toolbar class="md-toolbar-tools my-md-menu-top my-md-no-padding" layout="row" layout-align="center center" style="background-color:#FAFAFA">
+    <md-toolbar class="md-toolbar-tools my-md-menu-top my-md-no-padding md-primary md-hue-2" layout="row" layout-align="center center" >
         <div flex-gt-md="90" layout="row" layout-fill>
             <div flex layout="row" layout-fill layout-align="end  center" ng-cloak>
                 <md-button layout="row" layout-align="center center" class="md-primary md-hue-1 my-md-link-btn" ui-sref="app.user.dashboard.pedidos">Meus Pedidos
                 </md-button>
                 <md-button layout="row" layout-align="center center" class="md-primary my-md-link-btn md-hue-1" ui-sref="app.user.dashboard.dados" ng-hide="!isloggedIn">
-                    <md-icon class="material-icons md-36">account_circle</md-icon>Olá {{loggedUserName}}
+                    <md-icon class="material-icons md-36">account_circle</md-icon>
+<!--                    Olá {{loggedUserName}}-->
                 </md-button>
 
                 <md-button layout="row" layout-align="center center" class="md-primary md-hue-1 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastro

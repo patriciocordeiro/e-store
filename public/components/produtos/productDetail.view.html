@@ -114,63 +114,84 @@
 </div>-->
 <md-content layout="column">
     <md-card>
-        <md-card-content layout="row">
-            <md-card flex="30" id="imagem">
-                <md-card-content>
+        <md-card-content layout="row" layout-align="center top">
+            <md-card layout="column" layout-align="center center" class="my-md-no-shadow " flex="40" id="imagem" class="my-md-no-shadow">
+                <md-card-content flex layout-align="center center">
                     <img id="zoom_01" src="../../assets/img/prdDetail/small/image1.png" data-zoom-image="../../assets/img/prdDetail/large/image1.jpg" />
                 </md-card-content>
             </md-card>
-
-            <md-card flex="40" id="infos" layout="column">
+            <md-divider></md-divider>
+            <md-card flex="50" id="infos" layout="column" class="my-md-no-shadow">
                 <md-card-content>
-
-                    <md-card>
-                        <md-card-title layout="column" flex="none">
+                    <md-card class="my-md-no-shadow">
+                        <md-title layout="column" flex="none">
                             <h4 class="md-title my-md-capital">{{vm.prdData.descricao}}</h4>
-                            <md-card-title-text layout="row" layout-wrap layout-align="center center">
-                                <div style="font-size:14px" awesome-rating="6" class="fa fa-2x">
+                            <span class="my-md-border-bottom" layout="row" layout-wrap layout-align="center center">
+                                <div class="product-rating">
+                                    <md-button class=" my-md-link-btn" ng-mouseenter="vm.showHideRatingPopOver()" style="z-index=2"  ng-mouseleave="vm.showHideRatingPopOver()">
+                                        <div style="font-size:14px" awesome-rating="6" class="fa fa-2x" awesome-rating-options="vm.awesomeRatingOptions" >
+                                        </div>
+                                   <md-icon class="material-icons">arrow_drop_down</md-icon>
+                                    </md-button>
+<!--                                     <div class="rating-pop-over" ng-show="vm.isShowPopOver">-->
+                                     <div class="rating-pop-over" ng-show="true">
+<!--                                         <div class="popover-arrow"></div> -->
+                                         <md-card class="my-md-no-margin">
+                                         <md-list>
+                                             <md-list-item>
+                                                 <md-progress-linear style="height:10px !important" md-mode="determinate" value="10"></md-progress-linear>
+                                             </md-list-item><md-list-item>
+                          
+                            <md-progress-linear md-mode="determinate" value="50"></md-progress-linear>
+                            </md-list-item>
+                            </md-list>
+                    </md-card>
+                    </div>
+                    </div>
 
-                                </div>
-                                <md-divider></md-divider>
-                                <div>
-                                    <md-button class="md-primary my-md-link-btn">20 revisões</md-button>
-                                </div>
-                                <div flex>
-                                    <md-button class="md-primary md-hue-2 my-md-link-btn">Revisar</md-button>
-                                </div>
-                            </md-card-title-text>
-                        </md-card-title>
 
+                    <div id="reviews-total">
+                        <md-button ng-click="vm.showAlert()" class="md-primary my-md-link-btn">20 avaliações</md-button>
 
-                        <md-divider></md-divider>
+                    </div>
+                    <div flex>
+                        <md-button class="md-primary md-hue-2 my-md-link-btn">Revisar</md-button>
+                    </div>
+                    </span>
+                        </md-title>
                         <md-card-content>
-                            <h4 class="md-subheader"><b>Preço:</b> <span class="md-title my-md-warn-DeepOrange">{{vm.prdData.preco| currency:"R$ "}}</span></h4>
+                            <h2 class="md-subheader"><b>Preço:</b> <span class="md-title my-md-warn-DeepOrange">{{vm.prdData.preco| currency:"R$ "}}</span></h2>
                             <h2 class="md-subhead my-md-warn-grey">Em estoque.</h2>
-                            <div>
-                                <md-list layout="row" class="my-md-grey-bg">
-                                    <md-list-item>
-                                        <md-button layout="column" layout-wrap class="md-primary">
-                                            <md-icon flex class="material-icon">local_shipping</md-icon><span flex="10">Frete e prazos de entrega</span>
-                                        </md-button>
+                            <!--                            <div>-->
+                            <md-list layout="row" class="my-md-grey-bg">
+                                <md-list-item flex layout-align="center center">
+                                    <md-button layout="column" layout-wrap class="md-primary my-md-normlWhiteSpace">
+                                        <md-icon flex class="material-icon">local_shipping</md-icon><span flex="10">Frete e prazos de entrega</span>
+                                    </md-button>
 
-                                    </md-list-item>
-                                    <md-divider></md-divider>
-                                    <md-list-item>
-                                        <md-button layout="column" class="md-primary">
-                                            <md-icon class="material-icon"><i class="mdi mdi-credit-card"></i>
-                                            </md-icon><span>Formas de pagamento</span>
-                                        </md-button>
-                                    </md-list-item>
-                                </md-list>
-                            </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item flex layout-align="center center">
+                                    <md-button layout="column" class="md-primary my-md-normlWhiteSpace">
+                                        <md-icon class="material-icon"><i class="mdi mdi-credit-card"></i>
+                                        </md-icon><span>Formas de pagamento</span>
+                                    </md-button>
+                                </md-list-item>
+                            </md-list>
+
+                            <!--                            </div>-->
                         </md-card-content>
                     </md-card>
-                    <md-card>
-                        <md-card-content>
+                    <md-divider></md-divider>
+                    <md-card class="my-md-no-shadow" layout-align="center center">
+                        <md-title>
+                            <span class="md-subheader"><b>Compartilhar</b> <span><md-icon class="material-icons">share</md-icon></span></span>
+                        </md-title>
+                        <md-card-content layout="row">
                             <md-list layout="row">
                                 <md-list-item ng-repeat="socialButton in vm.social">
-                                    <md-button class=" md-icon-button md-primary md-raised md-hue-2">
-                                        <i class="mdi {{socialButton.icon}} material-icons  " style="color:white"></i>
+                                    <md-button class="md-icon-button md-primary md-hue-1" style="border:solid 1px">
+                                        <i class="mdi {{socialButton.icon}} md-primary md-hue-3 material-icons md-24"></i>
 
                                     </md-button>
                                 </md-list-item>
@@ -180,9 +201,11 @@
                 </md-card-content>
             </md-card>
             <md-card flex-gt-md="15" id="infos">
+                <!--
                 <md-card-title>
                     Outas acoes
                 </md-card-title>
+-->
                 <md-card-content>
                     <div layout="column">
                         <h4 class="md-subheader "><span class="md-tilte"><b>Disponibilidade: </b>{{vm.prdData.disponibilidade}}</span></h4>
@@ -201,6 +224,22 @@
                     </div>
                 </md-card-content>
             </md-card>
+
         </md-card-content>
+    </md-card>
+    <md-card>
+        <md-tabs>
+            <md-tab label="Caraterísticas">
+                <md-list>
+                    <md-list-item ng-repeat="(key, val) in vm.prdData.caracteristicas" ng-class="{even:$even, odd:$odd}">
+                        <p class="md-subheader my-md-capital"><b>{{val.nome}}</b>
+                        </p>
+                        <p>{{val.valor}}</p>
+                    </md-list-item>
+                </md-list>
+            </md-tab>
+            <md-tab label="Avaliações">
+            </md-tab>
+        </md-tabs>
     </md-card>
 </md-content>

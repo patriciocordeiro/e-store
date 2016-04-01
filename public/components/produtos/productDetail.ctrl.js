@@ -1,4 +1,4 @@
-(function() {
+(function () {
     "use strict";
     angular.module('myApp').controller('PrdDetailCtrl', ['$rootScope', '$cookies', '$stateParams', '$mdDialog', 'productSrvc',
         PrdDetailCtrl
@@ -25,15 +25,23 @@
 
         //Get Compra
         vm.prdQty = prd.prdKartBuyQty //store the quantity (uses ng-model)
-        vm.prdGetBuy = function(prdQty) {
-            prd.prdPutonKart(prd.prdData, prd.prdKartData, prd.prdKartIds, prdId, prdQty);
-            //Used to trigger the watch in navbar for Kart
-            $rootScope.dataChange = !$rootScope.dataChange;
-        }
-        //-----------------------------------------------------------
-        /*Elevate zoom-------------------------------------*/
-        $("#zoom_01").elevateZoom();
-        //--------------------------------------------------
+        vm.prdGetBuy = function (prdQty) {
+                prd.prdPutonKart(prd.prdData, prd.prdKartData, prd.prdKartIds, prdId, prdQty);
+                //Used to trigger the watch in navbar for Kart
+                $rootScope.dataChange = !$rootScope.dataChange;
+            }
+            //-----------------------------------------------------------
+            /*Elevate zoom-------------------------------------*/
+        $("#zoom_01").elevateZoom({
+            responsive: true
+        });
+
+        /*Awesome rating options*/
+        vm.awesomeRatingOptions = {
+                readonly: true,
+                applyHoverCss: false
+            }
+            //--------------------------------------------------
 
         /*Social buttons*/
         vm.social = [{
@@ -54,6 +62,14 @@
             icon: 'mdi-google-plus',
             class: 'googleplus'
         }]
+
+        /*Show hide the rating pop over*/
+        vm.isShowPopOver = false //initialize closed
+        vm.showHideRatingPopOver = function () {
+                vm.isShowPopOver = !vm.isShowPopOver
+            }
+            //-----------------------------------------------------
+
 
     }; //End of function PrdDetailCtrl
 }());
