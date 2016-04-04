@@ -11,7 +11,7 @@
     <md-card layout="column" flex="30" ng-repeat="userAddress in vm.user.endereco track by $index">
         <md-card-title class="my-md-capital" flex="none">
             <span layout="row"><h4 class="md-title ">{{userAddress.destinatario}}</h4><md-button ng-click="vm.userEditAddress($index)" aria-label="edit" layout-padding class="md-icon-button my-md-no-margin my-md-no-padding my-md-smooth-title"><i class="fa fa-pencil-square-o fa-2x"></i>
-            </m-button></span> 
+            </m-button></span>
         </md-card-title>
         <div flex>
             <md-card-content>
@@ -25,7 +25,7 @@
                 </p>
             </md-card-content>
         </div>
-        <md-card ng-show="!vm.userIsEditAddress[$index]" class="dashboard-edit" style="background-color:#f5f5f5">
+        <md-card ng-show="!vm.userIsEditAddress[$index]" class="dashboard-edit my-md-no-margin" style="background-color:#f5f5f5">
             <md-card-title>
                 <h4 class="md-title">Alterar dados do endereço</h4>
             </md-card-title>
@@ -129,7 +129,7 @@
                         </md-input-container>
                     </div>
                     <md-divider></md-divider>
-                    <div layout-gt-md="row" flex-gt-md="50" layout-align-gt-md="start center" layout-margin>
+                    <div layout-xs="column" flex-xs="100" layout="row">
                         <md-button type="submit" class="md-primary md-raised">Salvar alterações</md-button>
                         <md-button class="md-raised">Cancelar</md-button>
                     </div>

@@ -1,15 +1,17 @@
 <md-card class="my-md-no-margin my-md-noround-border my-md-no-shadow" ng-show="!vm.userIsEditSettings[0]">
     <!--            <md-button>-->
-    <md-card-content class="md-button my-md-no-margin my-md-noround-border" ng-click="vm.userEditSettings(0)" layout-gt-md="row" layout-align="start center">
-        <div flex layout="row" layout-align="start" class="my-md-capital">
-            <b>Nome</b>
+    <md-card-content class="md-button my-md-no-margin my-md-noround-border" ng-click="vm.userEditSettings(0)" layout="row" layout-align="start center">
+        <div flex="80" layout-gt-md="row">
+            <div flex layout="row" layout-align="start center" class="my-md-capital">
+                <b>Nome</b>
+            </div>
+            <div flex layout="row" layout-align="start center" class="md-subheader my-md-capital my-md-padding-bot" style="background-color:inherit"><b>{{vm.user.nome}}</b>
+            </div>
         </div>
-        <div flex layout="row" layout-align="start" class="md-subheader my-md-capital" style="background-color:inherit"><b>{{vm.user.nome}}</b>
-        </div>
-        <div flex layout="row" layout-align="end">
+        <div flex="20" layout="row" layout-align="end center" layout-align-xs="end start">
             <md-button class="md-primary">
                 <md-icon class="material-icons  md-primary">edit</md-icon>
-                Editar
+                <span hide-xs>Editar</span>
             </md-button>
         </div>
     </md-card-content>
@@ -17,8 +19,13 @@
 </md-card>
 <md-card class="my-md-no-margin my-md-noround-border dashboard-edit my-md-no-shadow" flex ng-show="vm.userIsEditSettings[0]">
     <form name="vm.userUpdateFormName" ng-submit="vm.userUpdateFormName.$valid && vm.userUpdateSettings(vm.userUpdate.data.nome) " novalidate>
+        <md-card-title>
+            <h4 class="md-title">Alteração de nome do usuário</h4>
+        </md-card-title>
         <md-card-content>
-            <div layout="column" flex="50">
+            <p>Use o formulário abaixo para alterar o seu nome de usuário.
+            </p>
+            <div layout="column" flex-gt-sm="50">
                 <md-input-container>
                     <label>Primeiro Nome</label>
                     <input ng-model="vm.userUpdate.data.nome" name="nome" type="text" required>
@@ -29,13 +36,13 @@
                     </div>
                 </md-input-container>
             </div>
-            <div layout="column" flex="50">
+            <div layout="column" flex-gt-sm="50">
                 <md-input-container>
                     <label>Meio (Opcional)</label>
                     <input ng-model="vm.userUpdate.nomeMeio" name="nomeMeio">
                 </md-input-container>
             </div>
-            <div layout="column" flex="50">
+            <div layout="column" flex-gt-sm="50">
                 <md-input-container>
                     <label>Sobrenome</label>
                     <input ng-model="vm.userUpdate.data.sobrenome" type="text" name="sobrenome" required>
@@ -48,7 +55,7 @@
             </div>
         </md-card-content>
         <md-divider></md-divider>
-        <div layout="row" layout-margin>
+        <div layout-xs="column" flex-xs="100" layout="row" layout-margin>
             <md-button class="md-primary md-raised" type="submit">Salvar Alterações</md-button>
             <md-button class="md-raised" ng-click=" vm.userUpdateSettings('cancel')">Cancelar</md-button>
         </div>
@@ -57,15 +64,18 @@
 <md-divider></md-divider>
 
 <md-card class="my-md-no-margin my-md-noround-border my-md-no-shadow" ng-show="!vm.userIsEditSettings[1]">
-    <md-card-content ng-click="vm.userEditSettings(1)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="space-between center">
-        <div flex layout="row" layout-align="start"><b>Email</b>
+    <md-card-content ng-click="vm.userEditSettings(1)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="start center" layout-wrap>
+        <div flex="80" layout-gt-md="row">
+            <div flex layout="row" layout-align="start center"><b>Email</b>
+            </div>
+            <div flex layout="row" layout-align="start center" class="md-subheader my-md-padding-bot" style="background-color:inherit"><b>{{vm.user.email}}</b>
+            </div>
         </div>
-        <div flex layout="row" layout-align="start" class="md-subheader" style="background-color:inherit"><b>{{vm.user.email}}</b>
-        </div>
-        <div flex layout="row" layout-align="end">
+        <div flex="20" layout="row" layout-align="end">
             <md-button class="md-primary">
                 <md-icon class="material-icons  md-primary">edit</md-icon>
-                Editar</md-button>
+                <span hide-xs>Editar</span>
+            </md-button>
         </div>
     </md-card-content>
 </md-card>
@@ -87,7 +97,7 @@
                     </div>
                 </md-list-item>
             </md-list>
-            <div layout="column" flex="50">
+            <div layout="column" flex-gt-sm="50">
                 <md-input-container>
                     <md-icon class="material-icons">email</md-icon>
                     <input type="email" name="email" placeholder="Novo e-mail" ng-model="vm.userUpdate.data.email" ng-pattern="/^.+@.+\..+$/" required>
@@ -99,7 +109,7 @@
                     </div>
                 </md-input-container>
             </div>
-            <div layout="column" flex="50">
+            <div layout="column" flex-gt-sm="50">
                 <md-input-container>
                     <md-icon class="material-icons">email</md-icon>
                     <input type="email" name="retypeEmail" placeholder="Repetir o novo e-mail" ng-model="vm.userUpdtate.data.retypeEmail" match="vm.userUpdate.data.email" ng-pattern="/^.+@.+\..+$/">
@@ -113,7 +123,7 @@
         </md-card-content>
         <md-divider></md-divider>
         <!--                <md-card-actions layout="row" layou-align="center center">-->
-        <div layout="row" layout-margin>
+        <div layout-xs="column" flex-xs="100" layout="row" layout-margin>
             <md-button class="md-primary md-raised" type="submit">Salvar alterações</md-button>
             <md-button class="md-raised" ng-click="vm.userUpdateSettings('cancel')()">Cancelar</md-button>
         </div>
@@ -125,15 +135,19 @@
 <md-card ng-show="!vm.userIsEditSettings[2]" class="my-md-no-margin my-md-noround-border my-md-no-shadow">
 
     <md-card-content ng-click="vm.userEditSettings(2)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="space-between center">
-        <div flex layout="row" layout-align="start"><b>Senha</b>
+        <div flex="80" layout-gt-md="row">
+            <div flex layout="row" layout-align="start center"><b>Senha</b>
+            </div>
+            <div flex layout="row" layout-align="start center" class="md-subheader" style="background-color:inherit"><b>********</b>
+            </div>
         </div>
-        <div flex layout="row" layout-align="start" class="md-subheader" style="background-color:inherit"><b>********</b>
-        </div>
-        <div flex layout="row" layout-align="end">
+        <div flex="20" layout="row" layout-align="end center">
             <md-button class="md-primary">
                 <md-icon class="material-icons  md-primary">edit</md-icon>
-                Editar</md-button>
+                <span hide-xs>Editar</span>
+            </md-button>
         </div>
+
     </md-card-content>
 </md-card>
 
@@ -146,7 +160,7 @@
         <md-card-content>
             <p>Use o formulário abaixo para alterar a sua senha. Use a nova senha na próxima vez que acessar a nossa página.
             </p>
-            <div layout="column" flex="50">
+            <div layout="column" flex-gt-sm="50">
                 <md-input-container class="md-block">
                     <label>Nova senha</label>
                     <input type="password" name="password" ng-model="vm.userUpdate.data.password" minlength="6" maxlength="8" required>
@@ -156,7 +170,7 @@
                     </div>
                 </md-input-container>
             </div>
-            <div layout="column" flex="50">
+            <div layout="column" flex-gt-sm="50">
                 <md-input-container class="md-block">
                     <label>Repetir nova senha</label>
                     <input type="password" name="retypePassword" ng-model="vm.userUpdate.data.retypePassword" minlength="6" maxlength="8" match="vm.userUpdate.data.password">
@@ -167,7 +181,7 @@
             </div>
             <md-divider></md-divider>
         </md-card-content>
-        <div layout="row" layout-margin>
+        <div layout-xs="column" flex-xs="100" layout="row" layout-margin>
             <md-button class="md-primary md-raised" type="submit">Salvar alterações</md-button>
             <md-button class="md-raised" ng-click="vm.userUpdateSettings('cancel')('cancel')">Cancelar</md-button>
         </div>
@@ -176,14 +190,17 @@
 <md-divider></md-divider>
 <md-card ng-show="!vm.userIsEditSettings[3]" class="my-md-no-margin my-md-noround-border my-md-no-shadow" my-md-no-shadow>
     <md-card-content ng-click="vm.userEditSettings(3)" class="md-button my-md-no-margin my-md-noround-border" layout="row" layout-align="space-between center">
-        <div flex layout="row" layout-align="start"><b>Tel. celular</b>
+        <div flex="80" layout-gt-md="row">
+            <div flex layout="row" layout-align="start center"><b>Tel. celular</b>
+            </div>
+            <div flex layout="row" layout-align="start center" class="md-subheader my-md-padding-bot" style="background-color:inherit"><b>{{vm.user.telefone}}</b>
+            </div>
         </div>
-        <div layout="row" layout-align="start" flex class="md-subheader" style="background-color:inherit"><b>{{vm.user.telefone}}</b>
-        </div>
-        <div flex layout="row" layout-align="end">
-            <md-button class="md-primary" ng-click="vm.userEditSettings(3)">
+        <div flex="20" layout="row" layout-align="end center">
+            <md-button class="md-primary">
                 <md-icon class="material-icons  md-primary">edit</md-icon>
-                Editar</md-button>
+                <span hide-xs>Editar</span>
+            </md-button>
         </div>
     </md-card-content>
 </md-card>
@@ -215,7 +232,7 @@
 
                 </md-list-item>
             </md-list>
-            <div layout="column" flex="50">
+            <div layout="column" flex-gt-sm="50">
                 <md-input-container flex class="md-icon-float md-block">
                     <label>Novo telefone celular</label>
                     <input name="celular" ng-model="vm.userUpdate.data.celular" ui-mask="(99) 9999-9999" type="text" required>
@@ -224,7 +241,7 @@
                     </div>
                 </md-input-container>
             </div>
-            <div layout="column" flex="50">
+            <div layout="column" flex-gt-sm="50">
                 <md-input-container flex class="md-icon-float md-block">
                     <label>Novo telefone residencial</label>
                     <input name="telefone" ng-model="vm.userUpdate.data.telefone" ui-mask="(99) 9999-9999" type="text" required>
@@ -233,11 +250,12 @@
                     </div>
                 </md-input-container>
             </div>
-            <div layout="row" layout-margin>
-                <md-button class="md-primary md-raised" type="submit">Salvar alterações</md-button>
-                <md-button class="md-raised" ng-click="vm.userUpdateSettings('cancel')()">Cancelar</md-button>
-            </div>
+
         </md-card-content>
+        <div layout-xs="column" flex-xs="100" layout="row" layout-margin>
+            <md-button class="md-primary md-raised" type="submit">Salvar alterações</md-button>
+            <md-button class="md-raised" ng-click="vm.userUpdateSettings('cancel')">Cancelar</md-button>
+        </div>
     </form>
 </md-card>
 <!--    </md-card-content>-->
