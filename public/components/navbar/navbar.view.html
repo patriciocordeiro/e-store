@@ -21,7 +21,7 @@
                             <md-card-content layout="column" layout-align="center start">
                                 <md-list layout="column" layout-align="center start">
                                     <md-list-item>
-                                        <md-button flex layout="row" layout-align=" start center" class="md-primary md-hue-2 my-md-link-btn">
+                                        <md-button flex layout="row" layout-align=" start center" class="md-primary md-hue-2 my-md-link-btn" ui-sref="app.user.dashboard.dados">
                                             <md-icon class="material-icons">settings</md-icon>
                                             <p class="md-subheader"><b>&nbsp;Sua conta</b>
                                             </p>
@@ -67,7 +67,7 @@
                 </md-button>
 -->
                 <div class="kart-pop-over-container" label="kart" ng-mouseenter="vm.showHideKartPopOver()" ng-mouseleave="vm.showHideKartPopOver()">
-                    <md-button layout="row" layout-align="center center" class="md-warn md-raised my-md-no-shadow" ui-sref="app.minhaCesta" >
+                    <md-button layout="row" layout-align="center center" class="md-warn md-raised my-md-no-shadow my-md-no-margin" ui-sref="app.minhaCesta">
                         <md-icon class="material-icons my-md-no-margin">shopping_cart</md-icon>
                         <span class="md-subhead ">{{vm.kartSize}}</span>
                     </md-button>
@@ -80,7 +80,7 @@
                             <md-card-content class="my-md-no-padding">
                                 <md-list>
                                     <md-list-item class="md-2-line my-md-padding-left-right" ng-repeat="prd in vm.kartData" ng-class="{even:$even, odd:$odd}">
-										 <img ng-src={{prd.imagens}} class="md-avatar" alt="">
+                                        <img ng-src={{prd.imagens}} class="md-avatar" alt="">
                                         <div class="md-list-item-text">
                                             <md-button class="md-primary my-md-link-btn my-md-no-padding-left">
                                                 <h4 class="md-subheader my-md-capital">{{prd.descricao}}</h4>

@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     'use strict';
 
@@ -8,12 +8,12 @@
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
-        //        vm.kartSize = prdSrvc.prd.kart.getSize().then(function(kartSize) {
-        //            console.log(kartSize);
-        //        });
+            //        vm.kartSize = prdSrvc.prd.kart.getSize().then(function(kartSize) {
+            //            console.log(kartSize);
+            //        });
         console.log(vm.kartSize);
         /*recover kart*/
-        prdSrvc.prd.kart.recover(function(data) {
+        prdSrvc.prd.kart.recover(function (data) {
             console.log(data);
             vm.kartData = data;
             vm.kartSize = data.length;
@@ -121,17 +121,17 @@
         }];
         //-------------------------------------------------
         /*Get selected product caterory*/
-        vm.getCatg = function(section, category) {
+        vm.getCatg = function (section, category) {
             prdSrvc.prd.getCatg(section, category)
-            //Query to send to server
-            //			   var reg = new RegExp('^', "i");
+                //Query to send to server
+                //			   var reg = new RegExp('^', "i");
             var query = {
                 category: category,
 
                 prdMaxPageItems: '20', //Max number of display items in the page
             }
             console.log(query.subcategoria);
-            prdSrvc.prd.http.getDataByCatg(query, category, function() {});
+            prdSrvc.prd.http.getDataByCatg(query, category, function () {});
         };
         //        vm.prdSrvcgetSect = function(section) {
         //            prdSrvc.section = section;
@@ -139,18 +139,20 @@
         //        }
         //-------------------------------------------------
         /*Watch for COMPRA by (if user click on COMPRAR)*/
-        $scope.$watch('dataChange', function(newValue, oldValues) {
+        $scope.$watch('dataChange', function (newValue, oldValues) {
             console.log('navbar watch fired up');
             //Calculate the kart size imediatelly after user click on COMPRAR
             vm.kartSize = prdSrvc.prd.kart.ids.length;
-            /*Toast para mostrar a introducao de um produto no carrinho*/
+            /*pop-over para to show new products on kart when clic buy*/
             console.log(vm.kartSize);
             if (newValue != oldValues) {
+                /*Get all kart data to update the pop-over*/
+                vm.kartData = prdSrvc.prd.kart.data;
                 console.log(oldValues);
                 vm.isShowKartPopOver = true;
-                $timeout(function() {
+                $timeout(function () {
                     vm.isShowKartPopOver = false
-                }, 5000);
+                }, 3000);
             }
 
             //            vm.showPutedInCartToast();
@@ -168,15 +170,15 @@
         //        }
         //-------------------------------------------------------------------   
         /*Logout user*/
-        vm.logout = function() {
-            userSrcv.usr.logout.execLogout();
-            console.log('Login out');
-        }
-        //-------------------------------------------------------------------   
-        /*Search with elastic search*/
+        vm.logout = function () {
+                userSrcv.usr.logout.execLogout();
+                console.log('Login out');
+            }
+            //-------------------------------------------------------------------   
+            /*Search with elastic search*/
         vm.searchText = ''; //variable for ng-model to get search text
         var query = {};
-        vm.searchPrd = function(searchText) {
+        vm.searchPrd = function (searchText) {
             //prevent multiple seach request of the same terms
             if (query.terms && query.terms == searchText) {
                 console.log('novo termo');
@@ -184,7 +186,7 @@
             }
             query.terms = searchText;
             console.log(query);
-            productSrvc.prd.http.getDatabySearch(query, function(data) {
+            productSrvc.prd.http.getDatabySearch(query, function (data) {
                 vm.searchResultsData = data;
                 if (data) {
                     //go to search results page if not there
@@ -199,15 +201,15 @@
 
         /*Navbar menu*/
         vm.showMenu = false;
-        var closeAll = function(length) {
-            var temp = _.range(length).map(function() {
-                return false
-            })
-            return $q.when(temp);
-        }
-        //        vm.showSubMenu = closeAll(vm.productNavCategories.length);
+        var closeAll = function (length) {
+                var temp = _.range(length).map(function () {
+                    return false
+                })
+                return $q.when(temp);
+            }
+            //        vm.showSubMenu = closeAll(vm.productNavCategories.length);
         vm.showSubMenu = -1;
-        vm.OpenMenu = function() {
+        vm.OpenMenu = function () {
             vm.showMenu = !vm.showMenu;
             console.log(vm.showMenu);
             //close submenu if menu is closed
@@ -217,7 +219,7 @@
             }
         }
 
-        vm.openSubMenu = function(idx) {
+        vm.openSubMenu = function (idx) {
             console.log('my idx', idx);
             vm.activeMenuIdx = idx;
             vm.showSubMenu = idx;
@@ -230,7 +232,7 @@
 
         }
 
-        vm.closeMenus = function() {
+        vm.closeMenus = function () {
             vm.showMenu = false;
             //            closeAll(vm.productNavCategories.length).then(function(data) {
             //Set show menu index=-1
@@ -242,7 +244,7 @@
             console.log('clossing all menus and submenus');
         }
 
-        vm.isActive = function(menuItem) {
+        vm.isActive = function (menuItem) {
             if (menuItem == vm.currentMenuItem) {
                 return 'active-menu';
             }
@@ -250,13 +252,13 @@
 
         /*User Pop over*/
         vm.isShowUserPopOver = false // closed at firts
-        vm.showHideUserPopOver = function() {
+        vm.showHideUserPopOver = function () {
             vm.isShowUserPopOver = !vm.isShowUserPopOver;
         }
 
         /*Kart pop over*/
         vm.isShowKartPopOver = false;
-        vm.showHideKartPopOver = function() {
+        vm.showHideKartPopOver = function () {
             vm.isShowKartPopOver = !vm.isShowKartPopOver;
             console.log('YAPAPPAPA');
         }

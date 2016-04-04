@@ -11,6 +11,7 @@
                         <span class="md-title">Categorias</span>
                     </md-card-title>
                     <md-card-content layout="row">
+
                         <div ng-repeat="sections in vm.searchSections">
                             <md-list ng-repeat="sections in vm.searchSections">
                                 <md-list-item>
@@ -97,7 +98,7 @@
             </div>
         </md-card>
         <md-divider></md-divider>
-        <md-toolbar class="my-md-toolbar-header md-hue-2">
+        <md-toolbar class="my-md-toolbar-header md-hue-2" style="z-index:auto">
             <md-card class="my-md-no-padding my-md-no-margin" style="background-color:transparent">
                 <md-card-content class="my-md-no-padding my-md-no-margin">
                     <md-list layout-gt-sm="row">
@@ -122,15 +123,19 @@
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[1]}}">
                         <md-button href="#/app/produtos/categoria/{{prd.categoria}}/{{prd._id}}" class="md-primary my-md-link-btn">{{prd.ref_PM}}</md-button>
                     </md-list-item>
-<!--
+                    <!--
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}"><span class="md-subhead">{{prd.ref_fabricante}}</span>
                     </md-list-item>
 -->
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}" href="#/app/produtos/categoria/{{prd.categoria}}/{{prd._id}}"><md-button class="md-primary md-hue-2 my-md-normlWhiteSpace my-md-link-btn"><span class="my-md-capital md-subhead">{{prd.descricao}}</span></md-button>
+                    <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}" href="#/app/produtos/categoria/{{prd.categoria}}/{{prd._id}}">
+                        <md-button class="md-primary md-hue-2 my-md-normlWhiteSpace my-md-link-btn"><span class="my-md-capital md-subhead">{{prd.descricao}}</span></md-button>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[3]}}"><span class="md-subhead">{{prd.disponibilidade}}</span>
                     </md-list-item>
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[5]}}"><md-button class="md-warn my-md-link-btn"><p class="md-title">{{prd.preco | currency:"R$ "}}</p></md-button>
+                    <md-list-item flex-gt-sm="{{vm.columnsSizes[5]}}">
+                        <md-button class="md-warn my-md-link-btn">
+                            <p class="md-title">{{prd.preco | currency:"R$ "}}</p>
+                        </md-button>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[4]}}">
                         <md-input-container class="md-block">
@@ -147,7 +152,7 @@
 
                 </md-list>
             </md-card-content>
-<!--            <md-divider></md-divider>-->
+            <!--            <md-divider></md-divider>-->
         </md-card>
         <md-divider></md-divider>
         <md-card flex layout="row" class="my-md-no-margin" layout-align="end center">
@@ -168,4 +173,3 @@
 
 
 </div>
-

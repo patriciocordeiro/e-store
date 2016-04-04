@@ -127,7 +127,7 @@
                         <a href="#" data-image="../../assets/img/prdDetail/small/image2.png" data-zoom-image="../../assets/img/prdDetail/large/image2.jpg">
                             <img id="zoom_01" src="../../assets/img/prdDetail/thumb/image2.jpg" />
                         </a>
-                        <a href="#"  data-image="../../assets/img/prdDetail/small/image3.png" data-zoom-image="../../assets/img/prdDetail/large/image3.jpg">
+                        <a href="#" data-image="../../assets/img/prdDetail/small/image3.png" data-zoom-image="../../assets/img/prdDetail/large/image3.jpg">
                             <img id="zoom_01" src="../../assets/img/prdDetail/thumb/image3.jpg" />
                         </a>
                         <a href="#" data-image="../../assets/img/prdDetail/small/image4.png" data-zoom-image="../../assets/img/prdDetail/large/image4.jpg">
@@ -144,8 +144,8 @@
                     </md-title>
                     <md-card label="rating" class="my-md-no-shadow my-md-no-padding-right my-md-no-padding-left ">
                         <span class="my-md-border-bottom" layout="row" layout-wrap layout-align="center center">
-                        <div class="product-rating">
-                            <md-button class=" my-md-link-btn" ng-mouseenter="vm.showHideRatingPopOver()" style="z-index=2" ng-mouseleave="vm.showHideRatingPopOver()">
+                        <div class="product-rating" ng-mouseenter="vm.showHideRatingPopOver()" ng-mouseleave="vm.showHideRatingPopOver()">
+                            <md-button class=" my-md-link-btn" style="z-index=2" >
                                 <div style="font-size:14px" awesome-rating="6" class="fa fa-2x" awesome-rating-options="vm.awesomeRatingOptions">
                                 </div>
                                 <md-icon class="material-icons">arrow_drop_down</md-icon>
@@ -242,7 +242,7 @@
             </md-card>
         </md-card-content>
     </md-card>
-	<md-divider></md-divider>
+    <md-divider></md-divider>
     <md-card class="my-md-no-shadow">
         <md-tabs>
             <md-tab label="Caraterísticas">

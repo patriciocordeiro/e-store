@@ -2,9 +2,11 @@
     <section layout="row" flex>
         <md-sidenav class="md-sidenav-left fixed md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
             <md-content flex role="navigation">
-                <md-button ng-click="close()" class="md-primary" hide-gt-md>
-                    Close Sidenav Left
+                <md-button flex ng-click="vm.closeSidenavLeft()" class="md-primary md-icon-button" hide-gt-md>
+                    <md-icon class="material-icons">close</md-icon>
                 </md-button>
+                <md-divider></md-divider>
+                <span class="md-subhead">Fechar</span>
                 <md-list layout="column">
                     <div ng-repeat="settingsItem in vm.settingsList">
                         <md-button layout="row" layout-padding layout-align="start center" class="md-primary my-md-no-margin my-md-noround-border" ng-class="[{'my-md-active':vm.active == $index}, {'md-accent': vm.active == $index}]" ui-sref="{{settingsItem.link}}" ng-click="vm.settingsListActive($index)">
@@ -17,6 +19,9 @@
             </md-content>
         </md-sidenav>
         <md-card layout="column" class="my-md-no-margin" layout-fill role="main">
+            <md-button ng-click="vm.openLeftSidenav()" class="md-primary md-icon-button" hide-gt-xs>
+                <md-icon class="material-icons">menu</md-icon>
+            </md-button>
             <div ng-repeat="section in vm.settingsList">
                 <md-card-title ng-show="vm.active == $index">
                     <h4 class="md-title md-default-theme">{{section.sectionTitle}}</h4>
