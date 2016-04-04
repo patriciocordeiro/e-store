@@ -16,7 +16,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
 
 
         this.prd = {
-            fixedCols: ['Imagens', 'No P&M', 'No. Fabricante', 'Descrição', 'Disp.', 'Preço', 'Qtd.'],
+            fixedCols: ['Imagens', 'No P&M', 'Descrição', 'Disp.', 'Preço', 'Qtd.'],
             qty: [],
             data: [],
             newData: false,
@@ -340,18 +340,13 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 },
 
                 idExistsDialg: function() {
+					console.log('Produto ja está no carrinho');
                     $mdDialog.show({
                         controller: 'jaNoCarrinhoDiag as vm',
                         templateUrl: 'components/kart/jaNoCarrinhoDiag.view.html',
                         parent: angular.element(document.body),
                         //                targetEvxent: ev,
                         clickOutsideToClose: false
-                    }).then(function(answer) {
-                        if (answer == true) {
-                            console.log("Resposta verdadeira", tmpQty);
-                        }
-                    }, function() {
-                        vm.status = 'You cancelled the dialog.';
                     });
                 },
                 generalSum: function(dataArray) {

@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', '$state', 'productSrvc', 'userSrcv', '$mdToast', '$document', '$q','$mdMedia', NavbarCtrl]);
+    angular.module('myApp').controller('NavbarCtrl', ['$scope', '$rootScope', '$state', 'productSrvc', 'userSrcv', '$mdToast', '$document', '$q', '$mdMedia', '$timeout', NavbarCtrl]);
 
-    function NavbarCtrl($scope, $rootScope, $state, productSrvc, userSrcv, $mdToast, $document, $q, $mdMedia) {
+    function NavbarCtrl($scope, $rootScope, $state, productSrvc, userSrcv, $mdToast, $document, $q, $mdMedia, $timeout) {
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //productSrvc; pass all product services to variable prdSrvc
@@ -18,14 +18,11 @@
             vm.kartData = data;
             vm.kartSize = data.length;
         });
-        //        var getSizePromisse = prdSrvc.prd.kart.getSize();
-        //        getSizePromisse.then(function(data) {
-        //            console.log(data);
-        //        })
 
-		//Will apply specific height according to screen size	
-		vm.$mdMedia = $mdMedia;
-		
+
+        //Will apply specific height according to screen size	
+        vm.$mdMedia = $mdMedia;
+
         //---------------------------------------------------------
         /*Get all kart data*/
         vm.kartData = prdSrvc.prd.kart.data;
@@ -148,19 +145,27 @@
             vm.kartSize = prdSrvc.prd.kart.ids.length;
             /*Toast para mostrar a introducao de um produto no carrinho*/
             console.log(vm.kartSize);
-            vm.showPutedInCartToast();
+            if (newValue != oldValues) {
+                console.log(oldValues);
+                vm.isShowKartPopOver = true;
+                $timeout(function() {
+                    vm.isShowKartPopOver = false
+                }, 5000);
+            }
+
+            //            vm.showPutedInCartToast();
         });
         //-------------------------------------------------------------------   
-        vm.showPutedInCartToast = function() {
-            console.log('Toast executado');
-            $mdToast.show({
-                controller: 'myCartToastCtrl as vm',
-                templateUrl: '/components/kart/kartPutToast.view.html',
-                //                parent: $document[0].querySelector('#myCartToast'),
-                hideDelay: 1000,
-                position: 'top left'
-            });
-        }
+        //        vm.showPutedInCartToast = function() {
+        //            console.log('Toast executado');
+        //            $mdToast.show({
+        //                controller: 'myCartToastCtrl as vm',
+        //                templateUrl: '/components/kart/kartPutToast.view.html',
+        //                //                parent: $document[0].querySelector('#myCartToast'),
+        //                hideDelay: 1000,
+        //                position: 'top left'
+        //            });
+        //        }
         //-------------------------------------------------------------------   
         /*Logout user*/
         vm.logout = function() {
@@ -205,15 +210,15 @@
         vm.OpenMenu = function() {
             vm.showMenu = !vm.showMenu;
             console.log(vm.showMenu);
-						//close submenu if menu is closed
-			if(vm.showMenu){
-            vm.showSubMenu = -1;
-			  vm.isSubMenuOpen = false;
-			}
+            //close submenu if menu is closed
+            if (vm.showMenu) {
+                vm.showSubMenu = -1;
+                vm.isSubMenuOpen = false;
+            }
         }
 
         vm.openSubMenu = function(idx) {
-            console.log('my idx',  idx);
+            console.log('my idx', idx);
             vm.activeMenuIdx = idx;
             vm.showSubMenu = idx;
             vm.isSubMenuOpen = true;
@@ -229,8 +234,8 @@
             vm.showMenu = false;
             //            closeAll(vm.productNavCategories.length).then(function(data) {
             //Set show menu index=-1
-			vm.showSubMenu = -1;
-			//The submenu is closed
+            vm.showSubMenu = -1;
+            //The submenu is closed
             vm.isSubMenuOpen = false;
 
             //            });
@@ -242,5 +247,19 @@
                 return 'active-menu';
             }
         }
+
+        /*User Pop over*/
+        vm.isShowUserPopOver = false // closed at firts
+        vm.showHideUserPopOver = function() {
+            vm.isShowUserPopOver = !vm.isShowUserPopOver;
+        }
+
+        /*Kart pop over*/
+        vm.isShowKartPopOver = false;
+        vm.showHideKartPopOver = function() {
+            vm.isShowKartPopOver = !vm.isShowKartPopOver;
+            console.log('YAPAPPAPA');
+        }
+
     }
 }());

@@ -9,7 +9,7 @@
 		/*fixed columns in product listing*/
 		vm.prdFixedCols = prdSrvc.prd.fixedCols;
 //		    fixedCols: ['Imagens', 'No P&M', 'No. Fabricante', 'Desc.', 'Disp.', 'Preço', 'Qtd.'],
-		vm.columnsSizes = [10, 10, 10, 25, 10, 10 ,10]
+		vm.columnsSizes = [10, 10, 35, 10, 10 ,10]
 		/*Recover data if no any*/
         prdSrvc.prd.recoverData();
         /*recover kart*/
@@ -247,7 +247,7 @@
             prdSrvc.prd.kart.addItem(prdId, prdQty);
             //Used to trigger the watch in navbar for Kart
             $rootScope.dataChange = !$rootScope.dataChange;
-            //restart quantities
+            //restart Qty
             vm.prdQty = prdSrvc.prd.qty;
         }
 

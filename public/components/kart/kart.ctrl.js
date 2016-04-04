@@ -62,6 +62,7 @@
         //---------------------------------------------------------
         /*Remove item from chart*/
         vm.remItem = function(index) {
+			//TODO: Confirmation dialog
             prdSrvc.prd.kart.remItem(index);
             //update the local kart Total
             vm.kartTotal = prdSrvc.prd.kart.total;
@@ -142,19 +143,19 @@
         vm.payOption = ["Cartao de Crédito", "Transferência", "Boleto Bancário"];
         vm.creditCardType = [{
             name: "Visa",
-            icon: "/../assets/payment-icon-set/icons/visa-straight-32px.png",
+            icon: "/../assets/icons/payment-icon-set/icons/visa-straight-32px.png",
             digits: 16
         }, {
             name: "Mastercard",
-            icon: "/../assets/payment-icon-set/icons/mastercard-straight-32px.png",
+            icon: "/../assets/icons/payment-icon-set/icons/mastercard-straight-32px.png",
             digits: 16
         }, {
             name: "PayPal",
-            icon: "/../assets/payment-icon-set/icons/paypal-straight-32px.png",
+            icon: "/../assets/icons/payment-icon-set/icons/paypal-straight-32px.png",
 			digits: 16
         }, {
             name: "American Express",
-            icon: "/../assets/payment-icon-set/icons/american-express-straight-32px.png",
+            icon: "/../assets/icons/payment-icon-set/icons/american-express-straight-32px.png",
             digits: 10,
         }];
         vm.getPayOption = function(idx) {

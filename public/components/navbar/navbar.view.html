@@ -1,24 +1,107 @@
 <div layout="row" layout-wrap class="my-top-nav-bar" ng-controller="NavbarCtrl as vm">
-    <md-toolbar class="md-toolbar-tools my-md-menu-top my-md-no-padding md-primary md-hue-2" layout="row" layout-align="center center" >
+    <md-toolbar class="md-toolbar-tools my-md-menu-top my-md-no-padding md-primary md-hue-2" layout="row" layout-align="center center">
         <div flex-gt-md="90" layout="row" layout-fill>
             <div flex layout="row" layout-fill layout-align="end  center" ng-cloak>
+                <!--
                 <md-button layout="row" layout-align="center center" class="md-primary md-hue-1 my-md-link-btn" ui-sref="app.user.dashboard.pedidos">Meus Pedidos
                 </md-button>
-                <md-button layout="row" layout-align="center center" class="md-primary my-md-link-btn md-hue-1" ui-sref="app.user.dashboard.dados" ng-hide="!isloggedIn">
-                    <md-icon class="material-icons md-36">account_circle</md-icon>
-<!--                    Olá {{loggedUserName}}-->
-                </md-button>
+-->
+                <div style="position:relative; height:100%" ng-mouseenter="vm.showHideUserPopOver()" ng-mouseleave="vm.showHideUserPopOver()">
+                    <md-button layout="row" layout-align="center center" class="md-primary my-md-no-shadow md-raised my-md-link-btn " ui-sref="app.user.dashboard.dados" ng-hide="!isloggedIn">
+                        <md-icon class="material-icons md-36">account_box</md-icon>
+                        Olá {{loggedUserName}}
+
+                    </md-button>
+                    <md-card class="user-pop-over" ng-show="vm.isShowUserPopOver">
+                        <md-card class="my-md-no-margin">
+                            <md-card-title class="my-md-no-padding-top my-md-no-padding-bot">
+                                <h4 class="md-title my-md-smooth-title my-md-no-padding">{{loggedUserName}}</h4>
+                            </md-card-title>
+                            <md-divider></md-divider>
+                            <md-card-content layout="column" layout-align="center start">
+                                <md-list layout="column" layout-align="center start">
+                                    <md-list-item>
+                                        <md-button flex layout="row" layout-align=" start center" class="md-primary md-hue-2 my-md-link-btn">
+                                            <md-icon class="material-icons">settings</md-icon>
+                                            <p class="md-subheader"><b>&nbsp;Sua conta</b>
+                                            </p>
+                                        </md-button>
+
+                                    </md-list-item>
+                                    <md-list-item>
+                                        <md-button ui-sref="app.user.dashboard.endereco" flex layout="row" layout-align="start center" class="md-primary md-hue-2 my-md-link-btn">
+                                            <md-icon class="material-icons">location_on</md-icon>
+                                            <p class="md-subheader"><b>&nbsp;Seus endereços</b>
+                                            </p>
+                                        </md-button>
+                                    </md-list-item>
+                                    <md-list-item>
+                                        <md-button ui-sref="app.user.dashboard.pedidos" flex layout="row" layout-align="start center" class="md-primary md-hue-2 my-md-link-btn">
+                                            <md-icon class="material-icons">local_shipping</md-icon>
+                                            <p class="md-subheader"><b>&nbsp;Seus pedidos</b>
+                                            </p>
+                                        </md-button>
+                                    </md-list-item>
+
+                                </md-list>
+                            </md-card-content>
+                            <md-divider></md-divider>
+                            <md-card-actions class="my-md-grey-bg my-md-no-margin" layout-padding>
+                                <md-button flex layout="row" layout-align="start center" class="md-primary md-hue-1 my-md-link-btn" ng-hide="!isloggedIn" ng-click="vm.logout()">
+                                    <md-icon class="md-primary md-hue-1 mdi mdi-logout material-icons md-24"></md-icon>&nbsp;
+
+                                    <p class="md-subheader"><b>Sair</b>
+                                    </p>
+                                </md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </md-card>
+                </div>
 
                 <md-button layout="row" layout-align="center center" class="md-primary md-hue-1 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.signup">Cadastro
                 </md-button>
                 <md-button layout="row" layout-align="center center" class="md-primary md-hue-2 my-md-link-btn" ng-hide="isloggedIn" ui-sref="app.user.login"><i class="fa fa-sign-in fa-2x"></i>&nbsp; Entrar
                 </md-button>
+                <!--
                 <md-button layout="row" layout-align="center center" class="md-primary md-hue-2 my-md-link-btn" ng-hide="!isloggedIn" ng-click="vm.logout()"><i class="fa fa-sign-out fa-2x"></i>Sair
                 </md-button>
-                <md-button layout="row" layout-align="center center" class="md-warn md-raised" ui-sref="app.minhaCesta" ng-mouseover="vm.showPutedInCartToast()">
-                    <md-icon class="material-icons">shopping_cart</md-icon>
-                    <span>{{vm.kartSize}}</span>
-                </md-button>
+-->
+                <div class="kart-pop-over-container" label="kart" ng-mouseenter="vm.showHideKartPopOver()" ng-mouseleave="vm.showHideKartPopOver()">
+                    <md-button layout="row" layout-align="center center" class="md-warn md-raised my-md-no-shadow" ui-sref="app.minhaCesta" >
+                        <md-icon class="material-icons my-md-no-margin">shopping_cart</md-icon>
+                        <span class="md-subhead ">{{vm.kartSize}}</span>
+                    </md-button>
+                    <div class="kart-pop-over" ng-show="vm.isShowKartPopOver">
+                        <md-card class="my-md-no-margin">
+                            <md-card-title class="my-md-no-padding-top my-md-no-padding-bot">
+                                <h4 class="md-title my-md-smooth-title my-md-no-padding">Meu carrinho ({{vm.kartSize}} Itens))</h4>
+                            </md-card-title>
+                            <md-divider></md-divider>
+                            <md-card-content class="my-md-no-padding">
+                                <md-list>
+                                    <md-list-item class="md-2-line my-md-padding-left-right" ng-repeat="prd in vm.kartData" ng-class="{even:$even, odd:$odd}">
+										 <img ng-src={{prd.imagens}} class="md-avatar" alt="">
+                                        <div class="md-list-item-text">
+                                            <md-button class="md-primary my-md-link-btn my-md-no-padding-left">
+                                                <h4 class="md-subheader my-md-capital">{{prd.descricao}}</h4>
+                                            </md-button>
+                                            <p>Quantidade: {{prd.buyQty}}</p>
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
+                            </md-card-content>
+                            <md-divider></md-divider>
+                            <div layout-padding class="my-md-grey-bg">
+                                <md-card-actions class="my-md-no-margin" layout="row">
+                                    <md-button flex class="md-primary md-raised">
+                                        <md-icon class="material-icons">shopping_cart</md-icon>
+                                        Ir para o carrinho
+                                    </md-button>
+                                </md-card-actions>
+                            </div>
+                        </md-card>
+                    </div>
+                </div>
                 <!--                <md-button class="md-primary my-md-link-btn" ng-click=" vm.showPutedInCartToast()">Toast</md-button>-->
 
             </div>
@@ -29,6 +112,7 @@
     <md-toolbar layout="row" layout-align="center center" class="my-md-no-padding md-toolbar-tools my-nav-bar-menu">
         <div flex="100" flex-gt-md="90" layout="row" class="md-menu-toolbar" layout-align="space-between center">
             <div id="myCartToast"></div>
+
             <div flex layout="row">
                 <md-button ui-sref="app" class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}">
                     <img src="../../assets/img/logo/sonyLogo2.png">
@@ -64,8 +148,6 @@
                                                 <md-card-content>
                                                     <img class="md-card-image" alt="raspery" src="../../assets/img/navbar/passive_components.jpg">
                                                 </md-card-content>
-                                                </md-card-content>
-
                                                 <div layout-padding>
                                                     <p class="md-subheader my-md-smooth-title">{{prdctNavSubCat.name}}</p>
                                                 </div>
