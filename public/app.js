@@ -16,6 +16,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             if (fromState !== toState) {
                 $cookies.put('lastState', toState.name);
 
+
             }
 
             console.log(fromState.name.length);

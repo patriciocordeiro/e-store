@@ -79,6 +79,7 @@
 </div>
 -->
 
+<!--
 <md-content layout="row" layout-wrap layout-align="center start" layout-xs="column" >
     <div flex="60" flex-sm="100" flex-xs="100" layout="column" layout-aling="center center" style="background-color:#F5F5F5">
         <div flex flex-offset="33" layout="row" layout-align="center center" layout-wrap class="subsect-menu">
@@ -193,3 +194,37 @@
         </div>
     </div>
 </md-content>
+-->
+<div layout="row">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop md-whiteframe="4">
+        <md-toolbar>
+            <h1 class="md-toolbar-tools">Categorias</h1>
+        </md-toolbar>
+        <md-content>
+            <md-list class="my-md-no-padding">
+                <div layout="row"  ng-repeat="sections in vm.productNavCategories">
+                    <md-button flex layout="row" class="md-primary my-md-no-margin my-md-noround-border" layout-padding layout-align="start center"  ng-click="vm.showSubsection($index)">{{sections.name}}</md-button>
+                    <md-divider></md-divider>
+
+				</div>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+    <md-card flex>
+        <!--            <md-list>-->
+        <div ng-repeat="sections in vm.productNavCategories">
+            <!--                    <md-button class="md-primary" ng-click="vm.showSubsection($index)">{{sections.name}}</md-button>-->
+            <md-card ng-show="$index==vm.isShowSubsection">
+                <md-grid-list md-cols="6" md-gutter="6px" md-row-height="2:2">
+                    <md-grid-tile ng-repeat="subsections in vm.productNavCategories[$index].subcat" ui-sref="app">
+                        <img src="../../assets/img/navbar/passive_components.jpg">
+                        <md-grid-tile-footer>
+                            <h3>{{subsections.name}}</h3>
+                        </md-grid-tile-footer>
+                    </md-grid-tile>
+                </md-grid-list>
+            </md-card>
+        </div>
+        <!--            </md-list>-->
+    </md-card>
+</div>
