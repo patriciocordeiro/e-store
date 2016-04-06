@@ -43,10 +43,10 @@
                 imgPath: imgProductNavFolder + 'leds.png',
             }, {
                 name: 'Displays',
-                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+                imgPath: imgProductNavFolder + 'display_lcd.jpg',
             }, {
                 name: 'Circuito integrado',
-                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+                imgPath: imgProductNavFolder + 'circuito_integrado.jpg',
             }]
         }, {
             name: 'Arduino',
@@ -58,13 +58,13 @@
                 imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
             }, {
                 name: 'Shields',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                imgPath: imgProductNavFolder + 'arduino_shields.png',
             }, {
                 name: 'Kits',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                imgPath: imgProductNavFolder + 'arduino_kits',
             }, {
                 name: 'Acessórios',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                imgPath: imgProductNavFolder + 'arduino_acessorios',
             }]
         }, {
             name: 'Raspbery',
@@ -73,10 +73,10 @@
 
             subcat: [{
                 name: 'Placas',
-                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
+                imgPath: imgProductNavFolder + 'raspberrypi.png',
             }, {
                 name: 'Kits',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                imgPath: imgProductNavFolder + 'raspberrypi_kits.jpg',
             }, {
                 name: 'Acessórios',
                 imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
