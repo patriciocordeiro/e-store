@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('myApp').controller('PrdSectionCtrl', ['$mdBottomSheet', PrdSectionCtrl]);
@@ -6,20 +6,20 @@
     function PrdSectionCtrl($mdBottomSheet) {
         var vm = this;
         vm.showSubsec = false;
-        vm.showListBottomSheet = function() {
-            vm.showSubsec = !vm.showSubsec;
-        }
-        //        vm.showListBottomSheet = function($event) {
-        ////            $scope.alert = '';
-        //            $mdBottomSheet.show({
-        //                templateUrl: 'components/produtos/productSubsection.view.html',
-        //                controller: 'PrdSectionCtrl',
-        //                targetEvent: $event,
-        //                parent: "#subSectbootomSheet"
-        //            }).then(function(clickedItem) {
-        ////                $scope.alert = clickedItem['name'] + ' clicked!';
-        //            });
-        //        };
+        vm.showListBottomSheet = function () {
+                vm.showSubsec = !vm.showSubsec;
+            }
+            //        vm.showListBottomSheet = function($event) {
+            ////            $scope.alert = '';
+            //            $mdBottomSheet.show({
+            //                templateUrl: 'components/produtos/productSubsection.view.html',
+            //                controller: 'PrdSectionCtrl',
+            //                targetEvent: $event,
+            //                parent: "#subSectbootomSheet"
+            //            }).then(function(clickedItem) {
+            ////                $scope.alert = clickedItem['name'] + ' clicked!';
+            //            });
+            //        };
 
         /*Menu Itens*/
         var imgProductNavFolder = '../../assets/img/navbar/';
@@ -30,22 +30,22 @@
             imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
-                name: 'Resistor',
-                imgPath: imgProductNavFolder + 'resistor.jpg',
+                name: 'Resistores',
+                imgPath: imgProductNavFolder + 'resistores.png',
             }, {
-                name: 'Capacitor',
-                imgPath: imgProductNavFolder + 'capacitor.jpg',
+                name: 'Capacitores',
+                imgPath: imgProductNavFolder + 'capacitor_eletro.png',
             }, {
-                name: 'Transistor',
-                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+                name: 'Transistores',
+                imgPath: imgProductNavFolder + 'transistores.png',
             }, {
-                name: 'LED',
-                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+                name: 'LEDs',
+                imgPath: imgProductNavFolder + 'leds.png',
             }, {
                 name: 'Displays',
                 imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
             }, {
-                name: 'CI',
+                name: 'Circuito integrado',
                 imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
             }]
         }, {
@@ -97,7 +97,7 @@
                 imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
             }]
         }, {
-            name: 'Kits',
+            name: 'Kits de eletrônica',
             icon: 'tv',
             imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
@@ -116,15 +116,22 @@
         vm.isShowSubsection = false
         vm.secFlex = 100;
         vm.subSecFlex = 0;
-        vm.showSubsection = function(index) {
+        vm.showSubsection = function (index) {
             vm.isShowSubsection = index
             vm.secFlex = 10;
             vm.subSecFlex = 80;
             console.log(vm.showSubsection);
         }
-		
-		vm.closeSubMenu = function(){
-			 vm.isShowSubsection = -1
-		}
+
+        vm.closeSubMenu = function () {
+            vm.isShowSubsection = -1
+        }
+
+        vm.isShowAllSections = false;
+        vm.showAll = function (value) {
+            if (value == 1)
+                vm.isShowAllSections = true;
+            vm.isShowAllSections = false;
+        }
     }
 }());
