@@ -25,8 +25,7 @@
         var imgProductNavFolder = '../../assets/img/navbar/';
 
         vm.productNavCategories = [{
-            name: 'C. Eletrônicos',
-            icon: 'tv',
+            name: 'Componentes eletrônicos',
             imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
@@ -43,14 +42,13 @@
                 imgPath: imgProductNavFolder + 'leds.png',
             }, {
                 name: 'Displays',
-                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+                imgPath: imgProductNavFolder + 'display_lcd.jpg',
             }, {
-                name: 'Circuito integrado',
-                imgPath: imgProductNavFolder + 'capacitor/' + 'capPTH.jpg',
+                name: 'Circuitos integrados',
+                imgPath: imgProductNavFolder + 'circuito_integrado.jpg',
             }]
         }, {
             name: 'Arduino',
-            icon: 'tv',
             imgPath: imgProductNavFolder + 'arduino_sect.png',
 
             subcat: [{
@@ -58,32 +56,30 @@
                 imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
             }, {
                 name: 'Shields',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                imgPath: imgProductNavFolder + 'arduino_shields.png',
             }, {
                 name: 'Kits',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                imgPath: imgProductNavFolder + 'arduino_kits.jpg',
             }, {
                 name: 'Acessórios',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                imgPath: imgProductNavFolder + 'arduino_acessorios.jpg',
             }]
         }, {
             name: 'Raspbery',
-            icon: 'tv',
             imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
                 name: 'Placas',
-                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
+                imgPath: imgProductNavFolder + 'raspberrypi.png',
             }, {
                 name: 'Kits',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                imgPath: imgProductNavFolder + 'raspberrypi_kits.jpg',
             }, {
                 name: 'Acessórios',
                 imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
             }]
         }, {
             name: 'Conexão',
-            icon: 'tv',
             imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
@@ -98,17 +94,16 @@
             }]
         }, {
             name: 'Kits de eletrônica',
-            icon: 'tv',
             imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
             subcat: [{
-                name: 'Conectores',
+                name: 'Kit raspberry',
                 imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
             }, {
-                name: 'Cabos',
+                name: 'Kit arduino',
                 imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
             }, {
-                name: 'Fios',
+                name: 'Kit portas lógicas',
                 imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
             }]
         }];
