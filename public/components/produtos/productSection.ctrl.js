@@ -25,88 +25,90 @@
         var imgProductNavFolder = '../../assets/img/navbar/';
 
         vm.productNavCategories = [{
-            name: 'Componentes eletrônicos',
-            imgPath: imgProductNavFolder + 'raspberry_sect.png',
+                name: 'Componentes eletrônicos',
+                imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
-            subcat: [{
-                name: 'Resistores',
-                imgPath: imgProductNavFolder + 'resistores.png',
+                subcat: [{
+                    name: 'Resistores',
+                    imgPath: imgProductNavFolder + 'resistores.png',
             }, {
-                name: 'Capacitores',
-                imgPath: imgProductNavFolder + 'capacitor_eletro.png',
+                    name: 'Capacitores',
+                    imgPath: imgProductNavFolder + 'capacitores.png',
             }, {
-                name: 'Transistores',
-                imgPath: imgProductNavFolder + 'transistores.png',
+                    name: 'Transistores',
+                    imgPath: imgProductNavFolder + 'transistores.png',
             }, {
-                name: 'LEDs',
-                imgPath: imgProductNavFolder + 'leds.png',
+                    name: 'LEDs',
+                    imgPath: imgProductNavFolder + 'leds.png',
             }, {
-                name: 'Displays',
-                imgPath: imgProductNavFolder + 'display_lcd.jpg',
+                    name: 'Displays',
+                    imgPath: imgProductNavFolder + 'displays.png',
             }, {
-                name: 'Circuitos integrados',
-                imgPath: imgProductNavFolder + 'circuito_integrado.jpg',
+                    name: 'Circuitos integrados',
+                    imgPath: imgProductNavFolder + 'circuito_integrado.jpg',
             }]
         }, {
-            name: 'Arduino',
-            imgPath: imgProductNavFolder + 'arduino_sect.png',
+                name: 'Arduino',
+                imgPath: imgProductNavFolder + 'arduino_sect.png',
 
-            subcat: [{
-                name: 'Placas',
-                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
+                subcat: [{
+                    name: 'Placas',
+                    imgPath: imgProductNavFolder + 'arduino_board.png',
             }, {
-                name: 'Shields',
-                imgPath: imgProductNavFolder + 'arduino_shields.png',
+                    name: 'Shields',
+                    imgPath: imgProductNavFolder + 'arduino_shields.png',
             }, {
-                name: 'Kits',
-               imgPath: imgProductNavFolder + 'arduino_kits.png',
+                    name: 'Kits',
+                    imgPath: imgProductNavFolder + 'arduino_kits.png',
             }, {
-                name: 'Acessórios',
-                imgPath: imgProductNavFolder + 'arduino_acessorios.png',
+                    name: 'Acessórios',
+                    imgPath: imgProductNavFolder + 'arduino_acessorios.png',
             }]
         }, {
-            name: 'Raspbery',
-            imgPath: imgProductNavFolder + 'raspberry_sect.png',
+                name: 'Raspbery',
+                imgPath: imgProductNavFolder + 'raspberry_board.png',
 
-            subcat: [{
-                name: 'Placas',
-                imgPath: imgProductNavFolder + 'raspberrypi.png',
+                subcat: [{
+                    name: 'Placas',
+                    imgPath: imgProductNavFolder + 'raspberry_board.png',
             }, {
-                name: 'Kits',
-                imgPath: imgProductNavFolder + 'raspberrypi_kits.jpg',
+                    name: 'Kits',
+                    imgPath: imgProductNavFolder + 'raspberrypi_kits.png',
             }, {
-                name: 'Acessórios',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                    name: 'Acessórios',
+                    imgPath: imgProductNavFolder + 'raspberrypi_acessorios.png',
             }]
         }, {
-            name: 'Conexão',
-            imgPath: imgProductNavFolder + 'raspberry_sect.png',
+                name: 'Cabos & Conectores',
+                imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
-            subcat: [{
-                name: 'Conectores',
-                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
+                subcat: [{
+                    name: 'Conectores',
+                    imgPath: imgProductNavFolder + 'conectores.png',
             }, {
-                name: 'Cabos',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                    name: 'Cabos',
+                    imgPath: imgProductNavFolder + 'cabos.png',
             }, {
-                name: 'Fios',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                    name: 'Fios & Jumpers',
+                    imgPath: imgProductNavFolder + 'fios_jumpers.png',
             }]
-        }, {
-            name: 'Kits de eletrônica',
-            imgPath: imgProductNavFolder + 'raspberry_sect.png',
-
-            subcat: [{
-                name: 'Kit raspberry',
-                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
-            }, {
-                name: 'Kit arduino',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
-            }, {
-                name: 'Kit portas lógicas',
-                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
-            }]
-        }];
+        }
+//                                   {
+                               //            name: 'Kits de eletrônica',
+                               //            imgPath: imgProductNavFolder + 'raspberry_sect.png',
+                               //
+                               //            subcat: [{
+                               //                name: 'Kit raspberry',
+                               //                imgPath: imgProductNavFolder + 'arduino_board_subsec.jpg',
+                               //            }, {
+                               //                name: 'Kit arduino',
+                               //                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                               //            }, {
+                               //                name: 'Kit portas lógicas',
+                               //                imgPath: imgProductNavFolder + 'arduino/' + 'arduino.jpg',
+                               //            }]
+                               //        }
+                                  ];
         //Show hide subsection
         vm.isShowSubsection = false
         vm.secFlex = 100;

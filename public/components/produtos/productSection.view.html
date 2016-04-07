@@ -3,8 +3,6 @@
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop md-whiteframe="4">
             <md-toolbar>
                 <h1 class="md-toolbar-tools">Categorias</h1>
-                <md-switch ng-model="vm.isShowAllSections"></md-switch>
-                {{vm.isShowAllSections}}
             </md-toolbar>
             <md-content>
                 <md-list class="my-md-no-padding">
@@ -16,7 +14,10 @@
                 </md-list>
             </md-content>
         </md-sidenav>
-        <md-card flex>
+        <md-card flex class="my-md-no-margin">
+            <md-card-title>
+                <md-switch ng-model="vm.isShowAllSections">Ver Todas as categorias</md-switch>
+            </md-card-title>
             <!--            <md-list>-->
             <div ng-repeat="sections in vm.productNavCategories">
                 <!--                    <md-button class="md-primary" ng-click="vm.showSubsection($index)">{{sections.name}}</md-button>-->
@@ -24,11 +25,11 @@
                     <md-card-title class="my-md-border-bottom my-md-no-padding-top my-md-no-padding-bot my-md-grey-bg">
                         <h1 class="md-headline my-md-smooth-title">{{sections.name}}</h1>
                     </md-card-title>
-                    <md-grid-list md-cols="4" md-gutter="1px" md-row-height="2:2" md-rowspan="3">
+                    <md-grid-list layout-margin layout-padding md-cols="2" md-cols-xs="1" md-cols-lg="4" md-cols-md="3" md-cols-sm="2" md-gutter="6px" md-row-height="1:1" md-rowspan="8">
                         <md-grid-tile ng-repeat="subsections in vm.productNavCategories[$index].subcat" ui-sref="app">
                             <md-button class="md-primary">
                                 <img ng-src="{{subsections.imgPath}}">
-                                <h4 class="md-subhead">{{subsections.name}}</h4>
+                                <h2 class="md-title">{{subsections.name}}</h2>
                             </md-button>
                         </md-grid-tile>
                     </md-grid-list>
