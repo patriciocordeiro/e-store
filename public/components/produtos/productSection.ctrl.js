@@ -44,7 +44,11 @@
                 name: 'Displays',
                 imgPath: imgProductNavFolder + 'display_lcd.jpg',
             }, {
+<<<<<<< HEAD
                 name: 'Circuitos integrados',
+=======
+                name: 'Circuito integrado',
+>>>>>>> 0456ceebe071681a105ed31d3b2b03e9f731b728
                 imgPath: imgProductNavFolder + 'circuito_integrado.jpg',
             }]
         }, {
@@ -59,10 +63,17 @@
                 imgPath: imgProductNavFolder + 'arduino_shields.png',
             }, {
                 name: 'Kits',
+<<<<<<< HEAD
                 imgPath: imgProductNavFolder + 'arduino_kits.jpg',
             }, {
                 name: 'Acessórios',
                 imgPath: imgProductNavFolder + 'arduino_acessorios.jpg',
+=======
+                imgPath: imgProductNavFolder + 'arduino_kits',
+            }, {
+                name: 'Acessórios',
+                imgPath: imgProductNavFolder + 'arduino_acessorios',
+>>>>>>> 0456ceebe071681a105ed31d3b2b03e9f731b728
             }]
         }, {
             name: 'Raspbery',
