@@ -59,10 +59,10 @@
                 imgPath: imgProductNavFolder + 'arduino_shields.png',
             }, {
                 name: 'Kits',
-                imgPath: imgProductNavFolder + 'arduino_kits.jpg',
+               imgPath: imgProductNavFolder + 'arduino_kits.png',
             }, {
                 name: 'Acessórios',
-                imgPath: imgProductNavFolder + 'arduino_acessorios.jpg',
+                imgPath: imgProductNavFolder + 'arduino_acessorios.png',
             }]
         }, {
             name: 'Raspbery',
