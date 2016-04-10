@@ -4,19 +4,31 @@
             <md-toolbar>
                 <h1 class="md-toolbar-tools">Categorias</h1>
             </md-toolbar>
-            <md-content>
+            <md-content flex role="navigation">
+                <div class="my-md-grey-bg" hide-gt-sm>
+                    <md-button flex ng-click="vm.closeSidenavLeft()" class="md-primary md-icon-button">
+                        <md-icon class="material-icons">arrow_back</md-icon>
+
+                    </md-button>
+                </div>
                 <md-list class="my-md-no-padding">
                     <div layout="row" ng-repeat="sections in vm.productNavCategories">
-                        <md-button flex layout="row" class="md-primary my-md-no-margin my-md-noround-border" layout-padding layout-align="start center" ng-click="vm.showSubsection($index)">{{sections.name}}</md-button>
+                        <md-button flex layout="row" class="md-primary my-md-no-margin my-md-noround-border" layout-padding layout-align="start center" ng-click="vm.showSubsection($index); vm.closeSidenavLeft()">{{sections.name}}</md-button>
                         <md-divider></md-divider>
 
                     </div>
                 </md-list>
             </md-content>
         </md-sidenav>
-        <md-card flex class="my-md-no-margin">
+        <md-card flex class="my-md-no-margin" layout="column">
+            <div class="my-md-grey-bg" hide-gt-sm>
+                <md-button ng-click="vm.openLeftSidenav()" class="md-primary md-icon-button">
+                    <md-icon class="material-icons">menu</md-icon>
+                </md-button>
+            </div>
             <md-card-title>
                 <md-switch ng-model="vm.isShowAllSections">Ver Todas as categorias</md-switch>
+
             </md-card-title>
             <!--            <md-list>-->
             <div ng-repeat="sections in vm.productNavCategories">

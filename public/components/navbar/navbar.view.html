@@ -124,11 +124,23 @@
                         Produtos
                         <md-icon class="material-icons my-md-rotate-90">chevron_right</md-icon>
                     </md-button>
-                    <!--                    <div layout="column" layout-padding layout-align="center center" ng-show="true" class="full-menu my-md-grey-bg md-whiteframe-3dp" role="menu">-->
-                    <div layout="column" layout-align="center center" layout-padding ng-show="vm.showMenu" class="full-menu my-md-grey-bg md-whiteframe-3dp" role="menu">
+
+                    <div layout="column" layout-padding layout-align="center center" ng-show="true" class="full-menu my-md-grey-bg md-whiteframe-3dp" role="menu">
+
+                        <!--                    <div layout="column" layout-align="center center" layout-padding ng-show="vm.showMenu" class="full-menu md-whiteframe-3dp" style="background-color:white" role="menu">-->
                         <div layout="row" layout-align="center  center" class="my-md-menu-item" ng-class="{'my-md-menu-open':vm.isSubMenuOpen}">
+                            <md-grid-list flex md-cols="4" md-row-height="2:2" md-gutter="2px" style="position:static; min-height:250px">
+                                <md-grid-tile flex ng-repeat="prdctNavCat in vm.productNavCategories" style="background-color:red">
+                                    <img ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
+                                    
+<!--                                    {{prdctNavCat.name}}-->
+                                </md-grid-tile>
+
+                            </md-grid-list>
+
                             <div flex-gt-md="25" flex-md="15" class="my-md-no-padding" ng-repeat="prdctNavCat in vm.productNavCategories">
-                                <md-card layout="column" layout-align="space-between center" class="" ng-class="{'active-menu':vm.activeMenuIdx==$index, }">
+                                <!--
+                                <md-card layout="column" layout-align="space-between center" class="my-md-no-shadow" ng-class="{'active-menu':vm.activeMenuIdx==$index, }">
                                     <md-button class="md-primary my-md-no-margin my-md-no-padding" ng-mouseover="vm.openSubMenu($index)" ng-click="vm.prdgetSect(prdctNavCat.name); vm.openSubMenu($index)">
                                         <md-card-content>
                                             <img class="md-card-image" ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
@@ -137,8 +149,7 @@
                                         <md-icon class="md-primary material-icons  ">expand_more</md-icon>
                                     </md-button>
                                 </md-card>
-
-
+-->
                                 <!--                                        </md-content>-->
                                 <div layout="row" layout-align="center center" class="submenu" ng-show="vm.showSubMenu ==$index && vm.showMenu">
                                     <!--                                    <div layout="row" layout-padding layout-align="center center" class="submenu" ng-show="true">-->
@@ -146,7 +157,7 @@
                                         <md-card flex="15" class="my-md-no-padding" layout-padding layout-margin ng-repeat="prdctNavSubCat in vm.productNavCategories[$index].subcat" ui-sref="app.produtos.section.category({section:prdctNavCat.name, category:prdctNavSubCat.name})" ng-click="vm.getCatg(prdctNavCat.name, prdctNavSubCat.name); vm.closeMenus()">
                                             <md-button class="my-md-no-margin my-md-no-padding">
                                                 <md-card-content>
-                                                    <img class="md-card-image" alt="raspery" src="../../assets/img/navbar/passive_components.jpg">
+                                                    <img class="md-card-image" alt="{{prdctNavSubCat.name}}" ng-src="{{prdctNavSubCat.imgPath}}">
                                                 </md-card-content>
                                                 <div layout-padding>
                                                     <p class="md-subheader my-md-smooth-title">{{prdctNavSubCat.name}}</p>
@@ -163,7 +174,7 @@
                         </div>
                         <div flex layout="row">
                             <md-button class="md-title md-primary" ui-sref="app.produtos.section">
-								
+
                                 <md-icon class="material-icons">apps</md-icon>Todos os departamentos</md-button>
                         </div>
                     </div>
