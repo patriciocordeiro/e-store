@@ -111,8 +111,6 @@
     </md-toolbar>
     <md-toolbar layout="row" layout-align="center center" class="my-md-no-padding md-toolbar-tools my-nav-bar-menu">
         <div flex="100" flex-gt-md="90" layout="row" class="md-menu-toolbar" layout-align="space-between center">
-            <div id="myCartToast"></div>
-
             <div flex layout="row">
                 <md-button ui-sref="app" class="menu-button-sm" ng-class="{'menu-button-lg':vm.$mdMedia('gt-sm')}">
                     <img src="../../assets/img/logo/sonyLogo2.png">
@@ -125,19 +123,23 @@
                         <md-icon class="material-icons my-md-rotate-90">chevron_right</md-icon>
                     </md-button>
 
-                    <div layout="column" layout-padding layout-align="center center" ng-show="true" class="full-menu my-md-grey-bg md-whiteframe-3dp" role="menu">
+                    <div layout-padding layout-align="center center" ng-show="true" class="full-menu md-whiteframe-3dp" role="menu">
 
                         <!--                    <div layout="column" layout-align="center center" layout-padding ng-show="vm.showMenu" class="full-menu md-whiteframe-3dp" style="background-color:white" role="menu">-->
-                        <div layout="row" layout-align="center  center" class="my-md-menu-item" ng-class="{'my-md-menu-open':vm.isSubMenuOpen}">
-                            <md-grid-list flex md-cols="4" md-row-height="2:2" md-gutter="2px" style="position:static; min-height:250px">
-                                <md-grid-tile flex ng-repeat="prdctNavCat in vm.productNavCategories" style="background-color:red">
-                                    <img ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
-                                    
-<!--                                    {{prdctNavCat.name}}-->
-                                </md-grid-tile>
+                        <div class="my-md-menu-item" ng-class="{'my-md-menu-open':vm.isSubMenuOpen}">
+                            <div layout="row" layout-align="center center">
+                                <div flex="50">
+                                    <md-grid-list   md-cols="4" md-row-height="2:2" md-gutter="2px">
+                                        <md-grid-tile flex ng-repeat="prdctNavCat in vm.productNavCategories">
+                                            <md-button layout="column" layout-align="start center" class="md-primary" style="min-height:100%; min-width:100%">
+                                                <img ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
+                                                <h4 class="md-subheader my-md-smooth-title">{{prdctNavCat.name}}</h4>
+                                            </md-button>
+                                        </md-grid-tile>
 
-                            </md-grid-list>
-
+                                    </md-grid-list>
+                                </div>
+                            </div>
                             <div flex-gt-md="25" flex-md="15" class="my-md-no-padding" ng-repeat="prdctNavCat in vm.productNavCategories">
                                 <!--
                                 <md-card layout="column" layout-align="space-between center" class="my-md-no-shadow" ng-class="{'active-menu':vm.activeMenuIdx==$index, }">
