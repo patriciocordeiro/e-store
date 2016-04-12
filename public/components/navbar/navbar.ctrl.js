@@ -73,7 +73,7 @@
             }]
         }, {
                 name: 'Raspbery',
-                imgPath: imgProductNavFolder + 'raspberry_board.png',
+                imgPath: imgProductNavFolder + 'raspberry_sect.png',
 
                 subcat: [{
                     name: 'Placas',
