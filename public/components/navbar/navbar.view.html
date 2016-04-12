@@ -127,19 +127,25 @@
 
                         <!--                    <div layout="column" layout-align="center center" layout-padding ng-show="vm.showMenu" class="full-menu md-whiteframe-3dp" style="background-color:white" role="menu">-->
                         <div class="my-md-menu-item" ng-class="{'my-md-menu-open':vm.isSubMenuOpen}" layout="column">
-                            <md-card flex>
+                            <md-card>
                                 <md-card-content layout="row" layout-align="center center">
-                                    <div flex="50">
-                                        <md-grid-list md-cols="4" md-row-height="2:1" md-gutter="2px">
-                                            <md-grid-tile ng-repeat="prdctNavCat in vm.productNavCategories">
-                                                <md-button flex layout="column" layout-align="start center" class="md-primary my-md-no-margin my-md-no-padding" style="min-height:100%; min-width:100%" ng-click="vm.prdgetSect(prdctNavCat.name); vm.openSubMenu($index)">
-                                                    <img flex layout-padding ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
+                                    <div flex="100" flex-sm="80" flex-md="60" flex-gt-md="50">
+                                        <md-grid-list md-cols="4" md-row-height="3:3" md-gutter="2px">
+                                            <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="prdctNavCat in vm.productNavCategories" ng-click="vm.prdgetSect(prdctNavCat.name); vm.openSubMenu($index)">
+                                                <!--                                                <md-button flex layout="column" layout-align="start center" class="md-primary my-md-no-margin my-md-no-padding" ng-click="vm.prdgetSect(prdctNavCat.name); vm.openSubMenu($index)">-->
+                                                <!--                                                <md-grid-tile-header>-->
+                                                <div class="navbar-menu-image" layout-align="center center">
+                                                    <img ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
+                                                </div>
+                                                <!--                                                </md-grid-tile-header>-->
 
 
-<!--                                                    <span flex class="md-subheader my-md-smooth-title"><b>{{prdctNavCat.name}}</b></h4>-->
-                                                    <!--                                                    </dix>-->
-{{prdctNavCat.name}}
-                                                </md-button>
+                                                <md-grid-tile-footer flex style="background-color:red; !important" layout="row" layout-align="center start">
+                                                    <h4 style="text-align:center" class="md-subheader"><b>{{prdctNavCat.name}}</b></h4>
+                                                </md-grid-tile-footer>
+                                                <!--                                                    </dix>-->
+                                                <!--                                                    {{prdctNavCat.name}}-->
+                                                <!--                                                </md-button>-->
                                                 <!--                                            <md-card layout="column">-->
                                                 <!--                                            <div flex layout="row" layout-align="center center" class="submenu my-md-grey-bg" ng-show="$index==0">-->
                                                 <!--                                                <div flex="50" layout-align="center" >-->
@@ -178,7 +184,7 @@
                                         </md-grid-list>
                                     </div>
                                 </md-card-content>
-
+                                <md-card-actions>adknasd</md-card-actions>
                             </md-card>
 
 
@@ -211,10 +217,10 @@
                                             <img class="md-card-image" ng-src="{{prdctNavCat.imgPath}}" alt="{{prdctNavCat.name}}" />
                                         </md-card-content>
                                         <span class="md-subhead">{{prdctNavCat.name}}</span>
-                                        <md-icon class="md-primary material-icons  ">expand_more</md-icon>
-                                    </md-button>
-                                </md-card>
--->
+                                                    <md-icon class="md-primary material-icons  ">expand_more</md-icon>
+                                                </md-button>
+                            </md-card>
+                            -->
                             <!--                                        </md-content>-->
                             <!--
                                 <div layout="row" layout-align="center center" class="submenu" ng-show="vm.showSubMenu ==$index && vm.showMenu">

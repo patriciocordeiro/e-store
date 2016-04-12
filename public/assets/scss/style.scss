@@ -329,8 +329,8 @@ $light_bue:#03A9F4;
 
 .full-menu {
     position: absolute;
-            background-color: white;
-	padding-top: 20px;
+    background-color: white;
+    padding-top: 20px;
     left: 0;
     right: 0;
     z-index: 10;
@@ -340,27 +340,37 @@ $light_bue:#03A9F4;
     -webkit-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
     -moz-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
     -o-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
-	height: 350px;
+    height: 350px;
 }
 
 .full-menu.ng-hide {
     top: -560px;
 }
 
+.navbar-menu-image {
+    img {
+        //        position: absolute;
+        top: 8%;
+        //        left: 0;
+        //        right: 0;
+        border: solid 1px blue;
+    }
+}
+
 //.full-menu.ng-hide {
 //    height: 0;
 //}
 .submenu {
-//    background-color: white;
+    //    background-color: white;
     border-top: solid 1px rgba(255, 248, 248, 0.72);
     //    position: fixed;
     width: 100%;
     left: 0;
     right: 0;
     position: static;
-    top:55%;
+    top: 55%;
     padding: 2% !important;
-//	background-color: red;
+    //	background-color: red;
     //    bottom: 24px;
     //	height: 220PX;
     //    height: 0px;
@@ -371,16 +381,12 @@ $light_bue:#03A9F4;
     //        background-color: red;
     //        height: 300px;
     //    }
-    overflow:visible;
-	
+    overflow: visible;
     //    transition: left 1s linear;
     //    -webkit-transition: left 0.5s ease-in 0.1s, 0.8s 0s linear 0.25s;
     //    -moz-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
     //    -o-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
-	
-
 }
-
 
 .subMenuItems {
     //	background-color: red;
