@@ -3,20 +3,17 @@
 //    overflow: hidden !important;
 //}
 $indigo:#3F51B5;
-$light_bue:#03A9F4;
-.my-md-normlWhiteSpace {
+ $light_bue:#03A9F4;
+ .my-md-normlWhiteSpace {
     white-space: normal !important;
     line-height: inherit !important;
 }
-
 .my-md-warn-DeepOrange {
     color: #FF5722;
 }
-
 .my-md-warn-grey {
     color: #4CAF50
 }
-
 .my-md-menu-top {
     min-height: 100% !important;
     height: 40px !important;
@@ -32,13 +29,12 @@ $light_bue:#03A9F4;
     //        color: #3F79C2 !important;
     //        text-transform: capitalize;
     //   }
-}
 
+}
 //Angular property
 .md-subheader {
     background: transparent !important;
 }
-
 //----------------------------------
 .dashboard-edit {
     transition: bottom 0.3s linear;
@@ -51,152 +47,117 @@ $light_bue:#03A9F4;
     //    z-index: 10;
     background-color: #f5f5f5;
 }
-
 .dashboard-edit.ng-hide {
     bottom: -544px;
     overflow: hidden;
 }
-
 .userAddress {
     transition: top 0.3s linear;
     position: relative;
     top: 0px;
 }
-
 .userAddress.ng-hide {
     top: -544px;
 }
-
 .md-button {
     text-transform: none !important;
 }
-
 //=====================================================
 //rules bellow are for my list tables with md-card
 .even {
     background-color: white;
 }
-
 .odd {
     background-color: #fafafa;
 }
-
 .my-md-no-margin {
     margin: 0 !important;
 }
-
 .my-md-no-margin-top {
     margin-top: 0 !important;
 }
-
 .my-md-grey-bg {
     background-color: #f5f5f5;
 }
-
 .my-md-no-padding {
     padding: 0px !important;
 }
-
 .my-md-noround-border {
     border-radius: 0 !important;
 }
-
 .my-md-circle {
     border-radius: 50% !important;
 }
-
 .my-md-btn-icon-below {
     line-height: inherit !important;
 }
-
 .my-md-float-btn {
     position: absolute !important;
 }
-
 .my-md-smooth-title {
     color: rgba(0, 0, 0, 0.54) !important;
 }
-
 //====================================================
 .my-md-toolbar-header {
     font-size: 14px !important;
     background-color: #f5f5f5 !important;
     color: rgba(0, 0, 0, 0.87) !important;
 }
-
 // For text and titles
 .my-md-capital {
     text-transform: capitalize;
 }
-
 .my-md-no-shadow {
     box-shadow: none !important;
 }
-
 .my-md-notextTransform {
     text-transform: none !important;
 }
-
 .my-top-nav-bar {
     z-index: 222 !important;
 }
-
 .my-md-lowercase {
     text-transform: lowercase !important;
 }
-
 .my-md-border-bottom {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12)
 }
-
 .my-md-no-margin-bot {
     margin-bottom: 0;
 }
-
 .my-md-no-margin-top {
     margin-top: 0;
 }
-
 .my-md-no-margin-left {
     margin-left: 0;
 }
-
 .my-md-no-margin-right {
     margin-right: 0;
 }
-
 .my-md-no-padding-right {
     padding-right: 0 !important;
 }
-
 .my-md-no-padding-left {
     padding-left: 0 !important;
 }
-
 .my-md-no-padding-top {
     padding-top: 0 !important;
 }
-
 .my-md-no-padding-bot {
     padding-bottom: 0 !important;
 }
-
 .my-md-padding-left-right {
     padding: 0 8px !important;
 }
-
 .my-md-displayInline {
     display: inline !important;
 }
-
 .my-md-padding-bot {
     padding-bottom: 8px !important;
 }
-
 .my-md-padding-top {
     padding-top: 8px !important;
 }
-
 //.my-md-full-heigth{
 ////	height: 100% !important;
 //	background-color: red !important;
@@ -210,22 +171,24 @@ $light_bue:#03A9F4;
         width: 0;
         background: transparent;
         //        transition: width .5s ease, background-color .5s ease;
+
     }
     //	    &{
     //		width: 100%;
-    background-color:rgba(0, 128, 128, 0.21);
+    background-color:rgba(0,
+    128,
+    128,
+    0.21);
     transition:border-width 0.3s linear;
     //    }
     //	width: 6px;
     border-width:100%;
     border-bottom:solid 6px teal
 }
-
 .my-md-icon-fit {
     padding: 0 !important;
     margin: 0 !important;
 }
-
 .my-md-menu-item {
     //    &:after{
     //        content: '';
@@ -250,8 +213,8 @@ $light_bue:#03A9F4;
     //		width: 100%;
     //        background: teal;
     //    }
-}
 
+}
 //.my-list-item {
 //    .md-list-item-inner {
 //        height: 25px !important;
@@ -262,11 +225,9 @@ $light_bue:#03A9F4;
         height: 25px !important;
     }
 }
-
 .my-nav-bar-menu {
     z-index: auto;
 }
-
 .kart-list {
     md-list {
         md-list-item {
@@ -274,12 +235,9 @@ $light_bue:#03A9F4;
         }
     }
 }
-
 .kart-total {
     background-color: #f5f5f5 !important;
 }
-
-
 /*Customize the menu bar to fit toolbar hight*/
 
 //    position: relative;
@@ -290,7 +248,6 @@ $light_bue:#03A9F4;
     /* Chrome, Safari, Opera */
     transform: rotate(90deg);
 }
-
 .cssSlideUp {
     -webkit-transition: .5s linear all;
     -moz-transition: .5s linear all;
@@ -302,12 +259,11 @@ $light_bue:#03A9F4;
     display: block;
     //    margin-top: 0;
     //    padding: 3% 0;
-}
 
+}
 .cssSlideUp.ng-hide {
     height: 0;
 }
-
 .slideUpDown {
     //	max-height: 500px;
     line-height: 30px;
@@ -320,13 +276,11 @@ $light_bue:#03A9F4;
     -o-transition: .5s linear all;
     transition: line-height 1s linear all;
 }
-
 .slideUpDown.ng-hide {
     max-height: 0;
     line-height: 0;
     opacity: 0;
 }
-
 .full-menu {
     position: absolute;
     background-color: white;
@@ -340,23 +294,22 @@ $light_bue:#03A9F4;
     -webkit-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
     -moz-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
     -o-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
-    height: 350px;
+//    height: 350px;
 }
-
 .full-menu.ng-hide {
     top: -560px;
 }
-
 .navbar-menu-image {
+    //	width: 100%;
+    //	border: solid 1px red;
     img {
-        //        position: absolute;
+//        position: absolute;
         top: 8%;
         //        left: 0;
         //        right: 0;
         border: solid 1px blue;
     }
 }
-
 //.full-menu.ng-hide {
 //    height: 0;
 //}
@@ -375,6 +328,7 @@ $light_bue:#03A9F4;
     //	height: 220PX;
     //    height: 0px;
     //    -webkit-transition: height 2s;
+
     /* For Safari 3.1 to 6.0 */
     //    transition: height 2s;
     //    &: hover {
@@ -386,8 +340,8 @@ $light_bue:#03A9F4;
     //    -webkit-transition: left 0.5s ease-in 0.1s, 0.8s 0s linear 0.25s;
     //    -moz-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
     //    -o-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
-}
 
+}
 .subMenuItems {
     //	background-color: red;
     overflow: hidden;
@@ -401,16 +355,14 @@ $light_bue:#03A9F4;
     //    -webkit-transition: left 0.5s ease-in 0.1s, 0.8s 0s linear 0.25s;
     //    -moz-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
     //    -o-transition: left 0.5s ease-in 0.1s, left 0.8s linear 0.25s;
-}
 
+}
 .subMenuItems.ng-hide {
     left: -1000px;
 }
-
 .subMenuItems.ng-show {
     left: -1000px;
 }
-
 md-menu-bar {
     background-color: blueviolet !important;
     //            height: 100% !important;
@@ -421,13 +373,13 @@ md-menu-bar {
         //        height: 100% !important;
         //        width: 100% !important;
         //         position: absolute !important;
+
     }
     button {
         height: 100% !important;
         width: !important;
     }
 }
-
 .my-md-menu-item {
     z-index: 3;
     margin-bottom: inherit !important;
@@ -442,17 +394,21 @@ md-menu-bar {
         line-height: 20px!important;
         margin-bottom: 0;
     }
-}
+	
+	
 
+	md-grid-list md-grid-tile figure{
+		    align-items: stretch;
+	}
+}
 .my-md-menu-open {
     margin-bottom: 15% !important;
     //    background-color: transparent !important;
-}
 
+}
 md-menu-content {
     max-height: 100% !important;
 }
-
 .md-open-menu-container {
     position: fixed;
     left: 0% !important;
@@ -462,7 +418,6 @@ md-menu-content {
     opacity: 0;
     border-radius: 2px;
 }
-
 .breadcrumbs-area {
     background-color: #f5f5f5 !important;
     .breadcrumb {
@@ -471,42 +426,35 @@ md-menu-content {
         background-color: transparent
     }
 }
-
 // Rules for sizing the icon.
 .material-icons.md-18 {
     font-size: 18px;
     height: 18px;
     width: 18px;
 }
-
 .material-icons.md-24 {
     font-size: 24px;
     height: 24px;
     width: 24px;
 }
-
 .material-icons.md-36 {
     font-size: 36px;
     height: 36px;
     width: 36px;
 }
-
 .material-icons.md-48 {
     font-size: 48px;
     height: 48px;
 }
-
 .material-icons.md-60 {
     font-size: 60px;
     height: 60px;
 }
-
 .material-icons.md-96 {
     font-size: 96px !important;
     height: 96px;
     width: 96px;
 }
-
 .my-md-link-btn {
     // this style applies to all link buttons
     //We change the some md-button attributes to fit a li>a link
@@ -524,7 +472,6 @@ md-menu-content {
     font-size:12px !important;
     font-weight:100 !important;
 }
-
 .my-md-icon-btn {
     padding: 0px !important;
     line-height: inherit !important;
@@ -533,7 +480,6 @@ md-menu-content {
     height: 24px !important;
     width: 24px !important;
 }
-
 .groupX {
     font-size: 16px;
     margin: 20px 0 !important;
@@ -546,29 +492,25 @@ md-menu-content {
     min-height: 28px!important;
     line-height: 10px !important;
 }
-
 .md-button.left {
     border-radius: 10px 0 0 10px;
     border: 1px solid rgba(230, 230, 230, 0.96);
 }
-
 .md-button.middle {
     border-radius: 0;
     border: 1px solid rgba(230, 230, 230, 0.96);
     //    border-right: 1px solid rgba(230, 230, 230, 0.96);
-}
 
+}
 .md-button.right {
     border-radius: 0 10px 10px 0;
     border: 1px solid rgba(230, 230, 230, 0.96);
 }
-
 .md-button:not([disabled]):hover {
     background-color: rgba(193, 193, 193, 0.96);
     color: rgba(44, 65, 164, 0.96);
     transition: 0.3s;
 }
-
 .logo {
     //    background-color: red;
     //	    min-height: 64px !important;
@@ -577,8 +519,8 @@ md-menu-content {
     //    font-size: 16px !important;
     //    padding: 0px 16px !important;
     //    margin: 0px !important;
-}
 
+}
 .menu-button-sm {
     min-height: 56px !important;
     border: none !important;
@@ -590,30 +532,25 @@ md-menu-content {
     display: block !important;
     border-radius: 0!important;
 }
-
 .menu-button-lg.menu-button-sm {
     min-height: 64px !important;
     line-height: 64px !important;
 }
-
 .animate-show {
     line-height: 20px;
     opacity: 1;
     padding: 10px;
     background: white;
 }
-
 .animate-show.ng-hide-add,
 .animate-show.ng-hide-remove {
     transition: all linear 0.5s;
 }
-
 .animate-show.ng-hide {
     line-height: 0;
     opacity: 0;
     padding: 0 10px;
 }
-
 .subsect-menu {
     .md-media-md {
         text-align: center;
@@ -621,15 +558,13 @@ md-menu-content {
         img {}
     }
 }
-
 ////Product page
 .prd-list-table {
     tr: nth-child(odd) {
         background-color: #f1f1f1;
     }
     text-align:center;
-    td {}
-    tr {
+    td {} tr {
         height: 50px;
         max-height: 300px;
         min-height: 100px;
@@ -651,20 +586,14 @@ md-menu-content {
         }
     }
 }
-
-
 /*Product detail*/
 
 #main-product-detail-box {
-    md-list-item,
-    md-list-item .md-list-item-inner {
+    md-list-item, md-list-item .md-list-item-inner {
         min-height: 48px !important;
     }
 }
-
-
 /*-----------------------------------------------------*/
-
 
 /*Cart*/
 
@@ -674,24 +603,23 @@ md-menu-content {
         text-align: left;
     }
 }
-
 md-toast .md-toast-content {
     height: 100% !important;
     max-height: 100%!important;
 }
-
 .my-md-filter-area {
     margin-top: 3% !important;
 }
-
 .prd-filter-list {
     md-list {
         //		border: solid 1px red;
+
     }
     md-card md-card-content {
         display: block;
         padding-top: 8px;
         //    padding: 0px 6px 0px 0px;
+
     }
     md-card-title {
         padding: 0px 14px;
@@ -705,21 +633,17 @@ md-toast .md-toast-content {
         }
     }
 }
-
 .link-btn {
     width: 100%;
     a {
         padding: 0px !important;
     }
 }
-
 .prd-info-list {
     md-list-item {
         padding: 0px !important;
     }
 }
-
-
 /*Contact*/
 
 .my-md-contact-icon {
@@ -731,36 +655,28 @@ md-toast .md-toast-content {
     line-height: $border-size !important;
     text-align: center !important;
 }
-
 .my-md-social-icon.facebook {
     background-color: #3b5998;
 }
-
 .my-md-social-icon.twitter {
     background-color: #1baae1;
 }
-
 .my-md-social-icon.instagram {
     background-color: #4e433c;
 }
-
 .my-md-social-icon.youtube {
     background-color: #ff3333;
 }
-
 .my-md-social-icon.googleplus {
     background-color: #c63d2d;
 }
-
 .my-md-social-icon.linkedin {
     background-color: #4875b4;
 }
-
 .my-md-icon-36 {
     width: 36px;
     height: 36px;
 }
-
 .my-md-social-button {
     padding: 10px !important;
     margin: 0 !important;
@@ -770,15 +686,12 @@ md-toast .md-toast-content {
     min-height: 100% !important;
     line-height: 0 !important;
 }
-
 .angular-google-map-container {
     height: 400px;
 }
-
 .product-rating {
     position: relative;
 }
-
 .rating-pop-over {
     width: 250px;
     //    height: 150px;
@@ -809,7 +722,6 @@ md-toast .md-toast-content {
         }
     }
 }
-
 .rating-pop-over:after {
     content: "";
     position: absolute;
@@ -823,7 +735,6 @@ md-toast .md-toast-content {
     width: 0;
     z-index: 0;
 }
-
 .rating-pop-over:before,
 .user-pop-over:before,
 .kart-pop-over:before {
@@ -840,9 +751,8 @@ md-toast .md-toast-content {
     z-index: 1;
     overflow: hidden;
     //            border-style: solid 1px blue;
+
 }
-
-
 /*User pop-over*/
 
 .user-pop-over {
@@ -856,20 +766,16 @@ md-toast .md-toast-content {
     border-color: #f5f5f5;
     z-index: 80;
 }
-
 .user-pop-over:after {
     left: 194px;
 }
-
 .user-pop-over:before {
     left: 193px;
 }
-
 .kart-pop-over-container {
     position: relative;
     height: 100%;
 }
-
 .kart-pop-over {
     min-width: 350px;
     position: absolute;
@@ -883,5 +789,4 @@ md-toast .md-toast-content {
         left: 300px;
     }
 }
-
 //Material class
