@@ -1,4 +1,4 @@
-(function () {
+(function() {
 
     'use strict';
 
@@ -8,7 +8,7 @@
         var vm = this;
         //pass the user data to vm
         vm.user = userSrcv.usr.login.data.local
-        vm.userUpdateData = function (userData) {
+        vm.userUpdateData = function(userData) {
             //TODO: update service function
             userSrcv.usr.update(userData);
         }
@@ -17,7 +17,7 @@
         vm.userUpdate = {};
         //Pass the user email. Will be used for authentication
 
-        var claearForm = function () {
+        var claearForm = function() {
             vm.userUpdateForm.$setUntouched();
             vm.userUpdateForm[1].$setValidity();
             vm.userUpdateForm[1].$setPristine();
@@ -26,15 +26,15 @@
 
         var nSettings = 5; // number of settings
 
-        generalSrvc.closeAll(nSettings).then(function (data) {
+        generalSrvc.closeAll(nSettings).then(function(data) {
             vm.userIsEditSettings = data; //set all to false
             console.log(vm.userIsEditAddress);
         });
 
         //function to open the editing settings area 
-        vm.userEditSettings = function (index) {
+        vm.userEditSettings = function(index) {
             //first close all edit area
-            generalSrvc.closeAll(nSettings).then(function (data) {
+            generalSrvc.closeAll(nSettings).then(function(data) {
                 //close all
                 vm.userIsEditSettings = data;
                 //open the clicked address edit area
@@ -44,17 +44,17 @@
         }
 
         //Get password for update confirmation
-        vm.userGetPassword = function (userPassword) {
-                console.log(userPassword);
-                $mdDialog.hide(userPassword);
-            }
-            //Close dialogs
-        vm.closeDiag = function () {
-                userSrcv.usr.cancelDialog();
+        vm.userGetPassword = function(userPassword) {
+            console.log(userPassword);
+            $mdDialog.hide(userPassword);
+        }
+        //Close dialogs
+        vm.closeDiag = function() {
+            userSrcv.usr.cancelDialog();
 
-            }
-            //Function to update user settings
-        vm.userUpdateSettings = function (user, ev) {
+        }
+        //Function to update user settings
+        vm.userUpdateSettings = function(user, ev) {
             console.log(user);
             if (user == 'cancel') {
                 //clear the form
@@ -78,7 +78,7 @@
                 vm.userUpdateFormEmail.$setPristine();
                 vm.userUpdate = {};
                 //close all 
-                generalSrvc.closeAll(nSettings).then(function (data) {
+                generalSrvc.closeAll(nSettings).then(function(data) {
                     //close all
                     vm.userIsEditSettings = data;
                     console.log(vm.userIsEditSettings);
@@ -87,13 +87,13 @@
                 //update user settings
                 console.log(user);
                 $mdDialog.show({
-                        controller: 'userDashboardCtrl as vm',
-                        templateUrl: 'components/dashboard/userUpdateDiag.view.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: false
-                    })
-                    .then(function (answer) {
+                    controller: 'userDashboardCtrl as vm',
+                    templateUrl: 'components/dashboard/userUpdateDiag.view.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: false
+                })
+                    .then(function(answer) {
                         $scope.status = 'You said the information was "' + answer + '".';
                         var query = {
                             email: vm.user.email,
@@ -106,14 +106,14 @@
                         //Get all keys that will be updated
                         var myUpdateKeys = Object.keys(vm.userUpdate.data);
                         //For each key, set a new key called local.{key}
-                        _(myUpdateKeys).forEach(function (value) {
+                        _(myUpdateKeys).forEach(function(value) {
                             query.data['local.' + value] = vm.userUpdate.data[value];
                         });
 
                         //clear the form
                         vm.userUpdate = {};
                         //closeediting
-                        generalSrvc.closeAll(nSettings).then(function (data) {
+                        generalSrvc.closeAll(nSettings).then(function(data) {
                             //close all
                             vm.userIsEditSettings = data;
                             console.log(vm.userIsEditSettings);
@@ -122,15 +122,15 @@
                         //run the update
                         userSrcv.usr.update(query);
 
-                    }, function () {
+                    }, function() {
                         $scope.status = 'You cancelled the dialog.';
                     });
             };
 
 
         }
-        vm.userEditSettingsCancell = function () {
-            generalSrvc.closeAll(nAddress).then(function (data) {
+        vm.userEditSettingsCancell = function() {
+            generalSrvc.closeAll(nAddress).then(function(data) {
                 //close all
                 vm.userIsEditAddress = data;
                 console.log(vm.userIsEditAddress);
@@ -140,16 +140,16 @@
         //---------------------------------------------------------------
 
         //Address update handle------------------------------------------
-        var nAddress = vm.user.endereco.length; // number of addresses
-        generalSrvc.openAll(nAddress).then(function (data) {
+        var nAddress = vm.user.endereco.length || 0; // number of addresses
+        generalSrvc.openAll(nAddress).then(function(data) {
             vm.userIsEditAddress = data;
             console.log(vm.userIsEditAddress);
         });
-        console.log(vm.userIsEditAddress);
-        vm.userEditAddress = function (index) {
+
+        vm.userEditAddress = function(index) {
             console.log(index);
             //first close all edit area
-            generalSrvc.openAll(nAddress).then(function (data) {
+            generalSrvc.openAll(nAddress).then(function(data) {
                 //close all
                 vm.userIsEditAddress = data;
                 //open the clicked address edit area
@@ -157,15 +157,63 @@
                 console.log(vm.userIsEditAddress);
             });
         }
-        vm.userUpdateAddress = function (userAddress) {
-                console.log(userAddress);
+        vm.userUpdateAddress = function(userAddress) {
+            console.log(userAddress);
 
-                generalSrvc.openAll(nAddress).then(function (data) {
-                    vm.userIsEditAddress = data;
-                    console.log(vm.userIsEditAddress);
+            generalSrvc.openAll(nAddress).then(function(data) {
+                vm.userIsEditAddress = data;
+                console.log(vm.userIsEditAddress);
+            });
+        }
+
+        /*Remove address*/
+        vm.userRemoveAddress = function(addressId, ev) {
+            console.log(addressId);
+            //TODO: confirm dialog
+            var confirm = $mdDialog.confirm()
+                .title('Exluir endereço de entrega')
+                .textContent('Tem certeza de que deseja excluir este endereço de entrega?')
+                .ariaLabel('excluir Endereco Entrega')
+                .targetEvent(ev)
+                .ok('Confirmar!')
+                .cancel('Cancelar');
+            $mdDialog.show(confirm).then(function() {
+                // TODO: Here send query to server
+                console.log(vm.user.email);
+                userSrcv.usr.removeAddress(addressId, vm.user.email, function( newData) {
+                  //update the adress immediately
+					vm.user.endereco = newData.local.endereco;
                 });
-            }
-            //-----------------------------------------------------------------------------
+
+            }, function() {
+                //                    if not confirmed
+                //DO NOTHING
+            });
+        }
+
+        /*New Address dialog*/
+        vm.addNewAddressDialog = function(ev) {
+            userSrcv.usr.addNewAddress.dialog(ev)
+        }
+        // Add new address
+        vm.addNewAddress = function(newAddress) {
+            console.log(newAddress);
+            userSrcv.usr.addNewAddress.createNew(newAddress, function(newData){
+				  //update the address immediately
+				vm.user.endereco = newData.local.endereco;
+				console.log(vm.user.endereco);
+			});
+
+        };
+        //        vm.testDialog = function(ev) {
+        //            var message = {};
+        //            message.sucess = 0;
+        //            message.title = 'Endereço excluido com sucesso!';
+        //            userSrcv.usr.dialog(message);
+        //        }
+
+
+        //-----------------------------------------------------------------------------
 
         //Handle the left navbar-----------------------
         vm.settingsList = [{
@@ -187,18 +235,20 @@
 
         //set the first item active at page-load
         vm.active = 0;
-        vm.settingsListActive = function (index) {
-                vm.active = index;
-            }
-            //----------------------------------------------
+        vm.settingsListActive = function(index) {
+            vm.active = index;
+        }
+        //----------------------------------------------
 
         /*Left navbar----------------------------------------*/
-        vm.openLeftSidenav = function () {
+        vm.openLeftSidenav = function() {
             $mdSidenav('left').toggle();
         };
-        vm.closeSidenavLeft = function () {
+        vm.closeSidenavLeft = function() {
             $mdSidenav('left').close()
         }
+
+
     };
 
 })();

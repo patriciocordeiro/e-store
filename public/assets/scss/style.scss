@@ -14,6 +14,9 @@ $indigo:#3F51B5;
 .my-md-warn-grey {
     color: #4CAF50
 }
+.my-md-border {
+    border: 1px solid;
+}
 .my-md-menu-top {
     min-height: 100% !important;
     height: 40px !important;
@@ -64,6 +67,30 @@ $indigo:#3F51B5;
 }
 //=====================================================
 //rules bellow are for my list tables with md-card
+ .my-md-sucess-icon-outline {
+    border: 2px solid #81C784;
+    color: #4CAF50;
+}
+.my-md-sucess-icon-box {
+    background-color: #4CAF50;
+    color: white;
+}
+.my-md-icon-warn-icon-outline {
+    border: 2px solid #E57373;
+    color: #F44336;
+}
+.my-md-icon-warn-icon-box {
+    background-color: #4CAF50;
+    color: white;
+}
+.my-md-error-icon-outline {
+    border: 2px solid #E57373;
+    color: #F44336;
+}
+.my-md-error-icon-box {
+//    background-color: #F44336;
+    color: #F44336;
+}
 .even {
     background-color: white;
 }
@@ -294,7 +321,8 @@ $indigo:#3F51B5;
     -webkit-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
     -moz-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
     -o-transition: top 0.5s ease-in 0.1s, left 0s linear 0.25s;
-//    height: 350px;
+    //    height: 350px;
+
 }
 .full-menu.ng-hide {
     top: -560px;
@@ -303,7 +331,7 @@ $indigo:#3F51B5;
     //	width: 100%;
     //	border: solid 1px red;
     img {
-//        position: absolute;
+        //        position: absolute;
         top: 8%;
         //        left: 0;
         //        right: 0;
@@ -394,12 +422,9 @@ md-menu-bar {
         line-height: 20px!important;
         margin-bottom: 0;
     }
-	
-	
-
-	md-grid-list md-grid-tile figure{
-		    align-items: stretch;
-	}
+    md-grid-list md-grid-tile figure {
+        align-items: stretch;
+    }
 }
 .my-md-menu-open {
     margin-bottom: 15% !important;

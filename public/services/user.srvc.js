@@ -77,7 +77,7 @@
                 facebook: function() {},
                 googlePlus: function() {},
                 redirToUsrPage: function() {
-                    $state.go($rootScope.toState ||'app.user.dashboard.dados');
+                    $state.go($rootScope.toState || 'app.user.dashboard.dados');
                 },
                 faillMsg: function() {
                     return 'Sua tentativa de login não foi bem sucedida. Verifique os dados e tente novamente.';
@@ -178,13 +178,18 @@
 
 
             },
+            /*functions for password recover*/
+            //forgotPass: This function is fired (page: Esqueci minha senha) when user type email for instructions f or password reset
             forgotPass: function(email) {
                 var query = {};
                 var msg = {};
                 query.email = email;
                 authentication.forgotPass(query, function(res) {
                     console.log(res.user);
+
+
                     if (res.user == false) {
+                        //if email not found
                         msg = {
                             title: '<md-icon class="material-icons md-48 md-warn">error</md-icon> Operação Falhou!',
                             text: '<p>Não encontramos o e-mail digitado nos registros</p> <p>Verifique o e-mail digitado e tente novamente ou realize o seu cadastro é fácil e rápido</p> ',
@@ -195,6 +200,7 @@
                         }
 
                     } else {
+                        //If email found
                         msg = {
 
                             title: '<md-icon class="material-icons md-48 md-primary">done_all</md-icon>Operaçao realizada com sucesso',
@@ -207,17 +213,21 @@
                         }
 
                     }
-                    //Show dialog to user
+                    //Show dialog to user with the message of found or not found
                     _this.usr.dialog(msg);
 
                 })
             },
+
+            //checkResetPassToken: checks if the entered token is  valid 
             checkResetPassToken: function() {
                 console.log('executado');
                 var query = {};
                 if ($state.params.token) {
+                    //get the token from the url params
                     query.token = $state.params.token;
                     _this.usr.resetPassToken = $state.params.token;
+                    //send query to server
                     authentication.checkResetPassToken(query, function(res) {
                         var msg = {}
                         //                        console.log(res.user);
@@ -243,6 +253,8 @@
                     })
                 }
             },
+
+            //resetPass: Reset the pass 
             resetPass: function(newPassword) {
                 var query = {};
                 var msg;
@@ -264,7 +276,7 @@
                         msg = {
                             title: '<md-icon class="material-icons md-48">error</md-icon>O PROCESSO FALHOU!',
                             text: '<p>O link a qual está tentando acessar é inválido ou expirou<p>' +
-                                '<p>Click no link para recomeçar o processo de alteração de senha ou para ir para a página principal<p>',
+                                '<p>Click no link abaixo para recomeçar o processo de alteração de senha ou para ir para a página principal<p>',
                             action1: 'Esqueci minha senha',
                             link1: 'ui-sref="app.user.forgetPassword"',
                             action2: 'Home',
@@ -300,6 +312,44 @@
                     console.log('do nothing');
                 }
             },
+
+            removeAddress: function(addressId, userEmail, callback) {
+                var resData;
+                var myData;
+                var query = {
+                    addressId: addressId,
+                    email: userEmail
+                };
+                userService.updateUserData('removeAddress', query, function(data) {
+                    console.log(data);
+                    _this.usr.login.data.endereco = data.local.endereco;
+                    console.log(_this.usr.login.data);
+                    resData = data;
+
+                    //					console.log(_this.usr.login.data.endereco);
+                    //                    if (data) {
+                    //                        if (data.nModified === 1) {
+                    //                            var msg = 'Endereço de entrega excluído com sucesso';
+                    //                            //update data
+                    //                            console.log(data);
+                    //                          
+                    //
+                    //                        } else {
+                    //                            var msg = 'Nada foi alterado';
+                    //                        }
+                    //						 return true;
+                    //                    } else {
+                    //                        var msg = 'ups! Dados não atualizados. Tente novamente';
+                    //						return false;
+                    //                    }
+                    return callback(resData)
+                })
+                //                console.log(res);
+                //				return callback(res);	
+                //                return $q.when(!myData);
+
+            },
+
             updateDialog: function(msg) {
                 var alert = $mdDialog.alert()
                     .title('Olá, ' + _this.usr.login.data.local.nome)
@@ -328,7 +378,7 @@
             },
 
             addNewAddress: {
-                creteNew: function(newAddress) {
+                createNew: function(newAddress, callback) {
                     var message = {};
                     var query = {};
                     query.email = _this.usr.login.data.local.email;
@@ -340,25 +390,26 @@
                                 //pass the received data to service data
                                 _this.usr.login.data = data;
                                 console.log(_this.usr.login.data);
-                                //TODO exibir um alert message
-                                //Operação realizada
-                                message.text = 'Endereço cadastrado com sucesso!'
-                                console.log(message);
-                                _this.usr.dialog(message)
+                                message.title = 'O novo endereço foi cadastrado com sucesso.'
+                                message.sucess = 1; //newAddress
+                              
                             } else {
-                                //TODO: dialog. Operacao nao realizada
+                                message.sucess = 0; //fail
+                                message.title = 'Operacao não realizada. Tente novamente mais tarde.'
                             }
+                            _this.usr.dialog(message);
+							  return callback(data);
 
                         }, function(err) {
                             console.log('falhou', err);
                         });
 
-                    _this.usr.dialog(message)
+
 
                 },
                 dialog: function(ev) {
                     $mdDialog.show({
-                        controller: 'UserCtrl as vm',
+                        controller: 'userDashboardCtrl as vm',
                         templateUrl: 'components/dashboard/userNewAddress.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
@@ -420,25 +471,74 @@
                 console.log('closing dialog');
                 $mdDialog.hide();
             },
-			cancelDialog: function(){
-				$mdDialog.cancel();
-			},
+            cancelDialog: function() {
+                $mdDialog.cancel();
+            },
             dialog: function(message) {
                 var ev;
+                var isShowSucessIcon = false; //show icons sucess if true and icon fail if false
+                var isShowButtonLink1 = true //show/hide button link1
+                var isShowButtonLink2 = true //show/hide button link2
+                var isShowActions = true //show/hide actions div
+                var isShowMsgText = true // show/hide msg div
+                var isShowTitle = true // show/hide title div
+
+                if (!message.title) {
+                    //hide title div
+                    isShowTitle = false;
+                }
+                if (!message.text) {
+                    //hide message text div
+                    isShowMsgText = false;
+                }
+                //Show sucess icon or fail icon
+                if (message.sucess == 1) {
+                    isShowSucessIcon = true;
+                    var icon = 'done'
+                    var iconClass = 'my-md-sucess-icon-box'
+
+                } else {
+                    isShowSucessIcon = false;
+                    var iconClass = 'my-md-error-icon-box'
+                    var icon = 'error'
+                }
+                //show or hide action buttons
+                if (!message.action1) {
+                    isShowButtonLink1 = false;
+                }
+                if (!message.action2) {
+                    isShowButtonLink2 = false;
+                }
+                if (!message.action1 && !message.action2) {
+                    //hide actions div
+                    isShowActions = false;
+                }
+
                 $mdDialog.show({
                     targetEvent: ev,
                     clickOutsideToClose: false,
                     parent: angular.element(document.body),
                     controller: 'DialogCtrl as vm',
                     template: '<md-dialog aria-label="alteracao de senha" ng-cloak>' +
+                        '<div  layout="row" layout-align="end center">' +
+                        '<md-button class="md-icon-button" ng-click="vm.closeDialog()"> ' +
+                        '<md-icon class="material-icons">close</md-icon>' +
+                        '</md-button>' +
+                        '</div>' +
                         '<md-dialog-content>' +
                         '<div class="md-dialog-content">' +
-                        '<h2 class="md-title" role="alert">' + message.title + '</h2>' +
+                        '<div layout="row" layout-align="center center">' +
+                        '<md-icon class="material-icons md-60 my-md-circle"' +
+                        'ng-class="' + "'" + iconClass + "'" + '">' + icon + '</md-icon>' +
+                        '</div>' +
+                        '<h2 ng-show="' + isShowTitle + '"class="md-title my-md-smooth-title" role="alert">' + message.title + '</h2>' +
+                        '<div ng-show="' + isShowMsgText + '">' +
                         message.text +
+                        '</div>' +
                         '</md-dialog-content>' +
-                        '<md-dialog-actions>' +
-                        '<md-button class="md-primary" ng-click="vm.closeDialog()" ' + message.link1 + ' >' + message.action1 + '</md-button>' +
-                        '<md-button class="md-primary" ng-click="vm.closeDialog()" ' + message.link2 + ' >' + message.action2 + '</md-button>' +
+                        '<md-dialog-actions ng-show="' + isShowActions + '">' +
+                        '<md-button ng-show="' + isShowButtonLink1 + '"class="md-primary md-raised" ng-click="vm.closeDialog()" ' + message.link1 + ' >' + message.action1 + '</md-button>' +
+                        '<md-button ng-show="' + isShowButtonLink2 + '"class="md-primary" ng-click="vm.closeDialog()" ' + message.link2 + ' >' + message.action2 + '</md-button>' +
                         '</md-dialog-actions>' +
                         '<div>' +
                         '</md-dialog>',

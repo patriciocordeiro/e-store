@@ -22,17 +22,6 @@
         vm.keysToFilter = ['_id', 'ref_PM', 'ref_fabricante', 'imagens', 'disponibilidade', 'categoria', 'subcategoria'];
 
 
-        function tic() {
-            return new Date().getTime();
-        }
-
-        function toc(startTime) {
-            var now = new Date().getTime()
-            var execTime = now - startTime;
-            console.log('execution time', execTime, 'ms');
-            return execTime;
-        }
-
         //Query to send to server
         var prdQuery = {
             prdCatg: 'tv',
@@ -341,5 +330,8 @@
 				vm.showFilterIcon = 'expand_more'
             }
         }
+		
+		
+	
     }
 }());

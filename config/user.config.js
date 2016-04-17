@@ -3,7 +3,9 @@ var User = require('../models/user.model');
 var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
-
+var ObjectId = require('mongodb').ObjectID;
+// Create a new ObjectID
+//var ObjectId = new ObjectID();
 exports.newAddress = function(req, res) {
     console.log('requestt', req.body);
     User.findOneAndUpdate({
@@ -12,14 +14,15 @@ exports.newAddress = function(req, res) {
         $push: {
             'local.endereco': req.body.addNewAddress
         }
-    }, function(err, data) {
+    },{new: true}, function(err, data) {
         if (err)
             console.log(err);
         console.log(data);
         res.json(data)
     })
 },
-exports.updateUserEndereco = function(req, res, next) {
+
+exports.updateUserEndereco = function(req, res) {
     console.log('chegou do cliente')
     // asynchronous
     // User.findOne wont fire unless data is sent back
@@ -46,7 +49,49 @@ exports.updateUserEndereco = function(req, res, next) {
     });
 };
 
-exports.updateDadosCadastrais = function(req, res, next) {
+//exports.removeAddress = function(req, res) {
+//	console.log(req.body.email);
+//    User.update({
+//        'local.email': req.body.email
+//    }, {
+//        $pull: {
+//            'local.endereco': {'_id': ObjectId(req.body.addressId)}
+//        }
+//    }, function(err, resp) {
+//        if (err) {
+//            console.log(err);
+//            res.send(201);
+//        } else {
+//            console.log('Endereço excluido com sucesso', resp)
+//            res.send(resp);
+//        }
+//    })
+//}
+exports.removeAddress = function(req, res) {
+    console.log(req.body.email);
+    User.findOneAndUpdate({
+        'local.email': req.body.email
+    }, {
+        $pull: {
+            'local.endereco': {
+                '_id': ObjectId(req.body.addressId)
+            }
+        }
+    },{
+        new: true,
+		fields:"local.endereco"
+    }, function(err, resp) {
+        if (err) {
+            console.log(err);
+            res.send(201);
+        } else {
+            console.log('Endereço excluido com sucesso', resp)
+            res.send(resp);
+        }
+    });
+};
+//{"local.email":"pa@pa.com"},{$pull:{"local.endereco":{_id: ObjectId("56e8db60a3abc0141fc61637")}}
+exports.updateDadosCadastrais = function(req, res) {
     console.log('chegou do cliente', req.body)
     // asynchronous
     // User.findOne wont fire unless data is sent back
@@ -75,7 +120,9 @@ exports.updateDadosCadastrais = function(req, res, next) {
                     $set: query
                 }, function(err, user) {
                     console.log('TUDO CERTO');
-                    res.json({status: user});
+                    res.json({
+                        status: user
+                    });
                     //            return done(null, user);	 
                 });
             }
@@ -84,32 +131,7 @@ exports.updateDadosCadastrais = function(req, res, next) {
     });
 };
 
-//exports.updateDadosCadastrais = function(req, res, next) {
-//    console.log('chegou do cliente')
-//    // asynchronous
-//    // User.findOne wont fire unless data is sent back
-//    var query = req.body
-//    User.update({'local.email': req.body.email}, {$set: {'local': query}}, function(err, user) {
-//        if (err) {
-//            console.log(err)
-//            res.json({status: 'fail'});
-//            //return done(err)
-//        } else {
-//			//if the user is found but the password is wrong
-//            if (!user.validPassword(password)) {
-//                //            if (user.password != password) {
-//                console.log('invalid password')
-//               res.json({status: 'wrong password'});
-//            }
-//            console.log('Dados atualizados com sucesso', user)
-//            res.json({
-//                status: user
-//            });
-//            //            return done(null, user);
-//        }
-//    });
-//};
-exports.adicionaPedido = function(req, res, next) {
+exports.adicionaPedido = function(req, res) {
     var pedido = {
         'data': req.body.data,
         'compras': req.body.compras
@@ -130,8 +152,7 @@ exports.adicionaPedido = function(req, res, next) {
     });
 };
 
-
-exports.recoverUser = function(req, res, next) {
+exports.recoverUser = function(req, res) {
     console.log("Olha o que chegou aqui LOGGED USER: ", req.body);
 
     User.findOne({
@@ -150,7 +171,7 @@ exports.recoverUser = function(req, res, next) {
     });
 };
 
-exports.recoverPass = function(req, res, next) {
+exports.recoverPass = function(req, res) {
     console.log('hello');
     console.log(req.body.email);
 
@@ -222,7 +243,7 @@ exports.recoverPass = function(req, res, next) {
     });
 };
 
-exports.checkResetPassToken = function(req, res, next) {
+exports.checkResetPassToken = function(req, res) {
     console.log(req.body);
     User.findOne({
         'local.resetPasswordToken': req.body.token,
@@ -243,7 +264,7 @@ exports.checkResetPassToken = function(req, res, next) {
     })
 }
 
-exports.resetPass = function(req, res, next) {
+exports.resetPass = function(req, res) {
     async.waterfall([
 
         function(done) {

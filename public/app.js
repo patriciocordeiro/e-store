@@ -288,7 +288,7 @@ angular.module("myApp", ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies',
             authenticate: false,
             views: {
                 'products@': {
-                    templateUrl: 'components/dashboard/dashboard.view.html',
+                    templateUrl: 'components/dashboard/userDashboard.view.html',
                     controller: 'userDashboardCtrl as vm',
                 }
             },

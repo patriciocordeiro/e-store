@@ -60,8 +60,11 @@
                         <md-card class="my-md-no-shadow my-md-no-padding">
                             <md-card-title class="my-md-no-padding">
                                 <md-card-title-text>
-                                    <span layout="row" class="my-md-smooth-title"><h4 class="md-title ">Será entregue no endereço</h4><md-button layout-padding class="md-icon-button my-md-no-margin my-md-no-padding" aria-label="edit property"><i class="fa fa-pencil-square-o fa-2x"></i>
-                                    </m-button></span>
+                                    <span layout="row" class="my-md-smooth-title"><h4 class="md-title ">Será entregue no endereço:</h4>
+										<md-button ng-click="vm.addNewAddressDialog()" layout-padding class="md-icon-button my-md-no-margin my-md-no-padding" aria-label="edit property"><i class="fa fa-pencil-square-o fa-2x"></i>
+                                    </m-button>
+									</span>
+									  <h4 class="md-subheader">Destinatário:<b>{{vm.shipAddress.destinatario}}</b></h4>
                                     <span class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.shipAddress.bairro}},
                                 </span>
                                     <span class="md-subheader">CEP:{{vm.shipAddress.cep}}</span>

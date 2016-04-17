@@ -1,6 +1,6 @@
 <div layout="column" layout-wrap>
     <md-card flex="30" layout="column" layout-align="center center">
-
+<md-button ng-click="vm.userRemoveAddress(6565, $event)">teste</md-button>
         <md-card-content layout="column" layout-align="center center">
             <md-button class="md-primary md-raised md-hue-2" ng-click="vm.addNewAddressDialog($event)">
                 <md-icon class="material-icons">add_box</md-icon>
@@ -10,7 +10,7 @@
     </md-card>
     <md-card layout="column" flex="30" ng-repeat="userAddress in vm.user.endereco track by $index">
         <md-card-title class="my-md-capital" flex="none">
-            <span layout="row"><h4 class="md-title ">{{userAddress.destinatario}}</h4><md-button ng-click="vm.userEditAddress($index)" aria-label="edit" layout-padding class="md-icon-button my-md-no-margin my-md-no-padding my-md-smooth-title"><i class="fa fa-pencil-square-o fa-2x"></i>
+            <span layout="row"><h4 class="md-title ">{{userAddress.destinatario}}</h4><md-button  ng-click="vm.userEditAddress($index)" aria-label="edit" layout-padding class=" md-icon-button my-md-no-margin my-md-no-padding my-md-smooth-title"><i class="fa fa-pencil-square-o fa-2x"></i>
             </m-button></span>
         </md-card-title>
         <div flex>
@@ -19,8 +19,8 @@
                 </p>
                 <p>CEP: {{userAddress.cep}}</p>
                 <p>{{userAddress.cidade}} - {{userAddress.estado}}
-                    <md-button flex="30" aria-label="remove item" class="md-icon-button my-md-no-margin my-md-no-padding">
-                        <i class="fa fa-trash-o fa-2x"></i>
+                    <md-button  ng-click="vm.userRemoveAddress(userAddress._id, ev)" flex="30" aria-label="remove endereco" class="md-warn md-icon-button my-md-no-margin my-md-no-padding">
+                        <i class="fa fa-trash-o"></i>
                     </md-button>
                 </p>
             </md-card-content>
