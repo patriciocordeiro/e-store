@@ -14,7 +14,9 @@ exports.newAddress = function(req, res) {
         $push: {
             'local.endereco': req.body.addNewAddress
         }
-    },{new: true}, function(err, data) {
+    }, {
+        new: true
+    }, function(err, data) {
         if (err)
             console.log(err);
         console.log(data);
@@ -22,19 +24,21 @@ exports.newAddress = function(req, res) {
     })
 },
 
-exports.updateUserEndereco = function(req, res) {
-    console.log('chegou do cliente')
+exports.updateAddress = function(req, res) {
+    console.log('chegou do cliente', req.body)
     // asynchronous
     // User.findOne wont fire unless data is sent back
-    var query = req.body.endereco
+    var query = req.body.addNewAddress
 
     User.update({
         'local.email': req.body.email
     }, {
+        'local.endereco':{'_id': ObjectId(req.body.addressId)}
+    }, {
         $set: {
-            'local.endereco': query
+            'local.endereco.destinatario':query.destinatario
         }
-    }, function(err, user) {
+	} , function(err, user) {
         if (err) {
             console.log(err)
             res.send(201);
@@ -77,9 +81,9 @@ exports.removeAddress = function(req, res) {
                 '_id': ObjectId(req.body.addressId)
             }
         }
-    },{
+    }, {
         new: true,
-		fields:"local.endereco"
+        fields: "local.endereco"
     }, function(err, resp) {
         if (err) {
             console.log(err);

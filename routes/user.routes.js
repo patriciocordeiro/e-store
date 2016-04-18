@@ -71,7 +71,7 @@ module.exports = function(app, express, passport, User) {
     });
 
     router.post('/user/addNewAddress', User.newAddress)
-    router.post('/user/updateAddress', User.updateUserEndereco);
+    router.post('/user/updateAddress', User.updateAddress);
     router.post('/user/removeAddress', User.removeAddress);
     router.post('/user/updateDadosCadastrais', User.updateDadosCadastrais);
     router.post('/user/adicionaPedido', User.adicionaPedido);

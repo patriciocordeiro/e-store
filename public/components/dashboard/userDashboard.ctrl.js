@@ -140,7 +140,10 @@
         //---------------------------------------------------------------
 
         //Address update handle------------------------------------------
-        var nAddress = vm.user.endereco.length || 0; // number of addresses
+		var nAddress = 0 ;//Total of user addresses
+		if(vm.user.endereco){
+			var nAddress = vm.user.endereco.length;
+		}
         generalSrvc.openAll(nAddress).then(function(data) {
             vm.userIsEditAddress = data;
             console.log(vm.userIsEditAddress);
@@ -159,7 +162,6 @@
         }
         vm.userUpdateAddress = function(userAddress) {
             console.log(userAddress);
-
             generalSrvc.openAll(nAddress).then(function(data) {
                 vm.userIsEditAddress = data;
                 console.log(vm.userIsEditAddress);
@@ -180,7 +182,7 @@
             $mdDialog.show(confirm).then(function() {
                 // TODO: Here send query to server
                 console.log(vm.user.email);
-                userSrcv.usr.removeAddress(addressId, vm.user.email, function( newData) {
+                userSrcv.usr.address.remove(addressId, vm.user.email, function( newData) {
                   //update the adress immediately
 					vm.user.endereco = newData.local.endereco;
                 });
@@ -193,12 +195,12 @@
 
         /*New Address dialog*/
         vm.addNewAddressDialog = function(ev) {
-            userSrcv.usr.addNewAddress.dialog(ev)
+            userSrcv.usr.address.dialog(ev, $scope)
         }
         // Add new address
         vm.addNewAddress = function(newAddress) {
             console.log(newAddress);
-            userSrcv.usr.addNewAddress.createNew(newAddress, function(newData){
+            userSrcv.usr.address.add(newAddress, function(newData){
 				  //update the address immediately
 				vm.user.endereco = newData.local.endereco;
 				console.log(vm.user.endereco);

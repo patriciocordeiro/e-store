@@ -312,44 +312,109 @@
                     console.log('do nothing');
                 }
             },
+            address: {
+                //dialog for add/modify address
+                dialog: function(ev, scope) {
+                    $mdDialog.show({
+                        scope: scope,
+                        preserveScope: true,
+                        controller: function DialogController($scope, $mdDialog) {
+                            $scope.cancelDialog = function() {
+                                $mdDialog.cancel();
+                            }
+                            $scope.closeDialog = function() {
+                                $mdDialog.hide();
+                            }
+                        },
+                        //                        controller: 'userDashboardCtrl as vm',
+                        templateUrl: 'components/dashboard/userNewAddressDiag.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true
+                    })
+                    //                    .then(function(answer) {
+                    ////                        $scope.status = 'You said the information was "' + answer + '".';
+                    //                    }, function() {
+                    ////                        $scope.status = 'You cancelled the dialog.';
+                    //                    });
+                },
+                //Add new address
+                //TODO: must specify max number of address
+                add: function(newAddress, callback) {
+                    var message = {};
+                    var query = {};
+                    query.email = _this.usr.login.data.local.email;
+                    query.addNewAddress = newAddress;
+                    _this.usr.httpCom('addNewAddress', query).then(
+                        function(data) {
+                            if (data.local) {
+                                console.log(data);
+                                //pass the received data to service data
+                                _this.usr.login.data = data;
+                                console.log(_this.usr.login.data);
+                                message.title = 'O novo endereço foi cadastrado com sucesso.'
+                                message.sucess = 1; //newAddress
 
-            removeAddress: function(addressId, userEmail, callback) {
-                var resData;
-                var myData;
-                var query = {
-                    addressId: addressId,
-                    email: userEmail
-                };
-                userService.updateUserData('removeAddress', query, function(data) {
-                    console.log(data);
-                    _this.usr.login.data.endereco = data.local.endereco;
-                    console.log(_this.usr.login.data);
-                    resData = data;
+                            } else {
+                                message.sucess = 0; //fail
+                                message.title = 'Operacao não realizada. Tente novamente mais tarde.'
+                            }
+                            _this.usr.dialog(message);
+                            return callback(data);
 
-                    //					console.log(_this.usr.login.data.endereco);
-                    //                    if (data) {
-                    //                        if (data.nModified === 1) {
-                    //                            var msg = 'Endereço de entrega excluído com sucesso';
-                    //                            //update data
-                    //                            console.log(data);
-                    //                          
-                    //
-                    //                        } else {
-                    //                            var msg = 'Nada foi alterado';
-                    //                        }
-                    //						 return true;
-                    //                    } else {
-                    //                        var msg = 'ups! Dados não atualizados. Tente novamente';
-                    //						return false;
-                    //                    }
-                    return callback(resData)
-                })
-                //                console.log(res);
-                //				return callback(res);	
-                //                return $q.when(!myData);
+                        }, function(err) {
+                            console.log('falhou', err);
+                        });
 
+                },
+                update: function(newAddress, callback) {
+					var query={};
+                    query.email = _this.usr.login.data.local.email;
+                    query.addNewAddress = newAddress;
+                    _this.usr.httpCom('updateAddress', query).then(
+                        function(data) {
+						console.log(data);	
+                        })
+                },
+
+                //Remove address
+                remove: function(addressId, userEmail, callback) {
+                    var resData;
+                    var myData;
+                    var query = {
+                        addressId: addressId,
+                        email: userEmail
+                    };
+                    userService.updateUserData('removeAddress', query, function(data) {
+                        console.log(data);
+                        _this.usr.login.data.endereco = data.local.endereco;
+                        console.log(_this.usr.login.data);
+                        resData = data;
+
+                        //					console.log(_this.usr.login.data.endereco);
+                        //                    if (data) {
+                        //                        if (data.nModified === 1) {
+                        //                            var msg = 'Endereço de entrega excluído com sucesso';
+                        //                            //update data
+                        //                            console.log(data);
+                        //                          
+                        //
+                        //                        } else {
+                        //                            var msg = 'Nada foi alterado';
+                        //                        }
+                        //						 return true;
+                        //                    } else {
+                        //                        var msg = 'ups! Dados não atualizados. Tente novamente';
+                        //						return false;
+                        //                    }
+                        return callback(resData)
+                    })
+                    //                console.log(res);
+                    //				return callback(res);	
+                    //                return $q.when(!myData);
+
+                },
             },
-
             updateDialog: function(msg) {
                 var alert = $mdDialog.alert()
                     .title('Olá, ' + _this.usr.login.data.local.nome)
@@ -376,53 +441,6 @@
                     });
                 return defer.promise;
             },
-
-            addNewAddress: {
-                createNew: function(newAddress, callback) {
-                    var message = {};
-                    var query = {};
-                    query.email = _this.usr.login.data.local.email;
-                    query.addNewAddress = newAddress;
-                    _this.usr.httpCom('addNewAddress', query).then(
-                        function(data) {
-                            if (data.local) {
-                                console.log(data);
-                                //pass the received data to service data
-                                _this.usr.login.data = data;
-                                console.log(_this.usr.login.data);
-                                message.title = 'O novo endereço foi cadastrado com sucesso.'
-                                message.sucess = 1; //newAddress
-                              
-                            } else {
-                                message.sucess = 0; //fail
-                                message.title = 'Operacao não realizada. Tente novamente mais tarde.'
-                            }
-                            _this.usr.dialog(message);
-							  return callback(data);
-
-                        }, function(err) {
-                            console.log('falhou', err);
-                        });
-
-
-
-                },
-                dialog: function(ev) {
-                    $mdDialog.show({
-                        controller: 'userDashboardCtrl as vm',
-                        templateUrl: 'components/dashboard/userNewAddress.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true
-                    })
-                    //                    .then(function(answer) {
-                    ////                        $scope.status = 'You said the information was "' + answer + '".';
-                    //                    }, function() {
-                    ////                        $scope.status = 'You cancelled the dialog.';
-                    //                    });
-                }
-            },
-            //recover  already loggedin user    
             recoverUser: function() {
                 console.info('RECOVERING USER');
                 var defer = $q.defer();
@@ -518,6 +536,7 @@
                     targetEvent: ev,
                     clickOutsideToClose: false,
                     parent: angular.element(document.body),
+                    clickOutsideToClose: true,
                     controller: 'DialogCtrl as vm',
                     template: '<md-dialog aria-label="alteracao de senha" ng-cloak>' +
                         '<div  layout="row" layout-align="end center">' +

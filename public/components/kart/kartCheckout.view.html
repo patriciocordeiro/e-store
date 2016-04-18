@@ -64,7 +64,7 @@
 										<md-button ng-click="vm.addNewAddressDialog()" layout-padding class="md-icon-button my-md-no-margin my-md-no-padding" aria-label="edit property"><i class="fa fa-pencil-square-o fa-2x"></i>
                                     </m-button>
 									</span>
-									  <h4 class="md-subheader">Destinatário:<b>{{vm.shipAddress.destinatario}}</b></h4>
+                                    <h4 class="md-subheader">Destinatário:<b>{{vm.shipAddress.destinatario}}</b></h4>
                                     <span class="md-subheader">{{vm.shipAddress.endereco}}, {{vm.shipAddress.numero}}, {{vm.shipAddress.complemento}}, {{vm.shipAddress.referencia}}, {{vm.shipAddress.bairro}},
                                 </span>
                                     <span class="md-subheader">CEP:{{vm.shipAddress.cep}}</span>
@@ -168,11 +168,26 @@
                                                     <div class="md-list-item-text md-long-text" layout="column">
                                                         <h3 class="my-md-capital">{{prd.categoria}} {{prd.ref_PM}}</h3>
                                                         <p class="my-md-capital">{{prd.descricao}}</p>
-                                                        <p>Quantidade:&nbsp;{{prd.buyQty}}&nbsp;-&nbsp;{{ prd.selDelivery.text}}
-                                                            <md-button flex="30" aria-label="edit property" class="md-icon-button my-md-no-margin my-md-no-padding">
+                                                        <div ng-show="$index==vm.isEditBuyQty" layout="row" layout-align="center center">
+                                                            <span flex="none">Quantidade:</span>
+                                                            <div layout-padding>
+                                                                <md-input-container>
+                                                                    <input style="text-align:center" type="number" maxlength="3" step="1" ng-model="vm.kartData[$index].buyQty" ng-click="vm.getKartUpdate($index, vm.kartData[$index].buyQty)" min="1" max="100">
+                                                                </md-input-container>
+                                                            </div>
+                                                            <div flex>
+                                                                <md-button ng-click="vm.closeItemEdit()" class="md-warn  md-icon-button"><md-icon class="material-icons">refresh</md-icon>
+																<md-tooltip>Atualizar</md-tooltip>
+																</md-button>
+                                                            </div>
+                                                        </div>
+                                                        <p ng-hide="$index==vm.isEditBuyQty">
+                                                            Quantidade:&nbsp;{{prd.buyQty}}&nbsp;-&nbsp;{{ prd.selDelivery.text}}
+
+                                                            <md-button ng-click="vm.enableItemEdit($index)" flex="30" aria-label="edit property" class="md-icon-button my-md-no-margin my-md-no-padding">
                                                                 <i class="fa fa-pencil-square-o"></i>
                                                             </md-button>
-                                                            <md-button flex="30" aria-label="remove item" class="md-icon-button my-md-no-margin my-md-no-padding">
+                                                            <md-button ng-click="vm.remItem($index, $event)" flex="30" aria-label="remove item" class="md-icon-button my-md-no-margin my-md-no-padding">
                                                                 <i class="fa fa-trash-o"></i>
                                                             </md-button>
                                                         </p>

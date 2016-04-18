@@ -1,10 +1,10 @@
 (function() {
     "use strict";
-    angular.module('myApp').controller('KartCtrl', ['$rootScope', '$q', '$cookies',
+    angular.module('myApp').controller('KartCtrl', ['$scope', '$rootScope', '$q', '$cookies',
         '$mdDialog', 'productSrvc', 'httpUserService', 'userSrcv', KartCtrl
     ]);
 
-    function KartCtrl($rootScope, $q, $cookies, $mdDialog, productSrvc, httpUserService, userSrcv) {
+    function KartCtrl($scope, $rootScope, $q, $cookies, $mdDialog, productSrvc, httpUserService, userSrcv) {
         /*Variables declaration*/
         var vm = this;
         var prdSrvc = productSrvc //pass all product services to variable prdSrvc
@@ -14,6 +14,7 @@
         vm.progressCircularMode = 'indeterminate'; // Progress circular
         vm.isKartEmpty = prdSrvc.prd.kart.isEmpty;
         vm.shipAddress = ''; //Ship address
+        vm.newAddress = '';
         console.log(vm.isKartEmpty);
         vm.kartData = prdSrvc.prd.kart.data;
         //        console.log(vm.kartData);
@@ -50,7 +51,6 @@
         /*Remove item from chart*/
         vm.remItem = function(index, ev) {
             //TODO: Confirmation dialog
-
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
                 .title('Apagar item do carrinho')
@@ -60,16 +60,13 @@
                 .ok('Apagar!')
                 .cancel('Cancelar');
             $mdDialog.show(confirm).then(function() {
-               prdSrvc.prd.kart.remItem(index);
-            //update the local kart Total
-            vm.kartTotal = prdSrvc.prd.kart.total;
-            vm.isKartEmpty = prdSrvc.prd.kart.isEmpty;
-            //update kart total items
-            vm.kartTotalItems = vm.kartData.length;;
-            }, function() {
-              
-            });
-            
+                prdSrvc.prd.kart.remItem(index);
+                //update the local kart Total
+                vm.kartTotal = prdSrvc.prd.kart.total;
+                vm.isKartEmpty = prdSrvc.prd.kart.isEmpty;
+                //update kart total items
+                vm.kartTotalItems = vm.kartData.length;;
+            }, function() {});
         }
         //---------------------------------------------------------
 
@@ -136,16 +133,25 @@
             console.log(vm.kartData[0].selDelivery.cost + Number(vm.kartTotal));
         }
         /*-----------------------------------------------------------------*/
-
+        //ADDRESS HANDLE
+        /*-----------------------------------------------------------------*/
         /*New Address dialog*/
         vm.addNewAddressDialog = function(ev) {
-            userSrcv.usr.addNewAddress.dialog(ev)
+            userSrcv.usr.address.dialog(ev, $scope);
         }
-
+        //use Add new address to update Address
+        vm.addNewAddress = function(newAddress) {
+            console.log('atualizando endereco: ', newAddress);
+            userSrcv.usr.address.update(newAddress, function(newData) {});
+        };
+        //Sets the selected ship address
         vm.selShipAddress = function(index) {
             vm.shipAddress = vm.userData.endereco[index];
-            console.log(index);
+            //Pass this to new address. If user choose update address
+            vm.newAddress = vm.shipAddress;
+            console.log('Endereco para ediçao', vm.addNewAddress);
         }
+        //------------------------------------------------------------------------
 
         vm.payOption = ["Cartao de Crédito", "Transferência", "Boleto Bancário"];
         vm.creditCardType = [{
@@ -192,5 +198,13 @@
 
 
         }
+
+        vm.isEditBuyQty = -1;
+        vm.enableItemEdit = function(index) {
+            vm.isEditBuyQty = index;
+        }
+		vm.closeItemEdit = function(){
+			vm.isEditBuyQty = -1;
+		}
     }
 }());

@@ -4,7 +4,7 @@
             <div class="md-toolbar-tools">
                 <h2>Adicionar novo endereço de entrega</h2>
                 <span flex></span>
-                <md-button ng-click="vm.closeDiag()" class="md-icon-button">
+                <md-button ng-click="cancelDialog()" class="md-icon-button">
                     <md-icon class="material-icons">close</md-icon>
                 </md-button>
             </div>
@@ -95,8 +95,8 @@
                 <!--                    </md-card-content>-->
                 <!--                </md-card>-->
                 <div layout-gt-md="row" flex layout-align="center center">
-                    <md-button type="submit" class="md-primary md-raised" >Salvar Endereco</md-button>
-                    <md-button   class="md-primary" ng-click="vm.closeDiag()">Cancelar</md-button>
+                    <md-button type="submit" class="md-primary md-raised" ng-click="closeDialog()">Salvar Endereco</md-button>
+                    <md-button   class="md-primary" ng-click="cancelDialog()">Cancelar</md-button>
                 </div>
                 <md-divider></md-divider>
             </div>
