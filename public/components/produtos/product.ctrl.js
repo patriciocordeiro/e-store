@@ -6,17 +6,17 @@
         /*Variable declarion*/
         var vm = this;
         var prdSrvc = productSrvc;
-		/*fixed columns in product listing*/
-		vm.prdFixedCols = prdSrvc.prd.fixedCols;
-//		    fixedCols: ['Imagens', 'No P&M', 'No. Fabricante', 'Desc.', 'Disp.', 'Preço', 'Qtd.'],
-		vm.columnsSizes = [10, 10, 35, 10, 10 ,10]
-		/*Recover data if no any*/
+        /*fixed columns in product listing*/
+        vm.prdFixedCols = prdSrvc.prd.fixedCols;
+        //		    fixedCols: ['Imagens', 'No P&M', 'No. Fabricante', 'Desc.', 'Disp.', 'Preço', 'Qtd.'],
+        vm.columnsSizes = [10, 10, 35, 10, 10, 10]
+        /*Recover data if no any*/
         prdSrvc.prd.recoverData();
         /*recover kart*/
         prdSrvc.prd.kart.recover();
 
         vm.prdQty = prdSrvc.prd.qty; // products quantities
-		console.error(vm.prdQty);
+        console.error(vm.prdQty);
         vm.newData = prdSrvc.prd; //sinalization of new incoming data
         vm.caracLimit = 2 //Numbers of caracteristics to show (products)
         vm.keysToFilter = ['_id', 'ref_PM', 'ref_fabricante', 'imagens', 'disponibilidade', 'categoria', 'subcategoria'];
@@ -242,8 +242,8 @@
 
         //-------------------------------------------------------
         /*Paginagination of the list table*/
-		 vm.itemPerPage = 5;
-		vm.itemPerPageArr = [5, 10, 25];
+        vm.itemPerPage = 5;
+        vm.itemPerPageArr = [5, 10, 25];
         var getNumOfPages = function(data) {
             var NumOfPages = [];
             var i = 0;
@@ -254,7 +254,7 @@
             return NumOfPages;
         }
 
-       
+
         vm.start = 0;
         vm.currentPage = 0;
         vm.disablePrevBtn = true;
@@ -291,7 +291,7 @@
                 vm.disableNextBtn = false;
             }
             vm.isActive(page);
-			 console.log(vm.prdQty);
+            console.log(vm.prdQty);
         }
         vm.prevPage = function() {
             if (vm.currentPage > 0) {
@@ -317,21 +317,19 @@
         //-------------------------------------------------------
         /*Show hide product filters*/
         vm.buttonText = 'Ocultar Filtros'
-		vm.showFilters = true,
-		vm.showFilterIcon = 'expand_more'
+        vm.showFilters = true,
+        vm.showFilterIcon = 'expand_more'
         vm.showHideFilters = function() {
-			vm.showFilters = !vm.showFilters
-			console.log(vm.showFilters);
+            vm.showFilters = !vm.showFilters
+            console.log(vm.showFilters);
             if (vm.showFilters) {
                 vm.buttonText = 'Ocultar Filtros';
-				vm.showFilterIcon = 'expand_less'
+                vm.showFilterIcon = 'expand_less'
             } else {
                 vm.buttonText = 'Mostrar Filtros';
-				vm.showFilterIcon = 'expand_more'
+                vm.showFilterIcon = 'expand_more'
             }
         }
-		
-		
-	
+
     }
 }());

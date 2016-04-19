@@ -121,19 +121,19 @@
                         <img ng-src={{prd.imagens}}>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[1]}}">
-                        <md-button href="#/app/produtos/categoria/{{prd.categoria}}/{{prd._id}}" class="md-primary my-md-link-btn">{{prd.ref_PM}}</md-button>
+                        <md-button href="#/app/produtos/categoria/{{prd.categoria}}/{{prd._id}}"  md-no-ink class="md-primary my-md-link-btn">{{prd.ref_PM}}</md-button>
                     </md-list-item>
                     <!--
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}"><span class="md-subhead">{{prd.ref_fabricante}}</span>
                     </md-list-item>
 -->
-                    <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}" href="#/app/produtos/categoria/{{prd.categoria}}/{{prd._id}}">
-                        <md-button class="md-primary md-hue-2 my-md-normlWhiteSpace my-md-link-btn"><span class="my-md-capital md-subhead">{{prd.descricao}}</span></md-button>
+                    <md-list-item flex-gt-sm="{{vm.columnsSizes[2]}}" >
+                        <md-button md-no-ink class="md-primary md-hue-2 my-md-normlWhiteSpace my-md-link-btn"><span class="my-md-capital md-subhead" ui-sref="app.produtos.categoria/{{prd.categoria}}/{{prd._id}}">{{prd.descricao}}</span></md-button>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[3]}}"><span class="md-subhead">{{prd.disponibilidade}}</span>
                     </md-list-item>
                     <md-list-item flex-gt-sm="{{vm.columnsSizes[5]}}">
-                        <md-button class="md-warn my-md-link-btn">
+                        <md-button md-no-ink class="md-warn my-md-link-btn">
                             <p class="md-title">{{prd.preco | currency:"R$ "}}</p>
                         </md-button>
                     </md-list-item>

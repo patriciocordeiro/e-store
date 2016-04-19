@@ -1,18 +1,62 @@
-<md-dialog aria-label="newAddressForm" ng-cloak>
-    <form name="addNewAddressForm" ng-submit="addNewAddressForm.$valid &&  vm.addNewAddress(vm.newAddress)" novalidate>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Adicionar novo endereço de entrega</h2>
-                <span flex></span>
-                <md-button ng-click="cancelDialog()" class="md-icon-button">
-                    <md-icon class="material-icons">close</md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
-        <md-dialog-content>
-            <div class="md-dialog-content" flex="100">
+<md-dialog aria-label="productReview" ng-cloak flex-gt-lg="40" flex="80" flex-gt-sm="60">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Avalie este Produto</h2>
+            <span flex></span>
+            <md-button ng-click="cancelDialog()" class="md-icon-button">
+                <md-icon class="material-icons">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div label="product-desciption" layout="row">
+                <img class="md-avat my-md-padding-left my-md-padding-right" ng-src="{{vm.prdData.imagens}}">
+                <h4 class="md-title my-md-smooth-title">{{vm.prdData.descricao}}</h4>
+                </md-list>
 
             </div>
-        </md-dialog-content>
+            <md-list flex-gt-md="70" layout-gt-sm="row" layout-align="start center">
+                <md-list-item flex="none">
+                    <h2 class="md-title">Sua nota:</h2>
+                </md-list-item>
+                <md-list-item flex="none">
+                    <div awesome-rating="vm.ReviewStars" class="fa fa-3x" awesome-rating-options="vm.awesomeRatingReviewOptions">
+                    </div>
+
+                </md-list-item>
+                <md-list-item flex="none" ng-if="vm.ReviewStars>0">
+                    <h2 class="md-headline my-md-smooth-title"><b>{{vm.ReviewStars}}</b></h2>
+                </md-list-item>
+                <md-list-item flex="none" layout="row" ng-if="vm.ReviewStars==0">
+                    <h2 class="md-headline my-md-smooth-title">Sem nota</h2>
+                </md-list-item>
+            </md-list>
+            <div ng-if="vm.ReviewStars>0">
+                <form name="productReviewForm" layout-margin novalidate>
+                    <div flex layout="column">
+                        <md-input-container class="md-block">
+                            <label>Digite aqui o título da sua avaliação</label>
+                            <input type="text" ng-model="contact.name" required>
+                        </md-input-container>
+                        <md-input-container class="my-md-no-margin">
+                            <textarea placeholder="Escreva o seu comentário aqui" cols="1" ng-model="vm.contactMsg" ng-keydown="vm.getNumOfChars()" required maxlength="{{vm.maxNumOfChars}}"></textarea>
+
+                        </md-input-container>
+                        <span class="md-subheader"><b>Caracteres restantes: {{vm.remainChars}}</b></span>
+							<span flex layout-margin></span>
+                        <div layout="row"  layout-align="center end">
+						
+                            <div flex flex-gt-xs="60" layout="column">
+                                <md-button class="md-primary" ng-class="{'md-raised':productReviewForm.$dirty && productReviewForm.$valid}" type="submit">Enviar avaliação</md-button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </md-dialog-content>
     </form>
 </md-dialog>

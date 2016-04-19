@@ -1,10 +1,10 @@
 (function() {
     "use strict";
-    angular.module('myApp').controller('PrdDetailCtrl', ['$rootScope', '$cookies', '$stateParams', '$mdDialog', 'productSrvc',
+    angular.module('myApp').controller('PrdDetailCtrl', ['$rootScope', '$scope', '$cookies', '$stateParams', '$mdDialog', 'productSrvc',
         PrdDetailCtrl
     ]);
 
-    function PrdDetailCtrl($rootScope, $cookies, $stateParams, $mdDialog, productSrvc) {
+    function PrdDetailCtrl($rootScope, $scope, $cookies, $stateParams, $mdDialog, productSrvc) {
         var vm = this;
 
         var prd = productSrvc;
@@ -24,8 +24,8 @@
 
 
         /* Get Compra*/
-//        vm.prdQty = prd.prdKartBuyQty //store the quantity (uses ng-model
-		 vm.prdQty = 1;
+        //        vm.prdQty = prd.prdKartBuyQty //store the quantity (uses ng-model
+        vm.prdQty = 1;
         vm.prdGetBuy = function(prdQty) {
             console.log(prdId);
             prd.prd.kart.addItem(prdId, prdQty);
@@ -57,6 +57,13 @@
             readonly: true,
             applyHoverCss: false
         }
+
+        vm.ReviewStars = 0; //Total review stars (start with 0)
+        vm.awesomeRatingReviewOptions = {
+            readonly: false,
+        }
+
+
         //--------------------------------------------------
 
         /*Social buttons*/
@@ -108,6 +115,40 @@
             qty: 25,
             percent: 15
         }]
+
+
+        /*Product review dialog*/
+        vm.reviewDialog = function(ev) {
+            $mdDialog.show({
+                scope: $scope,
+                preserveScope: true,
+                controller: function DialogController($scope, $mdDialog) {
+                    $scope.cancelDialog = function() {
+                        $mdDialog.cancel();
+                    }
+                    $scope.closeDialog = function() {
+                        $mdDialog.hide();
+                    }
+                },
+                //                        controller: 'userDashboardCtrl as vm',
+                templateUrl: 'components/produtos/productReviewDialg.view.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true
+            })
+        }
+
+        //Text area Character count*/
+        //this will have the message
+        vm.contactMsg = '';
+        //max number of chars
+        vm.maxNumOfChars = 1000;
+        //remaining chars to enter
+        vm.remainChars = vm.maxNumOfChars;
+        vm.getNumOfChars = function() {
+            console.log(vm.contactMsg.length);
+            vm.remainChars = vm.maxNumOfChars - vm.contactMsg.length
+        }
         //-----------------------------------------------------
     }; //End of function PrdDetailCtrl
 }());
