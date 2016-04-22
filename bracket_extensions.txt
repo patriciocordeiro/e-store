@@ -1,0 +1,17 @@
+Autoprefixer
+Autosave on View Change
+Beautify
+Brackets Bower
+Delkos Dark Theme
+AngularJS Code Hints
+Extensions Ratings
+Brackets Css Color Preview
+Brackets File Tabs
+Brackets Git
+Indent Guides
+JSCS and JSHint
+Whitespace Normalizer
+AngularJS for Brackets
+Paste and Indent
+Emmet
+Unused Files

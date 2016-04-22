@@ -16,7 +16,7 @@
                             <img id="zoom_01" src="../../assets/img/prdDetail/thumb/image3.jpg" />
                         </a>
                         <a href="#" data-image="../../assets/img/prdDetail/small/image4.png" data-zoom-image="../../assets/img/prdDetail/large/image4.jpg">
-                            <img id="zoom_01" src="../../assets/img/prdDetail/	thumb/image4.jpg" />
+                            <img id="zoom_01" src="../../assets/img/prdDetail/    thumb/image4.jpg" />
                         </a>
                     </div>
                 </md-card-content>
@@ -31,16 +31,18 @@
                         <span class="my-md-border-bottom" layout="row" layout-wrap layout-align="center center">
                         <div class="product-rating" ng-mouseenter="vm.showHideRatingPopOver()" ng-mouseleave="vm.showHideRatingPopOver()">
                             <md-button class=" my-md-link-btn" style="z-index=2" >
-                                <div style="font-size:14px" awesome-rating="6" class="fa fa-2x" awesome-rating-options="vm.awesomeRatingOptions">
+                                <div style="font-size:14px" awesome-rating="6" class="fa" awesome-rating-options="vm.awesomeRatingOptions">
                                 </div>
                                 <md-icon class="material-icons">arrow_drop_down</md-icon>
                             </md-button>
-                            <div class="rating-pop-over" ng-show=" vm.isShowPopOver">
+                            <div class="rating-pop-over" ng-show="vm.isShowPopOver">
                                 <md-card class="my-md-no-margin">
-                                    <md-list>
+                                    <md-list class="rating-box">
                                         <md-list-item ng-repeat="prdRating in  vm.productRating">
                                             <md-button class="md-primary my-md-link-btn md-icon-button my-md-no-padding">{{prdRating.stars}}</md-button>
+
                                             <md-progress-linear md-mode="determinate" value="{{prdRating.qty}}"></md-progress-linear>
+
                                             <p layout-padding class="md-subheader">{{prdRating.percent}}%</p>
                                         </md-list-item>
                                     </md-list>
@@ -49,12 +51,11 @@
                         </div>
                         <div id="reviews-total">
                             <md-button ng-click="vm.showAlert()" class="md-primary my-md-link-btn">20 avaliações</md-button>
-
                         </div>
                         <div flex>
                             <md-button ng-click="vm.reviewDialog($event)" class="md-primary md-hue-2 my-md-link-btn">Avaliar</md-button>
                         </div>
-					</span>
+                    </span>
                     </md-card>
                     <md-card hide-gt-sm flex-order-xs="1" flex-order-gt-md="0" layout="column" layout-align="center center" class="my-md-no-shadow " flex-gt-md="40" id="imagem">
                         <md-card-content flex layout-align="center center" class="my-md-no-padding-right my-md-no-padding-left ">
@@ -65,8 +66,6 @@
                         <md-card-content>
                             <h2 class="md-subheader"><b>Preço:</b> <span class="md-title my-md-warn-DeepOrange">{{vm.prdData.preco| currency:"R$ "}}</span></h2>
                             <h2 class="md-subhead my-md-warn-grey">Em estoque.</h2>
-                            <!--                            <div>-->
-
                         </md-card-content>
                     </md-card>
                     <md-card label="shipping" class="my-md-no-shadow">
@@ -76,7 +75,6 @@
                                     <md-button layout="column" layout-wrap class="md-primary my-md-normlWhiteSpace my-md-link-btn">
                                         <md-icon flex class="material-icon">local_shipping</md-icon><span><p>Frete e prazos de entrega</p></span>
                                     </md-button>
-
                                 </md-list-item>
                                 <md-divider></md-divider>
                                 <md-list-item flex layout-align="center center">
@@ -112,8 +110,8 @@
                         <h4 class="md-subheader "><span class="md-tilte"><b>Disponibilidade: </b>{{vm.prdData.disponibilidade}}</span></h4>
                         <span layout-margin></span>
                         <h3 class="md-subheader">
-						Qty min: <span class="md-subhead">10</span>
-						</h3>
+                        Qty min: <span class="md-subhead">10</span>
+                        </h3>
                         <span layout-margin></span>
                         <md-input-container class="md-block">
                             <label>Quantidade:</label>
@@ -129,7 +127,8 @@
     </md-card>
     <md-divider></md-divider>
     <md-card class="my-md-no-shadow">
-        <md-tabs>
+
+        <md-tabs md-dynamic-height md-border-bottom layout-padding>
             <md-tab label="Caraterísticas">
                 <md-list>
                     <md-list-item ng-repeat="(key, val) in vm.prdData.caracteristicas" ng-class="{even:$even, odd:$odd}">
@@ -140,6 +139,68 @@
                 </md-list>
             </md-tab>
             <md-tab label="Avaliações">
+                <md-card class="my-md-no-shadow my-md-no-padding my-md-no-margin">
+                    <md-card-title>
+                        <h2 class="md-headline">Avaliações dos clientes</h2>
+                    </md-card-title>
+
+                    <md-card-content>
+                        <div layout-gt-xs="row">
+                            <div flex="none">
+                                <div awesome-rating="vm.averageStars" class="fa fa-2x" awesome-rating-options=" vm.averageStarsOptions" allowFractional="true">
+                                </div>&nbsp;
+                                <span class="md-title my-md-smooth-title">{{vm.totalReviews}} Avaliações</span>
+
+                                <h4 class="my-md-smooth-title">Nota média:&nbsp;{{vm.averageStars | number : 1}}</h4>
+                                <md-list class="rating-box">
+                                    <md-list-item ng-repeat="prdRating in  vm.productRating">
+                                        <md-button class="md-primary my-md-link-btn md-icon-button my-md-no-padding">{{prdRating.stars}}</md-button>
+                                        <md-progress-linear md-mode="determinate" value="{{prdRating.qty}}"></md-progress-linear>
+                                        <p layout-padding class="md-subheader">{{prdRating.percent}}%</p>
+                                    </md-list-item>
+                                </md-list>
+                            </div>
+                            <md-divider></md-divider>
+                            <div flex>
+                                <md-button ng-click="vm.reviewDialog($event)"  class="md-primary md-raised ">Avaliar este produto</md-button>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+
+                <md-list>
+                    <md-divider></md-divider>
+                    <md-list-item class="md-3-line md-long-text my-md-no-margin" ng-repeat="reviews in vm.usersReview">
+                        <div layout-gt-xs="row">
+                            <div flex="80" layout-padding>
+                                <div class="md-list-item-text my-md-padding-top my-md-padding-bot     ">
+                                    <h3 class="md-title">
+                            <div  awesome-rating="reviews.stars" class="fa" awesome-rating-options="vm.awesomeRatingOptions">
+                                </div> <b>{{reviews.comment.title}}</b></h3>
+                                    <div class="my-md-padding-top my-md-padding-bot"><span>{{reviews.comment.text}}</span>
+                                    </div>
+                                    <span class="md-subheader"><md-icon class="material-icons">person</md-icon><b>{{reviews.author}} em: <md-icon class="material-icons">date_range</md-icon>{{reviews.date}}</b></span>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <div flex="20" class="my-md-grey-bg" layout-padding>
+                                <div layout-gt-xs="column">
+                                    <h4 class="md-subheader"><b>Esta avaliação foi util?</b></h4>
+                                    <div layout="row">
+
+
+                                        <md-button flex="none" class="md-primary  md-hue-2">
+                                            <md-icon clss="material-icons">thumb_up</md-icon>&nbsp;Sim &nbsp;{{reviews.usefull}}</md-button>
+                                        <md-divider></md-divider>
+                                        <md-button class="md-primary">
+                                            <md-icon clss="material-icons md-warn">thumb_down</md-icon>&nbsp;Não&nbsp;{{reviews.notUsefull}}</md-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
             </md-tab>
         </md-tabs>
     </md-card>

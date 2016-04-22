@@ -1,10 +1,10 @@
 (function() {
     "use strict";
-    angular.module('myApp').controller('PrdDetailCtrl', ['$rootScope', '$scope', '$cookies', '$stateParams', '$mdDialog', 'productSrvc',
+    angular.module('myApp').controller('PrdDetailCtrl', ['$rootScope', '$scope', '$cookies', '$stateParams', '$mdDialog', 'productSrvc', '$filter',
         PrdDetailCtrl
     ]);
 
-    function PrdDetailCtrl($rootScope, $scope, $cookies, $stateParams, $mdDialog, productSrvc) {
+    function PrdDetailCtrl($rootScope, $scope, $cookies, $stateParams, $mdDialog, productSrvc, $filter) {
         var vm = this;
 
         var prd = productSrvc;
@@ -47,7 +47,7 @@
 
         $("#zoom_01").bind("hover", function(e) {
             var ez = $('#zoom_01').data('elevateZoom');
-            ez.closeAll(); //NEW: This function force hides the lens, tint and window	
+            ez.closeAll(); //NEW: This function force hides the lens, tint and window
             $.fancybox(ez.getGalleryList());
             return false;
         });
@@ -150,5 +150,52 @@
             vm.remainChars = vm.maxNumOfChars - vm.contactMsg.length
         }
         //-----------------------------------------------------
+
+        /*Users Review Comments*/
+        var date = new Date();
+        vm.usersReview = [{
+            author: 'Patrício',
+            stars: 3,
+            usefull: 1,
+            notUsefull:4,
+            date: $filter('date')(date),
+            comment: {
+                title: 'Muito bom',
+                text: 'Morbi leo mi, nonummy eget, tristique non, rhoncus non, leo. Nullam faucibus mi quis velit. Integer in sapien. Fusce tellus odio, dapibus id, fermentum quis, suscipit id, erat. Fusce aliquam vestibulum ipsum. Aliquam erat volutpat. Pellentesque sapien. Cras elementum. Nulla pulvinar eleifend'
+            }
+        }, {
+            author: 'Pedrito',
+            stars: 4,
+            usefull: 24,
+            notUsefull:2,
+            date: $filter('date')(date),
+            comment: {
+                title: 'Produto excelente',
+                text: 'Maecenas ipsum velit, consectetuer eu, lobortis ut, dictum at, dui. In rutrum. Sed ac dolor sit amet purus malesuada congue. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Suspendisse sagittis ultrices augue. Mauris metus.'
+            }
+        }, {
+            author: 'Bla blau',
+            stars: 4,
+            usefull: 3,
+            notUsefull:6,
+            date: $filter('date')(date),
+            comment: {
+                title: 'Muito bom',
+                text: 'Praesent in mauris eu tortor porttitor accumsan. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Aenean fermentum risus id tortor. Integer imperdiet lectus quis justo. Integer tempor. Vivamus ac urna vel leo pretium'
+            }
+        }]
+
+        vm.totalReviews = vm.usersReview.length;
+        vm.averageStars = _.meanBy(vm.usersReview, 'stars')
+        console.log(vm.averageStars);
+        vm.averageStarsOptions ={
+            allowFractional    : true,
+            readonly: true,
+        }
     }; //End of function PrdDetailCtrl
+
+
+
+
+
 }());
