@@ -8,7 +8,7 @@ module.exports = function(app, express, produtos) {
     router.post('/produtos/:categoria/filtro_faixa', produtos.filtroFaixa);
     router.post('/produtos/tv/:id', produtos.unico);
     router.post('/produtos/myKart/:id', produtos.myKart);
-    router.post('/produtos/rateProduct/:id', produtos.ratingProduct);
+    router.post('/produtos/reviewProduct/:id', produtos.reviewProduct);
     router.post('/produtos/showRateProduct/:id', produtos.showRatingProduct);
 
 

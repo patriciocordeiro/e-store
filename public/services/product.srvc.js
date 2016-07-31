@@ -1,10 +1,10 @@
 //(function() {
 //    'use strict';
-angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService', '$cookies', '$mdDialog',
-    function($rootScope, $q, httpService, $cookies, $mdDialog) {
+angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService', '$cookies', '$mdDialog', 'userSrcv',
+    function($rootScope, $q, httpService, $cookies, $mdDialog, userSrcv) {
         //create this variable to pass all functions
         //This will allow to use this service function inside of this service
-        _this = this;
+        self = this;
         //This one uses ng-model and share data bettwen controllers
         this.category = '';
         this.section = '';
@@ -22,8 +22,8 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
             newData: false,
             cookies: {
                 put: function() {
-                    $cookies.put('section', _this.section);
-                    $cookies.put('category', _this.category);
+                    $cookies.put('section', self.section);
+                    $cookies.put('category', self.category);
                 },
                 get: function() {
                     this.category = $cookies.get('category');
@@ -41,41 +41,41 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
             },
             /*Rcover data on page reload*/
             recoverData: function() {
-                if (_.isEmpty(_this.prd.data)) {
+                if (_.isEmpty(self.prd.data)) {
                     console.log('Nenhum dado');
-                    _this.prd.cookies.get().then(function(isCookiesExist) {
+                    self.prd.cookies.get().then(function(isCookiesExist) {
                         if (isCookiesExist) {
                             var query = {};
-                            query.category = _this.category;
-                            console.log(_this.category);
-                            _this.prd.http.getDataByCatg(query, this.category, function() {})
+                            query.category = self.category;
+                            console.log(self.category);
+                            self.prd.http.getDataByCatg(query, this.category, function() {})
                         }
                     });
                 }
 
             },
             /*update some signaling variables if prd data change
-			search or new category or something else*/
+            search or new category or something else*/
             update: function() {
                 //change the status to sinalize new incoming data
                 //this will be used in the watch of prd controller
-                _this.prd.newData = !_this.prd.newData;
+                self.prd.newData = !self.prd.newData;
                 //------------------------------------------------
                 /*True if data is from search, false otherwise
-                            	this is used on prd controller to watch 
-								where data is coming from*/
-                _this.prd.search.isDataFrom = false;
+                                this is used on prd controller to watch
+                                where data is coming from*/
+                self.prd.search.isDataFrom = false;
                 //------------------------------------------------
             },
             /*Get the clicked section and category */
             getCatg: function(section, category) {
                 //get the category
-                _this.category = category;
+                self.category = category;
                 //get  the section
-                _this.section = section;
+                self.section = section;
                 //-------------------------------------------
                 //save the cookies
-                _this.prd.cookies.put();
+                self.prd.cookies.put();
             },
             /*Get a single product details */
             getDetails: function(prdData, prdId) {
@@ -123,21 +123,21 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                         function(res) {
                             //                            data.abc = true;
                             //Pass data to service
-                            _this.prd.data = res.data;
+                            self.prd.data = res.data;
                             //sinalize that data has change (execute update operations)
-                            _this.prd.newData = !_this.prd.newData;
+                            self.prd.newData = !self.prd.newData;
                             //--------------------------------------------
                             /*True if data is from search, false otherwise
-                            	this is used on prd controller to watch 
-								where data is coming from*/
-                            _this.prd.search.isDataFrom = false;
+                                this is used on prd controller to watch
+                                where data is coming from*/
+                            self.prd.search.isDataFrom = false;
                             //--------------------------------------------
                             console.info('category data', res.data);
                             //create the array of quantities with value 1
 
                             var i = 0
                             for (i = 0; i < res.data.length; i++) {
-                                _this.prd.qty.push(1);
+                                self.prd.qty.push(1);
                             }
                             //------------------------------------------------
                             //for pagination: get the number of pages
@@ -162,16 +162,16 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                     }, query).$promise.then(function(data) {
                         data.abc = true;
                         //pass the data to the service variable
-                        _this.prd.search.data = data;
+                        self.prd.search.data = data;
                         //-------------------------------------------
                         //sinalize that data has change (execute update operations)
                         //change the status to sinalize new incoming data
                         //this will be used in the watch of prd controller
-                        _this.prd.newData = !_this.prd.newData;
+                        self.prd.newData = !self.prd.newData;
                         /*True if data is from search, false otherwise
-                            	this is used on prd controller to watch 
-								where data is coming from*/
-                        _this.prd.search.isDataFrom = true;
+                                this is used on prd controller to watch
+                                where data is coming from*/
+                        self.prd.search.isDataFrom = true;
                         //------------------------------------------------
                         return callback(data);
                     }, function(error) {
@@ -187,6 +187,44 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                         data.abc = true;
                         return callback(data);
                     });
+                },
+
+                reviewProduct: function(query, id, callback) {
+                    httpService.prd.save({
+                        acao: 'reviewProduct', //apenas para teste. remover e colocar o acima
+                        id: id
+                    }, query).$promise.then(
+                        /*sucesso*/
+                        function(res) {
+                            var msg = {};
+                            if (res) {
+                                if (res.ok == 1 && res.nModified == 1) {
+                                    msg = {
+                                        title: 'Obrigado por Avaliar',
+                                        text: 'Sua avaliação foi enviada com sucesso',
+                                        sucess: 1
+                                    };
+
+
+                                }
+                                console.log(res);
+
+                            } else {
+                                //TODO: error msg
+                            }
+                            userSrcv.usr.dialog(msg)
+                            return callback(res);
+                        },
+                        /*falha*/
+                        function(error) {
+                            msg = {
+                                title: 'Ocorreu um erro e sua avaliaçao nao foi processada.',
+                                text: 'Por favor, tente novamente',
+                                sucess: 0
+                            };
+                            userSrcv.usr.dialog(msg)
+                            return callback(error);
+                        });
                 },
             },
             kart: {
@@ -216,81 +254,81 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 },
                 /*recover the kart  on page reload. Recover ids on cookies*/
                 recover: function(callback) {
-                    _this.prd.kart.cookies.get().then(function(res) {
+                    self.prd.kart.cookies.get().then(function(res) {
                         console.log(res);
                         if (res) {
                             var query = {
-                                ids: _this.prd.kart.ids
+                                ids: self.prd.kart.ids
                             }
 
                             httpService.prd.save({
                                 acao: 'myKart',
                                 id: 'id'
                             }, query).$promise.then(function(res) {
-                                _this.prd.kart.data = res.data;
+                                self.prd.kart.data = res.data;
                                 var i = 0;
                                 for (i = 0; i < res.data.length; i++) {
-                                    _this.prd.kart.data[i]['buyQty'] = _this.prd.kart.qtys[i];
-                                    _this.prd.kart.data[i]['priceSubTotal'] = _this.prd.kart.qtys[i] * res.data[i].preco
+                                    self.prd.kart.data[i]['buyQty'] = self.prd.kart.qtys[i];
+                                    self.prd.kart.data[i]['priceSubTotal'] = self.prd.kart.qtys[i] * res.data[i].preco
 
                                 }
                                 //update number of items in kart
-                                _this.prd.kart.getSize().then(function(kartSize, callback) {
+                                self.prd.kart.getSize().then(function(kartSize, callback) {
                                     console.log('obj');
                                     console.log('Kartsize', kartSize);
-                                    _this.prd.kart.totalItems = kartSize;
+                                    self.prd.kart.totalItems = kartSize;
                                     //sinalize kartEmpty
                                     if (kartSize > 0) {
-                                        _this.prd.kart.isEmpty = false;
+                                        self.prd.kart.isEmpty = false;
                                     } else {
-                                        _this.prd.kart.isEmpty = true;
+                                        self.prd.kart.isEmpty = true;
                                     }
-                                    console.log(_this.prd.kart.isEmpty);
+                                    console.log(self.prd.kart.isEmpty);
                                 })
                                 //                                getSizePromisse.then(function(data) {
                                 //                                        console.log('obj');
                                 //                                        console.log('Kartsize', data);
-                                //                                        _this.prd.kart.totalItems = data;
+                                //                                        self.prd.kart.totalItems = data;
                                 return callback(res.data)
                             })
 
                             //                                    return callback(res.data);
                             //                                });
                         } else {
-                            _this.prd.kart.isEmpty = true;
-                            console.log('Kart is empty', _this.prd.kart.isEmpty);
+                            self.prd.kart.isEmpty = true;
+                            console.log('Kart is empty', self.prd.kart.isEmpty);
                             return callback([]);
                         }
                     })
                 },
                 /*Function to handle puting product on the kart*/
                 addItem: function(id, qty) {
-                    var checkForIdExistPromisse = _this.prd.checkForIdExist(_this.prd.kart.data, id);
+                    var checkForIdExistPromisse = self.prd.checkForIdExist(self.prd.kart.data, id);
                     checkForIdExistPromisse.then(function(idExists) {
                         console.log('promisseresult', idExists)
                         if (idExists == true) {
-                            _this.prd.kart.idExistsDialg();
+                            self.prd.kart.idExistsDialg();
                         } else {
                             console.log(id);
-                            var dataTemp = _this.prd.getDetails(_this.prd.data, id)
+                            var dataTemp = self.prd.getDetails(self.prd.data, id)
                             //Include the field quantity
                             dataTemp['buyQty'] = qty;
                             //Include the field priceSubTotal
                             dataTemp['priceSubTotal'] = dataTemp.preco * qty;
                             //calculate the kart total price
-                            console.info(_this.prd.kart.total);
-                            _this.prd.kart.total = _this.prd.kart.total + dataTemp.preco * qty;
-                            console.info(_this.prd.kart.total);
+                            console.info(self.prd.kart.total);
+                            self.prd.kart.total = self.prd.kart.total + dataTemp.preco * qty;
+                            console.info(self.prd.kart.total);
                             //push the data to the array of datas
-                            _this.prd.kart.data.push(dataTemp);
+                            self.prd.kart.data.push(dataTemp);
                             //push the id
-                            _this.prd.kart.ids.push(id);
+                            self.prd.kart.ids.push(id);
                             //push the qty
-                            _this.prd.kart.qtys.push(qty)
+                            self.prd.kart.qtys.push(qty)
                             //store cookies
-                            _this.prd.kart.cookies.put();
-                            
-							_this.prd.kart.isEmpty = false;
+                            self.prd.kart.cookies.put();
+
+                            self.prd.kart.isEmpty = false;
 
                         }
                     })
@@ -298,41 +336,41 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 /*Remove an item from the kart*/
                 remItem: function(index) {
                     console.log('remove item');
-                    _this.prd.kart.data.splice(index, 1);
-                    _this.prd.kart.ids.splice(index, 1);
-                    if (_this.prd.kart.ids.length == 0) {
-                        _this.prd.kart.isEmpty = true;
+                    self.prd.kart.data.splice(index, 1);
+                    self.prd.kart.ids.splice(index, 1);
+                    if (self.prd.kart.ids.length == 0) {
+                        self.prd.kart.isEmpty = true;
                     } else {
-                        _this.prd.kart.isEmpty = false;
+                        self.prd.kart.isEmpty = false;
                     }
                     //Trigger the datachange watch for kart total number of items
                     $rootScope.dataChange = !$rootScope.dataChange;
                     //update the kart total
-                    _this.prd.kart.total = _.sum(_.map(_this.prd.kart.data, 'priceSubTotal'));
+                    self.prd.kart.total = _.sum(_.map(self.prd.kart.data, 'priceSubTotal'));
 
                     //update the number of items in the Kart
                     //Save the cookies
-                    _this.prd.kart.cookies.put();
+                    self.prd.kart.cookies.put();
                 },
                 /*update kart when quantity is change*/
                 updateItem: function(index, qty) {
                     //update the quantyity in the array of qtys
-                    _this.prd.kart.qtys[index] = qty;
+                    self.prd.kart.qtys[index] = qty;
                     //update the product buy qty
-                    _this.prd.kart.data[index].buyQty = qty;
+                    self.prd.kart.data[index].buyQty = qty;
                     //update the product subtotal
-                    _this.prd.kart.data[index].priceSubTotal = _this.prd.kart.data[index].preco * qty;
+                    self.prd.kart.data[index].priceSubTotal = self.prd.kart.data[index].preco * qty;
                     //update the kart total
-                    _this.prd.kart.total = _.sum(_.map(_this.prd.kart.data, 'priceSubTotal'));
+                    self.prd.kart.total = _.sum(_.map(self.prd.kart.data, 'priceSubTotal'));
                     //Save the cookies
-                    _this.prd.kart.cookies.put();
+                    self.prd.kart.cookies.put();
                     //return a promisse
                     return $q.when(true);
                 },
                 /*Get the total number of items in the Kart*/
                 getSize: function() {
-                    console.log(_this.prd.kart.ids.length);
-                    return $q.when(_this.prd.kart.ids.length);
+                    console.log(self.prd.kart.ids.length);
+                    return $q.when(self.prd.kart.ids.length);
                 },
                 /*Get a single product ID*/
                 getId: function(stateParams) {
@@ -340,7 +378,7 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 },
 
                 idExistsDialg: function() {
-					console.log('Produto ja está no carrinho');
+                    console.log('Produto ja está no carrinho');
                     $mdDialog.show({
                         controller: 'jaNoCarrinhoDiag as vm',
                         templateUrl: 'components/kart/jaNoCarrinhoDiag.view.html',
@@ -360,9 +398,9 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                 },
                 cookies: {
                     put: function() {
-                        $cookies.put('kartIds', _this.prd.kart.ids);
-                        $cookies.put('kartqtys', _this.prd.kart.qtys);
-                        $cookies.put('kartTotal', _this.prd.kart.total);
+                        $cookies.put('kartIds', self.prd.kart.ids);
+                        $cookies.put('kartqtys', self.prd.kart.qtys);
+                        $cookies.put('kartTotal', self.prd.kart.total);
                     },
                     get: function() {
                         var isCookiesExist;
@@ -373,20 +411,20 @@ angular.module('myApp').service('productSrvc', ['$rootScope', '$q', 'httpService
                         var katTotal = $cookies.get('kartTotal')
 
                         if (!_.isEmpty(kartIds && kartqtys)) {
-                            _this.prd.kart.recvIds = kartIds.split(',');
-                            _this.prd.kart.ids = _this.prd.kart.recvIds;
-                            _this.prd.kart.total = katTotal;
+                            self.prd.kart.recvIds = kartIds.split(',');
+                            self.prd.kart.ids = self.prd.kart.recvIds;
+                            self.prd.kart.total = katTotal;
 
                             // convert the qtys to Number
                             var temp = kartqtys.split(',');
 
                             var i = 0;
                             for (i = 0; i < temp.length; i++) {
-                                _this.prd.kart.recvQtys.push(Number(temp[i]))
-//                                console.log(_this.prd.kart.recvQtys);
+                                self.prd.kart.recvQtys.push(Number(temp[i]))
+                                //                                console.log(self.prd.kart.recvQtys);
                             }
                             //return that cookies exists
-                            _this.prd.kart.qtys = _this.prd.kart.recvQtys;
+                            self.prd.kart.qtys = self.prd.kart.recvQtys;
 
                             return $q.when(true);
                         }

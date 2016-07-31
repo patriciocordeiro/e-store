@@ -33,14 +33,15 @@ var productsSchema = new mongoose.Schema({
     //    sistema_operacional: String,
     //    preco: Number,
     //    media_avaliacoes: Number,
-    //    avaliacao_produto: [{
-    //        //_id:false,
-    //        titulo:String,
-    //        avaliacao:Number,
-    //        opiniao: String,
-    //        nome: String,
-    //        email: String
-    //    }]
+    avaliacao_produto: [{
+        //_id:false,
+        comment:[{title: String, text: String}],
+        stars: Number,
+        starsAverage: Number,
+        author: String,
+        email: String,
+        date: { type: Date, default: Date.now }
+    }]
 });
 /*elastic search using mongoosastic*/
 productsSchema.plugin(mongoosastic);

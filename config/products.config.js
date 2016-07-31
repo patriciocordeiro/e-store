@@ -39,7 +39,7 @@ exports.category = function(req, res, next) {
                 console.log(err);
                 return err;
             }
-//            console.log(data);
+            //            console.log(data);
             res.json({
                 data: data
             });
@@ -111,7 +111,9 @@ exports.myKart = function(req, res, next) {
             //     { field: { $in: [<value1>, <value2>, ... <valueN> ] } }
             if (err) throw err;
             console.log('Produtos retornados', data);
-            res.json({data:data})
+            res.json({
+                data: data
+            })
 
         });
 
@@ -131,99 +133,115 @@ function series(item) {
     }
 }
 
-exports.ratingProduct = function(req, res, next) {
-    console.log("Caracteristica do produto: ", req.body);
-
-    var query = {};
-
-    query.titulo = req.body.titulo;
-    query.avaliacao = req.body.avaliacao;
-    query.opiniao = req.body.opiniao;
-    query.nome = req.body.nome;
-    query.email = req.body.email;
-
-    var avaliacoes = 0;
-    var media = 0;
-    var tamanho = 0;
-    var soma_avaliacoes = 0;
-    soma = 0;
-    items = [];
-
-    /*
-        Sempre que for adicionado for avaliado um produto no banco de dados, uma nova média eh calculada
-        O produto eh encontrado, as avaliações são obtidas e então eh calculado uma nova média.
-        Então essa média substitui a que já estava
-    */
-    products.findOne({
-        _id: req.body.id
-    }, function(err, dado) {
-        //console.log(data)
-        //res.json([data])
-
-        items = dado.avaliacao_produto;
-        console.log("ITEMS: ", items.length);
-        tamanho = items.length;
-
-
-        if (dado.avaliacao_produto) {
-            soma_avaliacoes = series(items.shift());
-
-            media = (soma_avaliacoes + query.avaliacao) / (tamanho + 1);
-            console.log("Olha a media: " + media + " query.avaliacao: " + query.avaliacao + " tamanho: " + tamanho);
-
-            products.update({
-                '_id': req.body.id
-            }, {
-                '$push': {
-                    'avaliacao_produto': query
-                }
-            }, function(err, data) {
-                if (err) throw err;
-                //console.log('Produto avaliado PUSH', data);
-
-                products.update({
-                    '_id': req.body.id
-                }, {
-                    '$set': {
-                        'media_avaliacoes': media
-                    }
-                }, function(err, prodMedia) {
-                    if (err) throw err;
-                    //console.log('Produto avaliado SET', prodMedia);
-                    res.json([{
-                        retorno: "Obrigado por avaliar"
-                    }]);
-                });
-            });
-        } else {
-            products.update({
-                '_id': req.body.id
-            }, {
-                '$push': {
-                    'avaliacao_produto': query
-                }
-            }, function(err, data) {
-                if (err) throw err;
-
-                media = query.avaliacao;
-
-                products.update({
-                    '_id': req.body.id
-                }, {
-                    '$set': {
-                        'media_avaliacoes': media
-                    }
-                }, function(err, prodMedia) {
-                    if (err) throw err;
-                    console.log('Produto avaliado SET', prodMedia);
-                    res.json([{
-                        retorno: "Obrigado por avaliar"
-                    }]);
-                });
-            });
+//exports.ratingProduct = function(req, res, next) {
+//    console.log("Caracteristica do produto: ", req.body);
+//
+//    var query = {};
+//
+//    query.titulo = req.body.titulo;
+//    query.avaliacao = req.body.avaliacao;
+//    query.opiniao = req.body.opiniao;
+//    query.nome = req.body.nome;
+//    query.email = req.body.email;
+//
+//    var avaliacoes = 0;
+//    var media = 0;
+//    var tamanho = 0;
+//    var soma_avaliacoes = 0;
+//    soma = 0;
+//    items = [];
+//
+//    /*
+//        Sempre que for adicionado for avaliado um produto no banco de dados, uma nova média eh calculada
+//        O produto eh encontrado, as avaliações são obtidas e então eh calculado uma nova média.
+//        Então essa média substitui a que já estava
+//    */
+//    products.findOne({
+//        _id: req.body.id
+//    }, function(err, dado) {
+//        //console.log(data)
+//        //res.json([data])
+//
+//        items = dado.avaliacao_produto;
+//        console.log("ITEMS: ", items.length);
+//        tamanho = items.length;
+//
+//
+//        if (dado.avaliacao_produto) {
+//            soma_avaliacoes = series(items.shift());
+//
+//            media = (soma_avaliacoes + query.avaliacao) / (tamanho + 1);
+//            console.log("Olha a media: " + media + " query.avaliacao: " + query.avaliacao + " tamanho: " + tamanho);
+//
+//            products.update({
+//                '_id': req.body.id
+//            }, {
+//                '$push': {
+//                    'avaliacao_produto': query
+//                }
+//            }, function(err, data) {
+//                if (err) throw err;
+//                //console.log('Produto avaliado PUSH', data);
+//
+//                products.update({
+//                    '_id': req.body.id
+//                }, {
+//                    '$set': {
+//                        'media_avaliacoes': media
+//                    }
+//                }, function(err, prodMedia) {
+//                    if (err) throw err;
+//                    //console.log('Produto avaliado SET', prodMedia);
+//                    res.json([{
+//                        retorno: "Obrigado por avaliar"
+//                    }]);
+//                });
+//            });
+//        } else {
+//            products.update({
+//                '_id': req.body.id
+//            }, {
+//                '$push': {
+//                    'avaliacao_produto': query
+//                }
+//            }, function(err, data) {
+//                if (err) throw err;
+//
+//                media = query.avaliacao;
+//
+//                products.update({
+//                    '_id': req.body.id
+//                }, {
+//                    '$set': {
+//                        'media_avaliacoes': media
+//                    }
+//                }, function(err, prodMedia) {
+//                    if (err) throw err;
+//                    console.log('Produto avaliado SET', prodMedia);
+//                    res.json([{
+//                        retorno: "Obrigado por avaliar"
+//                    }]);
+//                });
+//            });
+//        }
+//
+//    });
+//}
+exports.reviewProduct = function(req, res, next) {
+    console.log("Caracteristica do produto: ", req.body.id);
+    products.update({
+        '_id': req.body.id
+    }, {
+        '$push': {
+            'avaliacao_produto': req.body.review
         }
-
+    }, function(err, data) {
+        if (err) throw err;
+//        console.log(err);
+        console.log('retornado', data);
+        res.send(data);
     });
+
 }
 
 exports.showRatingProduct = function(req, res, next) {

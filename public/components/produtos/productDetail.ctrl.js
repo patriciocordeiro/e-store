@@ -117,6 +117,7 @@
         }]
 
 
+        /*Product review-----------------------------------------*/
         /*Product review dialog*/
         vm.reviewDialog = function(ev) {
             $mdDialog.show({
@@ -137,7 +138,25 @@
                 clickOutsideToClose: true
             })
         }
+        //Send product review
+        vm.review={};
+        vm.productReview = function(review) {
+            //http call
+            console.log(review);
+            var query = {};
+            query.review = review
+            query.id = prdId;
+            query.review.author = 'patricio'
+            query.review.date = new Date();
+            console.log('Enviando Review', query);
+                        prd.prd.http.reviewProduct(query,prdId, function(res) {
+                console.log(res);
+            })
 
+        }
+
+
+        /*-----------------------------------------------------------------------*/
         //Text area Character count*/
         //this will have the message
         vm.contactMsg = '';
@@ -152,12 +171,13 @@
         //-----------------------------------------------------
 
         /*Users Review Comments*/
+        //TODO: To be replaced by real data
         var date = new Date();
         vm.usersReview = [{
             author: 'Patrício',
             stars: 3,
             usefull: 1,
-            notUsefull:4,
+            notUsefull: 4,
             date: $filter('date')(date),
             comment: {
                 title: 'Muito bom',
@@ -167,7 +187,7 @@
             author: 'Pedrito',
             stars: 4,
             usefull: 24,
-            notUsefull:2,
+            notUsefull: 2,
             date: $filter('date')(date),
             comment: {
                 title: 'Produto excelente',
@@ -177,7 +197,7 @@
             author: 'Bla blau',
             stars: 4,
             usefull: 3,
-            notUsefull:6,
+            notUsefull: 6,
             date: $filter('date')(date),
             comment: {
                 title: 'Muito bom',
@@ -188,8 +208,8 @@
         vm.totalReviews = vm.usersReview.length;
         vm.averageStars = _.meanBy(vm.usersReview, 'stars')
         console.log(vm.averageStars);
-        vm.averageStarsOptions ={
-            allowFractional    : true,
+        vm.averageStarsOptions = {
+            allowFractional: true,
             readonly: true,
         }
     }; //End of function PrdDetailCtrl
